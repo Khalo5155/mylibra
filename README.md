@@ -15,7 +15,7 @@ GPT-SoVITS 项目文档：https://www.yuque.com/baicaigongchang1145haoyuangong/i
  - user_input 处理：RAG部分+[时间标签]+[身份标签] + [user_input_text]。其中RAG部分是临时的，不会进入上下文历史中。
 
 中短期记忆（上下文）：
- - 三级缓冲结构：一级缓冲存对话，二三级存压缩后文本，缓冲满后压缩内容并清空、逐级向上push。顶层缓冲满后对提示词中的所谓长期记忆部分（prompt_dict["memory"]）进行更新。三级缓冲理论上最多能存下15*15*10=2250轮对话信息，长期记忆那部分则是永远保持更新的总结性记忆。
+ - 三级缓冲结构：一级缓冲存对话，二三级存压缩后文本，缓冲满后压缩内容并清空、逐级向上push。顶层缓冲满后对提示词中的所谓长期记忆部分（prompt_dict["memory"]）进行更新。当前三级缓冲理论上最多能存下15\*15\*10=2250轮对话信息，长期记忆那部分则是永远保持更新的总结性记忆。
 
 长期记忆（持久化存储）：
  - 日记系统：分为文本模块（./saved_context/{IDENTITY}/diary/）和数据库模块（./vector_db/{IDENTITY}/diary/）。文本模块按日周月年四个jsonl存储；数据库模块统一存储、根据day/week/month/year的日期前缀进行区分。由自动化脚本（./diary/auto_trigger.py）在每天0点自动触发更新，调用日记提示词和人格模块让IDENTITY角色自己书写。
