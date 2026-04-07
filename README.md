@@ -45,8 +45,8 @@ TTS（TTS.py; [mylibra-TTS]）：
  - STT_LLM_TTS：本机的总流程，以及向 server.py 提供的接口类。
  - server：服务端实现。基于WebSocket。—— 目前的API-KEY还暴露在请求url中，后面找机会改掉
  - diary/: 自动写日记的监控程序，0点自动更新
- - [mylibra-TTS]：负责TTS的子项目。目前仅支持GPT-SoVITS的本地推理，如果以后要用其他模型的话，可能还得再写个单独的。把它抽离出来本身就是为了简化环境配置、避免这个项目和GPTSoVITS的项目杂糅。
- - [Mylibra_App_v1]：安卓客户端。用于远程通讯。
+ - [mylibra-TTS]：负责TTS的子项目。目前仅支持GPT-SoVITS的本地推理。
+ - [Mylibra_App_v1]：安卓客户端。用于远程通讯。（暂未上传）
 
 # 配置步骤：
 
