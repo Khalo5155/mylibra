@@ -8,10 +8,10 @@ GPT-SoVITS 项目文档：https://www.yuque.com/baicaigongchang1145haoyuangong/i
 当前内容：
 
 基础API调用（LLM_basic）：
- - 管理多种模型的api client。支持doubao和deepseek的流式调用。
+ - 管理多种模型的api client。
 
 上下文工程（LLM_context）：
- - 模块化上下文：支持系统提示词、记忆模块、对话多级缓冲队列、中期提示词注入等模块的自由拼接。
+ - 模块化上下文：包括系统提示词、记忆模块、对话多级缓冲队列、中期提示词注入等模块。
  - user_input 处理：RAG部分+[时间标签]+[身份标签] + [user_input_text]。其中RAG部分是临时的，不会进入上下文历史中。
 
 中短期记忆（上下文）：
@@ -37,12 +37,12 @@ TTS（TTS.py; [mylibra-TTS]）：
  - 发送文本消息，处理响应文本和音频。适配了服务端的流式响应，用有序字典和音频队列实现音频播放的保序性。
 
 其他模块：
--LLM：实现对话的核心功能。其余功能被拆分到LLM_basic（API管理）和LLM_context（上下文管理）中。
--Vdb：使用faiss数据库。
--TTS：这个功能被抽离到子项目[mylibra-TTS]中实现了，主项目里它只负责调用。
--STT：本地的语音识别。支持麦克风实时监听。*理想中还应该有个buffer，如果在LLM回复过程中又有了新的输入，就先存进buffer里，等回复结束后再发过去。
--STT_LLM_TTS：本机的总流程，以及向 server.py 提供的接口类。
--server：服务端实现。基于WebSocket。—— 目前的API-KEY还暴露在请求url中，后面找机会改掉
--[./diary/]: 自动写日记的监控程序，0点自动更新
--[mylibra-TTS]：负责TTS的子项目。目前仅支持GPT-SoVITS的本地推理，如果以后要用其他模型的话，可能还得再写个单独的。把它抽离出来本身就是为了简化环境配置、避免这个项目和GPTSoVITS的项目杂糅。
--[Mylibra_App_v1]：安卓客户端。用于远程通讯。
+ - LLM：实现对话的核心功能。其余功能被拆分到LLM_basic（API管理）和LLM_context（上下文管理）中。
+ - Vdb：使用faiss数据库。
+ - TTS：这个功能被抽离到子项目[mylibra-TTS]中实现了，主项目里它只负责调用。
+ - STT：本地的语音识别。支持麦克风实时监听。*理想中还应该有个buffer，如果在LLM回复过程中又有了新的输入，就先存进buffer里，等回复结束后再发过去。
+ - STT_LLM_TTS：本机的总流程，以及向 server.py 提供的接口类。
+ - server：服务端实现。基于WebSocket。—— 目前的API-KEY还暴露在请求url中，后面找机会改掉
+ - [./diary/]: 自动写日记的监控程序，0点自动更新
+ - [mylibra-TTS]：负责TTS的子项目。目前仅支持GPT-SoVITS的本地推理，如果以后要用其他模型的话，可能还得再写个单独的。把它抽离出来本身就是为了简化环境配置、避免这个项目和GPTSoVITS的项目杂糅。
+ - [Mylibra_App_v1]：安卓客户端。用于远程通讯。
