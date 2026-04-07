@@ -1,11 +1,11 @@
 # mylibra
-带LLM长期记忆功能的AI角色扮演系统，支持基于本地GPT-SoVITS的TTS和包括移动端在内的多端接入。
+带LLM长期记忆功能的AI角色扮演系统，支持基于本地GPT-SoVITS的TTS，支持远程访问（要自己弄到公网地址）。
 
 本项目的TTS功能在GPT-SoVITS项目的基础上实现。
 GPT-SoVITS b站视频：https://www.bilibili.com/video/BV14xS8BDE1w/?spm_id_from=333.337.search-card.all.click&vd_source=74de7d3031e7d0d9a418d929e351b377
 GPT-SoVITS 项目文档：https://www.yuque.com/baicaigongchang1145haoyuangong/ib3g1e
 
-当前内容：
+# 当前内容：
 
 基础API调用（LLM_basic）：
  - 管理多种模型的api client。
@@ -46,3 +46,15 @@ TTS（TTS.py; [mylibra-TTS]）：
  - [diary/]: 自动写日记的监控程序，0点自动更新
  - [mylibra-TTS]：负责TTS的子项目。目前仅支持GPT-SoVITS的本地推理，如果以后要用其他模型的话，可能还得再写个单独的。把它抽离出来本身就是为了简化环境配置、避免这个项目和GPTSoVITS的项目杂糅。
  - [Mylibra_App_v1]：安卓客户端。用于远程通讯。
+
+# 配置步骤：
+
+- 主项目（mylibra）：
+ 1. 创建虚拟环境 conda create -n mylibra python=3.9
+ 2. 激活环境 conda activate mylibra
+ 3. 在项目目录（mylibra/）中打开cmd控制台，下载依赖包 pip install -r requirements.txt
+
+- TTS 项目（mylibra-TTS）：
+  1. 下载GPT-SoVITS的整合包（https://www.yuque.com/r/goto?url=https%3A%2F%2Fwww.modelscope.cn%2Fmodels%2FFlowerCry%2Fgpt-sovits-7z-pacakges%2Fresolve%2Fmaster%2FGPT-SoVITS-v2pro-20250604-nvidia50.7z）
+  2. 解压缩后把该项目整个粘贴到根目录下（GPT-SoVITS-v2pro-20250604-nvidia50/mylibra-TTS/）
+  3. 在整合包环境的基础上补全所需的额外依赖。在VSCode中打开GPTSoVITS整合包的根目录，在命令行中运行./runtime/python.exe -m pip install ... 来下载缺失的包。
