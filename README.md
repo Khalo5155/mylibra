@@ -20,9 +20,10 @@ GPT-SoVITS 项目文档：https://www.yuque.com/baicaigongchang1145haoyuangong/i
 长期记忆（持久化存储）：
  - 日记系统：分为文本模块（./saved_context/{IDENTITY}/diary/）和数据库模块（./vector_db/{IDENTITY}/diary/）。文本模块按日周月年四个jsonl存储；数据库模块统一存储、根据day/week/month/year的日期前缀进行区分。由自动化脚本（./diary/auto_trigger.py）在每天0点自动触发更新，调用日记提示词和人格模块让IDENTITY角色自己书写。
 
-MCP：
+MCP（调试中，不稳定）：
  - chat_sister: 给另一台机器上运行的 mylibra 发消息。也可以是本地运行的另一个服务端。
  - search_diary: 按时间范围查日记。范围以日为单位，跨周月年的区间会被自动合并成对应的周记/月记/年记。最后返回拼接了所有查询结果的字符串。
+ - use_cmd: 在隔离环境中使用受限的一些控制台命令。
 
 TTS（TTS.py; [mylibra-TTS]）：
  - 给GPT-SoVITS做了个推理调用的接口，并能够运行在本地WebSocket服务器（asyncio）上，能接受文本请求，并按照指定参数（指定参考语音）返回TTS音频。
