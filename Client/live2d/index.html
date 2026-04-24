@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <style>
+    * { margin:0; padding:0; }
+    body {
+      background: transparent !important;
+      overflow: hidden;
+    }
+    #canvas {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="canvas"></canvas>
+
+  <!-- Live2D SDK -->
+  <script src="https://cubism.live2d.com/sdk-web/cubism4/live2dcubismwebSdk.min.js"></script>
+
+  <!-- 桌宠渲染逻辑 -->
+  <script>
+    // 这里替换成你的模型路径
+    const MODEL_PATH = "./model/haru/haru.model3.json";
+
+    let app;
+    let model;
+
+    // 初始化Live2D
+    async function init() {
+      const canvas = document.getElementById('canvas');
+      const options = {
+        canvas: canvas,
+        width: window.innerWidth,
+        height: window.innerHeight
+      };
+
+      // 加载模型
+      app = new Live2D.CubismUserModel();
+      await app.loadModel(MODEL_PATH);
+      app.scale = 1;       // 模型大小
+      app.x = 150;         // X 居中
+      app.y = 250;         // Y 位置
+      app.start();
+    }
+
+    init();
+  </script>
+</body>
+</html>
