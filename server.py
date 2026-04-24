@@ -86,6 +86,9 @@ msgCount = -999
 last_json_response = None  # 新增全局变量，保持与原逻辑一致
 
 def msgcount_check(clientMsgCount: int) -> bool:
+    # 用了websocket之后不会出现重复接收消息的情况了，直接去掉这个判断
+    return True
+
     global msgCount
     # ai 通信的特殊标记
     if clientMsgCount == -6362:
@@ -117,16 +120,18 @@ async def parse_message(websocket, message_data) -> str:
                 'type': 'server_error',
                 'error': 'message format must be JSON object'
             }))
-            return
+            logger.info("parse_message: message format must be JSON object")
+            return ''
         
         # 频率和消息计数检查
         if not time_check(int(time.time())):
             response = last_json_response if last_json_response else {
                 'type': 'server_error',
-                'error': 'query to frequent'
+                'error': 'query too frequent'
             }
+            logger.info("parse_message: query too frequent")
             await websocket.send(json.dumps(response))
-            return
+            return ''
         
         # 解析客户端消息
         msg_type = message_data.get('type', 'text')
@@ -141,7 +146,8 @@ async def parse_message(websocket, message_data) -> str:
                 'type': 'server_error',
                 'error': 'message token cannot be empty'
             }))
-            return
+            logger.info("parse_message: message token cannot be empty")
+            return ''
         
         if not msgcount_check(client_msg_count):
             response = last_json_response if last_json_response else {
@@ -149,7 +155,8 @@ async def parse_message(websocket, message_data) -> str:
                 'error': 'repeated message count'
             }
             await websocket.send(json.dumps(response))
-            return
+            logger.info("parse_message: repeated message count")
+            return ''
         
         # 解密消息
         decrypted_msg = cipher_tool.decrypt(encrypted_msg)
@@ -751,7 +758,16 @@ async def handle_websocket_connection(websocket, path=''):
         heartbeat_task = asyncio.create_task(heartbeat(websocket))
         
         # 7. 处理消息
-        async for message in websocket:
+        while True:
+            try:
+                # 修改点1-1：使用 recv() 替代 async for，更好地控制异常
+                message = await websocket.recv()
+            except ConnectionClosed as e:
+                # 修改点1-2：在消息接收层面就捕获 ConnectionClosed
+                logger.info(f"消息接收时检测到连接关闭 - 代码: {e.code}, 原因: {e.reason or '无'}")
+                break  # 跳出循环，让外层的 except 处理
+            
+            # 修改点1-3：消息解析和处理的异常隔离
             try:
                 message_data = json.loads(message)
             except json.JSONDecodeError:
@@ -765,11 +781,8 @@ async def handle_websocket_connection(websocket, path=''):
             if text_only:
                 logger.info("Got text_only request.")
                 await handle_client_message_text(websocket, message_data, client_role)
-                return
             # 判断是否为流式请求
-            msg_mode = message_data.get('mode', 'normal')  # 客户端通过mode参数指定流式/普通
-            print("Client Mode: ", msg_mode)
-            if msg_mode == 'stream':
+            elif message_data.get('mode', 'normal') == 'stream':
                 logger.info("Got stream tts request.")
                 await handle_client_message_stream(websocket, message_data, client_role)
             else:

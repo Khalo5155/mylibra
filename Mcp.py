@@ -85,7 +85,7 @@ async def mcp_send_message(text: str, url: str, role=IDENTITY) -> str:
             "role": role,
             "message": cipher_tool.encrypt(text),
             "textonly": True,
-            "msgCount": -6362, # ai 通信的特殊标记，不参与正常的消息计数流程
+            # "msgCount": -6362, # ai 通信的特殊标记，不参与正常的消息计数流程
         }
 
         # 连接指定 WebSocket 地址并发送消息

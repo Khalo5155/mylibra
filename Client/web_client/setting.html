@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>配置页面</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Segoe UI", "Microsoft YaHei", sans-serif;
+        }
+
+        body {
+            background: #f7f8fa;
+            padding: 40px;
+        }
+
+        .setting-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .setting-title {
+            margin-bottom: 24px;
+            color: #333;
+            font-size: 20px;
+            font-weight: 600;
+        }
+
+        /* 横向列表式布局 */
+        .setting-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .setting-item {
+            flex: 1;
+            min-width: 280px;
+        }
+
+        .setting-item label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 15px;
+            color: #333;
+            font-weight: 500;
+        }
+
+        .setting-item input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 14px;
+            outline: none;
+        }
+
+        /* 新增开关样式 */
+        .setting-item .switch-wrap {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 16px;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            background: #fff;
+        }
+        .switch {
+            position: relative;
+            width: 40px;
+            height: 20px;
+            background: #e0e0e0;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background .3s;
+        }
+        .switch::after {
+            content: '';
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: #fff;
+            top: 2px;
+            left: 2px;
+            transition: left .3s;
+        }
+        .switch.checked {
+            background: #4e8cff;
+        }
+        .switch.checked::after {
+            left: 22px;
+        }
+
+        .setting-item input:focus {
+            border-color: #4e8cff;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        #save-btn, #test-btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-size: 15px;
+            cursor: pointer;
+        }
+
+        #save-btn {
+            background: #4e8cff;
+            color: #fff;
+            flex: 1;
+        }
+
+        #save-btn:hover {
+            background: #3b7bff;
+        }
+
+        #test-btn {
+            background: #f1f3f4;
+            color: #333;
+            flex: 1;
+        }
+
+        #test-btn:hover {
+            background: #e5e7eb;
+        }
+
+        .status-text {
+            margin-top: 16px;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .success {
+            color: #00b42a;
+        }
+
+        .error {
+            color: #f53f3f;
+        }
+    </style>
+</head>
+<body>
+    <div class="setting-container">
+        <div class="setting-title">WebSocket 配置</div>
+        
+        <div class="setting-list">
+            <div class="setting-item">
+                <label for="ws-url">服务端WebSocket地址</label>
+                <input type="text" id="ws-url" placeholder="例：http://localhost:8080/chat" 
+                       value="${localStorage.getItem('wsUrl') || ''}">
+            </div>
+
+            <div class="setting-item">
+                <label for="identity">角色名 (IDENTITY)</label>
+                <input type="text" id="identity" placeholder="例：user_assistant" 
+                       value="${localStorage.getItem('identity') || ''}">
+            </div>
+
+            <div class="setting-item">
+                <label for="api-key">X-API-Key</label>
+                <input type="text" id="api-key" placeholder="请输入API密钥" 
+                       value="${localStorage.getItem('apiKey') || ''}">
+            </div>
+
+            <!-- 新增 AES KEY 配置项 -->
+            <div class="setting-item">
+                <label for="aes-key">AES 密钥 (AES KEY)</label>
+                <input type="text" id="aes-key" placeholder="请输入AES加密密钥" 
+                       value="${localStorage.getItem('aesKey') || ''}">
+            </div>
+
+            <!-- 新增：流式响应开关 -->
+            <div class="setting-item">
+                <label>使用流式响应</label>
+                <div class="switch-wrap">
+                    <span>${localStorage.getItem('useStream') === 'true' ? '开启' : '关闭'}</span>
+                    <div class="switch ${localStorage.getItem('useStream') === 'true' ? 'checked' : ''}" id="use-stream"></div>
+                </div>
+            </div>
+
+            <!-- 新增：目标端口 -->
+            <div class="setting-item">
+                <label for="target-port">目标端口 (TARGET PORT)</label>
+                <input type="text" id="target-port" placeholder="例：5000" 
+                       value="${localStorage.getItem('targetPort') || '5000'}">
+            </div>
+        </div>
+
+        <div class="btn-group">
+            <button type="button" id="test-btn">测试连接</button>
+            <button type="button" id="save-btn">保存配置</button>
+        </div>
+
+        <div class="status-text" id="status"></div>
+    </div>
+
+    <script>
+        const wsUrlInput = document.getElementById('ws-url');
+        const identityInput = document.getElementById('identity');
+        const apiKeyInput = document.getElementById('api-key');
+        const aesKeyInput = document.getElementById('aes-key');
+        const useStreamSwitch = document.getElementById('use-stream');
+        const targetPortInput = document.getElementById('target-port');
+        const saveBtn = document.getElementById('save-btn');
+        const testBtn = document.getElementById('test-btn');
+        const statusText = document.getElementById('status');
+        let testWs = null;
+
+        // 流式开关点击事件
+        useStreamSwitch.addEventListener('click', function() {
+            this.classList.toggle('checked');
+            const statusText = this.parentElement.querySelector('span');
+            statusText.textContent = this.classList.contains('checked') ? '开启' : '关闭';
+        });
+
+        // 保存配置
+        saveBtn.addEventListener('click', function() {
+            const wsUrl = wsUrlInput.value.trim();
+            const identity = identityInput.value.trim();
+            const apiKey = apiKeyInput.value.trim();
+            const aesKey = aesKeyInput.value.trim();
+            const useStream = useStreamSwitch.classList.contains('checked');
+            const targetPort = targetPortInput.value.trim();
+
+            // 基础验证
+            if (!wsUrl) {
+                showStatus('请输入有效的WebSocket地址', 'error');
+                return;
+            }
+            if (!identity) {
+                showStatus('请输入角色名(IDENTITY)', 'error');
+                return;
+            }
+            if (!apiKey) {
+                showStatus('请输入X-API-Key', 'error');
+                return;
+            }
+            if (!aesKey) {
+                showStatus('请输入AES加密密钥', 'error');
+                return;
+            }
+            if (!targetPort || isNaN(targetPort)) {
+                showStatus('请输入有效的目标端口（数字）', 'error');
+                return;
+            }
+
+            // 保存到本地存储
+            localStorage.setItem('wsUrl', wsUrl);
+            localStorage.setItem('identity', identity);
+            localStorage.setItem('apiKey', apiKey);
+            localStorage.setItem('aesKey', aesKey);
+            localStorage.setItem('useStream', useStream);
+            localStorage.setItem('targetPort', targetPort);
+            
+            showStatus('配置保存成功！', 'success');
+        });
+
+        // 测试连接（修改为和chat.js一致的URL格式）
+        testBtn.addEventListener('click', function() {
+            const wsUrl = wsUrlInput.value.trim();
+            const identity = identityInput.value.trim();
+            const apiKey = apiKeyInput.value.trim();
+            const aesKey = aesKeyInput.value.trim();
+            const targetPort = targetPortInput.value.trim();
+
+            // 基础验证
+            if (!wsUrl) {
+                showStatus('请输入有效的WebSocket地址', 'error');
+                return;
+            }
+            if (!identity) {
+                showStatus('请输入角色名(IDENTITY)', 'error');
+                return;
+            }
+            if (!apiKey) {
+                showStatus('请输入X-API-Key', 'error');
+                return;
+            }
+            if (!aesKey) {
+                showStatus('请输入AES加密密钥', 'error');
+                return;
+            }
+            if (!targetPort || isNaN(targetPort)) {
+                showStatus('请输入有效的目标端口（数字）', 'error');
+                return;
+            }
+
+            // 关闭之前的测试连接
+            if (testWs) {
+                testWs.close();
+            }
+
+            // 构造和chat.js一致的最终WS地址
+            try {
+                // 1. 替换协议：http->ws，https->wss
+                const baseWsUrl = wsUrl.replace("http://", "ws://").replace("https://", "wss://");
+                // 2. 追加路径 + 拼接api_key和client_role参数
+                const finalWsUrl = `${baseWsUrl}/ws/llm-tts?api_key=${encodeURIComponent(apiKey)}&client_role=${encodeURIComponent(identity)}`;
+                console.log('测试连接地址：', finalWsUrl);
+
+                showStatus('正在测试连接...', '');
+                testWs = new WebSocket(finalWsUrl);
+
+                testWs.onopen = function() {
+                    showStatus('连接成功！', 'success');
+                    setTimeout(() => {
+                        testWs.close();
+                    }, 1000);  // 延迟1秒关闭
+                };
+
+                testWs.onerror = function() {
+                    showStatus('连接失败！请检查地址、API Key或角色名是否正确', 'error');
+                };
+
+                testWs.onclose = function() {
+                    if (statusText.textContent !== '连接成功！') {
+                        showStatus('连接已关闭', 'error');
+                    }
+                };
+            } catch (err) {
+                console.error('测试连接失败：', err);
+                showStatus('连接失败！URL格式错误', 'error');
+            }
+        });
+
+        // 显示状态
+        function showStatus(text, type) {
+            statusText.textContent = text;
+            statusText.className = 'status-text ' + (type || '');
+        }
+
+        // 初始化：读取本地配置
+        window.onload = function() {
+            const savedUrl = localStorage.getItem('wsUrl');
+            const savedIdentity = localStorage.getItem('identity');
+            const savedApiKey = localStorage.getItem('apiKey');
+            const savedAesKey = localStorage.getItem('aesKey');
+            const savedUseStream = localStorage.getItem('useStream') === 'true';
+            const savedTargetPort = localStorage.getItem('targetPort');
+            
+            if (savedUrl) wsUrlInput.value = savedUrl;
+            if (savedIdentity) identityInput.value = savedIdentity;
+            if (savedApiKey) apiKeyInput.value = savedApiKey;
+            if (savedAesKey) aesKeyInput.value = savedAesKey;
+            if (savedUseStream) useStreamSwitch.classList.add('checked');
+            if (savedTargetPort) targetPortInput.value = savedTargetPort;
+            
+            // 初始化开关文本
+            const statusText = useStreamSwitch.parentElement.querySelector('span');
+            statusText.textContent = savedUseStream ? '开启' : '关闭';
+        };
+    </script>
+</body>
+</html>

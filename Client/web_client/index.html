@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>智能聊天机器人</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Segoe UI", "Microsoft YaHei", sans-serif;
+        }
+
+        body {
+            display: flex;
+            min-height: 100vh;
+            background-color: #f7f8fa;
+        }
+
+        /* 左侧功能导航 */
+        .sidebar {
+            width: 20%;
+            background: #fff;
+            border-right: 1px solid #f0f0f0;
+            padding: 20px 0;
+        }
+
+        .sidebar-menu {
+            list-style: none;
+        }
+
+        .sidebar-menu li {
+            margin: 8px 0;
+        }
+
+        .sidebar-menu a {
+            display: block;
+            padding: 12px 24px;
+            color: #333;
+            text-decoration: none;
+            font-size: 15px;
+            border-left: 3px solid transparent;
+        }
+
+        .sidebar-menu a:hover, .sidebar-menu a.active {
+            background: #f5f7ff;
+            color: #4e8cff;
+            border-left-color: #4e8cff;
+        }
+
+        /* 右侧内容区域 */
+        .content-embed {
+            width: 80%;
+            height: 100vh;
+            border: none;
+            box-shadow: -2px 0 15px rgba(0,0,0,0.05);
+        }
+
+        /* 移动端适配 */
+        @media (max-width: 768px) {
+            .sidebar {
+                display: none;
+            }
+            .content-embed {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 左侧功能导航 -->
+    <div class="sidebar">
+        <ul class="sidebar-menu">
+            <li><a href="#" class="active" data-target="chat.html">聊天页面</a></li>
+            <li><a href="#" data-target="setting.html">配置页面</a></li>
+        </ul>
+    </div>
+
+    <!-- 右侧嵌入内容 -->
+    <iframe src="chat.html" class="content-embed" frameborder="0" id="main-iframe"></iframe>
+
+    <script>
+        // 导航切换逻辑
+        const menuItems = document.querySelectorAll('.sidebar-menu a');
+        const mainIframe = document.getElementById('main-iframe');
+        
+        // 标记当前激活项
+        menuItems.forEach(item => {
+            item.addEventListener('click', function(e) {
+                e.preventDefault();
+                // 移除所有active
+                menuItems.forEach(link => link.classList.remove('active'));
+                // 激活当前项
+                this.classList.add('active');
+                // 切换iframe src
+                const target = this.getAttribute('data-target');
+                mainIframe.src = target;
+            });
+        });
+
+        // 初始化：如果URL有hash，切换对应菜单
+        window.addEventListener('load', function() {
+            const hash = window.location.hash.slice(1) || 'chat.html';
+            menuItems.forEach(item => {
+                if (item.getAttribute('data-target') === hash && !item.classList.contains('active')) {
+                    item.click(); // 仅当未激活时触发
+                }
+            });
+        });
+    </script>
+</body>
+</html>
