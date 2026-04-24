@@ -7,6 +7,8 @@
 .vscode/
 __pycache__/
 
+node_modules/
+
 # 忽略本地模型
 LocalLLMs/
 
