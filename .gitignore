@@ -1,0 +1,18 @@
+# 忽略 .env 环境文件
+.env
+# 但保留 .env.example 作为示例模板
+!.env.example
+
+# 忽略 IDE 配置
+.vscode/
+__pycache__/
+
+# 忽略本地模型
+LocalLLMs/
+
+# 忽略本地对话记录
+saved_context/
+vector_db/
+
+# 忽略ToDo
+ToDo.txt
