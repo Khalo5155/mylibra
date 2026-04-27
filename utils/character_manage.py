@@ -12,6 +12,10 @@ if not os.path.exists(CHARACTER_PATH):
     character_dict = {}
     save_to_json(character_dict, CHARACTER_PATH)
 
+def get_characters() -> list[dict]:
+    ''' 获取角色列表 '''
+    character_dict = load_json(CHARACTER_PATH)
+    return character_dict
 
 def update_character(character_name:str, prompt:str, tts_speaker_paras:dict):
     new_character = {
@@ -82,4 +86,7 @@ def test():
         print(f"Error: {e}")
 
 if __name__ == '__main__':
-    test()
+    # test()
+    cdicts = get_characters()
+    for e in cdicts.items():
+        print(e[1]['name'])

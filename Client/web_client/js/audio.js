@@ -1,17 +1,15 @@
-// js/audio.js - 音频播放管理（参照安卓端AudioManager逻辑实现）
+// js/audio.js - 音频播放管理（Promise链实现，移除callback）
 class AudioPlayer {
     // 单例实例
     static #instance;
     // 音频播放队列 [ { blob: Blob, url: string, name: string } ]
     #playQueue = [];
-    // 播放状态锁
+    // 播放状态锁（Promise链执行中）
     #isPlaying = false;
-    // 播放锁对象（保证队列操作原子性）
-    #playLock = {};
     // 音频播放核心元素
     #audioElement = null;
-    // 回调函数
-    #callback = null;
+    // 当前播放的Promise控制器
+    #currentPlayController = null;
 
     // 单例获取方法
     static getInstance() {
@@ -25,41 +23,24 @@ class AudioPlayer {
         this.#initAudioElement();
     }
 
-    // 初始化音频元素（对应安卓initMediaPlayer）
+    // 初始化音频元素
     #initAudioElement() {
         if (!this.#audioElement) {
             this.#audioElement = new Audio();
-            // 播放错误监听
-            this.#audioElement.onerror = (e) => {
-                console.error('音频播放失败', e);
-                const errorMsg = `播放失败：${e.message || '未知错误'}`;
-                this.#callback?.onPlayError?.(errorMsg);
-                
-                this.#isPlaying = false;
-                this.playAudioFromQueue(); // 继续播放下一个
-            };
-
-            // 播放完成监听
-            this.#audioElement.onended = () => {
-                console.log('音频播放完成');
-                // 释放当前音频URL
-                const currentAudio = this.#playQueue.shift();
-                if (currentAudio?.url) {
-                    URL.revokeObjectURL(currentAudio.url);
-                }
-                
-                this.#isPlaying = false;
-                this.playAudioFromQueue(); // 继续播放下一个
-            };
         }
     }
 
-    // 设置回调函数
-    setCallback(callback) {
-        this.#callback = callback;
+    // 创建Promise控制器（用于手动resolve/reject）
+    #createController() {
+        let resolve, reject;
+        const promise = new Promise((res, rej) => {
+            resolve = res;
+            reject = rej;
+        });
+        return { promise, resolve, reject };
     }
 
-    // Base64转音频Blob（对应安卓createTempAudioFile）
+    // Base64转音频Blob
     createAudioBlobFromBase64(base64Str, mimeType = 'audio/mpeg') {
         try {
             // 移除Base64前缀（如果有）
@@ -73,153 +54,200 @@ class AudioPlayer {
             const blob = new Blob([byteArray], { type: mimeType });
             const url = URL.createObjectURL(blob);
             
-            // 生成临时名称（对应安卓临时文件前缀）
+            // 生成临时名称
             const name = `audio_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
             
             return { blob, url, name };
         } catch (e) {
             console.error('Base64转Blob失败', e);
-            this.#callback?.onPlayError?.('音频格式转换失败：' + e.message);
-            return null;
+            throw new Error('音频格式转换失败：' + e.message);
         }
     }
 
-    // 添加音频到播放队列（对应安卓addAudioToQueue）
+    // 添加音频到播放队列
     addAudioToQueue(audioItem) {
-        if (!audioItem || !audioItem.blob || !audioItem.url) return;
+        if (!audioItem || !audioItem.blob || !audioItem.url) return false;
         
-        // 队列操作加锁（JS单线程，用同步锁即可）
-        Object.freeze(this.#playLock);
+        this.#playQueue.push(audioItem);
+        console.log(`音频已加入队列，当前队列长度：${this.#playQueue.length}`);
+        
+        // 添加后自动尝试播放（如果未在播放）
+        if (!this.#isPlaying) {
+            this.#processQueue();
+        }
+        return true;
+    }
+
+    // 处理播放队列（Promise链核心）
+    async #processQueue() {
+        if (this.#isPlaying || this.#playQueue.length === 0) return;
+
+        this.#isPlaying = true;
+        const currentAudio = this.#playQueue[0];
+
         try {
-            this.#playQueue.push(audioItem);
-            console.log(`音频已加入队列，当前队列长度：${this.#playQueue.length}`);
+            // 播放当前音频（返回Promise）
+            await this.#playAudioItem(currentAudio);
+            
+            // 播放成功：移除当前项并释放URL
+            this.#playQueue.shift();
+            URL.revokeObjectURL(currentAudio.url);
+            console.log(`音频播放完成：${currentAudio.name}`);
+
+        } catch (error) {
+            // 播放失败：移除当前项并释放URL
+            console.error(`音频播放失败：${currentAudio.name}`, error);
+            this.#playQueue.shift();
+            if (currentAudio.url) {
+                URL.revokeObjectURL(currentAudio.url);
+            }
+
         } finally {
-            Object.seal(this.#playLock);
+            // 重置播放状态，继续处理下一个
+            this.#isPlaying = false;
+            this.#currentPlayController = null;
+            this.#processQueue();
         }
     }
 
-    // 从队列播放音频（对应安卓playAudioFromQueue）
-    playAudioFromQueue() {
-        // 队列操作加锁
-        Object.freeze(this.#playLock);
-        try {
-            // 队列为空或正在播放，直接返回
-            if (this.#playQueue.length === 0 || this.#isPlaying) return;
-            
-            this.#isPlaying = true;
-            const currentAudio = this.#playQueue[0];
-            
-            // 音频不存在，清理并继续
-            if (!currentAudio || !currentAudio.url) {
-                this.#playQueue.shift();
-                this.#isPlaying = false;
-                this.playAudioFromQueue();
+    // 播放单个音频项（返回Promise）
+    #playAudioItem(audioItem) {
+        return new Promise((resolve, reject) => {
+            if (!audioItem || !audioItem.url) {
+                reject(new Error('音频URL不存在'));
                 return;
             }
 
-            // 播放当前音频
+            // 保存当前控制器，用于暂停/停止时手动reject
+            this.#currentPlayController = { resolve, reject };
+
+            // 重置音频元素事件
+            this.#audioElement.onerror = (e) => {
+                reject(new Error(`播放失败：${e.message || '未知错误'}`));
+            };
+
+            this.#audioElement.onended = () => {
+                resolve();
+            };
+
+            // 开始播放
             try {
-                this.#audioElement.src = currentAudio.url;
-                this.#audioElement.play();
-                console.log(`开始播放音频：${currentAudio.name}`);
+                this.#audioElement.src = audioItem.url;
+                this.#audioElement.play().catch((e) => {
+                    reject(new Error(`play()调用失败：${e.message}`));
+                });
+                console.log(`开始播放音频：${audioItem.name}`);
             } catch (e) {
-                console.error('播放音频失败', e);
-                this.#callback?.onPlayError?.('播放失败：' + e.message);
-                // 释放URL并移除当前项
-                URL.revokeObjectURL(currentAudio.url);
-                this.#playQueue.shift();
-                this.#isPlaying = false;
-                this.playAudioFromQueue();
+                reject(new Error(`播放音频失败：${e.message}`));
             }
-        } finally {
-            Object.seal(this.#playLock);
-        }
+        });
     }
 
-    // 播放单个音频（非队列模式，对应安卓playSingleAudio）
+    // 播放单个音频（非队列模式，返回Promise）
     playSingleAudio(audioItem) {
-        if (!audioItem || !audioItem.url) {
-            this.#callback?.onPlayError?.('音频文件不存在');
-            return;
+        // 停止当前队列播放
+        this.stop();
+
+        return new Promise((resolve, reject) => {
+            if (!audioItem || !audioItem.url) {
+                reject(new Error('音频文件不存在'));
+                return;
+            }
+
+            const cleanup = () => {
+                this.#audioElement.removeEventListener('ended', onEnd);
+                this.#audioElement.removeEventListener('error', onError);
+            };
+
+            const onEnd = () => {
+                cleanup();
+                URL.revokeObjectURL(audioItem.url);
+                resolve();
+            };
+
+            const onError = (e) => {
+                cleanup();
+                URL.revokeObjectURL(audioItem.url);
+                reject(new Error(`播放失败：${e.message || '未知错误'}`));
+            };
+
+            // 绑定事件
+            this.#audioElement.addEventListener('ended', onEnd);
+            this.#audioElement.addEventListener('error', onError);
+
+            // 开始播放
+            try {
+                this.#audioElement.src = audioItem.url;
+                this.#audioElement.play().catch((e) => {
+                    cleanup();
+                    reject(new Error(`play()调用失败：${e.message}`));
+                });
+                console.log(`开始播放单个音频：${audioItem.name}`);
+            } catch (e) {
+                cleanup();
+                reject(new Error(`播放单个音频失败：${e.message}`));
+            }
+        });
+    }
+
+    // 批量添加音频分片并播放（新增：支持Promise链播放列表）
+    playAudioList(audioItems) {
+        if (!Array.isArray(audioItems) || audioItems.length === 0) {
+            return Promise.reject(new Error('音频列表为空'));
         }
 
         // 停止当前播放
-        if (this.#isPlaying) {
-            this.#audioElement.pause();
-            this.#isPlaying = false;
-        }
+        this.stop();
 
-        // 移除旧的结束事件监听器
-        const oldHandler = this.#audioElement.onended;
-        if (oldHandler) {
-            this.#audioElement.removeEventListener('ended', oldHandler);
-        }
-
-        const onSingleEnd = () => {
-            console.log(`单个音频播放完成: ${audioItem.name}`);
-            URL.revokeObjectURL(audioItem.url);
-            this.#isPlaying = false;
-            this.#audioElement.removeEventListener('ended', onSingleEnd);
-            // 关键修复：确保回调被触发
-            if (this.#callback?.onPlayComplete) {
-                this.#callback.onPlayComplete();
-            }
-        };
-        
-        this.#audioElement.addEventListener('ended', onSingleEnd);
-        
-        // 错误处理
-        this.#audioElement.onerror = (e) => {
-            console.error('音频播放错误:', e);
-            URL.revokeObjectURL(audioItem.url);
-            this.#isPlaying = false;
-            if (this.#callback?.onPlayError) {
-                this.#callback.onPlayError('播放失败');
-            }
-            if (this.#callback?.onPlayComplete) {
-                this.#callback.onPlayComplete();
-            }
-        };
-
-        try {
-            this.#audioElement.src = audioItem.url;
-            this.#audioElement.play().catch(e => {
-                console.error('play() 调用失败:', e);
-                this.#audioElement.onerror(e);
+        // 构建Promise链，逐个播放
+        const playChain = audioItems.reduce((chain, audioItem) => {
+            return chain.then(() => {
+                if (!audioItem || !audioItem.url) {
+                    return Promise.resolve(); // 跳过无效项
+                }
+                return this.playSingleAudio(audioItem);
             });
-            this.#isPlaying = true;
-            console.log(`开始播放单个音频: ${audioItem.name}`);
-        } catch (e) {
-            console.error('播放单个音频失败:', e);
-            this.#callback?.onPlayError?.('播放失败：' + e.message);
-            URL.revokeObjectURL(audioItem.url);
-            this.#isPlaying = false;
-            this.#callback?.onPlayComplete?.();
-        }
+        }, Promise.resolve());
+
+        return playChain;
     }
 
-    // 销毁音频播放器（对应安卓onDestroy）
-    destroy() {
-        // 停止播放
+    // 停止播放并清空队列
+    stop() {
+        // 暂停当前音频
         if (this.#audioElement) {
             this.#audioElement.pause();
             this.#audioElement.src = '';
+            
+            // 手动reject当前播放的Promise
+            if (this.#currentPlayController) {
+                this.#currentPlayController.reject(new Error('播放已被停止'));
+                this.#currentPlayController = null;
+            }
+        }
+
+        // 清空队列并释放所有音频URL
+        this.#playQueue.forEach(item => {
+            if (item.url) URL.revokeObjectURL(item.url);
+        });
+        this.#playQueue = [];
+
+        // 重置状态
+        this.#isPlaying = false;
+        console.log('音频已停止，队列已清空');
+    }
+
+    // 销毁音频播放器
+    destroy() {
+        // 停止播放
+        this.stop();
+
+        // 清理音频元素
+        if (this.#audioElement) {
             this.#audioElement = null;
         }
 
-        // 清理队列并释放URL
-        Object.freeze(this.#playLock);
-        try {
-            this.#playQueue.forEach(item => {
-                if (item.url) URL.revokeObjectURL(item.url);
-            });
-            this.#playQueue = [];
-        } finally {
-            Object.seal(this.#playLock);
-        }
-
-        this.#isPlaying = false;
-        this.#callback = null;
+        // 重置单例
         AudioPlayer.#instance = null;
     }
 

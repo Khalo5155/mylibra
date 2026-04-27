@@ -23,11 +23,11 @@ bg_executor = ThreadPoolExecutor(max_workers=1)
 # -------------------------- 全局信息定义 --------------------------
 # ---------------------------------------------------------------------
 # 上下文轮数限制
-max_recent_rounds = 20
-max_buffered_rounds = 10
+max_recent_rounds = 15
+max_buffered_rounds = 15
 # buffer长度限制
-buffer_primary_rounds = 15 # 达到该轮数后清空并触发压缩、存入二级buffer
-buffer_secondary_len = 15 # 达到该轮数后清空并触发压缩、存入三级buffer
+buffer_primary_rounds = 25 # 达到该轮数后清空并触发压缩、存入二级buffer
+buffer_secondary_len = 10 # 达到该轮数后清空并触发压缩、存入三级buffer
 buffer_thirdary_len = 10 # 达到该条数后清空并触发总结，更新到提示词中的长期记忆里
 # 记忆长度限制（同 buffer 长度）
 len_memory_recent = buffer_secondary_len

@@ -16,6 +16,23 @@
             display: flex;
             min-height: 100vh;
             background-color: #f7f8fa;
+            /* 新增：背景图片样式 */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            position: relative;
+        }
+
+        /* 新增：背景遮罩层（用于控制透明度） */
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #f7f8fa;
+            z-index: -1;
         }
 
         /* 左侧功能导航 */
@@ -24,6 +41,8 @@
             background: #fff;
             border-right: 1px solid #f0f0f0;
             padding: 20px 0;
+            /* 新增：侧边栏半透明背景 */
+            background-color: rgba(255, 255, 255, 0.9);
         }
 
         .sidebar-menu {
@@ -49,12 +68,32 @@
             border-left-color: #4e8cff;
         }
 
-        /* 右侧内容区域 */
-        .content-embed {
+        /* 右侧内容区域容器 */
+        .content-area {
             width: 80%;
             height: 100vh;
+            position: relative;
+            /* 新增：内容区域半透明背景 */
+            background-color: rgba(255, 255, 255, 0.9);
+        }
+
+        /* 所有iframe共享同一个容器区域 */
+        .content-embed {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             border: none;
-            box-shadow: -2px 0 15px rgba(0,0,0,0.05);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.2s ease;
+        }
+
+        /* 激活的iframe可见 */
+        .content-embed.active {
+            opacity: 1;
+            pointer-events: auto;
         }
 
         /* 移动端适配 */
@@ -62,7 +101,7 @@
             .sidebar {
                 display: none;
             }
-            .content-embed {
+            .content-area {
                 width: 100%;
             }
         }
@@ -72,41 +111,110 @@
     <!-- 左侧功能导航 -->
     <div class="sidebar">
         <ul class="sidebar-menu">
-            <li><a href="#" class="active" data-target="chat.html">聊天页面</a></li>
-            <li><a href="#" data-target="setting.html">配置页面</a></li>
+            <li><a href="#" class="active" data-target="chat">聊天页面</a></li>
+            <li><a href="#" data-target="setting">配置页面</a></li>
         </ul>
     </div>
 
-    <!-- 右侧嵌入内容 -->
-    <iframe src="chat.html" class="content-embed" frameborder="0" id="main-iframe"></iframe>
+    <!-- 右侧嵌入内容：两个iframe并存，切换显示 -->
+    <div class="content-area">
+        <!-- 聊天页iframe -->
+        <iframe src="chat.html" class="content-embed active" frameborder="0" id="iframe-chat"></iframe>
+        
+        <!-- 配置页iframe -->
+        <iframe src="setting.html" class="content-embed" frameborder="0" id="iframe-setting"></iframe>
+    </div>
 
     <script>
-        // 导航切换逻辑
         const menuItems = document.querySelectorAll('.sidebar-menu a');
-        const mainIframe = document.getElementById('main-iframe');
+        const iframeChat = document.getElementById('iframe-chat');
+        const iframeSetting = document.getElementById('iframe-setting');
         
-        // 标记当前激活项
+        // 新增：更新背景的函数
+        function updateBackground(image, opacity) {
+            const body = document.body;
+            const bodyMask = document.body.querySelector('::before');
+            
+            if (image) {
+                body.style.backgroundImage = `url(${image})`;
+                body.style.backgroundSize = 'cover';
+                body.style.backgroundPosition = 'center';
+                body.style.backgroundRepeat = 'no-repeat';
+                // 通过遮罩层控制透明度
+                document.body.style.setProperty('--bg-opacity', opacity);
+                body.style.setProperty('background-color', 'transparent');
+                body.style.setProperty('before', `background-color: #f7f8fa; opacity: ${1 - opacity};`);
+                // 兼容写法
+                body.style.backgroundColor = 'transparent';
+                document.body.style.cssText += `
+                    ::before {
+                        background-color: #f7f8fa !important;
+                        opacity: ${1 - parseFloat(opacity)} !important;
+                        z-index: -1 !important;
+                    }
+                `;
+            } else {
+                // 恢复默认背景
+                body.style.backgroundImage = 'none';
+                body.style.backgroundColor = '#f7f8fa';
+                document.body.style.cssText += `
+                    ::before {
+                        opacity: 0 !important;
+                    }
+                `;
+            }
+
+            // 同时更新内容区域和侧边栏的透明度（可选）
+            document.querySelector('.sidebar').style.backgroundColor = `rgba(255, 255, 255, ${Math.max(0.8, opacity)})`;
+            document.querySelector('.content-area').style.backgroundColor = `rgba(255, 255, 255, ${Math.max(0.8, opacity)})`;
+        }
+
+        // 新增：监听来自setting.html的消息
+        window.addEventListener('message', function(e) {
+            if (e.data.type === 'updateBackground') {
+                updateBackground(e.data.image, e.data.opacity);
+            }
+        });
+
         menuItems.forEach(item => {
             item.addEventListener('click', function(e) {
                 e.preventDefault();
-                // 移除所有active
+                // 移除所有菜单项的active
                 menuItems.forEach(link => link.classList.remove('active'));
-                // 激活当前项
+                // 激活当前菜单
                 this.classList.add('active');
-                // 切换iframe src
+                
+                // 根据data-target切换iframe显示
                 const target = this.getAttribute('data-target');
-                mainIframe.src = target;
+                
+                // 隐藏所有iframe
+                iframeChat.classList.remove('active');
+                iframeSetting.classList.remove('active');
+                
+                // 显示目标iframe
+                if (target === 'chat') {
+                    iframeChat.classList.add('active');
+                } else if (target === 'setting') {
+                    iframeSetting.classList.add('active');
+                }
             });
         });
 
-        // 初始化：如果URL有hash，切换对应菜单
+        // 初始化：根据URL hash切换菜单 + 加载保存的背景
         window.addEventListener('load', function() {
-            const hash = window.location.hash.slice(1) || 'chat.html';
+            const hash = window.location.hash.slice(1) || 'chat';
             menuItems.forEach(item => {
-                if (item.getAttribute('data-target') === hash && !item.classList.contains('active')) {
-                    item.click(); // 仅当未激活时触发
+                if (item.getAttribute('data-target') === hash) {
+                    item.click();
                 }
             });
+
+            // 新增：初始化背景
+            const savedBgImage = localStorage.getItem('bgImage');
+            const savedBgOpacity = localStorage.getItem('bgOpacity') || '1';
+            if (savedBgImage) {
+                updateBackground(savedBgImage, savedBgOpacity);
+            }
         });
     </script>
 </body>

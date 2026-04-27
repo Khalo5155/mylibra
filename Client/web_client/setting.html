@@ -19,8 +19,18 @@
 
         .setting-container {
             max-width: 1000px;
+            margin: 0 auto 20px auto;
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        /* 新增背景配置容器样式 */
+        .bg-setting-container {
+            max-width: 1000px;
             margin: 0 auto;
-            background: #fff;
+            background: #ffffff;
             padding: 30px;
             border-radius: 10px;
             box-shadow: 0 2px 10px rgba(0,0,0,0.05);
@@ -110,7 +120,7 @@
             margin-top: 20px;
         }
 
-        #save-btn, #test-btn {
+        #save-btn, #test-btn, #save-bg-btn {
             padding: 12px 24px;
             border: none;
             border-radius: 8px;
@@ -138,6 +148,18 @@
             background: #e5e7eb;
         }
 
+        /* 新增背景保存按钮样式 */
+        #save-bg-btn {
+            background: #4e8cff;
+            color: #fff;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        #save-bg-btn:hover {
+            background: #3b7bff;
+        }
+
         .status-text {
             margin-top: 16px;
             font-size: 14px;
@@ -151,9 +173,46 @@
         .error {
             color: #f53f3f;
         }
+
+        /* 新增背景预览样式 */
+        .bg-preview {
+            width: 100%;
+            height: 150px;
+            border: 1px dashed #e0e0e0;
+            border-radius: 8px;
+            margin-top: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .bg-preview::before {
+            content: '背景预览';
+            color: #999;
+            font-size: 14px;
+        }
+
+        /* 透明度滑块样式 */
+        .opacity-slider {
+            width: 100%;
+            margin-top: 10px;
+            accent-color: #4e8cff;
+        }
+
+        .opacity-value {
+            text-align: right;
+            font-size: 14px;
+            color: #666;
+            margin-top: 5px;
+        }
     </style>
 </head>
 <body>
+    <!-- WebSocket配置容器 -->
     <div class="setting-container">
         <div class="setting-title">WebSocket 配置</div>
         
@@ -208,6 +267,28 @@
         <div class="status-text" id="status"></div>
     </div>
 
+    <!-- 新增背景配置容器 -->
+    <div class="bg-setting-container">
+        <div class="setting-title">网页背景配置</div>
+        
+        <div class="setting-list">
+            <div class="setting-item">
+                <label for="bg-image">上传背景图片</label>
+                <input type="file" id="bg-image" accept="image/*" style="padding: 8px;">
+                <div class="bg-preview" id="bg-preview"></div>
+            </div>
+
+            <div class="setting-item">
+                <label for="bg-opacity">背景图片透明度</label>
+                <input type="range" id="bg-opacity" class="opacity-slider" min="0" max="1" step="0.01" value="${localStorage.getItem('bgOpacity') || '1'}">
+                <div class="opacity-value" id="opacity-value">当前值：${localStorage.getItem('bgOpacity') || '1'}</div>
+            </div>
+        </div>
+
+        <button type="button" id="save-bg-btn">保存背景配置</button>
+        <div class="status-text" id="bg-status"></div>
+    </div>
+
     <script>
         const wsUrlInput = document.getElementById('ws-url');
         const identityInput = document.getElementById('identity');
@@ -219,6 +300,15 @@
         const testBtn = document.getElementById('test-btn');
         const statusText = document.getElementById('status');
         let testWs = null;
+
+        // 新增背景配置相关元素
+        const bgImageInput = document.getElementById('bg-image');
+        const bgPreview = document.getElementById('bg-preview');
+        const bgOpacitySlider = document.getElementById('bg-opacity');
+        const opacityValueText = document.getElementById('opacity-value');
+        const saveBgBtn = document.getElementById('save-bg-btn');
+        const bgStatusText = document.getElementById('bg-status');
+        let bgImageDataUrl = localStorage.getItem('bgImage') || '';
 
         // 流式开关点击事件
         useStreamSwitch.addEventListener('click', function() {
@@ -343,6 +433,61 @@
             statusText.className = 'status-text ' + (type || '');
         }
 
+        // 新增：显示背景配置状态
+        function showBgStatus(text, type) {
+            bgStatusText.textContent = text;
+            bgStatusText.className = 'status-text ' + (type || '');
+        }
+
+        // 新增：处理背景图片上传
+        bgImageInput.addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (!file) return;
+            
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                bgImageDataUrl = e.target.result;
+                // 更新预览
+                bgPreview.style.backgroundImage = `url(${bgImageDataUrl})`;
+                bgPreview.style.opacity = bgOpacitySlider.value;
+                bgPreview.removeAttribute('data-empty');
+            };
+            reader.readAsDataURL(file);
+        });
+
+        // 新增：处理透明度滑块变化
+        bgOpacitySlider.addEventListener('input', function() {
+            const opacity = this.value;
+            opacityValueText.textContent = `当前值：${opacity}`;
+            // 更新预览透明度
+            if (bgImageDataUrl) {
+                bgPreview.style.opacity = opacity;
+            }
+        });
+
+        // 新增：保存背景配置
+        saveBgBtn.addEventListener('click', function() {
+            if (!bgImageDataUrl && !localStorage.getItem('bgImage')) {
+                showBgStatus('请先上传背景图片', 'error');
+                return;
+            }
+
+            // 保存到本地存储
+            if (bgImageDataUrl) {
+                localStorage.setItem('bgImage', bgImageDataUrl);
+            }
+            localStorage.setItem('bgOpacity', bgOpacitySlider.value);
+
+            // 通知父页面（index.html）更新背景
+            window.parent.postMessage({
+                type: 'updateBackground',
+                image: localStorage.getItem('bgImage'),
+                opacity: localStorage.getItem('bgOpacity')
+            }, '*');
+
+            showBgStatus('背景配置保存成功！', 'success');
+        });
+
         // 初始化：读取本地配置
         window.onload = function() {
             const savedUrl = localStorage.getItem('wsUrl');
@@ -362,6 +507,19 @@
             // 初始化开关文本
             const statusText = useStreamSwitch.parentElement.querySelector('span');
             statusText.textContent = savedUseStream ? '开启' : '关闭';
+
+            // 新增：初始化背景配置
+            const savedBgImage = localStorage.getItem('bgImage');
+            const savedBgOpacity = localStorage.getItem('bgOpacity') || '1';
+            
+            if (savedBgImage) {
+                bgImageDataUrl = savedBgImage;
+                bgPreview.style.backgroundImage = `url(${savedBgImage})`;
+                bgPreview.removeAttribute('data-empty');
+            }
+            bgOpacitySlider.value = savedBgOpacity;
+            opacityValueText.textContent = `当前值：${savedBgOpacity}`;
+            bgPreview.style.opacity = savedBgOpacity;
         };
     </script>
 </body>

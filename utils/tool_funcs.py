@@ -24,8 +24,8 @@ def clean_pretags(s):
 
 # 句子切分
 symbol_set = ",.?!:~，。、？！：\n"
-def clip_sentence_check(s: str, split_length: int=60, max_split_length: int=120) -> str:
-    assert split_length > 20
+def clip_sentence_check(s: str, split_length: int=10, max_split_length: int=120) -> str:
+    assert split_length > 0
     if len(s) < split_length:
         return ""
     

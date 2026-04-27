@@ -101,6 +101,18 @@
             text-align: right;
         }
 
+        .message-role {
+            font-size: 11px;
+            color: #666;
+            margin-bottom: 4px;
+            font-style: italic;
+            font-weight: 500;
+        }
+
+        .user-message .message-role {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
         .user-message .message-time {
             color: rgba(255,255,255,0.8);
         }
@@ -163,7 +175,10 @@
 </head>
 <body>
     <div class="chat-header">
-        <span>智能聊天助手</span>
+        <div>
+            <span>Mylibra Chatbot</span>
+            <div id="bot-role-display" style="font-size: 13px; color: #666; margin-top: 4px; display: none;"></div>
+        </div>
         <div class="connection-status">
             <span class="status-dot offline" id="status-dot"></span>
             <span id="status-text">未连接</span>
@@ -180,7 +195,10 @@
     </div>
 
     <script src="https://cdn.bootcdn.net/ajax/libs/crypto-js/4.2.0/crypto-js.min.js"></script>
+    <script>console.log("importing audio.js")</script>
     <script src="js/audio.js"></script>
+    <script>console.log("importing chat.js")</script>
     <script src="js/chat.js"></script>
+    <script>console.log("done import")</script>
 </body>
 </html>

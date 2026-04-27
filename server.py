@@ -474,7 +474,7 @@ async def handle_client_message_stream(websocket, message_data, client_role):
             
 
             # 尝试切分完整句子
-            clipped_sentence = clip_sentence_check(buffer_text)
+            clipped_sentence = clip_sentence_check(buffer_text, split_length=50)
             while clipped_sentence:
                 # 清理标签
                 cleaned_sentence = clean_alltags(clipped_sentence)
@@ -751,7 +751,8 @@ async def handle_websocket_connection(websocket, path=''):
             'status': 'connected',
             'onconnect': True, # 标记这条消息为连接成功的响应消息
             'message': 'WebSocket连接成功',
-            'context': service.get_context() # 顺带发送上下文
+            'context': service.get_context(), # 顺带发送上下文
+            'role': IDENTITY # 标记当前角色身份
         }))
         
         # 6. 启动心跳（修复后的心跳逻辑）

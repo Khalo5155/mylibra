@@ -1,4 +1,4 @@
-// js/chat.js - 聊天页面核心逻辑（修复版）
+// js/chat.js - 聊天页面核心逻辑（适配Promise链音频播放）
 document.addEventListener('DOMContentLoaded', function () {
     // ===================== DOM 元素获取 =====================
     const messageContainer = document.getElementById('message-container');
@@ -6,39 +6,170 @@ document.addEventListener('DOMContentLoaded', function () {
     const sendBtn = document.getElementById('send-btn');
     const statusDot = document.getElementById('status-dot');
     const statusText = document.getElementById('status-text');
+    const botRoleDisplay = document.getElementById('bot-role-display');
 
     // ===================== 全局变量 =====================
     let ws = null;
     let msgCount = 0;
-    let aesCipher = null; // AES 加解密实例
-    const audioPlayer = AudioPlayer.getInstance(); // 音频播放器
-    let streamAudioBuffer = new Map(); // 缓存音频分片 {streamIndex: audioBase64}
-    // 流式响应缓冲（对齐安卓端 WebSocketManager.java 逻辑）
-    let streamBuffer = new Map(); // 有序存储分片 {streamIndex: responseData}，按streamIndex数值排序
-    let lastStreamIndex = -1; // 上一个已处理的分片索引
-    let streamFullText = ''; // 流式完整文本缓存（对齐安卓端StringBuilder）
-    let currentStreamMessageEl = null; // 当前流式消息元素缓存
-    let currentStreamTextContent = ''; // 当前累积的文本内容（修复1）
-    let streamSaved = false; // 流式消息是否已保存
+    let aesCipher = null;
+    const audioPlayer = AudioPlayer.getInstance();
+    // 流式响应核心存储
+    let streamClips = new Array(20).fill(null);
+    let lastClipIndex = 0;
+    let finalClipIndex = -1;
+    let finalWaitTimer = null;
+    let streamFullText = '';
+    let currentStreamMessageEl = null;
+    let currentStreamTextContent = '';
+    let streamSaved = false;
+    let currentBotRole = '';
+    // 移除原pendingAudioQueue（改用AudioPlayer内部队列）
+    // 音频分片列表
+    let currentStreamAudioFragments = [];
 
-    // ===================== AES 加解密实现（和Python版本对齐） =====================
+    // ===================== IndexedDB 封装 =====================
+    const DB_NAME = 'chatHistoryDB';
+    const DB_VERSION = 1;
+    const STORE_NAME = 'chatHistory';
+
+    // 打开/创建 IndexedDB 数据库
+    function openDB() {
+        return new Promise((resolve, reject) => {
+            const request = indexedDB.open(DB_NAME, DB_VERSION);
+
+            // 数据库升级/初始化
+            request.onupgradeneeded = (event) => {
+                const db = event.target.result;
+                // 创建对象仓库，主键自增，添加时间索引
+                if (!db.objectStoreNames.contains(STORE_NAME)) {
+                    const store = db.createObjectStore(STORE_NAME, { keyPath: 'id', autoIncrement: true });
+                    store.createIndex('timeIndex', 'time', { unique: false });
+                }
+            };
+
+            request.onsuccess = (event) => {
+                resolve(event.target.result);
+            };
+
+            request.onerror = (event) => {
+                console.error('IndexedDB 打开失败:', event.target.error);
+                reject(event.target.error);
+            };
+
+            request.onblocked = () => {
+                console.error('IndexedDB 被阻塞，请关闭其他标签页后重试');
+                reject(new Error('数据库被阻塞'));
+            };
+        });
+    }
+
+    // 添加聊天记录到 IndexedDB
+    async function addChatRecord(record) {
+        try {
+            const db = await openDB();
+            const transaction = db.transaction(STORE_NAME, 'readwrite');
+            const store = transaction.objectStore(STORE_NAME);
+            
+            // 添加新记录
+            await store.add(record);
+            
+            // 检查并删除超过100条的旧记录
+            await deleteOldRecords(db);
+            
+            db.close();
+            return true;
+        } catch (error) {
+            console.error('保存聊天记录失败:', error);
+            return false;
+        }
+    }
+
+    // 删除超过100条的旧记录
+    async function deleteOldRecords(db) {
+        return new Promise((resolve, reject) => {
+            const transaction = db.transaction(STORE_NAME, 'readwrite');
+            const store = transaction.objectStore(STORE_NAME);
+            const countRequest = store.count();
+
+            countRequest.onsuccess = () => {
+                const total = countRequest.result;
+                if (total <= 100) {
+                    resolve();
+                    return;
+                }
+
+                // 获取需要删除的旧记录ID
+                const deleteCount = total - 100;
+                const index = store.index('timeIndex');
+                const cursorRequest = index.openCursor(null, 'next');
+                const deleteIds = [];
+
+                cursorRequest.onsuccess = (event) => {
+                    const cursor = event.target.result;
+                    if (cursor && deleteIds.length < deleteCount) {
+                        deleteIds.push(cursor.value.id);
+                        cursor.continue();
+                    } else {
+                        // 执行删除
+                        deleteIds.forEach(id => store.delete(id));
+                        resolve();
+                    }
+                };
+
+                cursorRequest.onerror = (err) => reject(err);
+            };
+
+            countRequest.onerror = (err) => reject(err);
+        });
+    }
+
+    // 从 IndexedDB 获取所有聊天记录
+    async function getAllChatRecords() {
+        try {
+            const db = await openDB();
+            const transaction = db.transaction(STORE_NAME, 'readonly');
+            const store = transaction.objectStore(STORE_NAME);
+            const index = store.index('timeIndex');
+            
+            // 按时间升序获取所有记录
+            const records = await new Promise((resolve, reject) => {
+                const request = index.openCursor(null, 'next');
+                const results = [];
+                
+                request.onsuccess = (event) => {
+                    const cursor = event.target.result;
+                    if (cursor) {
+                        results.push(cursor.value);
+                        cursor.continue();
+                    } else {
+                        resolve(results);
+                    }
+                };
+                
+                request.onerror = (err) => reject(err);
+            });
+
+            db.close();
+            return records;
+        } catch (error) {
+            console.error('获取聊天记录失败:', error);
+            return [];
+        }
+    }
+
+    // ===================== AES 加解密实现 =====================
     class AESCipher {
         constructor(key) {
-            // 密钥补全为16/24/32位（AES-128/192/256），和Python pad逻辑一致
             this.key = CryptoJS.enc.Utf8.parse(this.padKey(key));
             this.mode = CryptoJS.mode.ECB;
-            this.padding = CryptoJS.pad.Pkcs7; // 对应Python的pad(PKCS7)
+            this.padding = CryptoJS.pad.Pkcs7;
         }
-
-        // 密钥补全（Python中key不足时会报错，前端做兼容补全）
         padKey(key) {
             const keyBytes = CryptoJS.enc.Utf8.parse(key);
             if (keyBytes.sigBytes <= 16) return key.padEnd(16, '\0');
             if (keyBytes.sigBytes <= 24) return key.padEnd(24, '\0');
             return key.padEnd(32, '\0').slice(0, 32);
         }
-
-        // 加密文本（对应Python encrypt方法）
         encrypt(rawText) {
             if (!rawText) return "";
             const encrypted = CryptoJS.AES.encrypt(
@@ -46,46 +177,27 @@ document.addEventListener('DOMContentLoaded', function () {
                 this.key,
                 { mode: this.mode, padding: this.padding }
             );
-            return encrypted.toString(); // Base64编码结果
+            return encrypted.toString();
         }
-
-        // 解密文本（对应Python decrypt方法）
         decrypt(encText) {
             if (!encText) return "";
             try {
-                const decrypted = CryptoJS.AES.decrypt(
-                    encText,
-                    this.key,
-                    { mode: this.mode, padding: this.padding }
-                );
+                const decrypted = CryptoJS.AES.decrypt(encText, this.key, { mode: this.mode, padding: this.padding });
                 return decrypted.toString(CryptoJS.enc.Utf8);
             } catch (e) {
                 console.error('AES解密失败', e);
-                return encText; // 解密失败返回原文本
+                return encText;
             }
         }
-
-        // 加密二进制数据（对应Python encrypt_binary）
         encryptBinary(dataBytes) {
             const wordArray = CryptoJS.lib.WordArray.create(dataBytes);
-            const encrypted = CryptoJS.AES.encrypt(
-                wordArray,
-                this.key,
-                { mode: this.mode, padding: this.padding }
-            );
+            const encrypted = CryptoJS.AES.encrypt(wordArray, this.key, { mode: this.mode, padding: this.padding });
             return encrypted.toString();
         }
-
-        // 解密二进制数据（对应Python decrypt_binary）
         decryptBinary(encText) {
             if (!encText) return new Uint8Array();
             try {
-                const decrypted = CryptoJS.AES.decrypt(
-                    encText,
-                    this.key,
-                    { mode: this.mode, padding: this.padding }
-                );
-                // 转换为Uint8Array
+                const decrypted = CryptoJS.AES.decrypt(encText, this.key, { mode: this.mode, padding: this.padding });
                 const bytes = [];
                 const words = decrypted.words;
                 for (let i = 0; i < decrypted.sigBytes; i++) {
@@ -101,7 +213,6 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // ===================== 初始化 =====================
-    // 初始化AES实例（从本地存储获取AES KEY）
     function initAESCipher() {
         const aesKey = localStorage.getItem('aesKey');
         if (!aesKey) {
@@ -112,33 +223,24 @@ document.addEventListener('DOMContentLoaded', function () {
         return true;
     }
 
-    loadChatHistory();
-    // 先初始化AES，再初始化WebSocket
+    // 重构：异步加载聊天历史
+    async function initChatHistory() {
+        await loadChatHistory();
+        // 仅当无历史记录时显示欢迎语
+        if (messageContainer.querySelector('.empty-tip')) {
+            addMessage('bot', '你好！我是你的智能聊天助手，有什么可以帮你的吗？', false, '默认助手');
+        }
+    }
+
+    // 初始化时序调整
+    setTimeout(async () => {
+        await initChatHistory();
+    }, 0);
+
     if (initAESCipher()) {
-        // 初始化音频播放器回调
-        audioPlayer.setCallback({
-            onPlayError: (errorMsg) => {
-                console.error('音频播放错误：', errorMsg);
-                // 可根据需要添加UI提示
-                alert(errorMsg);
-            }
-        });
         initWebSocket();
     } else {
         updateConnectionStatus(false);
-    }
-    // 设置音频初始回调（不自动链接播放队列，由 playNextInQueue 自行管理）
-    audioPlayer.setCallback({
-        onPlayError: (errorMsg) => {
-            console.error('音频播放错误：', errorMsg);
-        },
-        onPlayComplete: () => {
-            console.log('音频播放完成');
-        }
-    });
-
-    if (messageContainer.querySelector('.empty-tip')) {
-        addMessage('bot', '你好！我是你的智能聊天助手，有什么可以帮你的吗？', false);
     }
 
     // ===================== WebSocket 连接 =====================
@@ -154,65 +256,90 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
         try {
-            if (ws) ws.close();
-
-            // 拼接最终WS地址
-            const baseWsUrl = wsUrl.replace("http://", "ws://").replace("https://", "wss://");
-            const finalWsUrl = `${baseWsUrl}/ws/llm-tts?api_key=${encodeURIComponent(apiKey)}&client_role=${encodeURIComponent(identity)}`;
-            console.log('连接 WebSocket 地址：', finalWsUrl);
-            
-            ws = new WebSocket(finalWsUrl);
-
-            // WebSocket 事件监听
-            ws.onopen = function () {
-                updateConnectionStatus(true);
-                sendBtn.disabled = false;
+            // 异步关闭旧连接
+            const closeOldWs = () => {
+                return new Promise((resolve) => {
+                    if (!ws) return resolve();
+                    // 监听旧连接关闭事件
+                    ws.onclose = () => {
+                        ws = null;
+                        resolve();
+                    };
+                    // 强制关闭（带标准关闭码）
+                    ws.close(1000, 'Reconnect');
+                    // 5秒兜底
+                    setTimeout(resolve, 5000);
+                });
             };
 
-            ws.onclose = function () {
-                updateConnectionStatus(false, '连接已断开');
-                sendBtn.disabled = true;
-            };
-
-            ws.onerror = function (err) {
-                console.error('WebSocket 错误：', err);
-                updateConnectionStatus(false, '连接出错');
-                sendBtn.disabled = true;
-            };
-
-            ws.onmessage = function (event) {
-                try {
-                    const responseData = JSON.parse(event.data);
-                    handleServerMessage(responseData);
-                } catch (err) {
-                    console.error('解析消息失败：', err);
-                }
-            };
-
+            // 先关旧连接，再建新连接
+            closeOldWs().then(() => {
+                const baseWsUrl = wsUrl.replace("http://", "ws://").replace("https://", "wss://");
+                const finalWsUrl = `${baseWsUrl}/ws/llm-tts?api_key=${encodeURIComponent(apiKey)}&client_role=${encodeURIComponent(identity)}`;
+                console.log('连接 WebSocket 地址：', finalWsUrl);
+                
+                ws = new WebSocket(finalWsUrl);
+                
+                // 添加10秒连接超时
+                const connectTimeout = setTimeout(() => {
+                    console.error('WebSocket连接超时');
+                    ws.close(1002, 'Connection timeout');
+                    updateConnectionStatus(false, '连接超时');
+                    sendBtn.disabled = true;
+                }, 10000);
+                
+                // 连接成功
+                ws.onopen = function () {
+                    clearTimeout(connectTimeout);
+                    updateConnectionStatus(true);
+                    sendBtn.disabled = false;
+                };
+                // 连接关闭
+                ws.onclose = function () {
+                    clearTimeout(connectTimeout);
+                    updateConnectionStatus(false, '连接已断开');
+                    sendBtn.disabled = true;
+                };
+                // 连接错误
+                ws.onerror = function (err) {
+                    clearTimeout(connectTimeout);
+                    console.error('WebSocket 错误：', err);
+                    updateConnectionStatus(false, '连接出错');
+                    sendBtn.disabled = true;
+                };
+                // 消息处理逻辑
+                ws.onmessage = function (event) {
+                    try {
+                        const responseData = JSON.parse(event.data);
+                        if (responseData.role) {
+                            currentBotRole = responseData.role;
+                            botRoleDisplay.textContent = `当前角色：${currentBotRole}`;
+                            botRoleDisplay.style.display = 'block';
+                        }
+                        handleServerMessage(responseData);
+                    } catch (err) {
+                        console.error('解析消息失败：', err);
+                    }
+                };
+            });
         } catch (err) {
             console.error('WebSocket 初始化失败：', err);
             updateConnectionStatus(false, '初始化失败');
         }
     }
 
-    // ===================== 发送消息（加密） =====================
+    // ===================== 发送消息 =====================
     function sendMessage() {
         const content = messageInput.value.trim();
         const identity = localStorage.getItem('identity');
         const useStream = localStorage.getItem('useStream') === 'true';
         const targetPort = localStorage.getItem('targetPort') || '5000';
-        console.log("Target port:"+targetPort)
         
         if (!content || !ws || ws.readyState !== WebSocket.OPEN || !aesCipher) return;
 
-        // 加密用户消息
         const encryptedContent = aesCipher.encrypt(content);
-        
-        // 先保存用户消息到历史
-        addMessage('user', content, true); // 显示原文，保存原文
+        addMessage('user', content, true);
         messageInput.value = '';
-
-        // 发送新消息前清空流式缓冲（但不清理音频队列）
         clearStreamBuffer();
         
         msgCount++;
@@ -223,11 +350,10 @@ document.addEventListener('DOMContentLoaded', function () {
             targetPort: parseInt(targetPort),
             msgCount: msgCount
         };
-
         ws.send(JSON.stringify(sendData));
     }
 
-    // ===================== 处理服务端消息（解密） =====================
+    // ===================== 处理服务端消息 =====================
     function handleServerMessage(responseData) {
         if (responseData.type == 'server_response') {
             handleServerMessageText(responseData);
@@ -236,103 +362,133 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-    // 非流式响应逻辑
+    // 非流式响应
     function handleServerMessageText(responseData) {
         try {
-            // 解密文本内容
             const decryptedContent = aesCipher.decrypt(responseData.response);
-            // 添加非流式消息到界面
-            addMessage('bot', decryptedContent);
+            let audioBase64List = [];
+            if (responseData.audio) {
+                const decryptedAudio = aesCipher.decryptBinary(responseData.audio);
+                audioBase64List = [uint8ArrayToBase64(decryptedAudio)];
+            }
+            const botRole = responseData.role || currentBotRole || '未知角色';
+            addMessage('bot', decryptedContent, true, botRole, JSON.stringify(audioBase64List));
         } catch (err) {
             console.error('处理非流式消息失败：', err);
-            addMessage('bot', '消息处理失败，请重试', false);
+            addMessage('bot', '消息处理失败，请重试', false, '未知角色');
         }
     }
 
-    // 流式响应逻辑（对齐安卓端 WebSocketManager.handleStreamResponse 逻辑）
+    // 流式响应
     function handleServerMessageStream(responseData) {
         try {
-            const { stream_index, is_final, response, full_response, audio } = responseData;
+            const { stream_index, is_final } = responseData;
             
-            // 1. 新流开始（stream_index=0）：重置缓冲和状态（对齐安卓端逻辑）
             if (stream_index === 0) {
-                console.log('新流式响应开始，重置缓冲状态');
                 clearStreamBuffer();
-                lastStreamIndex = -1;
-                streamFullText = '';
-                currentStreamTextContent = ''; // 修复1：重置累积文本
-                currentStreamMessageEl = null;
-                // 解密full_response并初始化完整文本
-                const decryptedFullText = aesCipher.decrypt(full_response);
-                if (decryptedFullText) {
-                    streamFullText = decryptedFullText;
-                    currentStreamTextContent = decryptedFullText; // 修复1：设置累积文本
-                }
             }
 
-            // 2. 将当前分片存入缓冲队列
-            streamBuffer.set(stream_index, responseData);
+            expandStreamClipsIfNeeded(stream_index);
+            streamClips[stream_index] = responseData;
 
-            // 3. 处理可消费的分片（按顺序处理，对齐安卓端processNextStreamFragment）
-            processNextStreamFragment();
-
-            // 4. 如果是最终分片
             if (is_final) {
-                // 最终分片处理完后清空缓冲
-                setTimeout(() => clearStreamBuffer(), 1000);
+                finalClipIndex = stream_index;
+                if (finalWaitTimer) clearTimeout(finalWaitTimer);
+                finalWaitTimer = setTimeout(handleFinalClipTimeout, 10000);
             }
+
+            checkAndProcessContinuousClips(stream_index);
+
         } catch (err) {
             console.error('处理流式消息失败：', err);
         }
     }
 
-    // 处理可消费的流式分片（对齐安卓端processNextStreamFragment）
-    function processNextStreamFragment(maxDepth = 20, currentDepth = 0) {
-        try {
-            // 终止条件1：超过最大递归深度
-            if (currentDepth >= maxDepth) {
-                console.warn('递归深度超限，终止流式分片处理');
-                clearStreamBuffer(); // 清空缓冲避免死循环
-                return;
-            }
-
-            const expectedIndex = lastStreamIndex + 1;
-            if (streamBuffer.has(expectedIndex)) {
-                const fragment = streamBuffer.get(expectedIndex);
-                streamBuffer.delete(expectedIndex);
-                parseStreamFragment(fragment);
-                // 递归调用时增加深度计数
-                processNextStreamFragment(maxDepth, currentDepth + 1);
-            }
-        } catch (err) {
-            console.error('处理流式分片队列失败：', err);
-            // 终止递归
-            return;
+    // 动态扩展数组
+    function expandStreamClipsIfNeeded(index) {
+        if (index >= streamClips.length) {
+            const expandLength = index + 1 - streamClips.length;
+            streamClips = streamClips.concat(new Array(expandLength).fill(null));
+            console.log(`streamClips数组已扩展，新长度：${streamClips.length}`);
         }
     }
 
-    // 音频播放队列
-    let pendingAudioQueue = []; // 待播放音频队列
+    // 检查连续分片并处理
+    function checkAndProcessContinuousClips(currentIndex) {
+        let allReceived = true;
+        for (let i = lastClipIndex; i <= currentIndex; i++) {
+            if (streamClips[i] === null) {
+                allReceived = false;
+                break;
+            }
+        }
 
-    // 解析单个流式分片
+        if (allReceived) {
+            for (let i = lastClipIndex; i <= currentIndex; i++) {
+                const fragment = streamClips[i];
+                parseStreamFragment(fragment);
+                streamClips[i] = null;
+            }
+            lastClipIndex = currentIndex + 1;
+
+            if (finalClipIndex !== -1 && lastClipIndex > finalClipIndex) {
+                if (finalWaitTimer) clearTimeout(finalWaitTimer);
+                saveStreamCompleteHistory();
+            }
+        } else {
+            console.log(`分片 ${lastClipIndex} 到 ${currentIndex} 未完全接收，等待后续分片`);
+        }
+    }
+
+    // 最终分片超时处理
+    function handleFinalClipTimeout() {
+        console.log('最终分片10秒超时，执行兜底处理');
+        if (finalClipIndex >= 0) {
+            for (let i = lastClipIndex; i <= finalClipIndex; i++) {
+                if (streamClips[i] !== null) {
+                    parseStreamFragment(streamClips[i]);
+                    streamClips[i] = null;
+                }
+            }
+            lastClipIndex = finalClipIndex + 1;
+        }
+        saveStreamCompleteHistory();
+    }
+
+    // 流式消息完成后统一保存历史
+    function saveStreamCompleteHistory() {
+        if (streamSaved) return;
+        
+        const finalText = streamFullText || currentStreamTextContent;
+        const finalBotRole = currentBotRole || '未知角色';
+        const audioFragmentsJson = JSON.stringify(currentStreamAudioFragments);
+
+        if (finalText && finalText.trim()) {
+            streamSaved = true;
+            saveChatHistory('bot', finalText, audioFragmentsJson, finalBotRole);
+            if (currentStreamMessageEl && currentStreamAudioFragments.length > 0) {
+                addAudioPlayButton(currentStreamMessageEl, audioFragmentsJson);
+            }
+            console.log('流式消息历史保存完成，音频分片数：', currentStreamAudioFragments.length);
+        }
+        clearStreamBuffer();
+    }
+
+    // 解析单个分片
     function parseStreamFragment(fragment) {
-        let stream_index = -1;
         try {
-            const { stream_index: idx, response, full_response, is_final, audio } = fragment;
-            stream_index = idx;
+            const { stream_index: idx, response, full_response, audio } = fragment;
 
-            if (stream_index === -1) return;
+            if (idx === -1) return;
 
-            // 1. 处理文本（修复：full_response 和 response 互斥处理）
+            // 处理文本
             if (full_response) {
-                // full_response 包含完整文本，直接替换
                 const decryptedFullText = aesCipher.decrypt(full_response);
                 if (decryptedFullText) {
                     streamFullText = decryptedFullText;
                     currentStreamTextContent = decryptedFullText;
                 }
             } else if (response) {
-                // 没有 full_response 时，response 作为增量追加
                 const decryptedResponse = aesCipher.decrypt(response);
                 if (decryptedResponse) {
                     streamFullText += decryptedResponse;
@@ -340,223 +496,165 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
             }
 
-            // 2. 处理音频
+            // 处理音频（添加到AudioPlayer队列）
             if (audio) {
+                console.log("parseStreamFragment: Process audio fragment", idx);
                 const decryptedAudioBinary = aesCipher.decryptBinary(audio);
                 if (decryptedAudioBinary.length > 0) {
                     const safeBase64 = uint8ArrayToBase64(decryptedAudioBinary);
-                    playAudioFragment(safeBase64);
-                }
-            }
-
-            // 3. 更新UI
-            if (currentStreamTextContent) {
-                updateStreamMessage(stream_index, currentStreamTextContent, [], false);
-            }
-
-            // 4. 处理最终分片
-            if (is_final) {
-                const finalText = currentStreamTextContent;
-                
-                // 重置保存标记
-                streamSaved = false;
-                
-                if (pendingAudioQueue.length > 0 || audioPlayer.isPlaying()) {
-                    const checkQueueInterval = setInterval(() => {
-                        if (!streamSaved && pendingAudioQueue.length === 0 && !audioPlayer.isPlaying()) {
-                            clearInterval(checkQueueInterval);
-                            streamSaved = true;
-                            finalizeAndSaveStream(finalText, stream_index);
+                    currentStreamAudioFragments.push(safeBase64);
+                    console.log("audio fragments count: "+currentStreamAudioFragments.length);
+                    // 转换为audioItem并添加到播放队列（Promise链自动处理）
+                    try {
+                        const audioItem = audioPlayer.createAudioBlobFromBase64(safeBase64, 'audio/mpeg');
+                        if (audioItem) {
+                            audioPlayer.addAudioToQueue(audioItem);
                         }
-                    }, 500);
-                    
-                    setTimeout(() => {
-                        if (!streamSaved) {
-                            clearInterval(checkQueueInterval);
-                            streamSaved = true;
-                            finalizeAndSaveStream(finalText, stream_index);
-                        }
-                    }, 10000);
-                } else {
-                    if (!streamSaved) {
-                        streamSaved = true;
-                        finalizeAndSaveStream(finalText, stream_index);
+                    } catch (e) {
+                        console.error('创建音频Blob失败:', e);
                     }
                 }
             }
 
-            lastStreamIndex = stream_index;
+            // 更新UI
+            const botRole = fragment.role || currentBotRole || '未知角色';
+            if (currentStreamTextContent) {
+                updateStreamMessage(idx, currentStreamTextContent, botRole);
+            }
 
         } catch (err) {
             console.error('解析流式分片失败:', err, fragment);
-            if (stream_index !== -1) {
-                lastStreamIndex = stream_index;
+        }
+    }
+
+    // 按序播放音频分片列表（适配Promise链）
+    function playAudioFragmentList(audioFragmentsJson, playBtn) {
+        try {
+            const audioFragments = JSON.parse(audioFragmentsJson);
+            // 无音频分片时直接重置状态
+            if (!Array.isArray(audioFragments) || audioFragments.length === 0) {
+                if (playBtn) {
+                    playBtn.textContent = '🔊 播放音频';
+                    playBtn.dataset.isPlaying = 'false';
+                }
+                return;
+            }
+            
+            // 转换为audioItem列表
+            const audioItems = audioFragments.map(base64 => {
+                return audioPlayer.createAudioBlobFromBase64(base64, 'audio/mpeg');
+            }).filter(Boolean); // 过滤无效项
+
+            // 使用AudioPlayer的Promise链播放列表
+            audioPlayer.playAudioList(audioItems)
+                .then(() => {
+                    console.log('音频列表播放完成');
+                    // 播放完成：重置按钮状态
+                    if (playBtn) {
+                        playBtn.textContent = '🔊 播放音频';
+                        playBtn.dataset.isPlaying = 'false';
+                    }
+                })
+                .catch((e) => {
+                    console.error('音频列表播放失败:', e);
+                    // 播放失败：也重置按钮状态
+                    if (playBtn) {
+                        playBtn.textContent = '🔊 播放音频';
+                        playBtn.dataset.isPlaying = 'false';
+                    }
+                });
+        } catch (err) {
+            console.error('解析音频分片列表失败:', err);
+            // 解析出错：重置按钮状态
+            if (playBtn) {
+                playBtn.textContent = '🔊 播放音频';
+                playBtn.dataset.isPlaying = 'false';
             }
         }
     }
 
-    // 新增：完成流式消息并保存历史
-    function finalizeAndSaveStream(finalText, streamIndex) {
-        // // 1. 更新UI为最终状态，但不立即清空缓冲
-        // updateStreamMessage(streamIndex, finalText, [], true);
-        
-        // 2. 保存聊天历史（在清空缓冲之前）
-        if (finalText && finalText.trim()) {
-            saveChatHistory('bot', finalText, null);
-        }
-        
-        // 3. 延迟清空缓冲（给UI更新留出时间）
-        setTimeout(() => {
-            // 只清空流式缓冲，保留音频队列
-            streamBuffer.clear();
-            // 注意：不调用 clearStreamBuffer()，避免清空 pendingAudioQueue
-        }, 500);
-    }
-
-    // 新增：播放单个音频片段（自动排队播放）
-    function playAudioFragment(audioBase64) {
-        if (!audioBase64 || typeof audioBase64 !== 'string' || audioBase64.length === 0) {
-            console.warn('playAudioFragment: 音频数据无效');
-            return;
-        }
-        
-        console.log(`准备播放音频片段，当前队列长度: ${pendingAudioQueue.length}, 是否正在播放: ${audioPlayer.isPlaying()}`);
-        
-        // 转换Base64为音频项
-        const audioItem = audioPlayer.createAudioBlobFromBase64(audioBase64, 'audio/mpeg');
-        if (!audioItem) {
-            console.error('音频转换失败');
-            return;
-        }
-        
-        // 将音频加入待播放队列
-        pendingAudioQueue.push(audioItem);
-        
-        // 关键修复：如果当前没有正在播放的音频，立即开始播放
-        if (!audioPlayer.isPlaying()) {
-            console.log('开始播放音频队列');
-            playNextInQueue();
-        } else {
-            console.log('音频已加入队列，等待当前播放完成');
-        }
-    }
-    
-    // 播放队列中的下一个音频
-    function playNextInQueue() {
-        if (pendingAudioQueue.length === 0) {
-            console.log('音频队列已空，停止播放');
-            // 恢复默认回调，避免循环触发
-            audioPlayer.setCallback({
-                onPlayError: (errorMsg) => {
-                    console.error('音频播放错误:', errorMsg);
-                },
-                onPlayComplete: () => {
-                    console.log('音频播放完成，队列为空');
-                }
-            });
-            return;
-        }
-        
-        const audioItem = pendingAudioQueue.shift();
-        console.log(`播放剩余 ${pendingAudioQueue.length} 个音频`);
-        
-        if (audioItem && audioItem.url) {
-            // 设置播放完成回调
-            audioPlayer.setCallback({
-                onPlayError: (errorMsg) => {
-                    console.error('音频播放错误:', errorMsg);
-                    // 释放当前音频资源
-                    if (audioItem.url) URL.revokeObjectURL(audioItem.url);
-                    // 继续播放下一个
-                    playNextInQueue();
-                },
-                onPlayComplete: () => {
-                    console.log('当前音频播放完成');
-                    // 释放当前音频资源
-                    if (audioItem.url) URL.revokeObjectURL(audioItem.url);
-                    // 继续播放下一个
-                    playNextInQueue();
-                }
-            });
-            
-            audioPlayer.playSingleAudio(audioItem);
-        } else {
-            console.warn('音频项无效，跳过');
-            playNextInQueue();
-        }
-    }
-
-    // 新增：重新绑定音频播放按钮
-    function rebindAudioPlayButton(streamIndex, fullAudioBase64) {
-        if (!currentStreamMessageEl || !fullAudioBase64) return;
-        
-        const audioBtn = currentStreamMessageEl.querySelector('.audio-play');
-        if (audioBtn) {
-            audioBtn.style.display = fullAudioBase64 ? 'inline' : 'none';
-            
-            // 移除旧的事件监听器，绑定新的
-            const newBtn = audioBtn.cloneNode(true);
-            audioBtn.parentNode.replaceChild(newBtn, audioBtn);
-            
-            newBtn.addEventListener('click', () => {
-                playAudioQueue([fullAudioBase64]);
-            });
-        }
-    }
-
-    // 安全地将 Uint8Array 转换为 Base64（分块转换，避免展开运算符爆栈）
+    // Uint8Array转Base64
     function uint8ArrayToBase64(uint8Array) {
-        // 分块大小：每批处理 8192 字节
         const CHUNK_SIZE = 8192;
         let binaryString = '';
-        
         for (let i = 0; i < uint8Array.length; i += CHUNK_SIZE) {
             const chunk = uint8Array.slice(i, Math.min(i + CHUNK_SIZE, uint8Array.length));
-            // 使用循环避免展开运算符
             for (let j = 0; j < chunk.length; j++) {
                 binaryString += String.fromCharCode(chunk[j]);
             }
         }
-        
-        // 一次性对整个字符串做 btoa
         return btoa(binaryString);
     }
 
-    // 清空流式缓冲
+    // 清空缓冲
     function clearStreamBuffer() {
         try {
-            streamBuffer.clear();
+            streamClips = new Array(20).fill(null);
+            lastClipIndex = 0;
+            finalClipIndex = -1;
+            if (finalWaitTimer) clearTimeout(finalWaitTimer);
+            finalWaitTimer = null;
             streamFullText = '';
             currentStreamTextContent = '';
-            lastStreamIndex = -1;
             currentStreamMessageEl = null;
-            streamAudioBuffer.clear();
-            // 关键修复：不要清空 pendingAudioQueue，否则会导致音频中断
-            console.log('流式缓冲已清空，音频队列保留');
+            currentStreamAudioFragments = [];
+            streamSaved = false;
+            
+            console.log('流式缓冲已清空');
         } catch (err) {
             console.error('清空流式缓冲失败:', err);
         }
     }
 
+    // 音频播放按钮（适配Promise链）
+    function addAudioPlayButton(parentEl, audioData) {
+        if (parentEl.querySelector('.audio-play-btn')) return;
+
+        const playBtn = document.createElement('button');
+        playBtn.className = 'audio-play-btn';
+        playBtn.textContent = '🔊 播放音频';
+        playBtn.style.marginTop = '5px';
+        playBtn.style.padding = '3px 8px';
+        playBtn.style.border = 'none';
+        playBtn.style.borderRadius = '4px';
+        playBtn.style.backgroundColor = '#007bff';
+        playBtn.style.color = '#fff';
+        playBtn.style.cursor = 'pointer';
+        // 初始化播放状态到按钮的dataset属性
+        playBtn.dataset.isPlaying = 'false';
+
+        playBtn.addEventListener('click', () => {
+            // 从dataset读取播放状态
+            const isPlaying = playBtn.dataset.isPlaying === 'true';
+            if (isPlaying) {
+                // 停止播放
+                audioPlayer.stop();
+                playBtn.textContent = '🔊 播放音频';
+                playBtn.dataset.isPlaying = 'false';
+            } else {
+                // 播放音频列表，传递按钮引用给播放函数
+                playAudioFragmentList(audioData, playBtn);
+                playBtn.textContent = '⏹️ 停止播放';
+                playBtn.dataset.isPlaying = 'true';
+            }
+        });
+
+        parentEl.appendChild(playBtn);
+}
+
     // ===================== 流式消息UI更新 =====================
-    function updateStreamMessage(streamIndex, text, audioList, isFinal = false) {
-        // 复用当前流式消息元素
+    function updateStreamMessage(streamIndex, text, botRole) {
         if (!currentStreamMessageEl) {
-            currentStreamMessageEl = createBotMessageElement(streamIndex, text);
+            currentStreamMessageEl = createBotMessageElement(streamIndex, text, botRole, '');
             messageContainer.appendChild(currentStreamMessageEl);
         } else {
             const contentEl = currentStreamMessageEl.querySelector('.message-content');
-            if (contentEl) {
-                contentEl.textContent = text; // 修复1：显示完整累积文本
-            }
+            if (contentEl) contentEl.textContent = text;
         }
-
-        // 滚动到底部
         messageContainer.scrollTop = messageContainer.scrollHeight;
     }
 
-    function createBotMessageElement(streamIndex, text) {
-        // 移除空提示
+    function createBotMessageElement(streamIndex, text, botRole, audioData = '') {
         if (messageContainer.querySelector('.empty-tip')) {
             messageContainer.innerHTML = '';
         }
@@ -565,62 +663,28 @@ document.addEventListener('DOMContentLoaded', function () {
         messageDiv.className = 'message bot-message';
         messageDiv.setAttribute('data-stream-index', streamIndex);
 
+        const roleDiv = document.createElement('div');
+        roleDiv.className = 'message-role';
+        roleDiv.textContent = botRole || '未知角色';
+
         const time = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-        
         const contentDiv = document.createElement('div');
         contentDiv.className = 'message-content';
         contentDiv.textContent = text || '';
-        
         const timeDiv = document.createElement('div');
         timeDiv.className = 'message-time';
         timeDiv.textContent = time;
 
+        messageDiv.appendChild(roleDiv);
         messageDiv.appendChild(contentDiv);
         messageDiv.appendChild(timeDiv);
 
+        if (audioData) addAudioPlayButton(messageDiv, audioData);
         return messageDiv;
     }
 
-    // ===================== TTS 音频播放 =====================
-    function playAudioQueue(audioBase64List) {
-        if (!audioBase64List || audioBase64List.length === 0) {
-            console.warn('playAudioQueue: 没有音频数据');
-            return;
-        }
-        
-        console.log(`准备播放 ${audioBase64List.length} 个音频片段`);
-        
-        // 将Base64列表转为音频项并加入队列
-        audioBase64List.forEach((base64, index) => {
-            if (base64 && typeof base64 === 'string' && base64.length > 0) {
-                const audioItem = base64ToBlob(base64, 'audio/mpeg');
-                if (audioItem) {
-                    audioPlayer.addAudioToQueue(audioItem);
-                    console.log(`音频片段 ${index + 1} 已加入播放队列`);
-                } else {
-                    console.error(`音频片段 ${index + 1} 转换失败`);
-                }
-            } else {
-                console.warn(`音频片段 ${index + 1} 为空或无效`);
-            }
-        });
-        
-        // 开始播放队列
-        audioPlayer.playAudioFromQueue();
-    }
-
-    function playNextAudio() {
-        // 直接调用队列播放逻辑
-        audioPlayer.playAudioFromQueue();
-    }
-
-    function base64ToBlob(base64, mimeType) {
-        return audioPlayer.createAudioBlobFromBase64(base64, mimeType);
-    }
-
-    // ===================== 聊天历史 =====================
-    function addMessage(role, content, saveToHistory = true) {
-        // 移除空提示
+    // ===================== 消息渲染+历史 =====================
+    function addMessage(role, content, saveToHistory = true, botRole = '', audioData = '') {
         if (messageContainer.querySelector('.empty-tip')) {
             messageContainer.innerHTML = '';
         }
@@ -630,68 +694,61 @@ document.addEventListener('DOMContentLoaded', function () {
 
         const time = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
         
-        // 修复：使用安全的文本插入方式，避免HTML解析问题
+        if (role === 'bot' && botRole) {
+            const roleDiv = document.createElement('div');
+            roleDiv.className = 'message-role';
+            roleDiv.textContent = botRole;
+            div.appendChild(roleDiv);
+        }
+        
         const contentDiv = document.createElement('div');
         contentDiv.textContent = content;
-        
         const timeDiv = document.createElement('div');
         timeDiv.className = 'message-time';
         timeDiv.textContent = time;
-        
+
         div.appendChild(contentDiv);
         div.appendChild(timeDiv);
+
+        if (role === 'bot' && audioData) addAudioPlayButton(div, audioData);
 
         messageContainer.appendChild(div);
         messageContainer.scrollTop = messageContainer.scrollHeight;
 
-        if (saveToHistory) saveChatHistory(role, content);
+        if (saveToHistory) saveChatHistory(role, content, audioData, botRole);
     }
 
-    function saveChatHistory(role, content, audio = null) {
-        // 安全检查：确保有有效内容
-        if (!content && !audio) {
-            console.warn('saveChatHistory: 没有可保存的内容');
+    // 保存历史（异步函数）
+    async function saveChatHistory(role, content, audioData = null, botRole = '') {
+        if (!content && !audioData) return;
+        const record = {
+            role,
+            content: content || '',
+            audio: audioData || '',
+            time: new Date().toISOString(),
+            botRole: botRole || ''
+        };
+        await addChatRecord(record);
+    }
+
+    // 加载历史（异步函数）
+    async function loadChatHistory() {
+        const history = await getAllChatRecords();
+        if (history.length === 0) {
             return;
         }
-
-        const history = JSON.parse(localStorage.getItem('chatHistory') || '[]');
         
-        // 对于流式消息，如果音频为 null，尝试从音频队列获取
-        let audioBase64 = audio || '';
-        
-        history.push({ 
-            role, 
-            content: content || '',  // 确保至少为空字符串
-            audio: audioBase64,
-            time: new Date().toISOString(),
-            isStream: role === 'bot' && !audio  // 标记是否为流式消息
-        });
-        
-        // 限制历史记录数量
-        if (history.length > 100) {
-            history.shift();
-        }
-        
-        localStorage.setItem('chatHistory', JSON.stringify(history));
-    }
-
-    function loadChatHistory() {
-        const history = JSON.parse(localStorage.getItem('chatHistory') || '[]');
-        if (history.length === 0) return;
         messageContainer.innerHTML = '';
-        
         history.forEach(item => {
-            if (item.role === 'bot' && item.audio) {
-                // 创建带播放按钮的bot消息
-                const msgEl = createBotMessageElement(Date.now(), item.content);
-                messageContainer.appendChild(msgEl);
+            if (item.role === 'bot') {
+                addMessage(item.role, item.content, false, item.botRole, item.audio);
             } else {
                 addMessage(item.role, item.content, false);
             }
         });
     }
 
-    // ===================== 连接状态更新 =====================
+    // 连接状态
     function updateConnectionStatus(isOnline, text = '') {
         if (isOnline) {
             statusDot.className = 'status-dot online';
@@ -702,17 +759,17 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-    // ===================== 事件绑定 =====================
+    // 事件绑定
     sendBtn.addEventListener('click', sendMessage);
     messageInput.addEventListener('keypress', e => {
         if (e.key === 'Enter' && !e.shiftKey) {
-            e.preventDefault(); // 阻止换行
+            e.preventDefault();
             sendMessage();
         }
     });
 });
 
-// 页面卸载时销毁音频播放器
+// 页面卸载销毁播放器
 window.addEventListener('beforeunload', () => {
     const audioPlayer = AudioPlayer.getInstance();
     audioPlayer.destroy();

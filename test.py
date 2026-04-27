@@ -1,464 +1,166 @@
-from neo4j import GraphDatabase, exceptions
+import base64
+import binascii
+import tempfile
+import os
+import wave
+import numpy as np
 
-# ===================== 【本地 Neo4j 配置】你自己的信息 =====================
-NEO4J_URI = "bolt://localhost:7687"
-NEO4J_USER = "neo4j"
-NEO4J_PASSWORD = "12345678"
-# =========================================================================
-
-class KnowledgeGraphCRUD:
-    """知识图谱增删改查接口实现"""
-    def __init__(self, uri, user, password):
-        """
-        【全局只执行一次】
-        程序启动时建立连接，之后永远复用
-        """
-        self.driver = GraphDatabase.driver(
-            uri, 
-            auth=(user, password),
-            max_connection_pool_size=30,  # 连接池优化
-            connection_timeout=10         # 超时控制
-        )
-        # 【关键】创建一个全局 session，全程复用
-        self.session = self.driver.session()
-
-    def close(self):
-        """程序结束时才关闭"""
-        if self.session:
-            self.session.close()
-        if self.driver:
-            self.driver.close()
-
-    # -------------------------- 节点操作：复用连接 --------------------------
-    def create_node(self, label, properties):
-        try:
-            # 不再新建 session！直接用全局的
-            query = f"CREATE (n:{label} $props) RETURN n"
-            result = self.session.run(query, props=properties)
-            node = result.single()["n"]
-            return {
-                "element_id": node.element_id,
-                "label": list(node.labels)[0],
-                "properties": dict(node.items())
-            }
-        except exceptions.Neo4jError as e:
-            print(f"创建节点失败: {e}")
-            return None
-
-    def get_node(self, label, properties=None):
-        try:
-            if properties:
-                filter_str = " AND ".join([f"n.{k} = ${k}" for k in properties.keys()])
-                query = f"MATCH (n:{label}) WHERE {filter_str} RETURN n"
-                result = self.session.run(query,** properties)
-            else:
-                query = f"MATCH (n:{label}) RETURN n"
-                result = self.session.run(query)
-
-            nodes = []
-            for record in result:
-                node = record["n"]
-                nodes.append({
-                    "element_id": node.element_id,
-                    "label": list(node.labels)[0],
-                    "properties": dict(node.items())
-                })
-            return nodes
-        except:
-            return []
+def read_audio_from_txt(txt_file_path):
+    """
+    从txt文件中读取音频数据
+    支持格式：
+    1. 纯Base64编码的WAV数据
+    2. 纯十六进制字符串（去掉空格和换行）
+    3. 混合格式（如"UklGR..."这样的文本表示）
+    """
+    with open(txt_file_path, 'r', encoding='utf-8') as f:
+        content = f.read().strip()
     
-    def update_node(self, label, match_properties, update_properties):
-        try:
-            match_str = " AND ".join([f"n.{k}=${k}" for k in match_properties.keys()])
-            update_str = ", ".join([f"n.{k}=${k}_up" for k in update_properties.keys()])
-            
-            params = match_properties.copy()
-            for k, v in update_properties.items():
-                params[f"{k}_up"] = v
-
-            query = f"MATCH (n:{label}) WHERE {match_str} SET {update_str} RETURN count(n)"
-            result = self.session.run(query,** params)
-            return result.single()[0]
-        except:
-            return 0
-
-    def delete_node(self, label, properties):
-        try:
-            filter_str = " AND ".join([f"n.{k}=${k}" for k in properties.keys()])
-            query = f"MATCH (n:{label}) WHERE {filter_str} DETACH DELETE n RETURN count(n)"
-            result = self.session.run(query, **properties)
-            return result.single()[0]
-        except:
-            return 0
-
-    # -------------------------- 关系操作：复用连接 --------------------------
-    def create_relationship(self, start_label, start_props, end_label, end_props, rel_type, rel_props=None):
-        try:
-            start_filter = " AND ".join([f"s.{k}=${k}_s" for k in start_props.keys()])
-            end_filter = " AND ".join([f"e.{k}=${k}_e" for k in end_props.keys()])
-            
-            params = {}
-            for k, v in start_props.items(): params[f"{k}_s"] = v
-            for k, v in end_props.items(): params[f"{k}_e"] = v
-
-            rel_prop_str = "SET r = $rel_props" if rel_props else ""
-            
-            query = f"""
-            MATCH (s:{start_label}) WHERE {start_filter}
-            MATCH (e:{end_label}) WHERE {end_filter}
-            CREATE (s)-[r:{rel_type}]->(e) {rel_prop_str}
-            RETURN r
-            """
-            result = self.session.run(query,** params, rel_props=rel_props or {})
-            return result.single()["r"]
-        except:
-            return None
+    # 移除所有空白字符（空格、换行、制表符）
+    content = ''.join(content.split())
     
-    def get_relationship(self, start_label=None, end_label=None, rel_type=None):
-        """
-        查询关系（支持按起始节点标签、结束节点标签、关系类型过滤）
-        :param start_label: 起始节点标签（可选）
-        :param end_label: 结束节点标签（可选）
-        :param rel_type: 关系类型（可选）
-        :return: 关系列表（list[dict]）
-        """
-        try:
-            # 统一使用全局session
-            match_parts = ["(s)", "-[r]", "->(e)"]
-            if start_label:
-                match_parts[0] = f"(s:{start_label})"
-            if end_label:
-                match_parts[2] = f"->(e:{end_label})"
-            if rel_type:
-                match_parts[1] = f"-[r:{rel_type}]"
-            
-            query = f"MATCH {''.join(match_parts)} RETURN r, s, e"
-            result = self.session.run(query)
-            
-            rels = []
-            for record in result:
-                rel = record["r"]
-                rels.append({
-                    "element_id": rel.element_id,
-                    "type": rel.type,
-                    "properties": dict(rel.items()),
-                    "start_node": {
-                        "element_id": record["s"].element_id,
-                        "label": list(record["s"].labels)[0] if record["s"].labels else None,
-                        "properties": dict(record["s"].items())
-                    },
-                    "end_node": {
-                        "element_id": record["e"].element_id,
-                        "label": list(record["e"].labels)[0] if record["e"].labels else None,
-                        "properties": dict(record["e"].items())
-                    }
-                })
-            return rels
-        except exceptions.Neo4jError as e:
-            print(f"查询关系失败: {e}")
-            return []
+    # 方法1：尝试作为Base64解码
+    try:
+        audio_data = base64.b64decode(content)
+        # 验证是否是有效的WAV文件（检查RIFF头）
+        if audio_data[:4] == b'RIFF' and audio_data[8:12] == b'WAVE':
+            print("✓ 成功解码为Base64格式的WAV数据")
+            return audio_data
+    except:
+        pass
     
-    def update_relationship(self, start_label, start_props, end_label, end_props, rel_type, update_props):
-        """
-        修改关系属性
-        :param start_label: 起始节点标签
-        :param start_props: 起始节点匹配属性
-        :param end_label: 结束节点标签
-        :param end_props: 结束节点匹配属性
-        :param rel_type: 关系类型
-        :param update_props: 要更新的关系属性字典
-        :return: 更新的关系数量（int）
-        """
-        try:
-            # 构建节点过滤条件
-            start_filter = " AND ".join([f"s.{k}=${k}_s" for k in start_props.keys()])
-            end_filter = " AND ".join([f"e.{k}=${k}_e" for k in end_props.keys()])
-            # 构建属性更新语句
-            update_str = ", ".join([f"r.{k}=${k}_up" for k in update_props.keys()])
-            
-            # 组装参数
-            params = {}
-            for k, v in start_props.items(): params[f"{k}_s"] = v
-            for k, v in end_props.items(): params[f"{k}_e"] = v
-            for k, v in update_props.items(): params[f"{k}_up"] = v
-
-            query = f"""
-            MATCH (s:{start_label}) WHERE {start_filter}
-            MATCH (e:{end_label}) WHERE {end_filter}
-            MATCH (s)-[r:{rel_type}]->(e)
-            SET {update_str}
-            RETURN count(r)
-            """
-            result = self.session.run(query, **params)
-            return result.single()[0]
-        except exceptions.Neo4jError as e:
-            print(f"修改关系失败: {e}")
-            return 0
+    # 方法2：尝试作为十六进制字符串解码
+    try:
+        audio_data = binascii.unhexlify(content)
+        if audio_data[:4] == b'RIFF' and audio_data[8:12] == b'WAVE':
+            print("✓ 成功解码为十六进制格式的WAV数据")
+            return audio_data
+    except:
+        pass
     
-    def delete_relationship(self, rel_type, start_props, end_props):
-        """
-        删除关系
-        :param rel_type: 关系类型
-        :param start_props: 起始节点匹配属性
-        :param end_props: 结束节点匹配属性
-        :return: 删除的关系数量（int）
-        """
+    # 方法3：如果文本包含"UklGR"这样的WAV文本表示（可能是调试输出）
+    if 'UklGR' in content or 'RIFF' in content:
+        # 尝试提取十六进制部分（假设是连续的十六进制字符）
+        hex_chars = ''.join([c for c in content if c in '0123456789abcdefABCDEF'])
+        if len(hex_chars) > 0:
+            try:
+                audio_data = binascii.unhexlify(hex_chars)
+                if audio_data[:4] == b'RIFF' or audio_data[:4] == b'RIFF':
+                    print("✓ 成功从文本表示中提取并解码WAV数据")
+                    return audio_data
+            except:
+                pass
+    
+    raise ValueError("无法识别的音频数据格式。请确保txt文件包含Base64或十六进制编码的WAV数据")
+
+def play_wav_data(audio_data):
+    """
+    播放WAV音频数据
+    需要安装：pip install simpleaudio
+    """
+    try:
+        import simpleaudio as sa
+        
+        # 将音频数据保存到临时文件（供调试使用）
+        with tempfile.NamedTemporaryFile(suffix='.wav', delete=False) as tmpfile:
+            tmpfile.write(audio_data)
+            tmp_path = tmpfile.name
+        
+        print(f"临时文件已保存: {tmp_path}")
+        
+        # 使用simpleaudio播放
+        play_obj = sa.play_buffer(audio_data, 1, 2, 44100)  # 参数可能需要调整
+        # 实际上应该从WAV头部读取参数，但为了简化，先这样
+        
+        print("正在播放音频...")
+        play_obj.wait_done()
+        print("播放完成")
+        
+        # 清理临时文件
+        os.unlink(tmp_path)
+        
+    except ImportError:
+        print("未安装simpleaudio，尝试使用pydub播放...")
         try:
-            start_filter = " AND ".join([f"s.{k} = ${k}_start" for k in start_props.keys()])
-            end_filter = " AND ".join([f"e.{k} = ${k}_end" for k in end_props.keys()])
+            from pydub import AudioSegment
+            from pydub.playback import play
             
-            params = {}
-            for k, v in start_props.items():
-                params[f"{k}_start"] = v
-            for k, v in end_props.items():
-                params[f"{k}_end"] = v
+            # 保存到临时文件
+            with tempfile.NamedTemporaryFile(suffix='.wav', delete=False) as tmpfile:
+                tmpfile.write(audio_data)
+                tmp_path = tmpfile.name
             
-            query = f"""
-            MATCH (s)-[r:{rel_type}]->(e)
-            WHERE {start_filter} AND {end_filter}
-            DELETE r
-            RETURN count(r) as count
-            """
-            result = self.session.run(query,** params)
-            return result.single()["count"]
-        except exceptions.Neo4jError as e:
-            print(f"删除关系失败: {e}")
-            return 0
+            # 加载并播放
+            audio = AudioSegment.from_wav(tmp_path)
+            print("正在播放音频...")
+            play(audio)
+            print("播放完成")
+            
+            # 清理临时文件
+            os.unlink(tmp_path)
+            
+        except ImportError:
+            print("请安装播放库：pip install simpleaudio 或 pip install pydub")
+            # 保存到文件供手动播放
+            output_file = "output_audio.wav"
+            with open(output_file, 'wb') as f:
+                f.write(audio_data)
+            print(f"音频数据已保存到 {output_file}，请用播放器手动打开")
 
-# 调用大模型自动从文本中提取关系
-def KG_extract(text:str, KG_service:KnowledgeGraphCRUD) -> bool:
-    if not text.strip() or not KG_service:
-        print("输入文本或KG服务实例为空")
-        return False
-    pass
-    return True
+def get_wav_info(audio_data):
+    """
+    解析WAV文件信息
+    """
+    import struct
+    
+    # 检查RIFF头
+    if audio_data[:4] != b'RIFF':
+        print("警告：这不是有效的WAV文件")
+        return
+    
+    # 解析基本信息
+    sample_rate = struct.unpack('<I', audio_data[24:28])[0]
+    num_channels = struct.unpack('<H', audio_data[22:24])[0]
+    bits_per_sample = struct.unpack('<H', audio_data[34:36])[0]
+    byte_rate = struct.unpack('<I', audio_data[28:32])[0]
+    block_align = struct.unpack('<H', audio_data[32:34])[0]
+    
+    print("\n=== WAV文件信息 ===")
+    print(f"采样率: {sample_rate} Hz")
+    print(f"声道数: {num_channels}")
+    print(f"位深度: {bits_per_sample} bit")
+    print(f"比特率: {byte_rate * 8 / 1000:.1f} kbps")
+    print(f"数据大小: {len(audio_data)} 字节")
+    print("==================\n")
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# -------------------------- 测试示例 --------------------------
 def main():
-    # 初始化知识图谱CRUD实例
-    kg = KnowledgeGraphCRUD(NEO4J_URI, NEO4J_USER, NEO4J_PASSWORD)
+    # 使用方法：将txt文件路径作为参数，或直接修改变量
+    import sys
     
-    print("===== 知识图谱交互式增删改查工具 =====")
-    print("支持操作：1-创建节点 2-查询节点 3-更新节点 4-删除节点")
-    print("          5-创建关系 6-查询关系 7-修改关系 8-删除关系 0-退出")
-    print("=====================================\n")
+    if len(sys.argv) > 1:
+        txt_file = sys.argv[1]
+    else:
+        # 请修改为你的txt文件路径
+        txt_file = "audio_data.txt"  # 👈 修改这里
     
-    while True:
-        try:
-            choice = input("请输入操作编号(0-8)：").strip()
-            if choice == "0":
-                print("退出程序...")
-                break
-            
-            # 1. 创建节点
-            elif choice == "1":
-                label = input("请输入节点标签：").strip()
-                props = {}
-                print("请输入节点属性（格式：键=值，输入空行结束）：")
-                while True:
-                    prop_input = input().strip()
-                    if not prop_input:
-                        break
-                    k, v = prop_input.split("=", 1)
-                    props[k.strip()] = v.strip()
-                result = kg.create_node(label, props)
-                if result:
-                    print(f"✅ 创建节点成功：{result}")
-                else:
-                    print("❌ 创建节点失败")
-            
-            # 2. 查询节点
-            elif choice == "2":
-                label = input("请输入节点标签：").strip()
-                props = {}
-                print("请输入查询属性（格式：键=值，输入空行结束，留空查询所有该标签节点）：")
-                while True:
-                    prop_input = input().strip()
-                    if not prop_input:
-                        break
-                    k, v = prop_input.split("=", 1)
-                    props[k.strip()] = v.strip()
-                result = kg.get_node(label, props if props else None)
-                print(f"🔍 查询结果（共{len(result)}个节点）：")
-                for node in result:
-                    print(f"   {node}")
-            
-            # 3. 更新节点
-            elif choice == "3":
-                label = input("请输入节点标签：").strip()
-                match_props = {}
-                print("请输入匹配属性（格式：键=值，输入空行结束）：")
-                while True:
-                    prop_input = input().strip()
-                    if not prop_input:
-                        break
-                    k, v = prop_input.split("=", 1)
-                    match_props[k.strip()] = v.strip()
-                
-                update_props = {}
-                print("请输入更新属性（格式：键=值，输入空行结束）：")
-                while True:
-                    prop_input = input().strip()
-                    if not prop_input:
-                        break
-                    k, v = prop_input.split("=", 1)
-                    update_props[k.strip()] = v.strip()
-                
-                count = kg.update_node(label, match_props, update_props)
-                print(f"📝 更新完成，共更新 {count} 个节点")
-            
-            # 4. 删除节点
-            elif choice == "4":
-                label = input("请输入节点标签：").strip()
-                props = {}
-                print("请输入删除匹配属性（格式：键=值，输入空行结束）：")
-                while True:
-                    prop_input = input().strip()
-                    if not prop_input:
-                        break
-                    k, v = prop_input.split("=", 1)
-                    props[k.strip()] = v.strip()
-                count = kg.delete_node(label, props)
-                print(f"🗑️ 删除完成，共删除 {count} 个节点")
-            
-            # 5. 创建关系
-            elif choice == "5":
-                start_label = input("请输入起始节点标签：").strip()
-                start_props = {}
-                print("请输入起始节点匹配属性（格式：键=值，输入空行结束）：")
-                while True:
-                    prop_input = input().strip()
-                    if not prop_input:
-                        break
-                    k, v = prop_input.split("=", 1)
-                    start_props[k.strip()] = v.strip()
-                
-                end_label = input("请输入结束节点标签：").strip()
-                end_props = {}
-                print("请输入结束节点匹配属性（格式：键=值，输入空行结束）：")
-                while True:
-                    prop_input = input().strip()
-                    if not prop_input:
-                        break
-                    k, v = prop_input.split("=", 1)
-                    end_props[k.strip()] = v.strip()
-                
-                rel_type = input("请输入关系类型：").strip()
-                rel_props = {}
-                print("请输入关系属性（格式：键=值，输入空行结束，无属性直接回车）：")
-                while True:
-                    prop_input = input().strip()
-                    if not prop_input:
-                        break
-                    k, v = prop_input.split("=", 1)
-                    rel_props[k.strip()] = v.strip()
-                
-                result = kg.create_relationship(start_label, start_props, end_label, end_props, rel_type, rel_props)
-                if result:
-                    print(f"✅ 创建关系成功：{result}")
-                else:
-                    print("❌ 创建关系失败")
-            
-            # 6. 查询关系
-            elif choice == "6":
-                start_label = input("请输入起始节点标签（可选，直接回车跳过）：").strip() or None
-                end_label = input("请输入结束节点标签（可选，直接回车跳过）：").strip() or None
-                rel_type = input("请输入关系类型（可选，直接回车跳过）：").strip() or None
-                
-                result = kg.get_relationship(start_label, end_label, rel_type)
-                print(f"🔍 查询结果（共{len(result)}个关系）：")
-                for rel in result:
-                    print(f"   {rel}")
-            
-            # 7. 修改关系
-            elif choice == "7":
-                start_label = input("请输入起始节点标签：").strip()
-                start_props = {}
-                print("请输入起始节点匹配属性（格式：键=值，输入空行结束）：")
-                while True:
-                    prop_input = input().strip()
-                    if not prop_input:
-                        break
-                    k, v = prop_input.split("=", 1)
-                    start_props[k.strip()] = v.strip()
-                
-                end_label = input("请输入结束节点标签：").strip()
-                end_props = {}
-                print("请输入结束节点匹配属性（格式：键=值，输入空行结束）：")
-                while True:
-                    prop_input = input().strip()
-                    if not prop_input:
-                        break
-                    k, v = prop_input.split("=", 1)
-                    end_props[k.strip()] = v.strip()
-                
-                rel_type = input("请输入关系类型：").strip()
-                update_props = {}
-                print("请输入要更新的关系属性（格式：键=值，输入空行结束）：")
-                while True:
-                    prop_input = input().strip()
-                    if not prop_input:
-                        break
-                    k, v = prop_input.split("=", 1)
-                    update_props[k.strip()] = v.strip()
-                
-                count = kg.update_relationship(start_label, start_props, end_label, end_props, rel_type, update_props)
-                print(f"📝 修改完成，共更新 {count} 个关系")
-            
-            # 8. 删除关系
-            elif choice == "8":
-                rel_type = input("请输入关系类型：").strip()
-                start_props = {}
-                print("请输入起始节点匹配属性（格式：键=值，输入空行结束）：")
-                while True:
-                    prop_input = input().strip()
-                    if not prop_input:
-                        break
-                    k, v = prop_input.split("=", 1)
-                    start_props[k.strip()] = v.strip()
-                
-                end_props = {}
-                print("请输入结束节点匹配属性（格式：键=值，输入空行结束）：")
-                while True:
-                    prop_input = input().strip()
-                    if not prop_input:
-                        break
-                    k, v = prop_input.split("=", 1)
-                    end_props[k.strip()] = v.strip()
-                
-                count = kg.delete_relationship(rel_type, start_props, end_props)
-                print(f"🗑️ 删除完成，共删除 {count} 个关系")
-            
-            else:
-                print("❌ 无效的操作编号，请输入0-8之间的数字")
-            
-            print("-" * 50 + "\n")  # 分隔线
-            
-        except Exception as e:
-            print(f"❌ 操作出错：{str(e)}")
-            print("-" * 50 + "\n")
+    if not os.path.exists(txt_file):
+        print(f"错误：文件 {txt_file} 不存在")
+        print("使用方法：python play_audio.py <txt文件路径>")
+        return
     
-    # 关闭连接
-    kg.close()
+    try:
+        # 读取音频数据
+        audio_data = read_audio_from_txt(txt_file)
+        print(f"成功读取 {len(audio_data)} 字节音频数据")
+        
+        # 显示WAV信息
+        get_wav_info(audio_data)
+        
+        # 播放音频
+        play_wav_data(audio_data)
+        
+    except Exception as e:
+        print(f"错误：{e}")
 
 if __name__ == "__main__":
     main()

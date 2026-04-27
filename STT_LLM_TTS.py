@@ -324,3 +324,11 @@ class ServerFunctions:
         else:
             res = [{'role': self.nameMap[item['role']], 'content': global_config.cipher_tool.encrypt(clean_pretags(item['content']))} for item in res]
         return res
+    
+    def get_characters(self) -> list[dict]:
+        ''' 获取角色列表 '''
+        pass
+
+    def set_character(self, character_name:str, prompt:str, tts_speaker_paras:dict):
+        ''' 创建或设置角色 '''
+        pass
