@@ -98,7 +98,9 @@
             opacity: 0;
             pointer-events: none;
             transition: opacity 0.2s ease;
-            background: transparent; /* 允许iframe背景透明，显示父级背景 */
+            /* 核心修改：添加不透明背景色，阻断父级背景透传 */
+            background: #ffffff; /* 替换为你想要的iframe默认背景色（比如和iframe自身一致的底色） */
+            /* 移除原有 transparent 配置，避免透传 */
         }
 
         /* 激活的iframe可见 */
