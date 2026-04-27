@@ -13,24 +13,15 @@
         }
 
         body {
-            background: #f7f8fa;
+            /* background: #f7f8fa; */
+            background: transparent;
             padding: 40px;
         }
 
         .setting-container {
             max-width: 1000px;
-            margin: 0 auto 20px auto;
-            background: #ffffff;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-        }
-
-        /* 新增背景配置容器样式 */
-        .bg-setting-container {
-            max-width: 1000px;
-            margin: 0 auto;
-            background: #ffffff;
+            margin: 0 auto 20px;
+            background: rgba(255, 255, 255, 0.5);
             padding: 30px;
             border-radius: 10px;
             box-shadow: 0 2px 10px rgba(0,0,0,0.05);
@@ -41,6 +32,8 @@
             color: #333;
             font-size: 20px;
             font-weight: 600;
+            border-bottom: 1px solid #f0f0f0;
+            padding-bottom: 12px;
         }
 
         /* 横向列表式布局 */
@@ -64,13 +57,54 @@
             font-weight: 500;
         }
 
-        .setting-item input {
+        .setting-item input[type="text"],
+        .setting-item input[type="range"] {
             width: 100%;
             padding: 12px 16px;
+            background: rgba(255, 255, 255, 0.5);
             border: 1px solid #e0e0e0;
             border-radius: 8px;
             font-size: 14px;
             outline: none;
+        }
+
+        /* 隐藏原生文件上传控件 */
+        .setting-item input[type="file"] {
+            position: absolute;
+            opacity: 0;
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+        }
+
+        /* 自定义上传按钮容器 */
+        .custom-file-upload {
+            position: relative;
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.5); /* 基础背景色 + 透明度 */
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            /* 可自定义背景图 */
+            /* background-image: url('你的背景图路径'); */
+            /* background-size: cover; */
+            /* background-position: center; */
+        }
+
+        /* 悬停效果 */
+        .custom-file-upload:hover {
+            background: rgba(255, 255, 255, 0.9); /* 悬停时调整透明度 */
+            border-color: #4e8cff;
+        }
+
+        /* 上传按钮文字 */
+        .upload-text {
+            position: relative;
+            z-index: 1;
+            color: #333;
         }
 
         /* 新增开关样式 */
@@ -81,7 +115,7 @@
             padding: 12px 16px;
             border: 1px solid #e0e0e0;
             border-radius: 8px;
-            background: #fff;
+            background: rgba(255, 255, 255, 0.5);
         }
         .switch {
             position: relative;
@@ -120,44 +154,31 @@
             margin-top: 20px;
         }
 
-        #save-btn, #test-btn, #save-bg-btn {
+        .btn-group button {
             padding: 12px 24px;
             border: none;
             border-radius: 8px;
             font-size: 15px;
             cursor: pointer;
-        }
-
-        #save-btn {
-            background: #4e8cff;
-            color: #fff;
             flex: 1;
         }
 
-        #save-btn:hover {
+        #save-btn, #save-bg-btn {
+            background: #4e8cff79;
+            color: #fff;
+        }
+
+        #save-btn:hover, #save-bg-btn:hover {
             background: #3b7bff;
         }
 
-        #test-btn {
-            background: #f1f3f4;
+        #test-btn, #reset-bg-btn {
+            background: rgba(255, 255, 255, 0.5);
             color: #333;
-            flex: 1;
         }
 
-        #test-btn:hover {
-            background: #e5e7eb;
-        }
-
-        /* 新增背景保存按钮样式 */
-        #save-bg-btn {
-            background: #4e8cff;
-            color: #fff;
-            width: 100%;
-            margin-top: 10px;
-        }
-
-        #save-bg-btn:hover {
-            background: #3b7bff;
+        #test-btn:hover, #reset-bg-btn:hover {
+            background: rgba(255, 255, 255, 0.9);
         }
 
         .status-text {
@@ -174,45 +195,23 @@
             color: #f53f3f;
         }
 
-        /* 新增背景预览样式 */
         .bg-preview {
             width: 100%;
-            height: 150px;
-            border: 1px dashed #e0e0e0;
+            height: 120px;
+            background-size: cover;
+            background-position: center;
             border-radius: 8px;
-            margin-top: 10px;
+            margin-top: 12px;
+            border: 1px dashed #ccc;
             display: flex;
             align-items: center;
             justify-content: center;
-            background-size: cover;
-            background-position: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .bg-preview::before {
-            content: '背景预览';
             color: #999;
             font-size: 14px;
-        }
-
-        /* 透明度滑块样式 */
-        .opacity-slider {
-            width: 100%;
-            margin-top: 10px;
-            accent-color: #4e8cff;
-        }
-
-        .opacity-value {
-            text-align: right;
-            font-size: 14px;
-            color: #666;
-            margin-top: 5px;
         }
     </style>
 </head>
 <body>
-    <!-- WebSocket配置容器 -->
     <div class="setting-container">
         <div class="setting-title">WebSocket 配置</div>
         
@@ -235,14 +234,12 @@
                        value="${localStorage.getItem('apiKey') || ''}">
             </div>
 
-            <!-- 新增 AES KEY 配置项 -->
             <div class="setting-item">
                 <label for="aes-key">AES 密钥 (AES KEY)</label>
                 <input type="text" id="aes-key" placeholder="请输入AES加密密钥" 
                        value="${localStorage.getItem('aesKey') || ''}">
             </div>
 
-            <!-- 新增：流式响应开关 -->
             <div class="setting-item">
                 <label>使用流式响应</label>
                 <div class="switch-wrap">
@@ -251,7 +248,6 @@
                 </div>
             </div>
 
-            <!-- 新增：目标端口 -->
             <div class="setting-item">
                 <label for="target-port">目标端口 (TARGET PORT)</label>
                 <input type="text" id="target-port" placeholder="例：5000" 
@@ -267,29 +263,34 @@
         <div class="status-text" id="status"></div>
     </div>
 
-    <!-- 新增背景配置容器 -->
-    <div class="bg-setting-container">
-        <div class="setting-title">网页背景配置</div>
-        
+    <!-- 新增：界面背景配置块 -->
+    <div class="setting-container">
+        <div class="setting-title">界面背景</div>
         <div class="setting-list">
             <div class="setting-item">
                 <label for="bg-image">上传背景图片</label>
-                <input type="file" id="bg-image" accept="image/*" style="padding: 8px;">
-                <div class="bg-preview" id="bg-preview"></div>
+                <!-- 自定义上传容器 -->
+                <div class="custom-file-upload">
+                    <input type="file" id="bg-image" accept="image/*">
+                    <span class="upload-text">选择图片</span>
+                </div>
+                <div class="bg-preview" id="bg-preview">暂无背景图片</div>
             </div>
-
             <div class="setting-item">
-                <label for="bg-opacity">背景图片透明度</label>
-                <input type="range" id="bg-opacity" class="opacity-slider" min="0" max="1" step="0.01" value="${localStorage.getItem('bgOpacity') || '1'}">
-                <div class="opacity-value" id="opacity-value">当前值：${localStorage.getItem('bgOpacity') || '1'}</div>
+                <label for="bg-opacity">背景透明度</label>
+                <input type="range" id="bg-opacity" min="0" max="1" step="0.05" value="0.3">
+                <span id="opacity-value">0.3</span>
             </div>
         </div>
-
-        <button type="button" id="save-bg-btn">保存背景配置</button>
+        <div class="btn-group">
+            <button type="button" id="reset-bg-btn">清除背景</button>
+            <button type="button" id="save-bg-btn">应用背景</button>
+        </div>
         <div class="status-text" id="bg-status"></div>
     </div>
 
     <script>
+        // ---------- WebSocket 配置部分 ----------
         const wsUrlInput = document.getElementById('ws-url');
         const identityInput = document.getElementById('identity');
         const apiKeyInput = document.getElementById('api-key');
@@ -301,23 +302,14 @@
         const statusText = document.getElementById('status');
         let testWs = null;
 
-        // 新增背景配置相关元素
-        const bgImageInput = document.getElementById('bg-image');
-        const bgPreview = document.getElementById('bg-preview');
-        const bgOpacitySlider = document.getElementById('bg-opacity');
-        const opacityValueText = document.getElementById('opacity-value');
-        const saveBgBtn = document.getElementById('save-bg-btn');
-        const bgStatusText = document.getElementById('bg-status');
-        let bgImageDataUrl = localStorage.getItem('bgImage') || '';
-
         // 流式开关点击事件
         useStreamSwitch.addEventListener('click', function() {
             this.classList.toggle('checked');
-            const statusText = this.parentElement.querySelector('span');
-            statusText.textContent = this.classList.contains('checked') ? '开启' : '关闭';
+            const statusSpan = this.parentElement.querySelector('span');
+            statusSpan.textContent = this.classList.contains('checked') ? '开启' : '关闭';
         });
 
-        // 保存配置
+        // 保存WebSocket配置
         saveBtn.addEventListener('click', function() {
             const wsUrl = wsUrlInput.value.trim();
             const identity = identityInput.value.trim();
@@ -326,7 +318,6 @@
             const useStream = useStreamSwitch.classList.contains('checked');
             const targetPort = targetPortInput.value.trim();
 
-            // 基础验证
             if (!wsUrl) {
                 showStatus('请输入有效的WebSocket地址', 'error');
                 return;
@@ -348,7 +339,6 @@
                 return;
             }
 
-            // 保存到本地存储
             localStorage.setItem('wsUrl', wsUrl);
             localStorage.setItem('identity', identity);
             localStorage.setItem('apiKey', apiKey);
@@ -359,7 +349,6 @@
             showStatus('配置保存成功！', 'success');
         });
 
-        // 测试连接（修改为和chat.js一致的URL格式）
         testBtn.addEventListener('click', function() {
             const wsUrl = wsUrlInput.value.trim();
             const identity = identityInput.value.trim();
@@ -367,7 +356,6 @@
             const aesKey = aesKeyInput.value.trim();
             const targetPort = targetPortInput.value.trim();
 
-            // 基础验证
             if (!wsUrl) {
                 showStatus('请输入有效的WebSocket地址', 'error');
                 return;
@@ -389,16 +377,12 @@
                 return;
             }
 
-            // 关闭之前的测试连接
             if (testWs) {
                 testWs.close();
             }
 
-            // 构造和chat.js一致的最终WS地址
             try {
-                // 1. 替换协议：http->ws，https->wss
                 const baseWsUrl = wsUrl.replace("http://", "ws://").replace("https://", "wss://");
-                // 2. 追加路径 + 拼接api_key和client_role参数
                 const finalWsUrl = `${baseWsUrl}/ws/llm-tts?api_key=${encodeURIComponent(apiKey)}&client_role=${encodeURIComponent(identity)}`;
                 console.log('测试连接地址：', finalWsUrl);
 
@@ -409,7 +393,7 @@
                     showStatus('连接成功！', 'success');
                     setTimeout(() => {
                         testWs.close();
-                    }, 1000);  // 延迟1秒关闭
+                    }, 1000);
                 };
 
                 testWs.onerror = function() {
@@ -427,69 +411,120 @@
             }
         });
 
-        // 显示状态
         function showStatus(text, type) {
             statusText.textContent = text;
             statusText.className = 'status-text ' + (type || '');
         }
 
-        // 新增：显示背景配置状态
-        function showBgStatus(text, type) {
-            bgStatusText.textContent = text;
-            bgStatusText.className = 'status-text ' + (type || '');
+        // ---------- 界面背景配置部分 ----------
+        const bgImageInput = document.getElementById('bg-image');
+        const bgOpacityInput = document.getElementById('bg-opacity');
+        const opacityValueSpan = document.getElementById('opacity-value');
+        const bgPreview = document.getElementById('bg-preview');
+        const saveBgBtn = document.getElementById('save-bg-btn');
+        const resetBgBtn = document.getElementById('reset-bg-btn');
+        const bgStatus = document.getElementById('bg-status');
+        
+        let currentBase64 = localStorage.getItem('bgImage') || '';
+
+        // 更新预览
+        function updatePreview(base64) {
+            if (base64) {
+                bgPreview.style.backgroundImage = `url(${base64})`;
+                bgPreview.style.color = 'transparent';
+                bgPreview.textContent = '';
+            } else {
+                bgPreview.style.backgroundImage = 'none';
+                bgPreview.style.color = '#999';
+                bgPreview.textContent = '暂无背景图片';
+            }
         }
 
-        // 新增：处理背景图片上传
+        // 读取文件转为base64
         bgImageInput.addEventListener('change', function(e) {
             const file = e.target.files[0];
             if (!file) return;
             
             const reader = new FileReader();
-            reader.onload = function(e) {
-                bgImageDataUrl = e.target.result;
-                // 更新预览
-                bgPreview.style.backgroundImage = `url(${bgImageDataUrl})`;
-                bgPreview.style.opacity = bgOpacitySlider.value;
-                bgPreview.removeAttribute('data-empty');
+            reader.onload = function(ev) {
+                currentBase64 = ev.target.result;
+                updatePreview(currentBase64);
             };
             reader.readAsDataURL(file);
         });
 
-        // 新增：处理透明度滑块变化
-        bgOpacitySlider.addEventListener('input', function() {
-            const opacity = this.value;
-            opacityValueText.textContent = `当前值：${opacity}`;
-            // 更新预览透明度
-            if (bgImageDataUrl) {
-                bgPreview.style.opacity = opacity;
-            }
+        // 透明度滑块显示
+        bgOpacityInput.addEventListener('input', function() {
+            opacityValueSpan.textContent = this.value;
         });
 
-        // 新增：保存背景配置
+        // 初始化背景配置
+        function initBackgroundSettings() {
+            const savedBg = localStorage.getItem('bgImage');
+            const savedOpacity = localStorage.getItem('bgOpacity') || '0.3';
+            
+            if (savedBg) {
+                currentBase64 = savedBg;
+                updatePreview(savedBg);
+            }
+            bgOpacityInput.value = savedOpacity;
+            opacityValueSpan.textContent = savedOpacity;
+        }
+
+        // 发送背景配置到父窗口（index.html）
+        function sendBackgroundToParent(base64, opacity) {
+            try {
+                if (window.parent && window.parent !== window) {
+                    window.parent.postMessage({
+                        type: 'updateBackground',
+                        bgImage: base64,
+                        bgOpacity: parseFloat(opacity)
+                    }, '*');
+                }
+            } catch (e) {
+                console.warn('无法与父页面通信', e);
+            }
+        }
+
+        // 应用背景
         saveBgBtn.addEventListener('click', function() {
-            if (!bgImageDataUrl && !localStorage.getItem('bgImage')) {
-                showBgStatus('请先上传背景图片', 'error');
+            const opacity = bgOpacityInput.value;
+            
+            if (!currentBase64) {
+                showBgStatus('请先选择背景图片', 'error');
                 return;
             }
 
-            // 保存到本地存储
-            if (bgImageDataUrl) {
-                localStorage.setItem('bgImage', bgImageDataUrl);
-            }
-            localStorage.setItem('bgOpacity', bgOpacitySlider.value);
-
-            // 通知父页面（index.html）更新背景
-            window.parent.postMessage({
-                type: 'updateBackground',
-                image: localStorage.getItem('bgImage'),
-                opacity: localStorage.getItem('bgOpacity')
-            }, '*');
-
-            showBgStatus('背景配置保存成功！', 'success');
+            localStorage.setItem('bgImage', currentBase64);
+            localStorage.setItem('bgOpacity', opacity);
+            
+            sendBackgroundToParent(currentBase64, opacity);
+            showBgStatus('背景已应用！', 'success');
         });
 
-        // 初始化：读取本地配置
+        // 清除背景
+        resetBgBtn.addEventListener('click', function() {
+            currentBase64 = '';
+            localStorage.removeItem('bgImage');
+            localStorage.removeItem('bgOpacity');
+            
+            updatePreview('');
+            bgImageInput.value = '';
+            bgOpacityInput.value = '0.3';
+            opacityValueSpan.textContent = '0.3';
+            
+            sendBackgroundToParent('', 0.3);
+            showBgStatus('背景已清除', 'success');
+        });
+
+        function showBgStatus(text, type) {
+            bgStatus.textContent = text;
+            bgStatus.className = 'status-text ' + (type || '');
+        }
+
+        // 页面加载时初始化
         window.onload = function() {
+            // WebSocket配置初始化
             const savedUrl = localStorage.getItem('wsUrl');
             const savedIdentity = localStorage.getItem('identity');
             const savedApiKey = localStorage.getItem('apiKey');
@@ -504,23 +539,72 @@
             if (savedUseStream) useStreamSwitch.classList.add('checked');
             if (savedTargetPort) targetPortInput.value = savedTargetPort;
             
-            // 初始化开关文本
-            const statusText = useStreamSwitch.parentElement.querySelector('span');
-            statusText.textContent = savedUseStream ? '开启' : '关闭';
+            const streamSpan = useStreamSwitch.parentElement.querySelector('span');
+            streamSpan.textContent = savedUseStream ? '开启' : '关闭';
 
-            // 新增：初始化背景配置
-            const savedBgImage = localStorage.getItem('bgImage');
-            const savedBgOpacity = localStorage.getItem('bgOpacity') || '1';
-            
-            if (savedBgImage) {
-                bgImageDataUrl = savedBgImage;
-                bgPreview.style.backgroundImage = `url(${savedBgImage})`;
-                bgPreview.removeAttribute('data-empty');
-            }
-            bgOpacitySlider.value = savedBgOpacity;
-            opacityValueText.textContent = `当前值：${savedBgOpacity}`;
-            bgPreview.style.opacity = savedBgOpacity;
+            // 背景配置初始化
+            initBackgroundSettings();
         };
+
+        // 接收来自父窗口的背景配置
+        window.addEventListener('message', function(event) {
+            if (event.data && event.data.type === 'updateBackground') {
+                if (event.data.bgImage) {
+                    // 方式1：直接设置body背景（简单但不支持透明度调节）
+                    // document.body.style.backgroundImage = `url(${event.data.bgImage})`;
+                    // document.body.style.backgroundSize = 'cover';
+                    // document.body.style.backgroundPosition = 'center';
+                    // document.body.style.backgroundAttachment = 'fixed';
+                    // document.body.style.opacity = event.data.bgOpacity;
+                    
+                    // 方式2：使用伪元素（推荐，需要动态注入样式）
+                    applyChatBackground(event.data.bgImage, event.data.bgOpacity);
+                } else {
+                    clearChatBackground();
+                }
+            }
+        });
+
+        function applyChatBackground(bgImage, opacity) {
+            // 移除旧的动态样式
+            const oldStyle = document.getElementById('dynamic-bg-style');
+            if (oldStyle) oldStyle.remove();
+            
+            // 创建新的样式
+            const style = document.createElement('style');
+            style.id = 'dynamic-bg-style';
+            style.textContent = `
+                body::before {
+                    content: '';
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background-image: url(${bgImage});
+                    background-size: cover;
+                    background-position: center;
+                    background-repeat: no-repeat;
+                    background-attachment: fixed;
+                    opacity: ${opacity};
+                    z-index: -1;
+                    pointer-events: none;
+                }
+                body {
+                    position: relative;
+                    background: transparent;
+                }
+                .chat-messages {
+                    background-color: transparent;
+                }
+            `;
+            document.head.appendChild(style);
+        }
+
+        function clearChatBackground() {
+            const style = document.getElementById('dynamic-bg-style');
+            if (style) style.remove();
+        }
     </script>
 </body>
 </html>

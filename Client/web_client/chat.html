@@ -13,7 +13,8 @@
         }
 
         body {
-            background: #fff;
+            background: transparent;
+            /* background: #fff; */
             height: 100vh;
             display: flex;
             flex-direction: column;
@@ -21,7 +22,7 @@
 
         /* 顶部标题 + 连接状态 */
         .chat-header {
-            background: #fff;
+            background: rgba(255, 255, 255, 0.65);
             padding: 22px 28px;
             font-size: 18px;
             font-weight: 600;
@@ -84,7 +85,8 @@
 
         .bot-message {
             align-self: flex-start;
-            background-color: #f1f3f4;
+            /* background-color: #f1f3f4; */
+            background: rgba(255, 255, 255, 0.5);
             color: #333;
         }
 
@@ -121,7 +123,7 @@
         .chat-input {
             display: flex;
             padding: 20px 28px;
-            background: #fff;
+            background: rgba(255, 255, 255, 0.3);
             border-top: 1px solid #f0f0f0;
             gap: 12px;
         }
@@ -129,6 +131,7 @@
         #message-input {
             flex: 1;
             padding: 14px 20px;
+            background: rgba(255, 255, 255, 0.5);
             border: 1px solid #e0e0e0;
             border-radius: 30px;
             outline: none;
@@ -199,6 +202,76 @@
     <script src="js/audio.js"></script>
     <script>console.log("importing chat.js")</script>
     <script src="js/chat.js"></script>
-    <script>console.log("done import")</script>
+    <script>
+        console.log("done import")
+        // 接收来自父窗口的背景配置
+        window.addEventListener('message', function(event) {
+            if (event.data && event.data.type === 'updateBackground') {
+                if (event.data.bgImage) {
+                    // 方式1：直接设置body背景（简单但不支持透明度调节）
+                    // document.body.style.backgroundImage = `url(${event.data.bgImage})`;
+                    // document.body.style.backgroundSize = 'cover';
+                    // document.body.style.backgroundPosition = 'center';
+                    // document.body.style.backgroundAttachment = 'fixed';
+                    // document.body.style.opacity = event.data.bgOpacity;
+                    
+                    // 方式2：使用伪元素（推荐，需要动态注入样式）
+                    applyChatBackground(event.data.bgImage, event.data.bgOpacity);
+                } else {
+                    clearChatBackground();
+                }
+            }
+        });
+
+        function applyChatBackground(bgImage, opacity) {
+            // 移除旧的动态样式
+            const oldStyle = document.getElementById('dynamic-bg-style');
+            if (oldStyle) oldStyle.remove();
+            
+            // 创建新的样式
+            const style = document.createElement('style');
+            style.id = 'dynamic-bg-style';
+            style.textContent = `
+                body::before {
+                    content: '';
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background-image: url(${bgImage});
+                    background-size: cover;
+                    background-position: center;
+                    background-repeat: no-repeat;
+                    background-attachment: fixed;
+                    opacity: ${opacity};
+                    z-index: -1;
+                    pointer-events: none;
+                }
+                body {
+                    position: relative;
+                    background: transparent;
+                }
+                .chat-messages {
+                    background-color: transparent;
+                }
+            `;
+            document.head.appendChild(style);
+        }
+
+        function clearChatBackground() {
+            const style = document.getElementById('dynamic-bg-style');
+            if (style) style.remove();
+        }
+
+        window.addEventListener('load', function() {
+            // 请求父窗口的背景配置
+            try {
+                if (window.parent && window.parent !== window) {
+                    window.parent.postMessage({ type: 'requestBackground' }, '*');
+                }
+            } catch (e) {}
+        });
+    </script>
 </body>
 </html>

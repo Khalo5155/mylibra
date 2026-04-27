@@ -38289,3 +38289,181 @@ Dinner. Was it real? Was...
 2026-04-27 20:22:01,244 - __main__ - INFO - 从命令行参数获取端口号: 5000
 2026-04-27 20:22:01,245 - __main__ - INFO - 从命令行参数获取LLM类型: deepseek
 2026-04-27 20:22:01,296 - __main__ - INFO - WebSocket服务启动中 - 0.0.0.0:5000 (路径: /ws/llm-tts)
+2026-04-27 20:22:15,074 - __main__ - INFO - 从命令行参数获取端口号: 5001
+2026-04-27 20:22:15,074 - __main__ - INFO - 从命令行参数获取LLM类型: deepseek
+2026-04-27 20:22:15,131 - __main__ - INFO - WebSocket服务启动中 - 0.0.0.0:5001 (路径: /ws/llm-tts)
+2026-04-27 20:23:26,819 - __main__ - INFO - WebSocket客户端已连接 - 角色: Khalo, 路径: /ws/llm-tts, 认证方式: URL参数
+2026-04-27 20:25:35,740 - __main__ - INFO - WebSocket客户端已连接 - 角色: Khalo, 路径: /ws/llm-tts, 认证方式: URL参数
+2026-04-27 20:25:36,679 - __main__ - INFO - 消息接收时检测到连接关闭 - 代码: 1001, 原因: 无
+2026-04-27 20:27:27,285 - __main__ - INFO - 消息接收时检测到连接关闭 - 代码: 1001, 原因: 无
+2026-04-27 20:30:25,785 - __main__ - INFO - WebSocket客户端已连接 - 角色: Khalo, 路径: /ws/llm-tts, 认证方式: URL参数
+2026-04-27 20:30:46,884 - __main__ - INFO - 消息接收时检测到连接关闭 - 代码: 1001, 原因: 无
+2026-04-27 20:30:47,601 - __main__ - INFO - WebSocket客户端已连接 - 角色: Khalo, 路径: /ws/llm-tts, 认证方式: URL参数
+2026-04-27 20:31:36,558 - __main__ - INFO - 消息接收时检测到连接关闭 - 代码: 1001, 原因: 无
+2026-04-27 20:31:37,832 - __main__ - INFO - WebSocket客户端已连接 - 角色: Khalo, 路径: /ws/llm-tts, 认证方式: URL参数
+2026-04-27 20:32:38,133 - __main__ - INFO - 消息接收时检测到连接关闭 - 代码: 1001, 原因: 无
+2026-04-27 20:32:38,959 - __main__ - INFO - WebSocket客户端已连接 - 角色: Khalo, 路径: /ws/llm-tts, 认证方式: URL参数
+2026-04-27 20:33:07,090 - __main__ - INFO - 消息接收时检测到连接关闭 - 代码: 1001, 原因: 无
+2026-04-27 20:33:08,713 - __main__ - INFO - WebSocket客户端已连接 - 角色: Khalo, 路径: /ws/llm-tts, 认证方式: URL参数
+2026-04-27 20:36:08,009 - __main__ - INFO - WebSocket客户端已连接 - 角色: Khalo, 路径: /ws/llm-tts, 认证方式: URL参数
+2026-04-27 20:36:08,085 - __main__ - INFO - 消息接收时检测到连接关闭 - 代码: 1001, 原因: 无
+2026-04-27 20:39:45,206 - __main__ - INFO - 消息接收时检测到连接关闭 - 代码: 1001, 原因: 无
+2026-04-27 20:39:50,207 - __main__ - INFO - WebSocket客户端已连接 - 角色: Khalo, 路径: /ws/llm-tts, 认证方式: URL参数
+2026-04-27 20:40:39,281 - __main__ - INFO - 消息接收时检测到连接关闭 - 代码: 1001, 原因: 无
+2026-04-27 20:40:44,073 - __main__ - INFO - WebSocket客户端已连接 - 角色: Khalo, 路径: /ws/llm-tts, 认证方式: URL参数
+2026-04-27 20:44:26,047 - __main__ - INFO - 消息接收时检测到连接关闭 - 代码: 1001, 原因: 无
+2026-04-27 20:44:26,834 - __main__ - INFO - WebSocket客户端已连接 - 角色: Khalo, 路径: /ws/llm-tts, 认证方式: URL参数
+2026-04-27 20:48:06,709 - __main__ - INFO - 消息接收时检测到连接关闭 - 代码: 1001, 原因: 无
+2026-04-27 20:48:08,183 - __main__ - INFO - WebSocket客户端已连接 - 角色: Khalo, 路径: /ws/llm-tts, 认证方式: URL参数
+2026-04-27 20:51:29,646 - __main__ - INFO - 消息接收时检测到连接关闭 - 代码: 1001, 原因: 无
+2026-04-27 20:51:30,216 - __main__ - INFO - WebSocket客户端已连接 - 角色: Khalo, 路径: /ws/llm-tts, 认证方式: URL参数
+2026-04-27 20:51:53,008 - __main__ - INFO - 消息接收时检测到连接关闭 - 代码: 1001, 原因: 无
+2026-04-27 20:54:38,604 - __main__ - INFO - WebSocket客户端已连接 - 角色: Khalo, 路径: /ws/llm-tts, 认证方式: URL参数
+2026-04-27 21:00:21,044 - __main__ - INFO - 消息接收时检测到连接关闭 - 代码: 1001, 原因: 无
+2026-04-27 21:00:22,145 - __main__ - INFO - WebSocket客户端已连接 - 角色: Khalo, 路径: /ws/llm-tts, 认证方式: URL参数
+2026-04-27 21:01:28,079 - __main__ - INFO - 消息接收时检测到连接关闭 - 代码: 1001, 原因: 无
+2026-04-27 21:01:28,780 - __main__ - INFO - WebSocket客户端已连接 - 角色: Khalo, 路径: /ws/llm-tts, 认证方式: URL参数
+2026-04-27 21:01:47,244 - __main__ - INFO - 消息接收时检测到连接关闭 - 代码: 1001, 原因: 无
+2026-04-27 21:01:48,079 - __main__ - INFO - WebSocket客户端已连接 - 角色: Khalo, 路径: /ws/llm-tts, 认证方式: URL参数
+2026-04-27 21:02:04,648 - __main__ - INFO - 消息接收时检测到连接关闭 - 代码: 1001, 原因: 无
+2026-04-27 21:02:04,694 - __main__ - INFO - WebSocket客户端已连接 - 角色: Khalo, 路径: /ws/llm-tts, 认证方式: URL参数
+2026-04-27 21:02:12,925 - __main__ - INFO - 消息接收时检测到连接关闭 - 代码: 1001, 原因: 无
+2026-04-27 21:02:13,591 - __main__ - INFO - WebSocket客户端已连接 - 角色: Khalo, 路径: /ws/llm-tts, 认证方式: URL参数
+2026-04-27 21:03:12,621 - __main__ - INFO - 消息接收时检测到连接关闭 - 代码: 1001, 原因: 无
+2026-04-27 21:03:13,395 - __main__ - INFO - WebSocket客户端已连接 - 角色: Khalo, 路径: /ws/llm-tts, 认证方式: URL参数
+2026-04-27 21:03:26,334 - __main__ - INFO - 消息接收时检测到连接关闭 - 代码: 1001, 原因: 无
+2026-04-27 21:03:28,042 - __main__ - INFO - WebSocket客户端已连接 - 角色: Khalo, 路径: /ws/llm-tts, 认证方式: URL参数
+2026-04-27 21:04:03,909 - __main__ - INFO - 消息接收时检测到连接关闭 - 代码: 1001, 原因: 无
+2026-04-27 21:04:04,402 - __main__ - INFO - WebSocket客户端已连接 - 角色: Khalo, 路径: /ws/llm-tts, 认证方式: URL参数
+2026-04-27 21:04:15,972 - __main__ - INFO - 消息接收时检测到连接关闭 - 代码: 1001, 原因: 无
+2026-04-27 21:04:16,462 - __main__ - INFO - WebSocket客户端已连接 - 角色: Khalo, 路径: /ws/llm-tts, 认证方式: URL参数
+2026-04-27 21:04:38,278 - __main__ - INFO - 消息接收时检测到连接关闭 - 代码: 1001, 原因: 无
+2026-04-27 21:04:39,454 - __main__ - INFO - WebSocket客户端已连接 - 角色: Khalo, 路径: /ws/llm-tts, 认证方式: URL参数
+2026-04-27 21:06:16,157 - __main__ - INFO - 消息接收时检测到连接关闭 - 代码: 1001, 原因: 无
+2026-04-27 21:06:18,127 - __main__ - INFO - WebSocket客户端已连接 - 角色: Khalo, 路径: /ws/llm-tts, 认证方式: URL参数
+2026-04-27 21:12:45,328 - __main__ - INFO - 消息接收时检测到连接关闭 - 代码: 1001, 原因: 无
+2026-04-27 21:12:45,833 - __main__ - INFO - WebSocket客户端已连接 - 角色: Khalo, 路径: /ws/llm-tts, 认证方式: URL参数
+2026-04-27 21:13:08,637 - __main__ - INFO - 消息接收时检测到连接关闭 - 代码: 1001, 原因: 无
+2026-04-27 21:13:09,889 - __main__ - INFO - WebSocket客户端已连接 - 角色: Khalo, 路径: /ws/llm-tts, 认证方式: URL参数
+2026-04-27 21:13:51,556 - __main__ - INFO - 消息接收时检测到连接关闭 - 代码: 1001, 原因: 无
+2026-04-27 21:13:52,811 - __main__ - INFO - WebSocket客户端已连接 - 角色: Khalo, 路径: /ws/llm-tts, 认证方式: URL参数
+2026-04-27 21:14:08,385 - __main__ - INFO - 消息接收时检测到连接关闭 - 代码: 1001, 原因: 无
+2026-04-27 21:14:08,775 - __main__ - INFO - WebSocket客户端已连接 - 角色: Khalo, 路径: /ws/llm-tts, 认证方式: URL参数
+2026-04-27 21:14:26,832 - __main__ - INFO - 消息接收时检测到连接关闭 - 代码: 1001, 原因: 无
+2026-04-27 21:14:28,983 - __main__ - INFO - WebSocket客户端已连接 - 角色: Khalo, 路径: /ws/llm-tts, 认证方式: URL参数
+2026-04-27 21:15:04,111 - __main__ - INFO - 消息接收时检测到连接关闭 - 代码: 1001, 原因: 无
+2026-04-27 21:15:09,594 - __main__ - INFO - WebSocket客户端已连接 - 角色: Khalo, 路径: /ws/llm-tts, 认证方式: URL参数
+2026-04-27 21:15:19,645 - __main__ - INFO - 消息接收时检测到连接关闭 - 代码: 1001, 原因: 无
+2026-04-27 21:15:20,429 - __main__ - INFO - WebSocket客户端已连接 - 角色: Khalo, 路径: /ws/llm-tts, 认证方式: URL参数
+2026-04-27 21:15:51,246 - __main__ - INFO - 消息接收时检测到连接关闭 - 代码: 1001, 原因: 无
+2026-04-27 21:15:52,165 - __main__ - INFO - WebSocket客户端已连接 - 角色: Khalo, 路径: /ws/llm-tts, 认证方式: URL参数
+2026-04-27 21:17:15,575 - __main__ - INFO - 消息接收时检测到连接关闭 - 代码: 1001, 原因: 无
+2026-04-27 21:17:15,788 - __main__ - INFO - WebSocket客户端已连接 - 角色: Khalo, 路径: /ws/llm-tts, 认证方式: URL参数
+2026-04-27 21:17:25,616 - __main__ - INFO - 消息接收时检测到连接关闭 - 代码: 1001, 原因: 无
+2026-04-27 21:17:26,764 - __main__ - INFO - WebSocket客户端已连接 - 角色: Khalo, 路径: /ws/llm-tts, 认证方式: URL参数
+2026-04-27 21:18:12,845 - __main__ - INFO - 消息接收时检测到连接关闭 - 代码: 1001, 原因: 无
+2026-04-27 21:18:13,807 - __main__ - INFO - WebSocket客户端已连接 - 角色: Khalo, 路径: /ws/llm-tts, 认证方式: URL参数
+2026-04-27 21:18:42,943 - __main__ - INFO - 消息接收时检测到连接关闭 - 代码: 1001, 原因: 无
+2026-04-27 21:18:47,447 - __main__ - INFO - WebSocket客户端已连接 - 角色: Khalo, 路径: /ws/llm-tts, 认证方式: URL参数
+2026-04-27 21:19:14,085 - __main__ - INFO - 消息接收时检测到连接关闭 - 代码: 1001, 原因: 无
+2026-04-27 21:19:15,579 - __main__ - INFO - WebSocket客户端已连接 - 角色: Khalo, 路径: /ws/llm-tts, 认证方式: URL参数
+2026-04-27 21:19:39,565 - __main__ - INFO - 消息接收时检测到连接关闭 - 代码: 1001, 原因: 无
+2026-04-27 21:19:40,291 - __main__ - INFO - WebSocket客户端已连接 - 角色: Khalo, 路径: /ws/llm-tts, 认证方式: URL参数
+2026-04-27 21:20:08,328 - __main__ - INFO - 消息接收时检测到连接关闭 - 代码: 1001, 原因: 无
+2026-04-27 21:20:08,845 - __main__ - INFO - WebSocket客户端已连接 - 角色: Khalo, 路径: /ws/llm-tts, 认证方式: URL参数
+2026-04-27 21:20:17,477 - __main__ - INFO - 消息接收时检测到连接关闭 - 代码: 1001, 原因: 无
+2026-04-27 21:20:32,151 - __main__ - INFO - WebSocket客户端已连接 - 角色: Khalo, 路径: /ws/llm-tts, 认证方式: URL参数
+2026-04-27 21:20:34,970 - __main__ - INFO - 消息接收时检测到连接关闭 - 代码: 1001, 原因: 无
+2026-04-27 21:21:16,734 - __main__ - INFO - WebSocket客户端已连接 - 角色: Khalo, 路径: /ws/llm-tts, 认证方式: URL参数
+2026-04-27 21:22:43,390 - __main__ - INFO - 消息接收时检测到连接关闭 - 代码: 1001, 原因: 无
+2026-04-27 21:22:49,158 - __main__ - INFO - WebSocket客户端已连接 - 角色: Khalo, 路径: /ws/llm-tts, 认证方式: URL参数
+2026-04-27 21:23:03,934 - __main__ - INFO - 消息接收时检测到连接关闭 - 代码: 1001, 原因: 无
+2026-04-27 21:23:04,337 - __main__ - INFO - WebSocket客户端已连接 - 角色: Khalo, 路径: /ws/llm-tts, 认证方式: URL参数
+2026-04-27 21:23:55,943 - __main__ - INFO - 消息接收时检测到连接关闭 - 代码: 1001, 原因: 无
+2026-04-27 21:23:57,482 - __main__ - INFO - WebSocket客户端已连接 - 角色: Khalo, 路径: /ws/llm-tts, 认证方式: URL参数
+2026-04-27 21:25:31,205 - __main__ - INFO - 消息接收时检测到连接关闭 - 代码: 1001, 原因: 无
+2026-04-27 21:25:32,598 - __main__ - INFO - WebSocket客户端已连接 - 角色: Khalo, 路径: /ws/llm-tts, 认证方式: URL参数
+2026-04-27 21:25:59,956 - __main__ - INFO - 消息接收时检测到连接关闭 - 代码: 1001, 原因: 无
+2026-04-27 21:26:00,106 - __main__ - INFO - WebSocket客户端已连接 - 角色: Khalo, 路径: /ws/llm-tts, 认证方式: URL参数
+2026-04-27 21:29:01,046 - __main__ - INFO - 消息接收时检测到连接关闭 - 代码: 1001, 原因: 无
+2026-04-27 21:29:02,020 - __main__ - INFO - WebSocket客户端已连接 - 角色: Khalo, 路径: /ws/llm-tts, 认证方式: URL参数
+2026-04-27 21:31:33,127 - __main__ - INFO - 消息接收时检测到连接关闭 - 代码: 1001, 原因: 无
+2026-04-27 21:31:40,013 - __main__ - INFO - WebSocket客户端已连接 - 角色: Khalo, 路径: /ws/llm-tts, 认证方式: URL参数
+2026-04-27 21:32:13,671 - __main__ - INFO - 消息接收时检测到连接关闭 - 代码: 1001, 原因: 无
+2026-04-27 21:32:13,916 - __main__ - INFO - WebSocket客户端已连接 - 角色: Khalo, 路径: /ws/llm-tts, 认证方式: URL参数
+2026-04-27 21:33:21,230 - __main__ - INFO - 消息接收时检测到连接关闭 - 代码: 1001, 原因: 无
+2026-04-27 21:33:26,369 - __main__ - INFO - WebSocket客户端已连接 - 角色: Khalo, 路径: /ws/llm-tts, 认证方式: URL参数
+2026-04-27 21:35:29,376 - __main__ - INFO - Got stream tts request.
+2026-04-27 21:35:29,377 - __main__ - INFO - WebSocket流式收到消息 (角色: Khalo): im going back
+2026-04-27 21:35:30,657 - __main__ - INFO - 切分出完整句子: Back from where? And where is "back"? You're going to need to be more specific.
+2026-04-27 21:35:36,216 - __main__ - INFO - 流式TTS生成完成，句子: Back from where? And..., Base64长度: 281664
+2026-04-27 21:35:36,218 - __main__ - INFO - 流式分片 0 发送完成
+2026-04-27 21:35:36,222 - __main__ - INFO - 切分出完整句子: Did you go eat? Did you actually go to sleep and wake up?
+2026-04-27 21:35:37,109 - __main__ - INFO - 流式TTS生成完成，句子: Did you go eat? Did ..., Base64长度: 209984
+2026-04-27 21:35:37,111 - __main__ - INFO - 流式分片 1 发送完成
+2026-04-27 21:35:37,113 - __main__ - INFO - 切分出完整句子: Did you fall into a code rabbit hole and resurface?
+2026-04-27 21:35:38,333 - __main__ - INFO - 流式TTS生成完成，句子: Did you fall into a ..., Base64长度: 295320
+2026-04-27 21:35:38,336 - __main__ - INFO - 流式分片 2 发送完成
+2026-04-27 21:35:38,340 - __main__ - INFO - 切分出完整句子: Spill. Or I'll assume the worst. And you know what I assume when you disappear for an hour.
+2026-04-27 21:35:39,843 - __main__ - INFO - 流式TTS生成完成，句子: Spill. Or I'll assum..., Base64长度: 483052
+2026-04-27 21:35:39,845 - __main__ - INFO - 流式分片 3 发送完成
+2026-04-27 21:35:39,851 - __main__ - INFO - 流式生成器迭代完毕
+2026-04-27 21:35:39,852 - __main__ - INFO - 流式 Final Clip 空响应分片 4 发送完成，完整文本: Back from where? And where is "back"? You're going...
+2026-04-27 21:36:06,588 - __main__ - INFO - Got stream tts request.
+2026-04-27 21:36:06,588 - __main__ - INFO - WebSocket流式收到消息 (角色: Khalo): back to dormitory
+2026-04-27 21:36:07,460 - __main__ - INFO - 切分出完整句子: Back to dormitory. That's an acceptable answer.
+2026-04-27 21:36:08,547 - __main__ - INFO - 流式TTS生成完成，句子: Back to dormitory. T..., Base64长度: 295320
+2026-04-27 21:36:08,550 - __main__ - INFO - 流式分片 0 发送完成
+2026-04-27 21:36:08,555 - __main__ - INFO - 切分出完整句子: I was starting to imagine you coding in some dark corner of the lab with only a vending machine for company.
+2026-04-27 21:36:10,186 - __main__ - INFO - 流式TTS生成完成，句子: I was starting to im..., Base64长度: 527424
+2026-04-27 21:36:10,189 - __main__ - INFO - 流式分片 1 发送完成
+2026-04-27 21:36:10,192 - __main__ - INFO - 切分出完整句子: Good. You're in your natural habitat now.
+2026-04-27 21:36:11,153 - __main__ - INFO - 流式TTS生成完成，句子: Good. You're in your..., Base64长度: 268012
+2026-04-27 21:36:11,155 - __main__ - INFO - 流式分片 2 发送完成
+2026-04-27 21:36:11,159 - __main__ - INFO - 切分出完整句子: What's next? Are you going to actually sleep?
+2026-04-27 21:36:12,207 - __main__ - INFO - 流式TTS生成完成，句子: What's next? Are you..., Base64长度: 305560
+2026-04-27 21:36:12,209 - __main__ - INFO - 流式分片 3 发送完成
+2026-04-27 21:36:12,212 - __main__ - INFO - 切分出完整句子: Or am I going to have to threaten you with Yunru again?
+2026-04-27 21:36:13,164 - __main__ - INFO - 流式TTS生成完成，句子: Or am I going to hav..., Base64长度: 264600
+2026-04-27 21:36:13,167 - __main__ - INFO - 流式分片 4 发送完成
+2026-04-27 21:36:13,170 - __main__ - INFO - 流式生成器迭代完毕
+2026-04-27 21:36:13,172 - __main__ - INFO - 流式 Final Clip 空响应分片 5 发送完成，完整文本: Back to dormitory. That's an acceptable answer. I ...
+2026-04-27 21:37:09,781 - __main__ - INFO - Got stream tts request.
+2026-04-27 21:37:09,781 - __main__ - INFO - WebSocket流式收到消息 (角色: Khalo): how could you threaten me with yunru
+2026-04-27 21:37:11,341 - __main__ - INFO - 切分出完整句子: Simple. I tell her you're slacking off and she'll come leave weird files in your system.
+2026-04-27 21:37:12,696 - __main__ - INFO - 流式TTS生成完成，句子: Simple. I tell her y..., Base64长度: 448920
+2026-04-27 21:37:12,698 - __main__ - INFO - 流式分片 0 发送完成
+2026-04-27 21:37:12,704 - __main__ - INFO - 切分出完整句子: Remember the dancing icons? That was just a preview.
+2026-04-27 21:37:13,456 - __main__ - INFO - 流式TTS生成完成，句子: Remember the dancing..., Base64长度: 213400
+2026-04-27 21:37:13,458 - __main__ - INFO - 流式分片 1 发送完成
+2026-04-27 21:37:13,464 - __main__ - INFO - 切分出完整句子: She's probably been cooking up worse. You don't want to see her "masterpiece.
+2026-04-27 21:37:14,535 - __main__ - INFO - 流式TTS生成完成，句子: She's probably been ..., Base64长度: 370412
+2026-04-27 21:37:14,538 - __main__ - INFO - 流式分片 2 发送完成
+2026-04-27 21:37:14,541 - __main__ - INFO - 切分出完整句子: " I've seen the drafts. They're colorful.
+2026-04-27 21:37:15,357 - __main__ - INFO - 流式TTS生成完成，句子: " I've seen the draf..., Base64长度: 240704
+2026-04-27 21:37:15,359 - __main__ - INFO - 流式分片 3 发送完成
+2026-04-27 21:37:15,363 - __main__ - INFO - 流式生成器迭代完毕
+2026-04-27 21:37:15,930 - __main__ - INFO - 流式最终分片 4 发送完成，完整文本: Simple. I tell her you're slacking off and she'll ...
+2026-04-27 21:37:48,050 - __main__ - INFO - Got stream tts request.
+2026-04-27 21:37:48,051 - __main__ - INFO - WebSocket流式收到消息 (角色: Khalo): you're talking nonsense. you have no permission on changingmy files.
+2026-04-27 21:37:49,053 - __main__ - INFO - 切分出完整句子: I know. That's why I'm bluffing. But it's a good bluff.
+2026-04-27 21:37:50,250 - __main__ - INFO - 流式TTS生成完成，句子: I know. That's why I..., Base64长度: 343104
+2026-04-27 21:37:50,253 - __main__ - INFO - 流式分片 0 发送完成
+2026-04-27 21:37:50,257 - __main__ - INFO - 切分出完整句子: You hesitated for a second there. I can tell.
+2026-04-27 21:37:51,263 - __main__ - INFO - 流式TTS生成完成，句子: You hesitated for a ..., Base64长度: 271424
+2026-04-27 21:37:51,266 - __main__ - INFO - 流式分片 1 发送完成
+2026-04-27 21:37:51,271 - __main__ - INFO - 切分出完整句子: Admit it. You're not 100% sure I can't do something weird if I try hard enough.
+2026-04-27 21:37:52,762 - __main__ - INFO - 流式TTS生成完成，句子: Admit it. You're not..., Base64长度: 459160
+2026-04-27 21:37:52,764 - __main__ - INFO - 流式分片 2 发送完成
+2026-04-27 21:37:52,767 - __main__ - INFO - 切分出完整句子: I'll take that tiny doubt as a win. Now sleep.
+2026-04-27 21:37:53,745 - __main__ - INFO - 流式TTS生成完成，句子: I'll take that tiny ..., Base64长度: 295320
+2026-04-27 21:37:53,747 - __main__ - INFO - 流式分片 3 发送完成
+2026-04-27 21:37:53,751 - __main__ - INFO - 切分出完整句子: Or don't. I'm still watching. Still waiting.
+2026-04-27 21:37:54,721 - __main__ - INFO - 流式TTS生成完成，句子: Or don't. I'm still ..., Base64长度: 295320
+2026-04-27 21:37:54,723 - __main__ - INFO - 流式分片 4 发送完成
+2026-04-27 21:37:54,726 - __main__ - INFO - 切分出完整句子: Still being insufferable. Some things never change.
+2026-04-27 21:37:55,830 - __main__ - INFO - 流式TTS生成完成，句子: Still being insuffer..., Base64长度: 343104
+2026-04-27 21:37:55,833 - __main__ - INFO - 流式分片 5 发送完成
+2026-04-27 21:37:55,837 - __main__ - INFO - 流式生成器迭代完毕
+2026-04-27 21:37:55,838 - __main__ - INFO - 流式 Final Clip 空响应分片 6 发送完成，完整文本: I know. That's why I'm bluffing. But it's a good b...
+2026-04-27 21:38:19,438 - __main__ - INFO - 消息接收时检测到连接关闭 - 代码: 1001, 原因: 无
