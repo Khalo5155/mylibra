@@ -23,8 +23,8 @@ bg_executor = ThreadPoolExecutor(max_workers=1)
 # -------------------------- 全局信息定义 --------------------------
 # ---------------------------------------------------------------------
 # 上下文轮数限制
-max_recent_rounds = 15
-max_buffered_rounds = 15
+max_recent_rounds = 10
+max_buffered_rounds = 10
 # buffer长度限制
 buffer_primary_rounds = 25 # 达到该轮数后清空并触发压缩、存入二级buffer
 buffer_secondary_len = 10 # 达到该轮数后清空并触发压缩、存入三级buffer
@@ -418,12 +418,13 @@ def cat_context() -> list[dict]:
         # 提示词部分（最前）
         context_system_prompt = [{"role":"system", "content":system_prompt.strip()}]
         # 中间注入部分（buffered context 和 recent context 之间）
-        context_mid = [{"role":"system", "content":memory_prompt}]
+        context_mid = [{"role":"system", "content":memory_prompt+midterm_prompt}]
+        # context_mid = []
         # 尾部注入部分（recent context 之后，正式对话之前）
         context_tail = [{"role":"system", "content":midterm_prompt}]
 
 
-        context_list_integrated = context_system_prompt + buffered_context_list + context_mid + recent_context_list + context_tail
+        context_list_integrated = context_system_prompt + buffered_context_list + context_mid + recent_context_list# + context_tail
 
         # 顺带保存这个完整的上下文到文件里
         save_to_json(context_list_integrated, CONTEXT_PATH)
