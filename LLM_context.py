@@ -418,7 +418,7 @@ def cat_context() -> list[dict]:
         # 提示词部分（最前）
         context_system_prompt = [{"role":"system", "content":system_prompt.strip()}]
         # 中间注入部分（buffered context 和 recent context 之间）
-        context_mid = [{"role":"system", "content":memory_prompt+midterm_prompt}]
+        context_mid = [{"role":"system", "content":midterm_prompt}]
         # context_mid = []
         # 尾部注入部分（recent context 之后，正式对话之前）
         context_tail = [{"role":"system", "content":midterm_prompt}]

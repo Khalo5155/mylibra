@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>智能聊天机器人</title>
+    <title>Chatbot</title>
     <style>
         * {
             margin: 0;
@@ -25,7 +25,7 @@
             opacity: 1; /* 主容器不透明，避免影响子元素 */
         }
 
-        /* 背景覆盖层（核心修改：调整透明度的叠加方式） */
+        /* 背景覆盖层 - 默认无背景图，由JS动态注入样式控制 */
         body::before {
             content: '';
             position: fixed;
@@ -33,14 +33,12 @@
             left: 0;
             width: 100%;
             height: 100%;
-            /* 关键：将背景图移到伪元素，body 仅保留底色，透明度直接作用于伪元素 */
             background-color: #f7f8fa;
-            background-image: var(--bg-image, none); 
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
             background-attachment: fixed;
-            opacity: var(--bg-opacity, 0.3); /* 这里的数值就是背景图的最终透明度 */
+            opacity: 0.3;
             z-index: -1;
             pointer-events: none;
         }
@@ -138,6 +136,7 @@
         <iframe src="setting.html" class="content-embed" frameborder="0" id="iframe-setting" allowtransparency="true"></iframe>
     </div>
 
+    <script src="js/indexeddb_utils.js"></script>
     <script>
         const menuItems = document.querySelectorAll('.sidebar-menu a');
         const iframeChat = document.getElementById('iframe-chat');
@@ -163,7 +162,7 @@
         });
 
         // 初始化：根据URL hash切换菜单
-        window.addEventListener('load', function() {
+        window.addEventListener('load', async function() {
             const hash = window.location.hash.slice(1) || 'chat';
             menuItems.forEach(item => {
                 if (item.getAttribute('data-target') === hash) {
@@ -171,15 +170,18 @@
                 }
             });
             
-            applySavedBackground();
+            await applySavedBackground();
             
-            // 👇 新增：等 iframe 加载完成后同步背景
+            // 等 iframe 加载完成后同步背景
             document.querySelectorAll('.content-embed').forEach(iframe => {
-                iframe.addEventListener('load', function() {
-                    const savedBg = localStorage.getItem('bgImage');
-                    const savedOpacity = localStorage.getItem('bgOpacity');
-                    if (savedBg) {
-                        syncBackgroundToIframes(savedBg, parseFloat(savedOpacity || '0.3'));
+                iframe.addEventListener('load', async function() {
+                    try {
+                        const bgConfig = await getSetting('bgConfig');
+                        if (bgConfig?.image) {
+                            syncBackgroundToIframes(bgConfig.image, parseFloat(bgConfig.opacity || '0.3'));
+                        }
+                    } catch (err) {
+                        console.error('同步背景到iframe失败：', err);
                     }
                 });
             });
@@ -191,40 +193,59 @@
                 applyBackground(event.data.bgImage, event.data.bgOpacity);
             }
             
-            // 👇 新增：响应 iframe 的背景请求
+            // 响应 iframe 的背景请求
             if (event.data && event.data.type === 'requestBackground') {
-                const savedBg = localStorage.getItem('bgImage');
-                const savedOpacity = localStorage.getItem('bgOpacity');
-                if (savedBg) {
-                    syncBackgroundToIframes(savedBg, parseFloat(savedOpacity || '0.3'));
-                }
+                (async () => {
+                    try {
+                        const bgConfig = await getSetting('bgConfig');
+                        if (bgConfig?.image) {
+                            syncBackgroundToIframes(bgConfig.image, parseFloat(bgConfig.opacity || '0.3'));
+                        }
+                    } catch (err) {
+                        console.error('响应背景请求失败：', err);
+                    }
+                })();
             }
         });
 
-        function applyBackground(bgImage, bgOpacity) {
-            const body = document.body;
+        async function applyBackground(bgImage, bgOpacity) {
+            // 移除旧的动态样式
+            const oldStyle = document.getElementById('dynamic-bg-style');
+            if (oldStyle) oldStyle.remove();
+            
             if (bgImage) {
-                body.style.setProperty('--bg-image', `url(${bgImage})`);
-                body.style.setProperty('--bg-opacity', bgOpacity);
-            } else {
-                body.style.setProperty('--bg-image', 'none');
-                body.style.setProperty('--bg-opacity', '0');
+                // 使用动态注入style标签的方式（与chat.html/setting.html一致），
+                // 避免超大base64图片在CSS自定义属性中可能失效的问题
+                const style = document.createElement('style');
+                style.id = 'dynamic-bg-style';
+                style.textContent = `
+                    body::before {
+                        background-image: url(${bgImage}) !important;
+                        opacity: ${parseFloat(bgOpacity)} !important;
+                    }
+                `;
+                document.head.appendChild(style);
             }
             
-            // 存储逻辑不变
-            if (bgImage) {
-                localStorage.setItem('bgImage', bgImage);
-                localStorage.setItem('bgOpacity', bgOpacity);
-            } else {
-                localStorage.removeItem('bgImage');
-                localStorage.removeItem('bgOpacity');
+            // 存储逻辑改为IndexedDB，兼容旧数据迁移
+            try {
+                if (bgImage) {
+                    await saveSetting('bgConfig', {
+                        image: bgImage,
+                        opacity: bgOpacity
+                    });
+                } else {
+                    await deleteSetting('bgConfig');
+                }
+            } catch (err) {
+                console.error('保存背景配置失败：', err);
             }
             
-            // 👇 新增：同步背景配置到所有 iframe
+            // 同步背景配置到所有 iframe
             syncBackgroundToIframes(bgImage, bgOpacity);
         }
 
-        // 👇 新增：向所有 iframe 发送背景配置
+        // 向所有 iframe 发送背景配置
         function syncBackgroundToIframes(bgImage, bgOpacity) {
             const iframes = document.querySelectorAll('.content-embed');
             iframes.forEach(iframe => {
@@ -240,11 +261,27 @@
             });
         }
 
-        function applySavedBackground() {
-            const savedBg = localStorage.getItem('bgImage');
-            const savedOpacity = localStorage.getItem('bgOpacity');
-            if (savedBg) {
-                applyBackground(savedBg, parseFloat(savedOpacity || '0.3'));
+        async function applySavedBackground() {
+            try {
+                let bgConfig = await getSetting('bgConfig');
+                
+                // 旧数据自动迁移
+                if (!bgConfig) {
+                    const oldBg = localStorage.getItem('bgImage');
+                    const oldOpacity = localStorage.getItem('bgOpacity') || '0.3';
+                    if (oldBg) {
+                        bgConfig = { image: oldBg, opacity: oldOpacity };
+                        await saveSetting('bgConfig', bgConfig);
+                        localStorage.removeItem('bgImage');
+                        localStorage.removeItem('bgOpacity');
+                    }
+                }
+
+                if (bgConfig?.image) {
+                    applyBackground(bgConfig.image, bgConfig.opacity);
+                }
+            } catch (err) {
+                console.error('加载背景配置失败：', err);
             }
         }
     </script>
