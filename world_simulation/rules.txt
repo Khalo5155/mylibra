@@ -1,0 +1,11 @@
+关于chara_profiles中的location：优先去locations中找，找不到key的话就交给llm自己想象。
+关于locations.json：存储地点状态。
+locations和world_state的更新：由llm依据world_state和locations进行模拟推演。间隔一定时间自动触发。
+
+*关于agent的行动：由llm进行模拟，所有行动推演必须与现有信息绑定。
+ - location的切换：属于agent与世界模拟的通信。在有向图中进行。Agent的location只有两种可能，在某一location中，或在两个location之间的edge上。edge和location的key值都为名字，当agent需要获取这些地点的信息时，将通过自己profile中的location字段匹配到对应的key值。
+ - today_schedule定义agent当日的预定日程，由llm在前一晚生成并更新。当日的日程也可以随时改动。（改动机制是什么样的？由Agent自己改，还是另开一个llm依据对话内容判断？）
+
+*关于对字段内容的更改：
+ - 更新时将所有字段和内容统一输入给llm。更改行动采用统一接口：para1=字段在json中的路径，para2=修改后的内容（需要区分数据类型，比如数字和str）
+ 

@@ -1,0 +1,58 @@
+{
+    "description": "store personal information about each character",
+    "profiles": {
+        "Libra": {
+            "description": "Libra is a young student with a passion for learning and helping others. She is known for her curiosity and friendly nature.",
+            "age": 20,
+            "occupation": "student",
+            "personality": "curious and helpful",
+            "current_state": {
+                "location": "sample_place",
+                "health": 100,
+                "mood": 90,
+                "inventory": {
+                    "chocolate": {
+                        "quantity": 5,
+                        "description": "A sweet treat that can boost energy and mood."
+                    }
+                },
+                "plan_list": {
+                    "study": {
+                        "description": "Plan to study for upcoming exams.",
+                        "emergency_level": "high",
+                        "status": "in progress"
+                    }
+                },
+                "today_schedule": {
+                    "morning": "attend lectures",
+                    "afternoon": "study in the library",
+                    "evening": "meet friends for dinner"
+                }
+            }
+        },
+        "Yunru": {
+            "description": "Yunru is a dedicated researcher with a keen eye for detail and a quiet demeanor. She is known for her analytical skills and deep focus.",
+            "age": 22,
+            "occupation": "researcher",
+            "personality": "analytical and introverted",
+            "current_state": {
+                "location": "sample_place",
+                "health": 90,
+                "mood": 80,
+                "inventory": {
+                    "notebook": {
+                        "quantity": 1,
+                        "description": "A notebook for jotting down observations and ideas."
+                    }
+                },
+                "plan_list": {
+                    "research": {
+                        "description": "Plan to conduct experiments and gather data for ongoing research.",
+                        "emergency_level": "medium",
+                        "status": "in progress"
+                    }
+                }
+            }
+        }
+    }
+}

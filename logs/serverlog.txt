@@ -43506,3 +43506,7 @@ websockets.exceptions.ConnectionClosedOK: received 1000 (OK); then sent 1000 (OK
 2026-07-22 21:30:07,168 - __main__ - INFO - 消息接收时检测到连接关闭 - 代码: 1006, 原因: 无
 2026-07-23 17:10:17,968 - __main__ - INFO - WebSocket客户端已连接 - 角色: Khalo, 路径: /ws/llm-tts, 认证方式: URL参数
 2026-07-23 17:10:21,221 - __main__ - INFO - 消息接收时检测到连接关闭 - 代码: 1001, 原因: 无
+2026-07-24 02:15:10,255 - __main__ - INFO - WebSocket客户端已连接 - 角色: Khalo, 路径: /ws/llm-tts, 认证方式: URL参数
+2026-07-24 02:15:18,042 - __main__ - INFO - 消息接收时检测到连接关闭 - 代码: 1006, 原因: 无
+2026-07-24 10:48:35,435 - __main__ - INFO - WebSocket客户端已连接 - 角色: Khalo, 路径: /ws/llm-tts, 认证方式: URL参数
+2026-07-24 10:48:36,189 - __main__ - INFO - 消息接收时检测到连接关闭 - 代码: 1006, 原因: 无
