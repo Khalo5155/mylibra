@@ -5,8 +5,6 @@ load_dotenv()
 from openai import OpenAI
 # from Test_memory import memory_llmRequest, memory_llmWrite, memory_load, memory_write
 
-from configs import global_config
-IDENTITY = global_config.IDENTITY
 maxToken = 200
 
 # doubao
