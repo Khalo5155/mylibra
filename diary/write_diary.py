@@ -826,7 +826,7 @@ if __name__ == "__main__":
     # print(retrieved_daily_list)
     # exit(0)
 
-    if update_all_diary("2026-04-15"):
+    if update_all_diary("2026-07-09"):
         print("Update successful")
     else:
         print("Update incomplete")

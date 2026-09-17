@@ -71,3 +71,27 @@ def load_json(path:str):
     else:
         print(f"file not found: {path}")
         return {}
+
+# 识别json结构
+def extract_json(text: str):
+    """从文本中提取第一个完整嵌套JSON对象 {...}"""
+    start_idx = None
+    brace_stack = 0
+
+    for idx, char in enumerate(text):
+        if char == '{':
+            if brace_stack == 0:
+                start_idx = idx
+            brace_stack += 1
+        elif char == '}':
+            brace_stack -= 1
+            if brace_stack == 0 and start_idx is not None:
+                json_str = text[start_idx: idx + 1]
+                try:
+                    return json.loads(json_str)
+                except json.JSONDecodeError:
+                    print("Failed to decode JSON.")
+                    return None
+
+    print("No JSON found in the text.")
+    return None

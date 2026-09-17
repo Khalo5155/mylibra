@@ -289,6 +289,7 @@
         <div class="status-text" id="bg-status"></div>
     </div>
 
+    <script src="js/indexeddb_utils.js"></script>
     <script>
         // ---------- WebSocket 配置部分 ----------
         const wsUrlInput = document.getElementById('ws-url');
@@ -425,7 +426,8 @@
         const resetBgBtn = document.getElementById('reset-bg-btn');
         const bgStatus = document.getElementById('bg-status');
         
-        let currentBase64 = localStorage.getItem('bgImage') || '';
+        // 移除原localStorage初始化，改为异步加载
+        let currentBase64 = '';
 
         // 更新预览
         function updatePreview(base64) {
@@ -458,10 +460,25 @@
             opacityValueSpan.textContent = this.value;
         });
 
-        // 初始化背景配置
-        function initBackgroundSettings() {
-            const savedBg = localStorage.getItem('bgImage');
-            const savedOpacity = localStorage.getItem('bgOpacity') || '0.3';
+        // 初始化背景配置（改为异步从IndexedDB加载，兼容旧数据迁移）
+        async function initBackgroundSettings() {
+            let bgConfig = await getSetting('bgConfig');
+            
+            // 旧数据自动迁移：localStorage -> IndexedDB
+            if (!bgConfig) {
+                const oldBg = localStorage.getItem('bgImage');
+                const oldOpacity = localStorage.getItem('bgOpacity') || '0.3';
+                if (oldBg) {
+                    bgConfig = { image: oldBg, opacity: oldOpacity };
+                    await saveSetting('bgConfig', bgConfig);
+                    // 迁移完成后清除旧数据（可注释保留）
+                    localStorage.removeItem('bgImage');
+                    localStorage.removeItem('bgOpacity');
+                }
+            }
+
+            const savedBg = bgConfig?.image || '';
+            const savedOpacity = bgConfig?.opacity || '0.3';
             
             if (savedBg) {
                 currentBase64 = savedBg;
@@ -486,8 +503,8 @@
             }
         }
 
-        // 应用背景
-        saveBgBtn.addEventListener('click', function() {
+        // 应用背景（改为写入IndexedDB）
+        saveBgBtn.addEventListener('click', async function() {
             const opacity = bgOpacityInput.value;
             
             if (!currentBase64) {
@@ -495,26 +512,36 @@
                 return;
             }
 
-            localStorage.setItem('bgImage', currentBase64);
-            localStorage.setItem('bgOpacity', opacity);
-            
-            sendBackgroundToParent(currentBase64, opacity);
-            showBgStatus('背景已应用！', 'success');
+            try {
+                await saveSetting('bgConfig', {
+                    image: currentBase64,
+                    opacity: opacity
+                });
+                sendBackgroundToParent(currentBase64, opacity);
+                showBgStatus('背景已应用！', 'success');
+            } catch (err) {
+                console.error('保存背景失败：', err);
+                showBgStatus('保存背景失败，请重试', 'error');
+            }
         });
 
-        // 清除背景
-        resetBgBtn.addEventListener('click', function() {
+        // 清除背景（改为从IndexedDB删除）
+        resetBgBtn.addEventListener('click', async function() {
             currentBase64 = '';
-            localStorage.removeItem('bgImage');
-            localStorage.removeItem('bgOpacity');
-            
-            updatePreview('');
-            bgImageInput.value = '';
-            bgOpacityInput.value = '0.3';
-            opacityValueSpan.textContent = '0.3';
-            
-            sendBackgroundToParent('', 0.3);
-            showBgStatus('背景已清除', 'success');
+            try {
+                await deleteSetting('bgConfig');
+                
+                updatePreview('');
+                bgImageInput.value = '';
+                bgOpacityInput.value = '0.3';
+                opacityValueSpan.textContent = '0.3';
+                
+                sendBackgroundToParent('', 0.3);
+                showBgStatus('背景已清除', 'success');
+            } catch (err) {
+                console.error('清除背景失败：', err);
+                showBgStatus('清除背景失败，请重试', 'error');
+            }
         });
 
         function showBgStatus(text, type) {
@@ -522,9 +549,9 @@
             bgStatus.className = 'status-text ' + (type || '');
         }
 
-        // 页面加载时初始化
-        window.onload = function() {
-            // WebSocket配置初始化
+        // 页面加载时初始化（改为异步）
+        window.onload = async function() {
+            // WebSocket配置初始化（保持不变）
             const savedUrl = localStorage.getItem('wsUrl');
             const savedIdentity = localStorage.getItem('identity');
             const savedApiKey = localStorage.getItem('apiKey');
@@ -542,22 +569,14 @@
             const streamSpan = useStreamSwitch.parentElement.querySelector('span');
             streamSpan.textContent = savedUseStream ? '开启' : '关闭';
 
-            // 背景配置初始化
-            initBackgroundSettings();
+            // 背景配置初始化（异步加载）
+            await initBackgroundSettings();
         };
 
         // 接收来自父窗口的背景配置
         window.addEventListener('message', function(event) {
             if (event.data && event.data.type === 'updateBackground') {
                 if (event.data.bgImage) {
-                    // 方式1：直接设置body背景（简单但不支持透明度调节）
-                    // document.body.style.backgroundImage = `url(${event.data.bgImage})`;
-                    // document.body.style.backgroundSize = 'cover';
-                    // document.body.style.backgroundPosition = 'center';
-                    // document.body.style.backgroundAttachment = 'fixed';
-                    // document.body.style.opacity = event.data.bgOpacity;
-                    
-                    // 方式2：使用伪元素（推荐，需要动态注入样式）
                     applyChatBackground(event.data.bgImage, event.data.bgOpacity);
                 } else {
                     clearChatBackground();

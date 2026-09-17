@@ -5,8 +5,6 @@ load_dotenv()
 from openai import OpenAI
 # from Test_memory import memory_llmRequest, memory_llmWrite, memory_load, memory_write
 
-from configs import global_config
-IDENTITY = global_config.IDENTITY
 maxToken = 200
 
 # doubao
@@ -27,11 +25,15 @@ doubao_model = "doubao-seed-2-0-pro-260215"
 
 # DeepSeek online
 import requests
+import httpx
+# 创建不验证 SSL 的 HTTP 客户端
+http_client = httpx.Client(verify=False)
 DeepSeek_API_KEY = os.getenv("DEEPSEEK_API_KEY")
 deepseek_client = OpenAI(
-            api_key=DeepSeek_API_KEY,
-            base_url="https://api.deepseek.com/v1"
-        )
+    api_key=DeepSeek_API_KEY,
+    base_url="https://api.deepseek.com/v1",
+    http_client=http_client  # 传入自定义客户端
+)
 
 # OpenAI
 openai_client = OpenAI(

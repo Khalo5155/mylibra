@@ -840,6 +840,7 @@ async def main(port_num:int=5000):
         await asyncio.Future()  # 保持服务运行
 
 if __name__ == '__main__':
+    port_arg = 5000
     if len(sys.argv) > 1:
         try:
             port_arg = int(sys.argv[1])

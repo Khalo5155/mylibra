@@ -654,7 +654,7 @@ document.addEventListener('DOMContentLoaded', function () {
         messageContainer.scrollTop = messageContainer.scrollHeight;
     }
 
-    function createBotMessageElement(streamIndex, text, botRole, audioData = '') {
+    function createBotMessageElement(streamIndex, text, botRole, audioData = '', timestamp = null) {
         if (messageContainer.querySelector('.empty-tip')) {
             messageContainer.innerHTML = '';
         }
@@ -667,7 +667,8 @@ document.addEventListener('DOMContentLoaded', function () {
         roleDiv.className = 'message-role';
         roleDiv.textContent = botRole || '未知角色';
 
-        const time = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+        const date = timestamp ? new Date(timestamp) : new Date();
+        const time = date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
         const contentDiv = document.createElement('div');
         contentDiv.className = 'message-content';
         contentDiv.textContent = text || '';
@@ -684,7 +685,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // ===================== 消息渲染+历史 =====================
-    function addMessage(role, content, saveToHistory = true, botRole = '', audioData = '') {
+    function addMessage(role, content, saveToHistory = true, botRole = '', audioData = '', timestamp = null) {
         if (messageContainer.querySelector('.empty-tip')) {
             messageContainer.innerHTML = '';
         }
@@ -692,7 +693,8 @@ document.addEventListener('DOMContentLoaded', function () {
         const div = document.createElement('div');
         div.className = role === 'user' ? 'message user-message' : 'message bot-message';
 
-        const time = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+        const date = timestamp ? new Date(timestamp) : new Date();
+        const time = date.toLocaleString([], { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' });
         
         if (role === 'bot' && botRole) {
             const roleDiv = document.createElement('div');
@@ -741,9 +743,9 @@ document.addEventListener('DOMContentLoaded', function () {
         messageContainer.innerHTML = '';
         history.forEach(item => {
             if (item.role === 'bot') {
-                addMessage(item.role, item.content, false, item.botRole, item.audio);
+                addMessage(item.role, item.content, false, item.botRole, item.audio, item.time);
             } else {
-                addMessage(item.role, item.content, false);
+                addMessage(item.role, item.content, false, '', '', item.time);
             }
         });
     }

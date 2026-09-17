@@ -1,0 +1,49 @@
+{
+    "description": "all locations are stored in a graph structure, each have an unique description. both the graph and the descriptions are stored in this file.",
+    "edges": {
+        "edge_1": {
+            "from": "dormitory",
+            "to": "university",
+            "distance(km)": 3.2,
+            "description": "A broad urban road lined with apartment blocks, bus stops, and rows of street trees, connecting the dormitory area to the university campus within a short commute."
+        },
+        "edge_2": {
+            "from": "university",
+            "to": "supermarket",
+            "distance(km)": 2.8,
+            "description": "A convenient town route passing cafés, stationery shops, and residential intersections, linking the university's main gate with the nearby supermarket."
+        },
+        "edge_3": {
+            "from": "dormitory",
+            "to": "supermarket",
+            "distance(km)": 1.5,
+            "description": "A practical daily path through the modern town center, allowing students and residents to walk or cycle quickly between the dormitory and the supermarket."
+        }
+    },
+    "locations": {
+        "dormitory": {
+            "description": "A modern student dormitory complex in the middle of a well-developed town, with mid-rise residential buildings, shared laundry rooms, secure entry gates, vending machines, and a small courtyard where students gather in the evening.",
+            "weather": "sunny",
+            "temperature": 28,
+            "altitude": 35,
+            "latitude": 31.2304,
+            "longitude": 121.4737
+        },
+        "university": {
+            "description": "A comprehensive urban university campus with teaching buildings, libraries, sports grounds, landscaped walkways, and a busy main gate opening directly onto the surrounding town's commercial streets.",
+            "weather": "sunny",
+            "temperature": 27,
+            "altitude": 40,
+            "latitude": 31.245,
+            "longitude": 121.487
+        },
+        "supermarket": {
+            "description": "A bright medium-sized supermarket serving the neighborhood, featuring fresh produce, daily necessities, ready-to-eat meals, self-checkout counters, and a small underground parking area for local residents.",
+            "weather": "cloudy",
+            "temperature": 27,
+            "altitude": 33,
+            "latitude": 31.221,
+            "longitude": 121.465
+        }
+    }
+}
