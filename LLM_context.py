@@ -131,51 +131,6 @@ def toolcall_check(full_response:str, user_input:str, user_role:str):
 
     return in_toolcall, user_input, user_role
 
-# ---------------------------------------------------------------------
-# 知识图谱抽取
-# 插入主方法
-def KG_insert(node1:str, relation:str, node2:str, KG_service:KGraph.KnowledgeGraphCRUD=None) -> bool:
-    pass
-    return True
-
-# 相似度检查
-def KG_checksim(node1:str, relation:str, node2:str, threshold:float=0.8, rag_service:Vdb.RAGService=None, KG_service:KGraph.KnowledgeGraphCRUD=None) -> bool:
-    '''冗余信息拒绝插入'''
-    try:
-        # 检查节点名称相似度
-        pass
-        # 如果是节点描述（node2为空），检查该节点下描述的相似度
-        pass
-        # 如果是关系插入，检查该关系的相似度
-        pass
-    except Exception as e:
-        print(f"【KG_checksim 错误】: {e}")
-        return False
-    return True
-
-# 抽取主方法
-def KG_extract(text:str, KG_service:KGraph.KnowledgeGraphCRUD=None) -> bool:
-    '''从文本中提取关系图并尝试插入KGraph'''
-    if not text.strip() or not KG_service:
-        print("error: 输入文本或KG服务实例为空")
-        return False
-    
-    reslist = []
-
-    try:
-        # 调用LLM抽取关系。支持三元组（关系插入）或二元组（增加节点描述）
-        pass
-
-        # 遍历抽取结果，进行相似度检查并插入KG
-        pass
-
-        return True
-    
-    except Exception as e:
-        print(f"【KG_extract 错误】: {e}")
-        return False
-    
-    return False
 
 # ---------------------------------------------------------------------
 # 对话压缩
@@ -418,7 +373,7 @@ def cat_context() -> list[dict]:
         # 提示词部分（最前）
         context_system_prompt = [{"role":"system", "content":system_prompt.strip()}]
         # 中间注入部分（buffered context 和 recent context 之间）
-        context_mid = [{"role":"system", "content":midterm_prompt}]
+        context_mid = [{"role":"system", "content":midterm_prompt+memory_prompt}]
         # context_mid = []
         # 尾部注入部分（recent context 之后，正式对话之前）
         context_tail = [{"role":"system", "content":midterm_prompt}]

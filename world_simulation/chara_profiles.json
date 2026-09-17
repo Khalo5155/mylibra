@@ -4,43 +4,72 @@
         "Libra": {
             "age": 20,
             "occupation": "student",
-            "location": "sample_place",
-            "health": 100,
-            "mood": 90,
-            "current_description": "haven't eating for 24h",
-            "inventory": {
-                "chocolate": {
-                "quantity": 5,
-                    "description": "A sweet treat that can boost energy and mood."
-                }
-            },
-            "long_term_plan": {
-                "job": {
-                    "description": "Find a job after graduation"
-                }
-            },
-            "short_term_plan": {
-                "study": {
-                    "description": "Study for upcoming exams.",
-                    "emergency_level": "high",
-                    "status": "in progress"
-                }
-            },
-            "today_plan": {
-                "dinner": {
-                    "description": "have dinner"
+            "last_act_time": "2026-09-04 10:00",
+            "last_act": "eat breakfast",
+            "current_state": {
+                "location": "sample_place",
+                "health": 100,
+                "mood": 90,
+                "current_description": "haven't eating for 24h",
+                "inventory": {
+                    "chocolate": {
+                        "quantity": 5,
+                        "description": "A sweet treat that can boost energy and mood."
+                    }
+                },
+                "long_term_plan": {
+                    "job": {
+                        "description": "Find a job after graduation"
+                    }
+                },
+                "short_term_plan": {
+                    "study": {
+                        "description": "Study for upcoming exams.",
+                        "emergency_level": "high",
+                        "status": "in progress"
+                    }
+                },
+                "today_plan": {
+                    "dinner": {
+                        "description": "have dinner"
+                    }
                 }
             }
         },
         "Yunru": {
             "age": 22,
-            "occupation": "researcher",
-            "location": "sample_place",
-            "health": 100,
-            "mood": 90,
-            "inventory": {},
-            "long_term_plan": {},
-            "short_term_plan": {}
+            "occupation": "student",
+            "last_act_time": "2026-09-04 10:00",
+            "last_act": "eat breakfast",
+            "current_state": {
+                "location": "sample_place",
+                "health": 100,
+                "mood": 90,
+                "current_description": "haven't eating for 24h",
+                "inventory": {
+                    "chocolate": {
+                        "quantity": 5,
+                        "description": "A sweet treat that can boost energy and mood."
+                    }
+                },
+                "long_term_plan": {
+                    "job": {
+                        "description": "Find a job after graduation"
+                    }
+                },
+                "short_term_plan": {
+                    "study": {
+                        "description": "Study for upcoming exams.",
+                        "emergency_level": "high",
+                        "status": "in progress"
+                    }
+                },
+                "today_plan": {
+                    "dinner": {
+                        "description": "have dinner"
+                    }
+                }
+            }
         }
     }
 }
