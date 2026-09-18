@@ -1,0 +1,34 @@
+[
+    {
+        "time": "2026-09-17 18:32:00",
+        "requested_action": "test action",
+        "status": "refused",
+        "reason": "未明确test action的具体内容与执行逻辑，现有行动描述不符合可执行判定标准，无法匹配世界规则、地点及角色状态进行可行性校验",
+        "actual_result": "行动未执行，角色当前状态无变化",
+        "summary": "角色提交的测试行动因描述模糊被拒绝，状态未改变"
+    },
+    {
+        "time": "2026-09-17 18:32:35",
+        "requested_action": "出去跑个马拉松",
+        "status": "refused",
+        "reason": "当前角色所在位置sample_place不存在于现有地点图中，无法开展户外马拉松活动；且角色已24小时未进食，体力不足以支撑马拉松运动。",
+        "actual_result": "角色尝试起身准备外出跑步，但因长时间未进食感到头晕乏力，无法开展长距离马拉松运动，仍停留在原地。",
+        "summary": "角色因未知地点限制和体力不足，马拉松行动失败，停留原地，体力略有下降。"
+    },
+    {
+        "time": "2026-09-17 19:01:53",
+        "requested_action": "eat one chocolate to recover energy",
+        "status": "success",
+        "reason": "",
+        "actual_result": "你取出一块巧克力拆开包装吃下，甜味在口中散开，很快就感觉头晕的症状有所缓解，体力恢复了不少。",
+        "summary": "吃下一块巧克力补充能量，头晕症状缓解，巧克力剩余4块，当前状态好转。"
+    },
+    {
+        "time": "2026-09-17 22:38:37",
+        "requested_action": "walk from Willow Lane to the apartment and open my front door",
+        "status": "refused",
+        "reason": "你当前所处位置为libra_apartment，不在Willow Lane，无法执行从Willow Lane步行回公寓的行动。",
+        "actual_result": "你在自己的公寓内原地停留，未发生位置移动或开门动作。",
+        "summary": "仍处于libra_apartment中，状态无变化。"
+    }
+]

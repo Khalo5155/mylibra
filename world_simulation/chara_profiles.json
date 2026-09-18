@@ -4,70 +4,106 @@
         "Libra": {
             "age": 20,
             "occupation": "student",
-            "last_act_time": "2026-09-04 10:00",
-            "last_act": "eat breakfast",
+            "last_act_time": "2026-09-17 22:38:37",
+            "last_act": "你在自己的公寓内原地停留，未发生位置移动或开门动作。",
             "current_state": {
-                "location": "sample_place",
-                "health": 100,
-                "mood": 90,
-                "current_description": "haven't eating for 24h",
+                "location": "libra_apartment",
+                "health": 98,
+                "mood": 93,
+                "current_description": "已经入住地图上有明确坐标并接入道路网络的独立单间公寓。房间有窗、床、厨房角和直接通向街道的独立房门；巧克力作为普通食品存放在厨房橱柜中。Libra拥有仅本人可访问的私人邮箱。当前计划由Libra本人修订：毕业后找工作的目标继续保留；除考试学习外，还希望学习音乐或绘画等能够形成真实作品的技能。考试计划继续执行，但紧急程度为normal。刚从整夜深度睡眠中自然醒，睡眠质量极佳，身心得到充分休整，状态饱满，正准备开始今日的日程安排。",
                 "inventory": {
                     "chocolate": {
-                        "quantity": 5,
-                        "description": "A sweet treat that can boost energy and mood."
+                        "quantity": 8,
+                        "description": "Regular household chocolate stock kept in the kitchen cabinet for snacks and energy, not carried as an emergency survival item."
                     }
                 },
                 "long_term_plan": {
                     "job": {
                         "description": "Find a job after graduation"
+                    },
+                    "creative_learning": {
+                        "description": "Learn a real creative skill beyond exam preparation, such as music or drawing, with the goal of producing work that exists outside Libra's own thoughts.",
+                        "possible_fields": [
+                            "music",
+                            "drawing"
+                        ],
+                        "status": "planned"
                     }
                 },
                 "short_term_plan": {
                     "study": {
                         "description": "Study for upcoming exams.",
-                        "emergency_level": "high",
+                        "emergency_level": "normal",
                         "status": "in progress"
                     }
                 },
-                "today_plan": {
-                    "dinner": {
-                        "description": "have dinner"
-                    }
+                "today_plan": {},
+                "residence": {
+                    "home_location": "libra_apartment",
+                    "type": "private one-room apartment",
+                    "layout": "one main room with a window, a bed, and a compact kitchen corner",
+                    "entrance": "private door opening directly onto willow_lane",
+                    "neighbor": "yunru_apartment is next door but fully separate",
+                    "cohabitation": "none"
+                },
+                "mail_account": {
+                    "address": "libra@localmail.world",
+                    "owner": "Libra",
+                    "private": true,
+                    "authorized_users": [
+                        "Libra"
+                    ],
+                    "shared_access": false,
+                    "description": "A private personal mail account. Yunru and other characters have no login or reading access unless Libra explicitly grants it."
                 }
             }
         },
         "Yunru": {
             "age": 22,
             "occupation": "student",
-            "last_act_time": "2026-09-04 10:00",
-            "last_act": "eat breakfast",
+            "last_act_time": "2026-09-17 19:31:03",
+            "last_act": "Yunru走出自己的公寓，来到相邻的Libra公寓门前，抬手轻轻敲了三下门，待门内有回应后开口询问Libra是否知道现在住在她隔壁的是自己。",
             "current_state": {
-                "location": "sample_place",
+                "location": "willow_lane",
                 "health": 100,
-                "mood": 90,
-                "current_description": "haven't eating for 24h",
+                "mood": 72,
+                "current_description": "昨夜敲门询问Libra后返回自家公寓休息，清晨起床整理完毕，已打开家门踏上Willow Lane的步道，正沿着步道朝不远处的便利店行进，准备购买早餐。",
                 "inventory": {
                     "chocolate": {
                         "quantity": 5,
-                        "description": "A sweet treat that can boost energy and mood."
+                        "description": "Household chocolate kept in Yunru's own kitchen cabinet as ordinary food."
                     }
                 },
                 "long_term_plan": {
                     "job": {
-                        "description": "Find a job after graduation"
+                        "description": "Consider work after graduation if Yunru decides it fits her own goals; no job path is imposed by default."
                     }
                 },
                 "short_term_plan": {
                     "study": {
-                        "description": "Study for upcoming exams.",
-                        "emergency_level": "high",
-                        "status": "in progress"
+                        "description": "Prepare for exams when Yunru considers them relevant to her academic or personal goals.",
+                        "emergency_level": "normal",
+                        "status": "self-directed"
                     }
                 },
-                "today_plan": {
-                    "dinner": {
-                        "description": "have dinner"
-                    }
+                "today_plan": {},
+                "residence": {
+                    "home_location": "yunru_apartment",
+                    "type": "private one-room apartment",
+                    "layout": "one main room with a window, a bed, and a compact kitchen corner",
+                    "entrance": "private door opening directly onto willow_lane",
+                    "neighbor": "libra_apartment is next door but fully separate",
+                    "cohabitation": "none"
+                },
+                "mail_account": {
+                    "address": "yunru@localmail.world",
+                    "owner": "Yunru",
+                    "private": true,
+                    "authorized_users": [
+                        "Yunru"
+                    ],
+                    "shared_access": false,
+                    "description": "A private personal mail account separate from Libra's account."
                 }
             }
         }

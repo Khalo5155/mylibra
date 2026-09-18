@@ -13,6 +13,7 @@ import Vdb, KGraph
 from Mcp import is_tool_call
 from LLM_basic import llm_get_pure
 from utils.tool_funcs import save_to_json, append_to_jsonl
+from world_simulation.world_client import get_chara_prompt, WorldSimulatorClientError
 
 from concurrent.futures import ThreadPoolExecutor
 # 创建一个全局线程池，max_workers=1 表示按顺序一个一个处理后台任务
@@ -369,17 +370,23 @@ def cat_context() -> list[dict]:
         memory_prompt = ("Here's your working memory: " + cat_recent_memory() + "\n" + cat_midium_memory()).strip()
         # 中期提示词
         midterm_prompt = prompt_dict["personality_midterm"].strip()
+        # 世界模拟模块：每次上下文拼接时都向独立进程实时读取。
+        try:
+            world_state = get_chara_prompt(IDENTITY)
+            world_prompt = "Here's your current state in the simulated environment. "+"Treat it as authoritative and adjust your behavior accordingly. DO NOT MENTION HEALTH OR MOOD DIGITALLY "+"Use world_action when you decide to physically act:\n" + world_state
+        except WorldSimulatorClientError as e:
+            print(f"cat_context: world simulator unavailable -- {e}")
+            world_prompt = "The world simulator is currently unavailable. Do not assume or invent a "+"current physical state, and do not claim that a physical action succeeded."
 
         # 提示词部分（最前）
         context_system_prompt = [{"role":"system", "content":system_prompt.strip()}]
         # 中间注入部分（buffered context 和 recent context 之间）
         context_mid = [{"role":"system", "content":midterm_prompt+memory_prompt}]
-        # context_mid = []
         # 尾部注入部分（recent context 之后，正式对话之前）
-        context_tail = [{"role":"system", "content":midterm_prompt}]
+        context_tail = [{"role":"system", "content":world_prompt}]
 
 
-        context_list_integrated = context_system_prompt + buffered_context_list + context_mid + recent_context_list# + context_tail
+        context_list_integrated = context_system_prompt + buffered_context_list + context_mid + recent_context_list + context_tail
 
         # 顺带保存这个完整的上下文到文件里
         save_to_json(context_list_integrated, CONTEXT_PATH)
@@ -696,4 +703,5 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 

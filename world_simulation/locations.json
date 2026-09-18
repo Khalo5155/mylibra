@@ -18,32 +18,168 @@
             "to": "supermarket",
             "distance(km)": 1.5,
             "description": "A practical daily path through the modern town center, allowing students and residents to walk or cycle quickly between the dormitory and the supermarket."
+        },
+        "edge_4": {
+            "from": "libra_apartment",
+            "to": "willow_lane",
+            "distance(km)": 0.02,
+            "description": "Libra's private apartment door opens directly onto the sidewalk of Willow Lane, giving the home an immediate, physical exit into the neighborhood street network."
+        },
+        "edge_5": {
+            "from": "yunru_apartment",
+            "to": "willow_lane",
+            "distance(km)": 0.02,
+            "description": "Yunru's separate apartment has its own private entrance opening directly onto Willow Lane, next door to but independent from Libra's entrance."
+        },
+        "edge_6": {
+            "from": "libra_apartment",
+            "to": "dormitory",
+            "distance(km)": 0.08,
+            "description": "A short internal footpath links Libra's street-facing micro-apartment to the dormitory complex courtyard and shared service area without passing through Yunru's home."
+        },
+        "edge_7": {
+            "from": "yunru_apartment",
+            "to": "dormitory",
+            "distance(km)": 0.08,
+            "description": "A separate short footpath links Yunru's street-facing micro-apartment to the dormitory complex courtyard and shared service area."
+        },
+        "edge_8": {
+            "from": "willow_lane",
+            "to": "convenience_store",
+            "distance(km)": 0.18,
+            "description": "A short, well-lit sidewalk route along Willow Lane leads to a neighborhood convenience store selling snacks, drinks, toiletries, and basic groceries."
+        },
+        "edge_9": {
+            "from": "willow_lane",
+            "to": "bus_stop",
+            "distance(km)": 0.12,
+            "description": "A sheltered bus stop sits a brief walk east along Willow Lane, connecting the residential block with the university and town center."
+        },
+        "edge_10": {
+            "from": "willow_lane",
+            "to": "neighborhood_park",
+            "distance(km)": 0.35,
+            "description": "A calm pedestrian route lined with trees and low-rise shops reaches a small neighborhood park with benches and a walking loop."
+        },
+        "edge_11": {
+            "from": "willow_lane",
+            "to": "supermarket",
+            "distance(km)": 1.42,
+            "description": "A direct neighborhood route runs from Willow Lane through two residential intersections to the supermarket, suitable for walking, cycling, or a short bus ride."
+        },
+        "edge_12": {
+            "from": "bus_stop",
+            "to": "university",
+            "distance(km)": 3.0,
+            "description": "A regular urban bus corridor connects the Willow Lane stop to the university's main gate."
+        },
+        "edge_13": {
+            "from": "convenience_store",
+            "to": "neighborhood_clinic",
+            "distance(km)": 0.27,
+            "description": "A level sidewalk route connects the convenience store to a small neighborhood clinic and pharmacy."
+        },
+        "edge_14": {
+            "from": "dormitory",
+            "to": "willow_lane",
+            "distance(km)": 0.1,
+            "description": "The dormitory complex's front pedestrian gate opens onto Willow Lane, integrating the residential block with the surrounding street network."
         }
     },
     "locations": {
         "dormitory": {
-            "description": "A modern student dormitory complex in the middle of a well-developed town, with mid-rise residential buildings, shared laundry rooms, secure entry gates, vending machines, and a small courtyard where students gather in the evening.",
-            "weather": "sunny",
+            "description": "A modern student dormitory complex in the middle of a well-developed town, with mid-rise residential buildings, shared laundry rooms, secure entry gates, vending machines, a small courtyard, and two street-facing independent micro-apartments used by Libra and Yunru. The apartments are separate homes with their own doors and are not internally connected.",
+            "weather": "rainy",
             "temperature": 28,
             "altitude": 35,
             "latitude": 31.2304,
-            "longitude": 121.4737
+            "longitude": 121.4737,
+            "current_characters": []
         },
         "university": {
             "description": "A comprehensive urban university campus with teaching buildings, libraries, sports grounds, landscaped walkways, and a busy main gate opening directly onto the surrounding town's commercial streets.",
-            "weather": "sunny",
+            "weather": "cloudy",
             "temperature": 27,
             "altitude": 40,
             "latitude": 31.245,
-            "longitude": 121.487
+            "longitude": 121.487,
+            "current_characters": []
         },
         "supermarket": {
             "description": "A bright medium-sized supermarket serving the neighborhood, featuring fresh produce, daily necessities, ready-to-eat meals, self-checkout counters, and a small underground parking area for local residents.",
-            "weather": "cloudy",
+            "weather": "sunny",
             "temperature": 27,
             "altitude": 33,
             "latitude": 31.221,
-            "longitude": 121.465
+            "longitude": 121.465,
+            "current_characters": []
+        },
+        "libra_apartment": {
+            "description": "Libra's private compact one-room apartment on the street-facing side of the dormitory block. It contains one main living room, a real exterior window, a bed, a compact kitchen corner with cabinets and a small refrigerator, and a private front door that opens directly onto Willow Lane. Chocolate is stored in the kitchen cabinet as normal household food. The apartment is fully separate from Yunru's home.",
+            "weather": "stormy",
+            "temperature": 26,
+            "altitude": 35,
+            "latitude": 31.23052,
+            "longitude": 121.47352,
+            "current_characters": [
+                "Libra"
+            ]
+        },
+        "yunru_apartment": {
+            "description": "Yunru's private compact one-room apartment immediately next door to Libra's, with its own exterior window, bed, compact kitchen corner, storage, and a separate front door opening directly onto Willow Lane. The two apartments are neighboring units only; there is no shared interior passage or default access between them.",
+            "weather": "cloudy",
+            "temperature": 26,
+            "altitude": 35,
+            "latitude": 31.2305,
+            "longitude": 121.47364,
+            "current_characters": []
+        },
+        "willow_lane": {
+            "description": "A short residential street running along the front of the dormitory block, with sidewalks, streetlights, bicycle parking, a few small storefronts, and direct entrances to Libra's and Yunru's apartments. It connects the homes to the wider neighborhood road network.",
+            "weather": "cloudy",
+            "temperature": 28,
+            "altitude": 35,
+            "latitude": 31.23045,
+            "longitude": 121.47338,
+            "current_characters": [
+                "Yunru"
+            ]
+        },
+        "convenience_store": {
+            "description": "A small neighborhood convenience store within a few minutes' walk of the apartments, selling snacks, chocolate, drinks, simple meals, household supplies, and other daily necessities.",
+            "weather": "sunny",
+            "temperature": 27,
+            "altitude": 34,
+            "latitude": 31.22975,
+            "longitude": 121.47218,
+            "current_characters": []
+        },
+        "bus_stop": {
+            "description": "A sheltered neighborhood bus stop with route information, seating, and regular service toward the university, supermarket, and town center.",
+            "weather": "snowy",
+            "temperature": 28,
+            "altitude": 35,
+            "latitude": 31.23102,
+            "longitude": 121.47432,
+            "current_characters": []
+        },
+        "neighborhood_park": {
+            "description": "A small public park with shade trees, benches, a short walking loop, open grass, and a quiet seating area used by nearby residents.",
+            "weather": "foggy",
+            "temperature": 27,
+            "altitude": 36,
+            "latitude": 31.22865,
+            "longitude": 121.47175,
+            "current_characters": []
+        },
+        "neighborhood_clinic": {
+            "description": "A small neighborhood clinic with a general consultation room, basic first-aid services, and an attached pharmacy for routine health needs.",
+            "weather": "rainy",
+            "temperature": 26,
+            "altitude": 34,
+            "latitude": 31.22895,
+            "longitude": 121.47088,
+            "current_characters": []
         }
     }
 }

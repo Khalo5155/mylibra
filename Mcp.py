@@ -404,6 +404,30 @@ from agent.agent_sandbox import run_sandbox
 async def mcp_use_cmd(cmd:str):
     return run_sandbox(cmd)
 
+# 在独立世界模拟器中执行行动。此函数自身稳定返回三类结果，便于角色 LLM 判断。
+from world_simulation.world_client import perform_chara_action, WorldSimulatorClientError
+async def mcp_world_action(action: str):
+    try:
+        result = await perform_chara_action(IDENTITY, action)
+    except WorldSimulatorClientError as e:
+        return {
+            "result_type": "mcp_failed",
+            "error": str(e),
+        }
+
+    if result["status"] == "success":
+        return {
+            "result_type": "executed",
+            "summary": result["summary"],
+            "actual_result": result["actual_result"],
+        }
+    return {
+        "result_type": "refused",
+        "reason": result["reason"],
+        "actual_result": result["actual_result"],
+        "summary": result["summary"],
+    }
+
 
 # ====================== 统一工具调用入口 ======================
 async def handle_toolcall(skill: str = "get_weather", params: dict = None):
@@ -417,6 +441,7 @@ async def handle_toolcall(skill: str = "get_weather", params: dict = None):
         "chat_sister": mcp_chat_sister_local,
         "diary_search": mcp_search_diary,
         "use_cmd": mcp_use_cmd,
+        "world_action": mcp_world_action,
     }
 
     # 技能不存在
@@ -456,7 +481,7 @@ async def handle_toolcall(skill: str = "get_weather", params: dict = None):
 
 
 async def main():
-    res = await mcp_chat_sister("test message from mcp")
+    res = await mcp_world_action("出去跑个马拉松")
     print(res)
 
 if __name__ == "__main__":

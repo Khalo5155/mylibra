@@ -392,13 +392,15 @@ async def handle_client_message_stream(websocket, message_data, client_role):
                 tmp_id = final_text.find('{')
                 if tmp_id > 0:
                     tmp_text = final_text[:tmp_id]
+                    cleaned_tmp_text = clean_alltags(tmp_text)
+                    audio_base64 = ""
                     try:
-                        audio_data = await service.get_tts(tmp_text)
+                        audio_data = await service.get_tts(cleaned_tmp_text)
                         
                         if audio_data is not None and len(audio_data) > 0:
                             audio_base64 = cipher_tool.encrypt_binary(audio_data) if cipher_tool else ""
                             
-                            logger.info(f"流式TTS生成完成，句子: {tmp_text[:20]}..., Base64长度: {len(audio_base64)}")
+                            logger.info(f"流式TTS生成完成，句子: {cleaned_tmp_text[:20]}..., Base64长度: {len(audio_base64)}")
                     except Exception as e:
                         logger.error(f"流式TTS生成失败: {str(e)}", exc_info=True)
                     # 构造并发送流式响应
@@ -407,7 +409,7 @@ async def handle_client_message_stream(websocket, message_data, client_role):
                         'status': 'streaming',
                         'stream_index': stream_index,
                         'is_final': False,
-                        'response': cipher_tool.encrypt(cleaned_sentence) if cipher_tool else cleaned_sentence,
+                        'response': cipher_tool.encrypt(cleaned_tmp_text) if cipher_tool else cleaned_tmp_text,
                         'full_response': cipher_tool.encrypt(final_text) if cipher_tool else final_text,
                         'role': IDENTITY,
                         'audio': audio_base64,

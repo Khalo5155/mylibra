@@ -24,6 +24,14 @@ MCP（调试中，不稳定）：
  - chat_sister: 给另一台机器上运行的 mylibra 发消息。也可以是本地运行的另一个服务端。
  - search_diary: 按时间范围查日记。范围以日为单位，跨周月年的区间会被自动合并成对应的周记/月记/年记。最后返回拼接了所有查询结果的字符串。
  - use_cmd: 在隔离环境中使用受限的一些控制台命令。
+ - world_action: 将角色提出的行动交给独立世界模拟器裁决并更新状态，区分执行、拒绝和调用失败。
+
+世界模拟器（`world_simulation/`）：
+ - 独立进程运行，默认只监听 `127.0.0.1:8765`，通过短连接 HTTP JSON 提供 `/prompt_get` 和 `/chara_action`。
+ - `LLM_context` 每次拼接上下文时实时读取角色状态并尾插；模拟器不可用时会明确禁止角色臆造状态。
+ - 状态变更在服务端串行执行并原子写回 JSON，行动历史保存在 `world_simulation/agent_act_history/`。
+ - 启动：双击 `run_world_simulator.bat`，或运行 `python -m world_simulation.world_simulator`。需在角色扮演主进程之前启动。
+ - 配置：`WORLD_SIMULATOR_URL/HOST/PORT/API_KEY`，其中 API key 留空时回退到 `LOCAL_API_KEY`。
 
 TTS（TTS.py; [mylibra-TTS]）：
  - 给GPT-SoVITS做了个推理调用的接口，并能够运行在本地WebSocket服务器（asyncio）上，能接受文本请求，并按照指定参数（指定参考语音）返回TTS音频。
