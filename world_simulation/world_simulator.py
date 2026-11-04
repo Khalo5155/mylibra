@@ -11,7 +11,9 @@ import json
 import os
 import random
 import tempfile
+import threading
 import time
+import uuid
 from datetime import datetime, timedelta
 from pathlib import Path
 from typing import Any, Optional
@@ -39,6 +41,7 @@ class World:
         self.chara_profiles: dict[str, Any] = {}
         self.chara_history: dict[str, list[dict[str, Any]]] = {}
         self.rules = ""
+        self._log_lock = threading.Lock()
 
     def initialize(self) -> None:
         """加载唯一的权威状态；加载失败时拒绝启动。"""
@@ -101,6 +104,27 @@ class World:
             self.chara_history[chara_name],
         )
 
+    def log_action_event(self, event: str, request_id: str, **details: Any) -> None:
+        """将行动事件以相同 JSON 行输出到控制台并追加到服务日志。"""
+        record = {
+            "time": datetime.now().astimezone().isoformat(timespec="seconds"),
+            "event": event,
+            "request_id": request_id,
+            **details,
+        }
+        log_line = json.dumps(record, ensure_ascii=False, default=str)
+        try:
+            with self._log_lock:
+                print(log_line, flush=True)
+                log_path = self.data_dir / "server_logs"
+                log_path.parent.mkdir(parents=True, exist_ok=True)
+                with log_path.open("a", encoding="utf-8") as log_file:
+                    log_file.write(log_line + "\n")
+                    log_file.flush()
+        except OSError as exc:
+            # 日志故障不应阻断世界行动，但控制台仍给出明确告警。
+            print(f"world_simulator action log error: {exc}", flush=True)
+
     def sync_location_characters(self) -> bool:
         """用所有角色的 location 重建每个地图地点的当前在场角色列表。"""
         locations = self.locations.get("locations")
@@ -136,21 +160,32 @@ class World:
             raise WorldError(f"角色不存在: {chara_name}")
         return profile
 
+    def get_character_location_info(self, chara_name: str) -> Any:
+        """按角色 location 返回对应地点或道路信息；未知位置返回 None。"""
+        profile = self._get_profile(chara_name)
+        state = profile.get("current_state")
+        location_name = state.get("location") if isinstance(state, dict) else None
+        locations = self.locations.get("locations", {})
+        if isinstance(locations, dict) and location_name in locations:
+            return copy.deepcopy(locations[location_name])
+        edges = self.locations.get("edges", {})
+        if isinstance(edges, dict) and location_name in edges:
+            return copy.deepcopy(edges[location_name])
+        return None
+
     def get_chara_prompt(self, chara_name: str) -> str:
         profile = self._get_profile(chara_name)
         state = copy.deepcopy(profile.get("current_state", {}))
-        location_name = state.get("location") if isinstance(state, dict) else None
         prompt_data = {
             "current_state": state,
-            "current_location_state": copy.deepcopy(
-                self.locations.get("locations", {}).get(location_name)
-            ),
+            "current_location_state": self.get_character_location_info(chara_name),
             # "recent_actions": copy.deepcopy(self.chara_history.get(chara_name, [])[-5:]),
         }
         return json.dumps(prompt_data, ensure_ascii=False, indent=2)
 
     def build_action_prompt(self, chara_name: str, action: str) -> str:
         self._get_profile(chara_name)
+        recent_actions = copy.deepcopy(self.chara_history.get(chara_name, [])[-7:])
         return f"""
 你是世界模拟器的行动裁决模块。请根据既有世界信息裁决角色提出的行动，不得无条件迎合角色。
 返回且仅返回严格 JSON：
@@ -168,7 +203,26 @@ class World:
 地点数据：{json.dumps(self.locations, ensure_ascii=False)}
 全部角色档案：{json.dumps(self.chara_profiles, ensure_ascii=False)}
 行动发起者：{chara_name}
+行动发起者所在地点信息：{json.dumps(self.get_character_location_info(chara_name), ensure_ascii=False)}
+行动发起者最近 7 条行动历史（按时间从旧到新）：{json.dumps(recent_actions, ensure_ascii=False)}
 角色请求的行动：{action}
+        """.strip()
+
+    def build_autonomous_action_prompt(self, chara_name: str) -> str:
+        """构造短期更新后用于生成角色自主行动的提示词。"""
+        profile = self._get_profile(chara_name)
+        recent_actions = copy.deepcopy(self.chara_history.get(chara_name, [])[-7:])
+        return f"""
+你是世界模拟器中的角色行动生成模块。请根据角色当前处境，推演角色此刻最可能主动进行的一项具体行动。
+只负责提出行动，不要裁决结果，不要直接修改状态。
+返回且仅返回严格 JSON，格式为：{{"action":"角色准备进行的具体行动"}}。
+
+世界规则：{self.rules}
+世界状态：{json.dumps(self.world_state, ensure_ascii=False)}
+角色：{chara_name}
+角色档案：{json.dumps(profile, ensure_ascii=False)}
+角色所在地点信息：{json.dumps(self.get_character_location_info(chara_name), ensure_ascii=False)}
+最近 7 条行动历史（按时间从旧到新）：{json.dumps(recent_actions, ensure_ascii=False)}
         """.strip()
 
     def apply_action_result(self, chara_name: str, action: str, result: dict[str, Any]) -> dict[str, Any]:
@@ -284,6 +338,9 @@ class WorldSimulatorService:
             return web.json_response({"status": "error", "error": str(exc)}, status=400)
 
     async def chara_action(self, request: web.Request) -> web.Response:
+        request_id = uuid.uuid4().hex[:12]
+        chara_name: Any = None
+        action: Any = None
         try:
             body = await self._json_body(request)
             chara_name, action = body.get("chara_name"), body.get("action")
@@ -294,6 +351,12 @@ class WorldSimulatorService:
             if len(action) > 2000:
                 raise WorldError("action 不能超过 2000 个字符")
 
+            self.world.log_action_event(
+                "action_received",
+                request_id,
+                chara_name=chara_name,
+                action=action.strip(),
+            )
             async with self.action_lock:
                 prompt = self.world.build_action_prompt(chara_name, action.strip())
                 raw_result = await asyncio.to_thread(
@@ -303,11 +366,37 @@ class WorldSimulatorService:
                 if not isinstance(result, dict):
                     raise WorldError("行动推演模型未返回有效 JSON")
                 response = self.world.apply_action_result(chara_name, action.strip(), result)
+            self.world.log_action_event(
+                "action_applied",
+                request_id,
+                chara_name=chara_name,
+                requested_action=action.strip(),
+                status=response["status"],
+                reason=response["reason"],
+                actual_result=response["actual_result"],
+                summary=response["summary"],
+                affected_characters=response["affected_characters"],
+            )
             return web.json_response(response)
         except WorldError as exc:
+            self.world.log_action_event(
+                "action_failed",
+                request_id,
+                chara_name=chara_name,
+                requested_action=action,
+                error=str(exc),
+                error_type="WorldError",
+            )
             return web.json_response({"status": "error", "error": str(exc)}, status=400)
         except Exception as exc:
-            print(f"chara_action internal error: {exc}")
+            self.world.log_action_event(
+                "action_failed",
+                request_id,
+                chara_name=chara_name,
+                requested_action=action,
+                error=str(exc),
+                error_type=type(exc).__name__,
+            )
             return web.json_response({"status": "error", "error": "世界模拟器内部错误"}, status=500)
 
     def create_app(self) -> web.Application:
@@ -322,7 +411,7 @@ class WorldSimulatorService:
 
     async def _scheduler_context(self, _app: web.Application):
         tasks = [
-            asyncio.create_task(short_term_scheduler(self), name="world-short-term-scheduler"),
+            # asyncio.create_task(short_term_scheduler(self), name="world-short-term-scheduler"),
             asyncio.create_task(daily_scheduler(self), name="world-daily-scheduler"),
         ]
         try:
@@ -362,6 +451,7 @@ new_state 是补丁：没变化的字段不要返回，不得新增原状态中�
 世界状态：{json.dumps(service.world.world_state, ensure_ascii=False)}
 地点数据：{json.dumps(service.world.locations, ensure_ascii=False)}
 角色：{chara_name}
+角色所在地点信息：{json.dumps(service.world.get_character_location_info(chara_name), ensure_ascii=False)}
 上一次行动时间：{profile.get("last_act_time")}
 上一次行动：{profile.get("last_act")}
 当前时间：{now}
@@ -376,6 +466,55 @@ new_state 是补丁：没变化的字段不要返回，不得新增原状态中�
                             profile["current_state"] = service.world._merge_existing_fields(
                                 state, state_patch
                             )
+
+                        action_prompt = service.world.build_autonomous_action_prompt(chara_name)
+                        raw_action = await asyncio.to_thread(
+                            llm_get_pure,
+                            [{"role": "system", "content": action_prompt}],
+                            "doubao",
+                        )
+                        action_result = extract_json(raw_action)
+                        autonomous_action = (
+                            action_result.get("action") if isinstance(action_result, dict) else None
+                        )
+                        if not isinstance(autonomous_action, str) or not autonomous_action.strip():
+                            raise WorldError("角色自主行动生成模型未返回有效 action")
+                        autonomous_action = autonomous_action.strip()
+
+                        request_id = f"auto-{uuid.uuid4().hex[:12]}"
+                        service.world.log_action_event(
+                            "action_received",
+                            request_id,
+                            chara_name=chara_name,
+                            action=autonomous_action,
+                            source="short_term_scheduler",
+                        )
+                        action_judgement_prompt = service.world.build_action_prompt(
+                            chara_name, autonomous_action
+                        )
+                        raw_judgement = await asyncio.to_thread(
+                            llm_get_pure,
+                            [{"role": "system", "content": action_judgement_prompt}],
+                            "doubao",
+                        )
+                        judgement = extract_json(raw_judgement)
+                        if not isinstance(judgement, dict):
+                            raise WorldError("行动推演模型未返回有效 JSON")
+                        response = service.world.apply_action_result(
+                            chara_name, autonomous_action, judgement
+                        )
+                        service.world.log_action_event(
+                            "action_applied",
+                            request_id,
+                            chara_name=chara_name,
+                            requested_action=autonomous_action,
+                            status=response["status"],
+                            reason=response["reason"],
+                            actual_result=response["actual_result"],
+                            summary=response["summary"],
+                            affected_characters=response["affected_characters"],
+                            source="short_term_scheduler",
+                        )
                     except Exception as exc:
                         print(f"short-term scheduler failed for {chara_name}: {exc}")
 

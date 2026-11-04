@@ -367,13 +367,13 @@ def cat_context() -> list[dict]:
         # 系统提示词
         system_prompt = cat_system_prompt().strip()
         # 记忆模块
-        memory_prompt = ("Here's your working memory: " + cat_recent_memory() + "\n" + cat_midium_memory()).strip()
+        memory_prompt = ("Here's your working memory: " + cat_midium_memory() + "\n" + cat_recent_memory()).strip()
         # 中期提示词
         midterm_prompt = prompt_dict["personality_midterm"].strip()
         # 世界模拟模块：每次上下文拼接时都向独立进程实时读取。
         try:
             world_state = get_chara_prompt(IDENTITY)
-            world_prompt = "Here's your current state in the simulated environment. "+"Treat it as authoritative and adjust your behavior accordingly. DO NOT MENTION HEALTH OR MOOD DIGITALLY "+"Use world_action when you decide to physically act:\n" + world_state
+            world_prompt = "Here's your current state in the simulated environment. "+"DO NOT MENTION HEALTH OR MOOD OR TEMPERATURE DIGITALLY. DO NOT REPEAT ANY CONTENT BELOW.\n" + world_state
         except WorldSimulatorClientError as e:
             print(f"cat_context: world simulator unavailable -- {e}")
             world_prompt = "The world simulator is currently unavailable. Do not assume or invent a "+"current physical state, and do not claim that a physical action succeeded."
@@ -381,12 +381,12 @@ def cat_context() -> list[dict]:
         # 提示词部分（最前）
         context_system_prompt = [{"role":"system", "content":system_prompt.strip()}]
         # 中间注入部分（buffered context 和 recent context 之间）
-        context_mid = [{"role":"system", "content":midterm_prompt+memory_prompt}]
+        context_mid = [{"role":"system", "content":midterm_prompt+memory_prompt+world_prompt}]
         # 尾部注入部分（recent context 之后，正式对话之前）
         context_tail = [{"role":"system", "content":world_prompt}]
 
 
-        context_list_integrated = context_system_prompt + buffered_context_list + context_mid + recent_context_list + context_tail
+        context_list_integrated = context_system_prompt + buffered_context_list + context_mid + recent_context_list
 
         # 顺带保存这个完整的上下文到文件里
         save_to_json(context_list_integrated, CONTEXT_PATH)

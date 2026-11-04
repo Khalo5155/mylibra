@@ -853,7 +853,7 @@ if __name__ == '__main__':
     if len(sys.argv) > 2:
         try:
             llm_type = str(sys.argv[2]).lower()
-            if llm_type in ['deepseek', 'doubao', 'gmn']:
+            if llm_type in ['deepseek', 'doubao', 'sdu']:
                 service.set_llm_type(llm_type)
                 logger.info(f"从命令行参数获取LLM类型: {llm_type}")
             else:

@@ -47,6 +47,14 @@ client_n1n = OpenAI(
     api_key=os.getenv("N1N_API_KEY")    # 您的 n1n API Key
 )
 
+# SDU
+SDU_API_KEY = os.getenv("SDU_API_KEY")
+sdu_client = OpenAI(
+    api_key=SDU_API_KEY,
+    base_url="https://xplt.sdu.edu.cn:4000/v1"
+)
+sdu_model = "Ali-dashscope/Qwen3-Coder-Next"
+
 
 # 无状态llm_get，输入结构化上下文字典列表，输出回复
 def llm_get_pure(question: list, llmType='deepseek') -> str:
@@ -123,6 +131,20 @@ def llm_get_pure(question: list, llmType='deepseek') -> str:
             input=question
         ).output_text
 
+    elif llmType == 'sdu':
+        try:
+            completion = sdu_client.chat.completions.create(
+                model=sdu_model,
+                messages=question,
+                stream=False,
+                max_tokens=1024,
+            )
+            response = completion.choices[0].message.content
+
+        except Exception as e:
+            print(f"SDU API调用出错: {str(e)}")
+            response = "抱歉，调用SDU模型时出现错误，请稍后再试"
+
     # elif llmType=='local':
     #     try:
     #         # 调用本地模型生成回答
@@ -139,3 +161,11 @@ def llm_get_pure(question: list, llmType='deepseek') -> str:
     
     return response
 
+
+# if __name__ == "__main__":
+#     # 测试 llm_get_pure 函数
+#     test_question = [
+#         {"role": "user", "content": "nihao"}
+#     ]
+#     result = llm_get_pure(test_question, llmType='sdu')
+#     print("SDU模型回答:", result)

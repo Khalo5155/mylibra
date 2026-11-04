@@ -95,6 +95,39 @@ class WorldSimulatorTests(unittest.TestCase):
         self.assertIn('"Libra"', prompt)
         self.assertIn('"Yunru"', prompt)
         self.assertIn("state_updates", prompt)
+        self.assertIn('行动发起者所在地点信息：{"weather": "sunny"', prompt)
+
+    def test_action_prompt_contains_only_latest_seven_action_history_items(self):
+        self.world.chara_history["Libra"] = [
+            {"time": f"2026-01-01 00:00:0{index}", "requested_action": f"action-{index}"}
+            for index in range(9)
+        ]
+
+        prompt = self.world.build_action_prompt("Libra", "new action")
+
+        history_line = next(
+            line for line in prompt.splitlines()
+            if line.startswith("行动发起者最近 7 条行动历史（按时间从旧到新）：")
+        )
+        recent_actions = json.loads(history_line.split("：", 1)[1])
+        self.assertEqual(7, len(recent_actions))
+        self.assertEqual(
+            [f"action-{index}" for index in range(2, 9)],
+            [item["requested_action"] for item in recent_actions],
+        )
+
+    def test_autonomous_action_prompt_contains_current_context_and_recent_history(self):
+        self.world.chara_history["Libra"] = [
+            {"requested_action": f"action-{index}"} for index in range(9)
+        ]
+
+        prompt = self.world.build_autonomous_action_prompt("Libra")
+
+        self.assertIn('返回且仅返回严格 JSON，格式为：{"action"', prompt)
+        self.assertIn('角色所在地点信息：{"weather": "sunny"', prompt)
+        self.assertNotIn('"requested_action": "action-1"', prompt)
+        self.assertIn('"requested_action": "action-2"', prompt)
+        self.assertIn('"requested_action": "action-8"', prompt)
 
     def test_apply_refused_action_persists_actual_result(self):
         result = {
@@ -210,6 +243,21 @@ class WorldSimulatorTests(unittest.TestCase):
                 self.assertEqual("success", data["status"])
                 self.assertEqual(95, self.world._get_profile("Libra")["current_state"]["mood"])
 
+                log_lines = (self.world.data_dir / "server_logs").read_text(
+                    encoding="utf-8"
+                ).splitlines()
+                log_records = [json.loads(line) for line in log_lines]
+                self.assertEqual(
+                    ["action_received", "action_applied"],
+                    [record["event"] for record in log_records],
+                )
+                self.assertEqual(
+                    log_records[0]["request_id"], log_records[1]["request_id"]
+                )
+                self.assertEqual("Libra", log_records[1]["chara_name"])
+                self.assertEqual("success", log_records[1]["status"])
+                self.assertEqual(["Libra"], log_records[1]["affected_characters"])
+
         asyncio.run(scenario())
 
     def test_short_term_scheduler_updates_after_two_hour_wait(self):
@@ -222,17 +270,41 @@ class WorldSimulatorTests(unittest.TestCase):
                 if len(sleep_calls) > 1:
                     raise asyncio.CancelledError
 
-            model_result = json.dumps({"new_state": {"mood": 80}}, ensure_ascii=False)
+            captured_prompts = []
+
+            def fake_llm(messages, _model):
+                prompt = messages[0]["content"]
+                captured_prompts.append(prompt)
+                if "定时状态推演模块" in prompt:
+                    return json.dumps({"new_state": {"mood": 80}}, ensure_ascii=False)
+                if "角色行动生成模块" in prompt:
+                    return json.dumps({"action": "在当前位置散步"}, ensure_ascii=False)
+                chara_name = "Libra" if "行动发起者：Libra" in prompt else "Yunru"
+                return json.dumps({
+                    "status": "success",
+                    "reason": "",
+                    "actual_result": f"{chara_name} 在当前位置散步。",
+                    "summary": "完成了一次散步。",
+                    "state_updates": {chara_name: {"mood": 85}},
+                }, ensure_ascii=False)
+
             with patch("world_simulation.world_simulator.asyncio.sleep", side_effect=fake_sleep), \
                  patch("world_simulation.world_simulator.random.randint", return_value=1), \
-                 patch("world_simulation.world_simulator.llm_get_pure", return_value=model_result):
+                 patch("world_simulation.world_simulator.llm_get_pure", side_effect=fake_llm):
                 with self.assertRaises(asyncio.CancelledError):
                     await short_term_scheduler(service)
 
             state = self.world._get_profile("Libra")["current_state"]
             self.assertEqual(2 * 60 * 60, sleep_calls[0])
-            self.assertEqual(80, state["mood"])
+            self.assertEqual(85, state["mood"])
             self.assertEqual(100, state["health"])
+            self.assertTrue(any(
+                '角色所在地点信息：{"weather": "sunny"' in prompt
+                for prompt in captured_prompts
+            ))
+            self.assertEqual(6, len(captured_prompts))
+            self.assertEqual("在当前位置散步", self.world.chara_history["Libra"][-1]["requested_action"])
+            self.assertEqual("success", self.world.chara_history["Libra"][-1]["status"])
 
         asyncio.run(scenario())
 

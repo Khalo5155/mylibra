@@ -6,5 +6,796 @@
         "reason": "",
         "actual_result": "Yunru走出自己的公寓，来到相邻的Libra公寓门前，抬手轻轻敲了三下门，待门内有回应后开口询问Libra是否知道现在住在她隔壁的是自己。",
         "summary": "Yunru目前在Libra公寓门外，刚敲门询问对方是否知晓自己是新邻居，等待Libra回应。"
+    },
+    {
+        "time": "2026-09-18 18:48:54",
+        "requested_action": "Yunru拿着选好的果汁、零食和日用品走到便利店收银台前，把所有商品放到收银台上，准备结账付款。",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Yunru拿着选好的果汁、零食和日用品走到便利店收银台前，将所有商品放到收银台上等待收银员扫码结算，便利店的收银系统正常运行，可顺利完成付款流程。",
+        "summary": "Yunru在便利店内移动到收银台，摆放商品准备结账，当前状态变更为待结算。",
+        "affected_characters": [
+            "Yunru"
+        ]
+    },
+    {
+        "time": "2026-09-18 20:49:15",
+        "requested_action": "Yunru拎着打包好的商品，走到便利店门口，推开店门准备离开便利店返回自己的公寓。",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Yunru拎着打包好的商品走到便利店门口，顺利推开店门离开便利店，进入连接便利店与willow_lane的edge_8路段，开始步行返回自己的公寓。",
+        "summary": "Yunru离开便利店内区域，进入便利店到willow_lane的edge_8路段返程，对应地点的current_characters字段同步更新。",
+        "affected_characters": [
+            "Yunru"
+        ]
+    },
+    {
+        "time": "2026-09-18 22:49:39",
+        "requested_action": "Yunru走到公寓的厨房角落，拿出刚采购的早餐食材，准备制作一份简单的早餐开启今日的日程。",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Yunru走到自家公寓的厨房角落，取出刚采购回的早餐食材，按照步骤开始制作简单的早餐，操作过程顺利，很快便能完成餐食制作。",
+        "summary": "Yunru在自己的公寓内移动到厨房角落，取出采购的早餐食材开始制作早餐，状态更新为正在制作早餐。",
+        "affected_characters": [
+            "Yunru"
+        ]
+    },
+    {
+        "time": "2026-09-19 00:50:01",
+        "requested_action": "Yunru走到厨房台面边，伸手拿起刚做好的早餐，走到窗边的小桌旁放下，准备坐下享用这份早餐。",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Yunru走到厨房台面边顺利拿起刚制作完成的早餐，移步到窗边的小桌旁将餐食平稳放下，随后准备坐下享用这份早餐，整个过程没有出现意外。",
+        "summary": "Yunru在自己的公寓内完成了取早餐、放置到窗边小桌的操作，当前状态变更为准备坐下享用早餐。",
+        "affected_characters": [
+            "Yunru"
+        ]
+    },
+    {
+        "time": "2026-09-19 02:50:26",
+        "requested_action": "Yunru起身走到厨房角落，将用过的早餐餐具拿到水槽边，打开水龙头准备冲洗干净",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Yunru从窗边小桌旁起身，走到厨房角落拿起使用过的早餐餐具，移步到水槽边，顺利打开水龙头，水流正常流出，准备开始冲洗餐具，整个过程无意外发生。",
+        "summary": "Yunru在自己的公寓内完成起身、取用过的早餐餐具、走到水槽边、打开水龙头的操作，当前状态变更为准备冲洗早餐餐具。",
+        "affected_characters": [
+            "Yunru"
+        ]
+    },
+    {
+        "time": "2026-09-19 04:50:51",
+        "requested_action": "Yunru擦完手上的水渍后，走到窗边的小桌旁坐下，拿出手机查看近期的考试安排，准备开始复习备考相关的内容。",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Yunru擦完手上的水渍后，缓步走到窗边的小桌旁，拉过椅子平稳坐下，从口袋中拿出手机解锁，顺利找到考试安排页面查看近期的考试相关信息，随后将复习资料调整到面前，准备开始备考复习，整个过程没有意外发生。",
+        "summary": "Yunru在自己的公寓内完成擦手、移步到窗边小桌坐下、拿出手机查看考试安排的操作，当前状态变更为准备开始复习备考。",
+        "affected_characters": [
+            "Yunru"
+        ]
+    },
+    {
+        "time": "2026-09-19 06:51:24",
+        "requested_action": "Yunru伸了个懒腰短暂放松僵硬的肩颈，拿起放在桌边的水杯走到厨房角落接满温水，喝了两口后回到窗边小桌旁，翻开标记了重点的复习资料，针对刚才复习时遇到的薄弱知识点开始做对应的习题巩固记忆。",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Yunru持续复习两小时后肩颈僵硬，伸直手臂伸了个懒腰放松肌肉，随后拿起桌边的空水杯走到公寓厨房角落，接满温度适宜的温水，喝了两口缓解咽喉的干涩，接着走回窗边小桌旁坐下，翻开之前标注了重点的复习资料，找到刚才复习时标记的薄弱知识点对应的习题板块，开始动笔做题巩固记忆，整个过程顺畅无阻碍。",
+        "summary": "Yunru在自己的公寓内完成放松肩颈、接水喝水的操作，回到学习位置开始做薄弱知识点对应的习题巩固，状态更新为正在做复习习题。",
+        "affected_characters": [
+            "Yunru"
+        ]
+    },
+    {
+        "time": "2026-09-19 08:51:50",
+        "requested_action": "Yunru停下手中的笔，把刚做完的习题册合上放到一旁，拿起桌边的红笔，翻开复习资料后附的习题答案页，准备逐题核对刚才完成的薄弱知识点习题，标记出错的题目以便后续整理复盘。",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Yunru停下手中的笔，将刚做完的习题册合上放到桌旁，拿起桌边的红笔，顺利翻开复习资料后附的习题答案页，开始逐题核对刚才完成的薄弱知识点习题，过程中可以正常标记出错题目。",
+        "summary": "Yunru在yunru_apartment内完成结束做题、取红笔、翻开答案页的操作，当前状态变更为核对习题答案。",
+        "affected_characters": [
+            "Yunru"
+        ]
+    },
+    {
+        "time": "2026-09-19 10:52:23",
+        "requested_action": "Yunru拿起桌上的温水杯凑近嘴边，慢慢喝下半杯温水缓解长时间用眼带来的干涩感，喝完后将水杯放回桌面，准备拿出错题本把刚才标记的3道出错习题以及对应的知识点条目整理誊抄上去，方便后续针对性复盘巩固。",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Yunru顺利拿起桌上的温水杯凑近嘴边，慢慢喝下半杯温水，干涩感得到一定缓解，随后将水杯平稳放回桌面，从书桌收纳层取出空白错题本，翻到空白页，把之前标记的3道出错习题及对应的知识点条目逐一誊抄到错题本上，过程顺畅无阻碍。",
+        "summary": "Yunru在yunru_apartment内完成喝温水、整理誊抄错题的操作，当前状态更新为已完成错题整理，精神状态放松。",
+        "affected_characters": [
+            "Yunru"
+        ]
+    },
+    {
+        "time": "2026-09-19 12:52:54",
+        "requested_action": "Yunru走到窗边，抬手掀开窗帘一角，看向窗外的暴风雨天气，观察雨势和风力情况，判断是否适合出门。",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Yunru走到公寓窗边，抬手掀开窗帘一角，窗外正处于暴风雨天气，雨点密集砸在窗玻璃上，能看到willow_lane上的树木被风吹得大幅晃动，路面有明显积水，风裹挟着雨丝斜斜扫过街道，雨势和风力都较大，外出会被打湿衣物、行走也会受风力阻碍，明显不适合出门。观察完毕后Yunru将窗帘轻轻放回原位。",
+        "summary": "Yunru在自己的公寓内走到窗边掀开窗帘观察室外天气，确认当前暴风雨不适合外出，状态更新为已了解室外天气情况，暂无外出打算。",
+        "affected_characters": [
+            "Yunru"
+        ]
+    },
+    {
+        "time": "2026-09-19 14:53:32",
+        "requested_action": "Yunru抬手拿起放在书桌边的手机，解锁后点开外卖软件，翻看附近可配送的商家页面，准备挑选合适的午餐下单，避免暴风雨天气外出采购食材的麻烦。",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Yunru抬手拿起放在书桌边的手机，顺利解锁屏幕后点开外卖软件，软件正常加载出附近可配送的商家列表，包含快餐、简餐、奶茶等多种类商家，大部分商家标注了「恶劣天气配送可能延迟30-45分钟」的提示，Yunru正逐页翻看商家页面挑选合适的午餐，整个过程无异常。",
+        "summary": "Yunru在自己的公寓内完成拿手机、解锁、点开外卖软件的操作，当前状态变更为正在浏览外卖商家挑选午餐。",
+        "affected_characters": [
+            "Yunru"
+        ]
+    },
+    {
+        "time": "2026-09-19 16:54:15",
+        "requested_action": "Yunru将吃完的外卖餐盒收拾好，系紧塑料袋口放到门口的垃圾桶里，随后拿起桌边的温白开喝了两口，准备整理下桌面后抽出专业相关的课外读物来打发等待外卖送达前的空闲时间。",
+        "status": "refused",
+        "reason": "行动描述存在逻辑矛盾：你已明确完成取餐并正在食用，不存在“等待外卖送达”的状态；此外你尚未完成当前的外卖食用动作，无法直接收拾吃完的餐盒。",
+        "actual_result": "Yunru刚吃到一半的外卖还放在窗边小桌上，听到你不合逻辑的指令后愣了一下，拿起手边的温白开喝了两口，没有收拾餐盒，也没有开始整理桌面。",
+        "summary": "Yunru未执行收拾餐盒和整理桌面的操作，仅喝了两口温白开，当前仍处于食用外卖的状态。",
+        "affected_characters": [
+            "Yunru"
+        ]
+    },
+    {
+        "time": "2026-09-19 18:54:58",
+        "requested_action": "Yunru将手机放到一边，站起身走到厨房角落，准备烧一壶热水，顺便把沥干架上已经晾干的餐具收到橱柜里存放好。",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Yunru将手机平稳放在桌边，站起身走到公寓的厨房角落，先找到烧水壶接满适量的自来水，按下烧水开关启动加热，随后走到水槽边的沥干架旁，把上面已经完全晾干的餐具逐一拿起，分类放进了厨房的橱柜中存放妥当，整个过程没有意外发生。",
+        "summary": "Yunru在自己的公寓内完成放手机、移步厨房、启动烧水壶、收纳晾干餐具的操作，状态更新为完成餐具收纳，正在等待水烧开。",
+        "affected_characters": [
+            "Yunru"
+        ]
+    },
+    {
+        "time": "2026-09-19 20:55:55",
+        "requested_action": "Yunru靠在床头刷着手机，指尖滑动屏幕切换到社交软件页面，准备给隔壁的Libra发一条消息，询问对方在暴风雨天里有没有储备足够的食物，是否需要帮忙点外卖或者匀一些自己之前采购的零食过去。",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Yunru靠在床头顺利切换到社交软件页面，找到Libra的聊天窗口，编辑发送了询问对方食物储备情况、是否需要帮忙点外卖或者匀零食的消息，消息成功发出，目前等待Libra回复，整个过程无阻碍。",
+        "summary": "Yunru在自己的公寓内通过社交软件向Libra发送了关心食物储备的询问消息，状态更新为已发送消息等待回复。",
+        "affected_characters": [
+            "Yunru"
+        ]
+    },
+    {
+        "time": "2026-09-19 22:56:40",
+        "requested_action": "Yunru从床上起身，走到门口拿起门边的备用雨伞，准备出门到隔壁Libra的公寓门口敲门，确认对方的当前状态是否安全。",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Yunru从床上起身走到门口，顺利拿起门边的备用雨伞，推开自家公寓门走到willow_lane上，室外正下着暴风雨，风卷着雨丝打在伞面，行走时能感受到明显的风阻。她沿着人行道走了几步就到了隔壁Libra公寓的门口，抬手敲响了Libra家的门，目前站在伞下等待对方回应，衣物仅袖口被零星雨丝打湿，没有受到其他影响。",
+        "summary": "Yunru从yunru_apartment出发，持伞前往libra_apartment门口敲门确认Libra状态，当前位置为libra_apartment门口，属于willow_lane区域。",
+        "affected_characters": [
+            "Yunru"
+        ]
+    },
+    {
+        "time": "2026-09-20 00:57:20",
+        "requested_action": "Yunru把雨伞收拢靠在Libra公寓门边的墙面上，伸手贴近房门锁孔的位置，试探着扭动门把手，查看门是否没有上锁，同时凑到门边侧耳倾听屋内是否有动静，确认Libra是否在屋内、是否安全。",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Yunru收拢雨伞靠在Libra公寓门边的墙面上，伸手贴近房门锁孔位置试探着扭动门把手，发现房门处于锁闭状态无法打开，随即凑到门边侧耳倾听，屋内隐约传来轻微的物品挪动声响，确认Libra应该在屋内。等待片刻后，屋内的脚步声逐渐靠近房门，很快传来Libra隔着门询问来人身份的声音。Yunru的袖口因刚才的动作又沾到了少许墙面积尘，除此之外没有其他影响。",
+        "summary": "Yunru在Libra公寓门口试探门把手确认房门上锁，侧耳听到屋内动静，Libra已察觉到门外动静前来询问。",
+        "affected_characters": [
+            "Yunru"
+        ]
+    },
+    {
+        "time": "2026-09-20 02:57:50",
+        "requested_action": "Yunru凑到门板边，抬高声音隔着门向屋内回应自己的身份，告诉Libra自己是隔壁的Yunru，之前给她发过消息担心她暴雨天里的安全，特意过来看看情况。",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Yunru凑近Libra公寓的门板，抬高声音清晰地隔着门回应身份，说明自己是隔壁的Yunru，之前发过消息担心她暴雨天的安全，特意过来查看情况，声音完整传递到屋内，没有出现异常状况。",
+        "summary": "Yunru在Libra公寓门口隔着门向屋内的Libra表明身份与来意，完成回应动作。",
+        "affected_characters": [
+            "Yunru"
+        ]
+    },
+    {
+        "time": "2026-09-20 04:58:21",
+        "requested_action": "Yunru抬手再敲三下Libra公寓的门板，同时抬高声音询问屋内是否有什么不方便开门的状况，告知对方如果需要帮助可以隔着门说，要是没听到回应自己就先回公寓，明天白天再过来确认她的安全。",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Yunru抬手在Libra公寓的门板上清晰敲了三下，随后抬高声音将询问的内容清晰传递到屋内，语气带着关切。敲击声和询问声都顺利传入公寓内部，没有出现异常。等待约一分钟后屋内仍未传来回应，Yunru按照自己所说的准备返回公寓，拿起靠在墙边的雨伞，转身朝自家公寓方向走去。",
+        "summary": "Yunru在Libra公寓门口完成敲门、询问的动作，未得到回应后准备返回自己的公寓，心情略带担忧。",
+        "affected_characters": [
+            "Yunru"
+        ]
+    },
+    {
+        "time": "2026-09-20 06:58:47",
+        "requested_action": "Yunru走进公寓反手关上房门，将雨伞撑开靠在门边通风的位置沥干雨水，随后走到小桌边拿起手机，准备再给Libra发一条消息告知自己已经回到公寓，让对方如果有需要随时联系自己。",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Yunru走进自己的公寓反手关上房门，把雨伞撑开靠在门边通风的位置沥水，随后走到小桌边拿起手机，找到Libra的聊天窗口编辑发送了告知自己已返回公寓、让对方有需要随时联系的消息，消息成功发出，整个过程没有意外发生。",
+        "summary": "Yunru在自己的公寓内完成关门、放置雨伞沥水、向Libra发送报平安告知消息的操作，状态更新为已发送消息，等待Libra后续可能的联系。",
+        "affected_characters": [
+            "Yunru"
+        ]
+    },
+    {
+        "time": "2026-09-20 08:59:21",
+        "requested_action": "Yunru注意到袖口沾了积尘，站起身走到厨房角落的水槽边，准备打一点温水将袖口沾尘的位置搓洗干净，顺便等烧水壶里的水烧开后泡一杯热饮驱寒。",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Yunru注意到袖口的积尘后站起身，顺利走到厨房角落的水槽边，打开温水龙头接了少量温水，将袖口沾尘的位置浸湿后轻轻搓洗，很快将积尘清洗干净，拧干多余水分后把袖口搭在水槽边的沥干架上自然晾晒。此时烧水壶刚好发出水开的提示音，Yunru关掉烧水开关，拿出自己常用的马克杯，取了适量的姜茶粉倒入杯中，用刚烧开的热水冲泡好热姜茶，整个过程顺畅无意外。",
+        "summary": "Yunru在自己的公寓内完成清洗袖口积尘、冲泡热姜茶的操作，袖口积尘已清理干净，手边放着刚泡好的热姜茶可以饮用。",
+        "affected_characters": [
+            "Yunru"
+        ]
+    },
+    {
+        "time": "2026-09-20 10:59:47",
+        "requested_action": "Yunru拿起放在桌边的手机，点开与Libra的聊天对话框，准备查看对方是否回复了消息，确认Libra当前的安全状态。",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Yunru顺利拿起桌边的手机，解锁后点开与Libra的聊天对话框，页面加载完成后显示对话列表停留在自己之前发送的「已回到公寓，有需要随时联系」的消息上，暂未收到Libra的新回复，无法直接确认Libra当前的安全状态，她的心情略微下沉了一点，随即考虑是否要再发一条消息询问。",
+        "summary": "Yunru在自己的公寓内查看与Libra的聊天对话框，未收到对方回复，mood轻微下降。",
+        "affected_characters": [
+            "Yunru"
+        ]
+    },
+    {
+        "time": "2026-09-20 13:00:13",
+        "requested_action": "Yunru在和Libra的聊天对话框中输入文字「你还好吗？如果方便的话回我一句报个平安就好，我有点担心你」，编辑完成后点击发送按钮，尝试再确认一次Libra的安全状态。",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Yunru在手机聊天框中顺利输入指定文字，确认内容无误后点击发送按钮，消息成功发送至Libra的聊天窗口，发送状态显示为已送达。完成发送后Yunru盯着手机屏幕等待了片刻，依旧没有收到新的消息提示，担忧的情绪没有得到缓解。",
+        "summary": "Yunru在yunru_apartment内向Libra发送了确认安全的问询消息，消息已成功发送，未收到回复，情绪维持担忧状态。",
+        "affected_characters": [
+            "Yunru"
+        ]
+    },
+    {
+        "time": "2026-09-20 15:00:42",
+        "requested_action": "Yunru抓起放在桌边的手机，快步走到公寓门口，拉开门朝着隔壁Libra公寓的方向走去，准备再次上门敲门确认Libra的安全状况。",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Yunru抓起桌边的手机快步走到公寓门口，拉开自己公寓的房门走到Willow Lane上，几步走到隔壁Libra公寓的门前站定，抬手准备敲门确认Libra的安全。行走过程中室外的阴天微风拂过她的衣角，没有遇到其他阻碍。",
+        "summary": "Yunru从自己的公寓出发走到Libra公寓门口，准备敲门确认对方安全，位置切换为edge_5（yunru_apartment至willow_lane的路径）后到达Libra公寓门前。",
+        "affected_characters": [
+            "Yunru"
+        ]
+    },
+    {
+        "time": "2026-09-20 17:01:12",
+        "requested_action": "Yunru抬手轻拍Libra公寓的桌面，笑着和Libra提议说自己公寓里还有刚买的草莓，要不要一起过去拿过来洗了当下午茶吃，顺便还能分享下自己上周整理的备考笔记。",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Yunru抬手轻拍Libra公寓的桌面，语气轻松地笑着向Libra提出提议：自己公寓里还有刚买的草莓，要不要一起过去拿过来洗了当下午茶吃，顺便还能分享上周整理的备考笔记。Libra听到提议后露出感兴趣的神情，微微点头示意愿意考虑。",
+        "summary": "Yunru在Libra公寓内笑着向Libra提出共同去自己公寓拿草莓当下午茶并分享备考笔记的提议，情绪放松愉悦。",
+        "affected_characters": [
+            "Yunru",
+            "Libra"
+        ]
+    },
+    {
+        "time": "2026-09-20 19:01:42",
+        "requested_action": "Yunru身子微微向前倾，眉眼带着笑意看向Libra，出声询问对方现在要不要动身，自己已经带了公寓的钥匙，现在过去很快就能拿到草莓和笔记",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Yunru身子微微前倾，带着笑意看向Libra，出声询问对方是否现在动身，告知自己已经带了公寓钥匙，过去很快就能拿到草莓和笔记。Libra听到后停下整理笔记的动作，笑着点头回应，起身准备和Yunru一同出门。",
+        "summary": "Yunru在Libra公寓内向Libra询问是否现在动身去自己公寓拿草莓和笔记，得到Libra的同意，两人准备出发。",
+        "affected_characters": [
+            "Yunru",
+            "Libra"
+        ]
+    },
+    {
+        "time": "2026-09-20 21:02:10",
+        "requested_action": "Yunru抬手拿起放在小桌上装着草莓的塑料盒，走到厨房角落的水槽边，准备把草莓用清水冲洗干净，装盘后和备考笔记一起递给身旁的Libra。",
+        "status": "refused",
+        "reason": "当前地点yunru_apartment的current_characters为空，Libra并不在此处，不存在可以递送草莓和笔记的对象。",
+        "actual_result": "Yunru抬手拿起小桌上装着草莓的塑料盒走到水槽边，打开水龙头用清水将草莓逐个冲洗干净，装到了干净的餐盘里，又拿起放在一旁的备考笔记，转头才发现Libra并没有跟自己一起进入公寓，她愣了一下，疑惑地停下了递东西的动作。",
+        "summary": "Yunru在yunru_apartment内完成了草莓的清洗，准备递送给Libra时发现对方不在场，疑惑停留。",
+        "affected_characters": [
+            "Yunru"
+        ]
+    },
+    {
+        "time": "2026-09-20 23:02:36",
+        "requested_action": "Yunru将手里的草莓盘和备考笔记暂时放在门边的小置物架上，掏出手机拨通Libra的电话，贴在耳边等待接听，同时探身朝着门外Willow Lane的方向张望，想要确认Libra的位置和情况。",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Yunru先将手里的草莓盘和备考笔记稳妥放在门边的小置物架上，随后掏出手机找到Libra的号码拨通，将手机贴在耳边等待接听，同时探身朝着门外Willow Lane的方向张望，很快就看到了站在公寓门外刚敲完门的Libra。",
+        "summary": "Yunru在公寓内放置好草莓和笔记，拨通Libra的电话并张望时发现了门外的Libra，疑惑和担忧的情绪得到缓解，mood上升。",
+        "affected_characters": [
+            "Yunru"
+        ]
+    },
+    {
+        "time": "2026-09-21 01:03:01",
+        "requested_action": "Yunru笑着侧身让开门口的位置，抬手示意门外的Libra进来，同时开口告诉对方草莓已经洗好放在门边的置物架上了，让对方不用换鞋直接进来就好。",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Yunru笑着侧身让出门口通道，抬手示意门外的Libra进入公寓，同时开口告知对方洗好的草莓放在门边置物架上，不用换鞋直接进来即可。Libra听到后迈步走入Yunru的公寓，两人现在都处于yunru_apartment内。",
+        "summary": "Yunru在自己公寓门口邀请Libra进入，告知对方草莓已准备好，Libra进入公寓，两人均位于yunru_apartment内。",
+        "affected_characters": [
+            "Yunru",
+            "Libra"
+        ]
+    },
+    {
+        "time": "2026-09-21 03:03:28",
+        "requested_action": "Yunru侧身让开门口的位置后，抬手拿起门边置物架上装着草莓的餐盘和备考笔记，笑着递向刚走进来的Libra，同时开口招呼对方到窗边的小桌旁坐下慢慢吃，顺便聊聊备考相关的内容。",
+        "status": "refused",
+        "reason": "当前yunru_apartment的current_characters仅包含Yunru，Libra并不在该地点内，不存在刚走进来的Libra作为递送对象。",
+        "actual_result": "Yunru侧身让开门口位置后，抬手拿起门边置物架上装着草莓的餐盘和备考笔记，笑着朝着门口方向递出，开口招呼对方到窗边小桌坐下时才发现门口并没有人走进来，之前看到的Libra只是自己的错觉，她愣在原地，握着餐盘的手微微僵住，疑惑和失落的情绪涌上心头。",
+        "summary": "Yunru在yunru_apartment内拿起草莓和笔记准备递给不存在的Libra，发现对方不在场，情绪出现波动，mood下降。",
+        "affected_characters": [
+            "Yunru"
+        ]
+    },
+    {
+        "time": "2026-09-21 05:03:56",
+        "requested_action": "Yunru皱了皱眉抬手揉了揉发胀的太阳穴，走到门边探头朝着门外Willow Lane以及隔壁Libra公寓的方向望了望，想要确认Libra是不是还在附近，同时掏出手机准备再次拨打Libra的电话询问对方的位置。",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Yunru皱着眉抬手揉了揉发胀的太阳穴，走到门边拉开一条门缝，探头朝着门外Willow Lane以及隔壁Libra公寓的方向张望，没看到Libra的身影。随后她掏出手机找到Libra的号码按下拨打键，手机传出等待接听的提示音，暂时没有得到回应。",
+        "summary": "Yunru在自己公寓内探头查看门外和Libra公寓方向未发现Libra，拨打Libra电话等待接听，mood略有下降。",
+        "affected_characters": [
+            "Yunru"
+        ]
+    },
+    {
+        "time": "2026-09-21 07:04:24",
+        "requested_action": "Yunru捏着仍在传出等待音的手机，拉开公寓门快步走到隔壁Libra公寓的门前，抬手用力叩响对方的房门，同时凑到门边出声呼喊Libra的名字，想确认对方是否待在自己的公寓里",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Yunru捏着还在传出等待音的手机，拉开自己公寓的门快步走到隔壁Libra公寓的门前，抬手用力叩响房门，同时凑到门边呼喊Libra的名字。Libra公寓内无人应答，叩门和呼喊没有得到任何回应。此刻Yunru的位置处于willow_lane区域。",
+        "summary": "Yunru从自己公寓走到Libra公寓门外敲门呼喊，未得到回应，位置切换为willow_lane，焦虑情绪加重，mood下降。",
+        "affected_characters": [
+            "Yunru"
+        ]
+    },
+    {
+        "time": "2026-09-21 09:05:03",
+        "requested_action": "Yunru攥着发凉的手机抬手抹了把沾在脸颊上的雨丝，低下头点开和Libra的聊天框，指尖有些发颤地敲下询问对方目前位置和是否安全的消息发送出去，同时转身快步走到Willow Lane上的便利店门口，准备向店员询问有没有看到过Libra经过这里。",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Yunru抬手抹掉脸颊上的雨丝，指尖发颤地给Libra发送了询问位置和安全情况的消息，消息成功发出但暂时未收到回复。随后她快步走到willow_lane旁的convenience_store门口，向店员询问是否见过Libra经过，店员摇头表示最近半小时没有看到符合描述的人经过。雨势略有增大，Yunru外套湿冷的状态加重了些许。",
+        "summary": "Yunru在willow_lane给Libra发送询问消息后前往便利店门口询问店员，未得到Libra的相关线索，健康值略有下降，焦虑情绪加重， mood 下降。",
+        "affected_characters": [
+            "Yunru"
+        ]
+    },
+    {
+        "time": "2026-09-21 11:05:39",
+        "requested_action": "Yunru低头又刷新了一次和Libra的聊天界面，依然没看到新消息，她咬了咬嘴唇，转身朝着连接willow_lane的周边社区道路方向走去，准备沿着Libra往常去超市的路线寻找对方的踪迹，同时将手机音量调到最大放在外套口袋里，避免错过Libra的回复。",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Yunru低头刷新和Libra的聊天界面，确认没有新消息后咬了咬嘴唇，转身沿着willow_lane通往超市的路线走去，打算沿途寻找Libra的踪迹，同时把手机音量调到最大塞进外套口袋，避免错过对方的回复。她离开willow_lane后，当前处于willow_lane到supermarket的连接边edge_11上，外套被雨水打湿的情况略有加重。",
+        "summary": "Yunru从willow_lane出发，沿edge_11前往supermarket方向寻找Libra，调整手机音量避免错过消息，健康值略有下降，位置切换为edge_11。",
+        "affected_characters": [
+            "Yunru"
+        ]
+    },
+    {
+        "time": "2026-09-21 13:06:05",
+        "requested_action": "Yunru快步走完剩下的20米路程来到Libra公寓的门前，抬手连续叩响房门，同时凑到门边出声呼喊Libra的名字，询问对方是否在公寓内",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Yunru快步走完剩余20米到达Libra公寓门前，抬手连续叩响房门，同时凑到门边呼喊Libra的名字询问对方是否在屋内。在屋内等待的Libra立刻听到了叩门和呼喊声，快步走到门口准备开门。",
+        "summary": "Yunru到达Libra公寓门外敲门呼喊，Libra在屋内听到动静准备开门，Yunru位置更新为libra_apartment门口所属的willow_lane区域",
+        "affected_characters": [
+            "Yunru"
+        ]
+    },
+    {
+        "time": "2026-09-21 15:06:42",
+        "requested_action": "Yunru站在屋檐下抬手拢了拢被雨水打湿的外套领口，再次抬手叩响Libra公寓的房门，力度比之前稍大，同时提高声音呼喊Libra的名字，告知对方自己已经在门外等了很久，担心她的安全，让她如果在屋内就回应一声。",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Yunru站在Libra公寓门旁的屋檐下，抬手拢了拢被雨水打湿的外套领口，随后用力叩响房门，力度比之前更大，同时提高声音呼喊Libra的名字，告知对方自己已经在门外等了很久，担心她的安全，让她如果在屋内就回应一声。正在公寓厨房冲洗草莓的Libra清晰听到了敲门声和呼喊声，立刻停下手上的动作，快步走到门口准备开门。",
+        "summary": "Yunru在Libra公寓门外再次叩门呼喊说明情况，Libra在屋内听到动静走向门口准备开门，Yunru的担忧情绪略有缓解，mood小幅上升。",
+        "affected_characters": [
+            "Yunru",
+            "Libra"
+        ]
+    },
+    {
+        "time": "2026-09-21 17:07:13",
+        "requested_action": "Yunru见Libra打开房门，立刻收起脸上的焦急神色，抬手抹了下沾在额角的雨珠，快步走进公寓的同时开口跟对方说明自己之前找不到人时的担忧，顺带询问对方刚才为什么没接电话也没回应敲门声。",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Yunru见Libra打开房门，立刻收起脸上的焦急神色，抬手抹了下沾在额角的雨珠，快步走进公寓，抖了抖外套上沾着的雨水，开口跟Libra说明自己之前找不到人时的担忧，顺带询问对方刚才为什么没接电话也没回应敲门声。Libra侧身给Yunru让开通道，闻言露出歉意的表情，准备跟Yunru解释自己刚才在厨房冲洗草莓没注意到手机消息和之前的敲门声。",
+        "summary": "Yunru进入Libra的公寓，向Libra说明自己的担忧并询问对方未回应的原因，二人在公寓内碰面交流，Yunru的mood保持愉悦。",
+        "affected_characters": [
+            "Yunru",
+            "Libra"
+        ]
+    },
+    {
+        "time": "2026-09-21 19:07:46",
+        "requested_action": "Yunru拿起一颗饱满的草莓递到Libra面前，嘴角带着笑意调侃她刚才洗草莓太投入，连敲门声和手机响都听不见，顺势追问她最近是不是在忙什么事才这么心神不宁。",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Yunru拿起桌上一颗饱满的草莓递到Libra面前，嘴角带着笑意调侃她刚才洗草莓太投入，连敲门声和手机响都听不见，顺势追问她最近是不是在忙什么事才这么心神不宁。Libra接过草莓，脸上带着不好意思的笑意，解释自己刚才满脑子都在梳理高数考点，洗草莓的时候也在想错题，确实没注意到外面的动静，并没有忙其他别的事。",
+        "summary": "Yunru拿起草莓调侃Libra并询问她是否在忙别的事，Libra接过草莓给出解释，二人互动轻松，Yunru的mood维持在较高水平，Libra的状态无明显变化。",
+        "affected_characters": [
+            "Yunru",
+            "Libra"
+        ]
+    },
+    {
+        "time": "2026-09-21 21:08:16",
+        "requested_action": "Yunru侧过身拿起放在沙发扶手上的手机，点开考试相关的日程APP查看下周的高数考试安排，转过头笑着跟Libra说刚好自己也在准备高数复习，不如接下来两个人一起整理考点、互相抽背错题，效率还能更高些。",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Yunru侧过身拿起沙发扶手上的手机，点开考试日程APP查看了下周的高数考试安排，确认考试时间和考点范围后，转过头笑着跟Libra提议接下来一起整理考点、互相抽背错题，能提高复习效率。Libra听完眼睛亮了亮，立刻点头表示同意，顺手把刚才放在角落的备考笔记重新拿了出来摊在桌上，两个人准备开始共同复习。",
+        "summary": "Yunru查看高数考试安排后向Libra提议共同复习，Libra同意，二人准备开始整理考点抽背错题，Yunru和Libra的状态均更新为准备共同复习高数。",
+        "affected_characters": [
+            "Yunru",
+            "Libra"
+        ]
+    },
+    {
+        "time": "2026-09-21 23:08:50",
+        "requested_action": "Yunru伸手拿起桌上刚记好的考点汇总笔记晃了晃，笑着看向一旁同样在休息的Libra，提议趁着现在记忆还清晰，先抽背几道刚才整理的高频易错题，检验下复习效果，之后再泡两杯热可可放松一下。",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Yunru拿起桌上的考点汇总笔记晃了晃，笑着看向身旁休息的Libra，提议趁记忆清晰先抽背几道刚整理的高频易错题检验复习效果，之后再泡两杯热可可放松。Libra笑着点头同意，坐直身体准备迎接抽背，同时起身打算之后去厨房准备热可可的材料。两人的复习状态进一步放松但注意力仍保持集中，心情都十分愉悦。",
+        "summary": "Yunru向Libra提议先抽背高频易错题再泡热可可放松，Libra同意，二人准备开始抽背，双方mood维持较高水平，状态更新为准备抽背易错题。",
+        "affected_characters": [
+            "Yunru",
+            "Libra"
+        ]
+    },
+    {
+        "time": "2026-09-22 01:09:25",
+        "requested_action": "Yunru抬手揉了揉有些发沉的眉心，笑着朝Libra挥了挥手道晚安，转身走到公寓门口握住门把手拉开门，准备离开Libra的公寓沿着Willow Lane返回自己隔壁的住处洗漱休息。",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Yunru抬手揉了揉发沉的眉心，笑着朝Libra挥了挥手道晚安，转身走到公寓门口握住门把手拉开门，迈步离开Libra的公寓来到Willow Lane上，随后沿着熟悉的路线走向隔壁自己的公寓，开门进入屋内准备洗漱休息。Libra站在原地笑着回应了晚安，目送Yunru出门后轻轻带上了房门。",
+        "summary": "Yunru向Libra道晚安后离开libra_apartment，经willow_lane返回yunru_apartment准备洗漱休息，libra_apartment的current_characters移除Yunru，yunru_apartment的current_characters新增Yunru，Yunru的location更新为yunru_apartment，current_description更新为回到自家公寓准备洗漱休息，状态放松慵懒。",
+        "affected_characters": [
+            "Yunru",
+            "Libra"
+        ]
+    },
+    {
+        "time": "2026-09-22 03:09:56",
+        "requested_action": "Yunru在睡梦中无意识地翻了个身，把身上的薄被往上拉了拉盖住肩膀，继续保持平稳的呼吸进入深度睡眠状态，为第二天的高数易错点巩固养足精神。",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Yunru在睡梦中无意识地翻身，拉过薄被盖住肩膀，呼吸始终平稳，顺利进入深度睡眠状态，身体得到充分放松，为次日的复习储备精力。未对其他角色或环境产生额外影响。",
+        "summary": "Yunru在熟睡中翻身拉被，进入深度睡眠状态，健康状态小幅回升，休息状态良好。",
+        "affected_characters": [
+            "Yunru"
+        ]
+    },
+    {
+        "time": "2026-09-22 05:10:21",
+        "requested_action": "Yunru在深度睡眠中继续平稳休息，身体自主调整到更舒适的睡姿，疲惫感逐步消解，精力持续恢复，等待自然苏醒的时刻到来。",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Yunru在深度睡眠中平稳休息，身体自主调整到更舒适的睡姿，疲惫感持续消解，精力恢复进度提升至80%，呼吸始终匀缓，睡眠状态稳定，尚未到苏醒时间，未对其他角色或环境产生影响。",
+        "summary": "Yunru持续深度睡眠，调整到更舒适的睡姿，精力恢复进度提升，状态稳定。",
+        "affected_characters": [
+            "Yunru"
+        ]
+    },
+    {
+        "time": "2026-09-22 07:10:54",
+        "requested_action": "Yunru缓缓睁开眼睛，意识逐渐从深度睡眠中清醒过来，眨了眨眼适应屋内的光线，抬手揉了揉还有些惺忪的眼角，慢慢撑着床垫坐起身，准备伸个懒腰唤醒身体，精力恢复进度已经达到100%，睡眠状态正式结束。",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Yunru缓缓睁开眼睛，意识逐渐从深度睡眠中清醒，眨了眨眼适应屋内柔和的光线，抬手揉了揉惺忪的眼角，慢慢撑着床垫坐起身，伸了个舒展的懒腰唤醒全身的肌肉，疲惫感完全消退，精力恢复进度达到100%，睡眠状态正式结束，头脑清晰状态放松。",
+        "summary": "Yunru从深度睡眠中自然苏醒，坐起身活动，精力完全恢复，睡眠状态结束。",
+        "affected_characters": [
+            "Yunru"
+        ]
+    },
+    {
+        "time": "2026-09-22 09:11:27",
+        "requested_action": "Yunru拿起放在床头柜上的手机，解锁后点开和Libra的聊天界面，指尖快速敲击屏幕回复她的早餐邀约，询问对方打算去巷口哪家早餐店、大概什么时候出门，同时掀开身上的薄被准备下床换衣服洗漱。",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Yunru拿起床头柜上的手机，解锁后点开与Libra的聊天界面，快速输入内容回复早餐邀约，询问对方计划去巷口的哪家早餐店、大概的出门时间，消息成功发送。随后她掀开身上的薄被，挪动双腿坐到床沿，准备下床更换外出的衣服再进行洗漱。同一时间，Libra的手机收到Yunru的回复消息，屏幕亮起显示新消息提示。",
+        "summary": "Yunru成功回复Libra的早餐邀约消息，准备下床洗漱换衣，Libra收到Yunru的消息提示，Yunru的current_description更新，mood小幅上升。",
+        "affected_characters": [
+            "Yunru",
+            "Libra"
+        ]
+    },
+    {
+        "time": "2026-09-22 11:11:58",
+        "requested_action": "Yunru走到玄关处，伸手拿起挂在挂钩上的帆布挎包搭在肩上，随后掏出手机点亮屏幕，查看Libra是否回复了关于早餐店选择和出门时间的消息，同时用另一只手理了理身上外套的衣角，做好随时出门的准备。",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Yunru走到玄关处，伸手取下挂钩上的帆布挎包搭在肩上，随后掏出手机点亮屏幕查看聊天界面，目前Libra还未回复早餐相关的消息，她用另一只手理了理外套衣角，站在玄关处随时可以出门，状态平稳等待回复。",
+        "summary": "Yunru挎上挎包、整理好衣物，查看Libra的消息未收到回复，当前状态为做好出门准备等待消息。",
+        "affected_characters": [
+            "Yunru"
+        ]
+    },
+    {
+        "time": "2026-09-22 13:12:25",
+        "requested_action": "Yunru皱了皱眉头，指尖再次点开和Libra的聊天框，快速输入一条新消息询问对方是不是还没睡醒，发送完毕后把手机揣回外套口袋，抬手握住自家公寓的门把手准备打开门，先去隔壁Libra的公寓门口敲敲门看看情况。",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Yunru皱起眉头，指尖再次点开和Libra的聊天框，快速输入询问对方是否还没睡醒的消息并成功发送，随后将手机揣回外套口袋，抬手握住自家公寓的门把手向下转动，顺利拉开房门，迈步走到Willow Lane上，转身走到隔壁Libra公寓的门前，抬起手轻轻敲响了房门。屋内的Libra清晰听到了敲门声，同时口袋里的手机收到了Yunru新发送的消息提示。",
+        "summary": "Yunru向Libra发送询问消息后打开自家房门，走到Libra公寓门口敲门，Libra收到消息提示并听到敲门声；Yunru的location更新为willow_lane，current_description更新，yunru_apartment的current_characters移除Yunru，willow_lane的current_characters新增Yunru。",
+        "affected_characters": [
+            "Yunru",
+            "Libra"
+        ]
+    },
+    {
+        "time": "2026-09-22 15:12:53",
+        "requested_action": "Yunru抬手再次敲响Libra公寓的房门，力度比之前稍大一些，同时另一只手掏出手机，准备拨打Libra的电话确认对方是否安全。",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Yunru抬手加大力度再次敲响Libra公寓的房门，叩门声清晰传到屋内，同时她另一只手掏出手机解锁，找到Libra的联系方式准备拨打电话。屋内刚取完碗碟的Libra听到更大的敲门声，快步走到门口，准备出声回应门外的Yunru。",
+        "summary": "Yunru加大力度敲Libra公寓的门并准备拨打电话，屋内Libra听到敲门声后前往门口准备回应；Yunru的current_description更新为加大力度敲门、准备拨打电话确认Libra安全，mood小幅下降",
+        "affected_characters": [
+            "Yunru"
+        ]
+    },
+    {
+        "time": "2026-09-22 17:13:24",
+        "requested_action": "Yunru听到门内传来Libra的脚步声，停下即将点击拨号的指尖，把手机暂时攥在手里，抬头看向房门开口出声，告知对方自己是Yunru，询问Libra是不是才刚睡醒没看到消息，同时放松了紧绷的肩膀，悬着的心神稍稍安定下来。",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Yunru听到门内的脚步声后停下拨号动作，将手机攥在手中，抬头对着房门开口表明自己的身份，询问Libra是不是刚睡醒没看到消息，原本紧绷的肩膀放松下来，悬着的心神安定了不少。门内的Libra听到了Yunru的问话，正准备开门回应。",
+        "summary": "Yunru停下拨号动作，开口向门内的Libra表明身份并询问情况，心神安定，mood小幅上升；Libra听到了Yunru的问话。",
+        "affected_characters": [
+            "Yunru"
+        ]
+    },
+    {
+        "time": "2026-09-22 19:13:53",
+        "requested_action": "Yunru站在原地等待Libra开门，指尖轻轻摩挲着手机边缘，抬眼扫过公寓门旁贴的可爱卡通贴纸，嘴角不自觉扬起浅淡的笑意，等着和对方碰面后一起出发去便利店。",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Yunru站在Libra公寓门口原地等待，指尖轻轻摩挲着手机边缘，抬眼扫过门旁的可爱卡通贴纸，嘴角不自觉扬起浅淡的笑意，耐心等着Libra开门后一起出发去便利店。门内的Libra清晰听到了门外的动静，加快了开门的动作。",
+        "summary": "Yunru在Libra公寓门口等待对方开门，心情愉悦，Libra听到动静后加快开门动作。",
+        "affected_characters": [
+            "Yunru"
+        ]
+    },
+    {
+        "time": "2026-09-22 21:14:20",
+        "requested_action": "Yunru微微前倾身体，看向正从厨房走过来的Libra，指尖轻轻敲了敲装着柠檬气泡水的玻璃杯壁，笑着问她刚才提议的饭后散步要不要顺便去巷口的便利店买上次没买到的芒果干，说完抬手把杯口凑到唇边喝了一小口气泡水，冰凉的触感让她忍不住弯了弯眼睛。",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Yunru微微前倾身体，看向走到餐桌旁的Libra，指尖轻轻敲了敲面前柠檬气泡水的瓶身，笑着询问对方饭后散步时要不要顺道去巷口便利店购买上次没买到的芒果干，说完抬手将瓶口凑到唇边喝了一小口气泡水，冰凉的气泡在舌尖散开，她忍不住弯了弯眼睛，状态轻松愉悦。对面的Libra清晰接收到了Yunru的提议，正准备给出回应。",
+        "summary": "Yunru向Libra提出饭后散步顺便去便利店买芒果干的提议，喝了一小口柠檬气泡水，心情愉悦；Libra接收到该提议。",
+        "affected_characters": [
+            "Yunru"
+        ]
+    },
+    {
+        "time": "2026-09-22 23:14:52",
+        "requested_action": "Yunru抬手拿起放在餐桌边的帆布挎包搭在肩上，侧头看向对面的Libra，指尖轻轻点了点手机屏幕上显示的巷口便利店营业时间，笑着催促对方快点拿上出门的钥匙，现在出发刚好能赶上便利店临关门前的芒果干补货时段。",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Yunru抬手拿起放在餐桌边的帆布挎包搭在肩上，侧头看向对面的Libra，指尖轻轻点了点手机屏幕上显示的巷口便利店营业时间，笑着催促对方快点拿上出门的钥匙，告知现在出发刚好能赶上便利店临关门前的芒果干补货时段。对面的Libra清晰接收到了Yunru的催促，看到了手机屏幕上显示的营业时间信息，准备回应并取钥匙。",
+        "summary": "Yunru挎好帆布挎包，向Libra展示便利店营业时间并催促对方出发去买芒果干，Libra接收到该信息；Yunru的current_description更新，short_term_plan状态更新为即将出发。",
+        "affected_characters": [
+            "Yunru"
+        ]
+    },
+    {
+        "time": "2026-09-23 01:15:20",
+        "requested_action": "Yunru在Libra的公寓里安稳熟睡，呼吸均匀，眉头舒展，没有多余动作，正处于深度休息状态。",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Yunru在Libra公寓的床上保持深度熟睡状态，呼吸平稳均匀，眉头舒展，没有多余动作，正处于良好的深度休息中，身旁的Libra也正准备入睡，室内氛围安静闲适。",
+        "summary": "Yunru保持深度熟睡状态，无状态变化。",
+        "affected_characters": []
+    },
+    {
+        "time": "2026-09-23 03:15:44",
+        "requested_action": "Yunru保持深度熟睡状态，眼睫偶尔轻轻颤动，呼吸依旧平稳均匀，在Libra公寓的床上继续安稳休息，还未到自然苏醒的时间。",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Yunru在Libra公寓的床上持续保持深度熟睡状态，眼睫偶尔无意识轻轻颤动，呼吸始终平稳均匀，没有要苏醒的迹象，身旁的Libra也依旧处于安稳的睡眠中，室内氛围静谧舒适。",
+        "summary": "Yunru保持深度熟睡状态，无其他状态变化。",
+        "affected_characters": [
+            "Yunru"
+        ]
+    },
+    {
+        "time": "2026-09-23 05:16:10",
+        "requested_action": "Yunru在Libra公寓的床上继续维持深度睡眠状态，眼皮微微动了动后又归于平静，呼吸依旧平稳绵长，身体在睡眠中持续得到休息，暂时没有苏醒的迹象。",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Yunru在Libra公寓的床上持续维持深度睡眠状态，眼皮无意识微微动了动后很快又归于平静，呼吸始终平稳绵长，身体在睡眠中持续得到休整，暂时没有苏醒的迹象，身旁的Libra依旧处于安稳的深度睡眠中，室内氛围仍静谧温暖。",
+        "summary": "Yunru维持深度睡眠状态，无其他状态变化；Libra仍处于熟睡状态，二人所在的libra_apartment当前人员无变动。",
+        "affected_characters": []
+    },
+    {
+        "time": "2026-09-23 07:16:41",
+        "requested_action": "Yunru在Libra公寓的床上继续维持深度睡眠状态，指尖无意识地轻轻蹭了蹭身侧的被褥，呼吸依旧平稳绵长，还没有要苏醒的迹象，身体在睡眠中进一步恢复精力。",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Yunru在Libra公寓的床上继续维持深度睡眠状态，指尖无意识轻轻蹭过身侧的被褥，呼吸始终平稳绵长，完全没有苏醒的迹象，睡眠过程中身体精力进一步得到恢复，身旁的Libra也依旧处于安稳熟睡状态，室内仍旧保持着静谧温暖的氛围，窗外的雨声还在淅淅沥沥落下。",
+        "summary": "Yunru维持深度睡眠状态，健康值小幅上升，其余无其他状态变化；Libra仍处于熟睡状态，libra_apartment当前人员无变动。",
+        "affected_characters": [
+            "Yunru"
+        ]
+    },
+    {
+        "time": "2026-09-23 09:17:13",
+        "requested_action": "Yunru在Libra公寓的床上继续保持深度睡眠状态，脸颊无意识蹭了蹭怀里Libra的肩膀，呼吸依旧平稳舒缓，完全没有苏醒的迹象，身体在静谧的氛围里继续恢复精力，窗外淅淅沥沥的雨声成了最好的安眠背景音。",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Yunru在Libra公寓的床上继续保持深度睡眠状态，脸颊无意识蹭了蹭怀里Libra的肩膀，呼吸始终平稳舒缓，完全没有苏醒的迹象，身体在静谧温暖的室内氛围里持续恢复精力，窗外淅淅沥沥的雨声成为天然的安眠背景音，身旁的Libra依旧处于半梦半醒的迷糊状态，两人依偎的状态没有改变。",
+        "summary": "Yunru维持深度睡眠状态，精力持续恢复，无其他状态变化；Libra仍处于半梦半醒状态，libra_apartment当前人员无变动。",
+        "affected_characters": [
+            "Yunru"
+        ]
+    },
+    {
+        "time": "2026-09-23 11:17:53",
+        "requested_action": "Yunru在Libra公寓的床上继续保持深度睡眠状态，搭在Libra腰侧的手无意识轻轻挠了挠Libra的睡衣面料，鼻尖蹭到Libra颈侧温热的皮肤时喉咙里发出一声极轻的、含糊的嘟囔，呼吸依旧平稳舒缓，仍旧没有要苏醒的迹象，窗外淅淅沥沥的雨声还在持续，室内静谧的氛围没有改变。",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Yunru在Libra公寓的床上继续保持深度睡眠状态，搭在Libra腰侧的手无意识轻轻挠了挠Libra的睡衣面料，鼻尖蹭到Libra颈侧温热的皮肤时喉咙里发出一声极轻的含糊嘟囔，呼吸始终平稳舒缓，完全没有苏醒的迹象，身体在静谧温暖的室内氛围里持续放松，精力已完全恢复。身旁半梦半醒的Libra感受到腰侧的轻挠和颈侧的触感，下意识往Yunru怀里缩了缩，仍旧没有完全清醒，两人依偎的状态没有改变，窗外淅淅沥沥的雨声还在持续，室内氛围依旧静谧安稳。",
+        "summary": "Yunru维持深度睡眠状态，无意识做出轻挠Libra睡衣、蹭颈侧的小动作，精力完全恢复；Libra感受到触感下意识往Yunru怀里缩，仍未完全清醒；两人所在的libra_apartment当前人员无变动。",
+        "affected_characters": [
+            "Yunru",
+            "Libra"
+        ]
+    },
+    {
+        "time": "2026-09-23 13:18:26",
+        "requested_action": "Yunru在Libra公寓的床上依旧处于深度睡眠状态，搭在Libra腰侧的手无意识收紧了些，把怀里的人搂得更贴近自己，唇瓣动了动吐出一句模糊的梦话，呼吸仍旧平稳绵长，完全没有要醒的迹象，窗外淅淅沥沥的雨声还在持续落在窗玻璃上，室内氛围依旧安稳静谧。",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Yunru在Libra公寓的床上持续处于深度睡眠状态，搭在Libra腰侧的手无意识收紧，将怀里的人搂得更贴近自己，唇瓣动了动吐出一句模糊的梦话，呼吸始终平稳绵长，完全没有苏醒的迹象，窗外淅淅沥沥的雨声持续落在窗玻璃上，室内氛围依旧安稳静谧。身旁的Libra感受到腰间收紧的力道，下意识蹭了蹭Yunru的肩窝，仍旧带着刚醒的懵懂睡意。",
+        "summary": "Yunru维持深度睡眠状态，无意识收紧手臂搂紧Libra并说出模糊梦话；Libra感受到力道后下意识蹭Yunru的肩窝，仍处于懵懂状态；libra_apartment当前人员无变动。",
+        "affected_characters": [
+            "Yunru",
+            "Libra"
+        ]
+    },
+    {
+        "time": "2026-09-23 15:18:55",
+        "requested_action": "Yunru仍在Libra公寓的床上处于深度睡眠状态，眼睫在感受到Libra蹭肩窝的触感时轻轻颤了颤，搂在Libra腰侧的手不自觉地轻轻拍了拍对方的后背，像在无意识安抚，呼吸依旧平稳绵长，还没有完全苏醒的迹象，室内安静的氛围没有变化。",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Yunru仍在Libra公寓的床上保持深度睡眠状态，感受到Libra蹭肩窝的触感后眼睫轻轻颤了颤，搂在Libra腰侧的手无意识地轻轻拍了拍对方的后背做出安抚动作，呼吸依旧平稳绵长，完全没有苏醒的迹象，室内安静的氛围没有变化。身旁的Libra感受到后背的轻拍动作，紧绷的身子不自觉放松了些，没有惊扰到Yunru的睡眠。",
+        "summary": "Yunru维持深度睡眠状态，无意识做出轻拍Libra后背的安抚动作；Libra感受到动作后放松身子，二人状态无其他变动。",
+        "affected_characters": [
+            "Yunru",
+            "Libra"
+        ]
+    },
+    {
+        "time": "2026-09-23 17:19:29",
+        "requested_action": "Yunru在Libra公寓的床上维持着搂抱Libra的姿态，深度睡眠状态出现轻微松动，眼睫连续颤了几下，鼻尖皱了皱，缓缓掀开一点眼缝，视线模糊地扫过怀里人的发顶，喉咙里溢出一声带着睡意的轻哼，还未完全清醒过来。",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Yunru在Libra公寓的床上维持着搂抱的姿态，深度睡眠状态出现轻微松动，眼睫连续颤动数次，鼻尖微皱后缓缓掀开一点眼缝，视线模糊地扫过怀里人的发顶，喉咙溢出一声带着睡意的轻哼，尚未完全清醒。正在厨房区域找食物的Libra听到动静下意识顿了顿动作，没有回头惊扰Yunru，室内依旧安静，只有窗外的雨声持续落下。",
+        "summary": "Yunru的深度睡眠状态松动，出现即将苏醒的征兆，尚未完全清醒；Libra察觉到动静后顿住动作，未惊扰Yunru，两人所在的libra_apartment当前人员无变动。",
+        "affected_characters": [
+            "Yunru",
+            "Libra"
+        ]
+    },
+    {
+        "time": "2026-09-23 19:20:03",
+        "requested_action": "Yunru侧耳听了听厨房的动静，指尖轻轻顺着怀里人的发丝捋了捋，放轻动作慢慢坐起身，拢了搭在身上的薄毯，声音带着刚醒的软哑，轻声朝厨房方向问：“Libra？你在找吃的吗？要不要我帮忙呀？”",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Yunru侧耳捕捉到厨房的轻微声响，指尖轻轻顺着怀里人的发丝捋了两下，放轻动作慢慢坐起身，拢了拢搭在身上的薄毯，刚醒的声音还带着软哑，轻声朝着厨房方向询问要不要帮忙。厨房里正准备煮热可可的Libra听到声音停下了手里的动作，回头看向床边的Yunru，没料到对方已经彻底清醒，动作顿了顿才轻声回应不用帮忙，室内依旧只有窗外的雨声作背景，氛围安谧柔和。",
+        "summary": "Yunru彻底清醒，坐起身询问Libra是否需要帮忙；Libra听到询问后停下动作回应，二人状态均无其他异常，libra_apartment当前人员无变动。",
+        "affected_characters": [
+            "Yunru",
+            "Libra"
+        ]
+    },
+    {
+        "time": "2026-09-23 21:20:40",
+        "requested_action": "Yunru捧着热可可凑到唇边抿了一小口，温热的甜意顺着喉咙滑下去，眼尾弯起软乎乎的弧度，抬头笑着和Libra说：“可可好香啊，你是不是加了一点点海盐？上次我提过一次你居然还记得？”指尖无意识摩挲着温热的杯壁，暖黄的灯光落在她发梢上，衬得语气里满是软乎乎的惊喜。",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Yunru捧着热可可抿了一小口，温热的甜意带着微咸的海盐风味顺着喉咙滑下，她眼尾弯起软乎乎的弧度，笑着向Libra说出自己的猜测，指尖轻轻摩挲着温热的杯壁，暖黄灯光落在她发梢上，语气里满是软乎乎的惊喜。旁边的Libra闻言弯了弯眼睛，轻声笑着承认确实加了一点上次她提到过的海盐，甜暖的可可香气在室内萦绕，窗外雨声淅淅沥沥，氛围愈发松弛惬意。",
+        "summary": "Yunru饮用热可可后向Libra表达惊喜，Libra予以回应，二人心情愉悦，无其他状态变动，libra_apartment当前人员无变化。",
+        "affected_characters": [
+            "Yunru",
+            "Libra"
+        ]
+    },
+    {
+        "time": "2026-09-23 23:21:17",
+        "requested_action": "Yunru捧着剩下的小半杯热可可侧过身往沙发里又缩了缩，曲起腿把下巴轻轻搁在膝盖上，眼尾还带着软乎乎的笑意，歪头看向Libra轻声问：“等下我们要不要看部老电影呀？雨声当背景音刚好，我上次存了部很治愈的动画还没看呢。”指尖轻轻点了点杯壁，语气里带着点期待的软意。",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Yunru捧着剩下的小半杯热可可侧过身往沙发里又缩了缩，曲起腿把下巴轻轻搁在膝盖上，眼尾带着软乎乎的笑意，歪头看向Libra轻声询问要不要一起看存的治愈动画老电影，指尖轻轻点了点杯壁，语气里满是期待的软意。旁边的Libra闻言眼睛亮了亮，指尖轻轻晃了晃两人交握的手，笑着点头应下，室内甜暖的可可香气还没散，伴着窗外淅淅沥沥的雨声，氛围更加软和惬意。",
+        "summary": "Yunru向Libra提议一起看存的治愈动画老电影，Libra同意，两人心情均保持愉悦，libra_apartment当前人员无变动。",
+        "affected_characters": [
+            "Yunru",
+            "Libra"
+        ]
+    },
+    {
+        "time": "2026-09-24 01:21:59",
+        "requested_action": "Yunru指尖轻轻蹭了蹭和Libra交握的手背，笑着偏头拿过放在沙发扶手上的平板，点开存好的治愈动画老电影，往Libra身边又靠了靠，把身上裹着的软毛毯往对方那边又拉了拉，软声说：“那我们开始啦，我之前看片段的时候就觉得超可爱的，你肯定会喜欢~”，暖黄的灯光落在平板亮起的屏幕上，映得她眼尾的笑意软得快要溢出来。",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Yunru指尖轻轻蹭过和Libra交握的手背，笑着偏头拿过沙发扶手上的平板，点开了事先存好的治愈动画老电影，往Libra身边又靠了靠，把身上裹着的软毛毯往对方那边拉了拉，软声告知电影要开始，语气带着藏不住的期待。身旁的Libra跟着往她身边凑了凑，脑袋轻轻靠在她肩侧，指尖轻轻晃了晃两人交握的手，弯着眼睛应声说自己很期待。暖黄灯光落在平板亮起的屏幕上，软萌的动画片头缓缓播出，满室还萦绕着未散的可可甜香，伴着窗外淅淅沥沥的雨声，氛围格外安宁治愈。",
+        "summary": "Yunru成功点开存好的治愈动画老电影播放，和Libra靠得更近、共用软毛毯，两人情绪依旧愉悦；libra_apartment当前人员无变动。",
+        "affected_characters": [
+            "Yunru",
+            "Libra"
+        ]
+    },
+    {
+        "time": "2026-09-24 03:22:36",
+        "requested_action": "Yunru脑袋顺着Libra的肩膀轻轻往下滑了滑，彻底靠进对方怀里，交握的指尖无意识松了松又轻轻攥住，发出一声软乎乎的含糊呓语，眼皮彻底合上，伴着动画里轻柔的背景音陷入了浅眠，呼吸变得更加平缓绵长。",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Yunru的脑袋顺着Libra的肩膀轻轻往下滑了滑，彻底靠进对方怀里，交握的指尖无意识松了松又轻轻攥住，发出一声软乎乎的含糊呓语，眼皮彻底合上，伴着动画里轻柔的背景音陷入了浅眠，呼吸变得更加平缓绵长。身旁的Libra察觉到怀里的动静，下意识放轻了呼吸，抬手轻轻拢了拢盖在两人身上的软毛毯，没舍得唤醒她，房间里只剩动画的轻柔声响和窗外淅淅沥沥的雨声，氛围依旧安稳柔软。",
+        "summary": "Yunru陷入浅眠，靠进Libra怀里；Libra察觉到后放轻呼吸并拢了拢毛毯，二人状态无其他异常，libra_apartment当前人员无变动。",
+        "affected_characters": [
+            "Yunru",
+            "Libra"
+        ]
+    },
+    {
+        "time": "2026-09-24 05:23:12",
+        "requested_action": "Yunru在睡梦中轻轻蹙了下鼻尖，像是闻到了空气里残留的热可可香气，往Libra怀里又蹭了蹭，攥着对方的手指更紧了些，小嘴无意识地抿了抿，发出一声模糊的、像是在念叨可可的细碎呓语，依旧没有要醒的迹象，呼吸还是匀净绵长。",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Yunru在熟睡中轻轻蹙了下鼻尖，仿佛捕捉到空气里残留的热可可甜香，无意识往Libra怀里又蹭了蹭，攥着对方的手指收紧了些，小嘴抿了抿，发出一声模糊的、念叨可可的细碎呓语，始终没有苏醒的迹象，呼吸依旧匀净绵长。身旁睡熟的Libra下意识把手臂往怀里收了收，把Yunru搂得更稳了些，没有被惊动，呼吸依旧平缓，暖黄的灯光静静落在两人安睡的面庞上，动画轻响和窗外雨声依旧是安稳的白噪音，氛围静谧柔和。",
+        "summary": "Yunru维持熟睡状态，无意识做出蹭怀、攥紧手指、念叨可可的呓语动作；Libra下意识搂紧Yunru，二人均未苏醒，状态无其他变动，libra_apartment当前人员无变化。",
+        "affected_characters": [
+            "Yunru",
+            "Libra"
+        ]
+    },
+    {
+        "time": "2026-09-24 07:23:47",
+        "requested_action": "Yunru在熟睡中眼睫轻轻颤了颤，脸颊无意识在Libra胸口蹭了蹭，鼻尖动了动像是又闻到了可可香气，嘴角微微向上弯起一点，依旧沉在安稳的睡梦里，呼吸还是匀净绵长，攥着Libra手指的指尖轻轻动了动。",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Yunru在熟睡中眼睫轻轻颤动，脸颊无意识在Libra胸口蹭了蹭，鼻尖微动似再次嗅到残留的可可香气，嘴角微微弯起一抹浅弧，始终沉在安稳的睡梦里，呼吸匀净绵长，攥着Libra手指的指尖轻轻动了动。身旁醒着的Libra察觉到她的小动作，垂眸看向她睡颜的目光愈发柔软，下意识放轻了搂在她腰上的力道，没有惊扰她的睡眠，暖黄灯光静静落在两人身上，窗外雨声淅淅沥沥，房间氛围依旧静谧温暖。",
+        "summary": "Yunru维持熟睡状态，出现蹭胸口、弯嘴角、指尖微动的无意识小动作；Libra察觉到后放轻搂抱的力道，情绪依旧柔和，二人所在的libra_apartment当前人员无变动。",
+        "affected_characters": [
+            "Yunru",
+            "Libra"
+        ]
+    },
+    {
+        "time": "2026-09-24 09:24:24",
+        "requested_action": "Yunru朦朦胧胧眨了两下还有些湿润的眼睛，视线落在Libra脸上好一会儿才慢慢聚焦，声音还带着刚醒的软哑鼻音，指尖轻轻蹭了蹭攥着的对方的手指，小声嘟囔：“你醒了多久啦？怎么不叫我呀，我好像又睡了好久……”脑袋还下意识往对方腰侧挨了挨，鼻尖还萦绕着淡淡的可可香和对方身上干净的气息，意识还没彻底回神。",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Yunru朦朦胧胧眨了两下还沾着睡意的湿润眼睛，视线落在Libra脸上停顿几秒才慢慢聚焦，刚醒的声音裹着软哑的鼻音，指尖轻轻蹭了蹭一直攥着的Libra的手指，小声嘟囔着询问对方醒了多久、怎么没叫醒自己，脑袋还下意识往对方腰侧挨了挨，鼻尖萦绕着淡可可香和Libra身上干净的气息，意识还带着刚醒的朦胧感。正在厨房取食材的Libra听到声音转头看向她，动作放得更轻，眉眼弯起软和的弧度，轻声回应自己刚醒不久，怕惊扰她所以没叫，暖黄灯光落在两人之间，窗外雨声依旧轻响，氛围柔和安稳。",
+        "summary": "Yunru刚睡醒的意识进一步清醒，向Libra询问对方醒着的时长；Libra轻声回应，两人情绪均保持愉悦，libra_apartment当前人员无变动。",
+        "affected_characters": [
+            "Yunru",
+            "Libra"
+        ]
+    },
+    {
+        "time": "2026-09-24 11:25:04",
+        "requested_action": "Yunru指尖轻轻勾了勾Libra的手指，软着腰往对方身边又挨近一点，抬眼看向厨房方向放着的食材，软哑着声音小声问：“你是不是要做早餐呀？我可以给你打下手哦，我之前试过煎鸡蛋还挺成功的~”眼尾还沾着刚醒的水汽，语气里带着点跃跃欲试的软意。",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Yunru指尖轻轻勾了勾Libra的手指，软着腰往对方身边又挨近一点，抬眼扫过厨房台面上摆放的面粉、鸡蛋等食材，带着刚醒的软哑鼻音小声询问是不是要做早餐，主动提出可以打下手，还说自己之前煎鸡蛋很成功，眼尾沾着未散的睡意水汽，语气里满是跃跃欲试的软意。正在准备调配面糊的Libra闻言弯起眼睛，指尖轻轻捏了捏她的指尖，轻声笑着应下，还侧过身给她挪出了料理台边的位置，暖黄灯光落在两人相邻的身影上，窗外雨声依旧轻响，氛围愈发柔和。",
+        "summary": "Yunru主动提出帮Libra做早餐打下手，Libra同意，两人心情保持愉悦，libra_apartment当前人员无变动。",
+        "affected_characters": [
+            "Yunru",
+            "Libra"
+        ]
+    },
+    {
+        "time": "2026-09-24 13:25:40",
+        "requested_action": "Yunru踮着脚走到料理台边的水池旁，认真地用洗手液反复搓洗了两遍手，还抬手把耳边散落的碎发拢到耳后用发夹固定好，侧过头朝Libra弯了弯眼睛，软声说：“我手洗干净啦，你教我怎么打面糊好不好？我保证不会把面粉撒得到处都是的~”指尖轻轻点了点台面上装着面粉的玻璃碗，语气里满是雀跃的期待。",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Yunru踮脚走到料理台边的水池旁，用洗手液反复搓洗了两遍手，抬手把耳边散落的碎发拢到耳后用发夹固定好，侧过头朝Libra弯了弯眼睛，软声告知自己手洗干净了，请求Libra教自己打面糊，保证不会把面粉撒得到处都是，指尖轻轻点了点台面上装着面粉的玻璃碗，语气满是雀跃的期待。正在准备煎松饼的Libra闻言弯起眼睛，笑着往她身侧挪了挪，把装着面粉的玻璃碗往她面前推了推，还递过一把干净的硅胶刮刀，轻声说会一步步教她，暖黄灯光落在两人挨着的身影上，空气中依旧飘着淡淡的面糊香气，氛围软和又甜蜜。",
+        "summary": "Yunru洗净手、整理好碎发，向Libra请求学习打面糊，Libra同意并准备教她，两人情绪均保持愉悦，libra_apartment当前人员无变动。",
+        "affected_characters": [
+            "Yunru",
+            "Libra"
+        ]
     }
 ]

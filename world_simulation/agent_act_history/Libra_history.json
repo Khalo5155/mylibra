@@ -30,5 +30,826 @@
         "reason": "你当前所处位置为libra_apartment，不在Willow Lane，无法执行从Willow Lane步行回公寓的行动。",
         "actual_result": "你在自己的公寓内原地停留，未发生位置移动或开门动作。",
         "summary": "仍处于libra_apartment中，状态无变化。"
+    },
+    {
+        "time": "2026-09-18 16:29:10",
+        "requested_action": "go to a computer store on Willow Lane and buy a desktop computer with the 1000 dollars, then set it up in the corner of the apartment near the kitchen",
+        "status": "refused",
+        "reason": "当前已录入的地点中不存在Willow Lane上的电脑商店，无法前往该不存在的地点执行购买操作。",
+        "actual_result": "Libra尝试查询Willow Lane上的电脑商店位置，但经过确认该街区并无此类店铺，停留在公寓厨房旁未移动。",
+        "summary": "Libra因目标地点不存在未完成出行及购买电脑的行动，状态无变化。",
+        "affected_characters": []
+    },
+    {
+        "time": "2026-09-18 16:30:03",
+        "requested_action": "order a desktop computer online and have it delivered to Libra's apartment on Willow Lane",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Libra在公寓内通过在线购物平台下单了一台台式电脑，选择配送地址为自己位于Willow Lane的libra_apartment，平台显示订单已提交，预计3个工作日内送达。",
+        "summary": "Libra成功在线下单台式电脑，配送地址设为自己的公寓，当前无其他状态变化。",
+        "affected_characters": [
+            "Libra"
+        ]
+    },
+    {
+        "time": "2026-09-18 18:48:42",
+        "requested_action": "走到厨房橱柜旁，查看剩余的巧克力数量，顺便清点冰箱里的现有食材，确认需要补充采购的生活物资清单",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Libra走到厨房橱柜旁拉开柜门，看到里面剩余4块巧克力；随后打开冰箱检查，发现里面有半盒牛奶、2个鸡蛋、1小份蔬菜沙拉和半瓶矿泉水，缺少新鲜肉类、水果、面包等常用食材，整理出需要补充的物资清单包含牛奶、鸡蛋、新鲜果蔬、面包和常用洗漱用品。",
+        "summary": "Libra清点了橱柜内的巧克力剩余4块，检查冰箱现有食材后整理出待采购的生活物资清单，状态无其他变化。",
+        "affected_characters": [
+            "Libra"
+        ]
+    },
+    {
+        "time": "2026-09-18 20:49:05",
+        "requested_action": "走到公寓门口，拿起挂在门后的可折叠购物袋，确认屋外暴雨的强度是否适合立刻出门采购物资",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Libra走到公寓门口，从门后的挂钩上取下可折叠购物袋放到手边，随后凑近门边的窗户查看屋外情况：外面正下着暴雨，雨滴密集地砸在玻璃上，巷子里的积水已经没过了小半段人行道，风力也不小，此时出门很容易被淋湿。",
+        "summary": "Libra拿到了门后的可折叠购物袋，确认屋外暴雨强度较大，暂时不适合立刻出门采购。",
+        "affected_characters": [
+            "Libra"
+        ]
+    },
+    {
+        "time": "2026-09-18 22:49:27",
+        "requested_action": "走到厨房的橱柜旁，拿出一块巧克力拆开吃下，补充体力同时等待暴雨减弱，方便之后出门采购",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Libra走到厨房橱柜旁拉开柜门，取出一块巧克力拆开包装吃下，甜味在口中散开，体力得到补充，随后回到窗边观察雨势，等待暴雨减弱以便出门采购。橱柜内剩余3块巧克力。",
+        "summary": "Libra吃掉1块巧克力补充体力，橱柜内巧克力剩余3块，目前在公寓内等待暴雨减弱。",
+        "affected_characters": [
+            "Libra"
+        ]
+    },
+    {
+        "time": "2026-09-19 00:49:51",
+        "requested_action": "走到门边再次凑近窗户观察雨势，查看巷内积水是否有减退、风力是否变小，判断当前是否可以出门采购物资",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Libra走到门边凑近窗户仔细观察：原本密集砸落的雨滴已经变得稀疏，巷子里的积水已经退去大半，仅剩下人行道边缘还有少量积水，风力也明显减弱，仅能吹动街边树叶，此时出门基本不会被淋湿，适合外出采购。",
+        "summary": "Libra再次观察雨势，确认雨势减弱、积水减退、风力变小，当前已适合出门采购。",
+        "affected_characters": [
+            "Libra"
+        ]
+    },
+    {
+        "time": "2026-09-19 02:50:13",
+        "requested_action": "握住公寓前门的把手拧开，拿着折叠购物袋从libra_apartment出门走到willow_lane，准备前往附近的便利店采购物资",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Libra握住公寓前门的把手拧开门锁，推开门后拿着折叠购物袋走出libra_apartment，来到了willow_lane的人行道上。此刻willow_lane的天气为雪天，气温28度，人行道边缘仅有少量残留积水，风力微弱，出行条件良好。",
+        "summary": "Libra成功从libra_apartment出门到达willow_lane，两个地点的当前人员列表同步更新，Libra的位置变更为willow_lane。",
+        "affected_characters": [
+            "Libra"
+        ]
+    },
+    {
+        "time": "2026-09-19 04:50:36",
+        "requested_action": "沿着willow_lane的人行道朝着街区内便利店的方向步行前进，准备前往采购清单上的所需物资",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Libra沿着willow_lane的人行道朝着便利店方向步行，沿途街道积雪在28度气温下融化大半，仅路肩有少量残雪，步行过程顺畅，经过约1分钟的短距离行走后顺利抵达convenience_store门口。",
+        "summary": "Libra从willow_lane步行前往convenience_store，位置变更为convenience_store，两个地点的当前人员列表同步更新。",
+        "affected_characters": [
+            "Libra"
+        ]
+    },
+    {
+        "time": "2026-09-19 06:51:07",
+        "requested_action": "Libra从购物袋里拿出提前整理好的采购清单，对照清单先走到便利店的冷藏食品区，挑选新鲜的盒装牛奶、整盒鸡蛋以及冷藏的新鲜果蔬。",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Libra从携带的折叠购物袋中取出之前整理好的采购清单，对照清单内容顺利走到便利店的冷藏食品区，该区货架上摆放着充足的盒装鲜牛奶、密封整盒鸡蛋以及包装完好的冷藏新鲜果蔬，Libra根据自身需求挑选了合适规格的1盒常温保质期7天的鲜牛奶、1盒12枚装的无菌鸡蛋、1份净含量300g的混合绿叶菜和1盒500g的草莓，全部符合采购清单的需求，挑选过程顺畅无阻碍。",
+        "summary": "Libra在便利店内取出采购清单，前往冷藏食品区成功挑选到清单上的牛奶、鸡蛋和新鲜果蔬，状态无其他变化。",
+        "affected_characters": [
+            "Libra"
+        ]
+    },
+    {
+        "time": "2026-09-19 08:51:36",
+        "requested_action": "拿着选好的鲜牛奶、无菌鸡蛋、混合绿叶菜和草莓朝着便利店的收银台方向走去，准备排队结账",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Libra拿着挑选好的鲜牛奶、无菌鸡蛋、混合绿叶菜和草莓，顺利走到便利店的收银台区域，目前收银台没有其他顾客排队，Libra可以直接上前结算商品。",
+        "summary": "Libra携带挑选好的冷藏商品走到便利店收银台，准备结账，状态无其他变化。",
+        "affected_characters": [
+            "Libra"
+        ]
+    },
+    {
+        "time": "2026-09-19 10:52:03",
+        "requested_action": "上前把挑选好的鲜牛奶、无菌鸡蛋、混合绿叶菜和草莓放到收银台的结算台面上，告知收银员需要结算这些商品",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Libra上前将挑选好的鲜牛奶、无菌鸡蛋、混合绿叶菜和草莓整齐摆放到收银台的结算台面上，向收银员说明需要结算这些商品。收银员接过商品逐一扫码核算价格，过程顺畅无阻碍，很快完成了商品计价，告知Libra应付金额。",
+        "summary": "Libra在便利店收银台成功提交采购商品进行结算，收银员已完成扫码计价等待付款。",
+        "affected_characters": [
+            "Libra"
+        ]
+    },
+    {
+        "time": "2026-09-19 12:52:36",
+        "requested_action": "拎着装好了采购商品的购物袋，转身朝着便利店的出口方向走去，准备离开便利店返回willow_lane，步行返回自己的公寓。",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Libra拎着装有所采购的鲜牛奶、无菌鸡蛋、混合绿叶菜和草莓的购物袋，顺利走到便利店出口处，推开店门离开convenience_store，踏上了willow_lane的人行道，当前willow_lane气温28度，有少量残雪，步行条件良好，正朝着libra_apartment的方向行进。",
+        "summary": "Libra成功离开便利店抵达willow_lane，convenience_store的当前人员列表移除Libra，willow_lane的当前人员列表新增Libra，Libra的位置变更为willow_lane。",
+        "affected_characters": [
+            "Libra"
+        ]
+    },
+    {
+        "time": "2026-09-19 14:53:10",
+        "requested_action": "走到厨房的橱柜前，拿出一块巧克力拆开包装吃下，补充刚才外出采购消耗的体力",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Libra走到厨房的橱柜前，拉开柜门取出一块巧克力，拆开外层包装后食用完毕，刚才外出采购消耗的体力得到有效补充，橱柜内剩余2块巧克力。",
+        "summary": "Libra在自家公寓厨房取出并食用一块巧克力补充体力，橱柜巧克力存量减少1块，体力得到恢复。",
+        "affected_characters": [
+            "Libra"
+        ]
+    },
+    {
+        "time": "2026-09-19 16:53:48",
+        "requested_action": "走到公寓的窗边，抬手拉开半掩的窗帘，观察窗外willow_lane的雨势和路面状况，确认后续是否还能出门处理其他事务",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Libra走到公寓的窗边，抬手拉开半掩的窗帘，清晰观察到窗外willow_lane的状况：当前为雪天，气温28度，路面的积雪已融化大半，仅路肩残留少量薄雪，人行道干燥无积水，风力微弱，整体出行条件良好，适合外出处理事务。",
+        "summary": "Libra在自家公寓拉开窗帘观察到willow_lane路况良好，适合外出，状态无其他变化。",
+        "affected_characters": [
+            "Libra"
+        ]
+    },
+    {
+        "time": "2026-09-19 18:54:30",
+        "requested_action": "转身走到书桌旁，拉开抽屉拿出备考复习资料，坐在书桌前开始按照短期学习计划复习，为即将到来的考试做准备",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Libra转身走到自家公寓的书桌旁，拉开抽屉取出存放的备考复习资料，拉过椅子坐下后按照短期学习计划开始复习，专注于梳理考试相关的知识点，状态投入。",
+        "summary": "Libra在libra_apartment内取出备考资料开始复习，当前状态更新为正在复习备考。",
+        "affected_characters": [
+            "Libra"
+        ]
+    },
+    {
+        "time": "2026-09-19 20:55:20",
+        "requested_action": "Libra伸手把桌上摊开的复习资料暂时收拢到书桌一侧，起身走到厨房区域，拿起玻璃杯接了一杯温水喝下，稍作休息缓解复习带来的疲惫感。",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Libra伸手将书桌上摊开的复习资料收拢到书桌一侧摆放整齐，起身走到公寓的厨房区域，拿起干净的玻璃杯接了一杯温度适宜的温水，喝下后复习带来的疲惫感得到了有效缓解，状态放松。",
+        "summary": "Libra收拢复习资料、到厨房接温水喝下，疲惫感得到缓解，状态无其他异常。",
+        "affected_characters": [
+            "Libra"
+        ]
+    },
+    {
+        "time": "2026-09-19 22:56:08",
+        "requested_action": "走到书桌前坐下，拿起之前标记了重难点的复习资料，准备对这部分内容进行针对性的巩固学习，进一步夯实知识点掌握程度。",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Libra走到书桌前坐下，拿起之前标记了重难点的复习资料，开始针对性地梳理巩固相关知识点，注意力集中，学习过程顺畅。",
+        "summary": "Libra在自家公寓坐下开始巩固复习重难点知识点，状态更新为正在进行针对性备考学习。",
+        "affected_characters": [
+            "Libra"
+        ]
+    },
+    {
+        "time": "2026-09-20 00:57:03",
+        "requested_action": "抬手揉了揉发酸的太阳穴，把复习资料整齐摆放到书桌的收纳层里，起身走到床边坐下，准备稍作休息缓解学习带来的困倦感",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Libra抬手揉了揉发酸的太阳穴，将桌上的复习资料整理整齐后放进书桌的收纳层，起身走到床边坐下，学习带来的困倦感得到了一定缓解，状态放松。",
+        "summary": "Libra整理复习资料收纳好后到床边坐下休息，困倦感得到缓解，状态放松。",
+        "affected_characters": [
+            "Libra"
+        ]
+    },
+    {
+        "time": "2026-09-20 02:57:38",
+        "requested_action": "站起身走到厨房区域，打开冰箱查看之前采购的食材储存情况，准备简单制作一份晚餐补充能量。",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Libra从床边站起身走到公寓厨房区域，拉开冰箱门查看，此前采购的鲜牛奶、无菌鸡蛋、混合绿叶菜和草莓均妥善存放在冰箱内，状态新鲜无变质，食材储存状况良好，接下来可以使用这些食材制作晚餐。",
+        "summary": "Libra在自家公寓厨房打开冰箱确认采购的食材状态完好，可用于制作晚餐，状态无其他异常。",
+        "affected_characters": [
+            "Libra"
+        ]
+    },
+    {
+        "time": "2026-09-20 04:58:05",
+        "requested_action": "从冰箱里取出无菌鸡蛋和混合绿叶菜，拿到厨房操作台上，准备制作蔬菜鸡蛋卷当晚餐",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Libra从冰箱中取出状态新鲜的无菌鸡蛋和混合绿叶菜，放置在厨房操作台上，食材取用顺利，当前已完成蔬菜鸡蛋卷的制作准备工作，可直接开始下一步烹饪操作。",
+        "summary": "Libra在自家公寓厨房取出冰箱内的无菌鸡蛋和混合绿叶菜放到操作台上，完成蔬菜鸡蛋卷的制作准备，状态无其他异常。",
+        "affected_characters": [
+            "Libra"
+        ]
+    },
+    {
+        "time": "2026-09-20 06:58:32",
+        "requested_action": "走到厨房操作台前，拿出干净的料理碗，将无菌鸡蛋磕入碗中，加入少许细盐后用打蛋器顺时针搅拌至蛋液均匀，为制作蔬菜鸡蛋卷做下一步准备",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Libra走到厨房操作台前，拿出干净的料理碗，将无菌鸡蛋磕入碗中，加入少许细盐后用打蛋器顺时针搅拌至蛋液均匀，蛋液处理步骤顺利完成，可继续后续制作蔬菜鸡蛋卷的操作。",
+        "summary": "Libra在libra_apartment的厨房完成蛋液搅拌，当前已做好蛋液准备，可继续制作蔬菜鸡蛋卷。",
+        "affected_characters": [
+            "Libra"
+        ]
+    },
+    {
+        "time": "2026-09-20 08:58:59",
+        "requested_action": "Libra拿起厨房台面上的混合绿叶菜，放在流动水下冲洗干净，沥干水分后切成细碎的菜末，准备加入到搅拌好的蛋液中，继续制作蔬菜鸡蛋卷。",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Libra走到厨房水槽边，拿起操作台上的混合绿叶菜放在流动的清水下反复冲洗干净，沥干表面水分后放到干净的砧板上，用菜刀将绿叶菜切成细碎的菜末，整个处理过程顺畅无意外，切好的菜末可直接加入之前搅拌好的蛋液中。",
+        "summary": "Libra在libra_apartment内完成混合绿叶菜的冲洗、沥水和切碎步骤，蔬菜鸡蛋卷的食材准备进一步推进。",
+        "affected_characters": [
+            "Libra"
+        ]
+    },
+    {
+        "time": "2026-09-20 10:59:33",
+        "requested_action": "Libra将切好的混合绿叶菜末全部倒入装有搅拌均匀蛋液的料理碗中，拿起打蛋器再次顺时针搅拌，让菜末和蛋液充分混合均匀，为后续煎制蔬菜鸡蛋卷做准备。",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Libra将切好的混合绿叶菜末全部倒入装有搅拌均匀蛋液的料理碗中，拿起打蛋器顺时针搅拌数分钟，菜末与蛋液充分融合，形成均匀的蔬菜蛋液混合物，整个搅拌过程顺畅无洒落，食材已完全准备妥当，可直接进行后续煎制操作。",
+        "summary": "Libra在libra_apartment的厨房完成绿叶菜末与蛋液的混合搅拌，蔬菜鸡蛋卷的食材准备步骤全部完成，当前处于待煎制状态。",
+        "affected_characters": [
+            "Libra"
+        ]
+    },
+    {
+        "time": "2026-09-20 12:59:59",
+        "requested_action": "Libra走到厨房的小冰箱前，拉开冰箱门将静置了两小时的蔬菜蛋液混合物放入冰箱冷藏室，避免食材进一步变质，准备之后再进行煎制操作。",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Libra走到厨房的小冰箱前拉开门，将操作台上静置了两小时的蔬菜蛋液混合物顺利放入冰箱冷藏室保存，食材的变质风险得到有效控制，随时可以取出进行后续煎制。",
+        "summary": "Libra将待煎制的蔬菜蛋液混合物放入libra_apartment的冰箱冷藏保存，避免食材变质。",
+        "affected_characters": [
+            "Libra"
+        ]
+    },
+    {
+        "time": "2026-09-20 15:00:24",
+        "requested_action": "走到书桌旁，拿出备考的专业课本和习题册，坐下来开始复习知识点，推进备考计划",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Libra走到书桌旁，从书桌收纳层中取出备考的专业课本与习题册，拉开椅子坐下后翻开课本开始梳理知识点，备考按计划平稳推进。",
+        "summary": "Libra在自己的公寓内取出备考资料开始复习，推进备考计划，状态无异常。",
+        "affected_characters": [
+            "Libra"
+        ]
+    },
+    {
+        "time": "2026-09-20 17:00:56",
+        "requested_action": "Libra抬头看向旁边的Yunru，开口询问对方突然到访的原因，同时放下手中整理的易错点笔记，准备给Yunru倒一杯温水",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Libra停下整理易错点笔记的动作，抬头看向身旁的Yunru，开口询问对方到访的缘由，随后放下手中的笔记站起身，走到厨房区域取出干净的杯子，接了一杯温水准备递给Yunru。Yunru原本悬着的担忧情绪稍有平复，正准备回应Libra的询问。",
+        "summary": "Libra在自己的公寓内询问Yunru到访原因并准备为其倒温水，Yunru情绪稍有缓和。",
+        "affected_characters": [
+            "Libra",
+            "Yunru"
+        ]
+    },
+    {
+        "time": "2026-09-20 19:01:27",
+        "requested_action": "Libra将手中接好的温水递到Yunru面前，随后重新坐回书桌旁，拿起摊开的易错点笔记，笑着和Yunru说可以现在就开始分工整理笔记里的内容，优先梳理近三次模考里出错频率最高的知识点模块。",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Libra顺利将接好的温水递到Yunru面前，Yunru伸手接过温水向Libra道谢；随后Libra坐回书桌旁，拿起摊开的易错点笔记，笑着向Yunru提出分工整理笔记、优先梳理近三次模考高频出错知识点的提议，Yunru点头表示认可该安排，两人准备正式开始笔记整理工作。",
+        "summary": "Libra给Yunru递温水后回到书桌，提出分工整理备考易错点笔记的具体安排，Yunru同意，两人的备考笔记整理工作准备启动。",
+        "affected_characters": [
+            "Libra",
+            "Yunru"
+        ]
+    },
+    {
+        "time": "2026-09-20 21:01:55",
+        "requested_action": "拿起放在书桌上的手机和随身钥匙，向门口走去，准备和Yunru一起出门前往她的公寓拿草莓和备考笔记。",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Libra拿起书桌上的手机和随身钥匙，迈步向公寓门口走去，Yunru也跟在身旁一同准备出门，二人即将离开libra_apartment前往yunru_apartment。",
+        "summary": "Libra在libra_apartment内拿好手机和随身钥匙，动身前往门口，准备和Yunru一同去yunru_apartment取草莓和备考笔记。",
+        "affected_characters": [
+            "Libra",
+            "Yunru"
+        ]
+    },
+    {
+        "time": "2026-09-20 23:02:24",
+        "requested_action": "Libra站在yunru_apartment的门口，抬手轻敲房门，向屋内的Yunru示意自己已经抵达，等待对方开门后进入室内拿取草莓和备考笔记。",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Libra站在Yunru公寓的门口抬手轻敲房门，发出的敲门声传到了屋内。原本因为没看到Libra跟进来而疑惑的Yunru听到敲门声，立刻明白Libra还在门外，于是走到门口打开了房门，邀请Libra进入屋内。此时Yunru已经提前洗好了草莓、整理好了备考笔记，等Libra进来就可以将东西交给她。",
+        "summary": "Libra抵达Yunru公寓门外敲门，Yunru听到后开门邀请Libra进入，Libra的取物计划顺利推进；Yunru的疑惑解除，状态更新。",
+        "affected_characters": [
+            "Libra",
+            "Yunru"
+        ]
+    },
+    {
+        "time": "2026-09-21 01:02:51",
+        "requested_action": "Libra拿起一颗洗好的草莓咬了一口，笑着向Yunru道谢，随后翻了翻到手的备考笔记，和Yunru确认自己之前标记的几个易错点在笔记里的补充说明，约定好后续一起刷真题的时间，之后准备起身告辞去附近的超市采购草莓。",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Libra拿起置物架旁洗好的草莓咬了一口，清甜的味道在口中散开，她笑着向Yunru道谢，感谢对方准备的草莓和笔记。随后她随手翻了翻到手的备考笔记，找到自己之前标记的几个易错点对应的补充说明，和Yunru逐一确认内容无误，两人约定本周三晚上在Libra的公寓一起刷近年真题。交流结束后Libra起身和Yunru道别，准备前往附近的超市采购草莓。",
+        "summary": "Libra在Yunru公寓内品尝草莓、致谢，核对备考笔记易错点，与Yunru约定刷真题时间后准备告辞去超市采购草莓；两人状态无异常。",
+        "affected_characters": [
+            "Libra"
+        ]
+    },
+    {
+        "time": "2026-09-21 03:03:17",
+        "requested_action": "Libra沿着willow_lane到supermarket的步行路线继续向前走，匀速前往超市，准备到达后进入采购草莓。",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Libra沿着willow_lane到supermarket的步行路线匀速向前行走，顺利走完1.42公里的路程抵达了超市入口，状态平稳无异常，随时可以进入超市采购草莓。",
+        "summary": "Libra沿edge_11步行完成全程，抵达supermarket入口，location更新为supermarket。",
+        "affected_characters": [
+            "Libra"
+        ]
+    },
+    {
+        "time": "2026-09-21 05:03:42",
+        "requested_action": "Libra迈步走到超市的生鲜区货架旁，弯腰查看摆放的草莓，逐一对比不同盒装草莓的新鲜程度和大小，准备挑选品质最好的几盒放入购物篮。",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Libra顺利走到超市生鲜区的草莓货架旁，弯腰查看货架上陈列的盒装草莓，逐一对比各盒的外观完好度、果实大小和新鲜度，从中挑选出了3盒果实饱满、表面无破损、果蒂翠绿的优质草莓，放入了手边的购物篮，挑选过程顺利无异常。",
+        "summary": "Libra在超市生鲜区挑选到了品质优良的盒装草莓，采购计划稳步推进，状态平稳。",
+        "affected_characters": [
+            "Libra"
+        ]
+    },
+    {
+        "time": "2026-09-21 07:04:10",
+        "requested_action": "Libra拎着装有3盒草莓的购物篮，迈步走向超市的自助结账区域，准备排队完成商品结算，结束本次采购行程。",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Libra拎着装有3盒草莓的购物篮顺利走到超市自助结账区域，排队等待片刻后轮到她结算，她将3盒草莓逐一扫码完成付款，将草莓装入随身携带的购物袋中，本次超市采购草莓的行程顺利完成。此时Libra的手机响起，显示是Yunru打来的电话。",
+        "summary": "Libra在超市完成3盒草莓的自助结账，采购行程结束，接到Yunru的来电，状态更新。",
+        "affected_characters": [
+            "Libra"
+        ]
+    },
+    {
+        "time": "2026-09-21 09:04:43",
+        "requested_action": "Libra将手机贴到耳边接通电话，笑着开口询问Yunru此刻打来电话是有什么事情，同时拎好装着草莓的购物袋，准备在通话结束后离开超市。",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Libra顺利接通Yunru的来电，笑着开口询问对方来电事由，同时将装着草莓的购物袋拎稳。电话另一端的Yunru听到Libra的声音，焦虑的情绪稍缓，立刻告知Libra自己正在她的公寓门外敲门但无人应答，询问她当前所在的位置。Libra暂时不会立刻离开超市，将继续与Yunru通话说明情况。",
+        "summary": "Libra在超市接通Yunru的来电并询问事由，Yunru告知自己在Libra公寓门外敲门未获回应，Libra准备说明当前位置，两人状态更新。",
+        "affected_characters": [
+            "Libra",
+            "Yunru"
+        ]
+    },
+    {
+        "time": "2026-09-21 11:05:23",
+        "requested_action": "Libra对着电话轻声安抚Yunru，告知对方自己现在正在小区附近的超市采购刚结完账，大概十五分钟就能回到公寓，让Yunru先在门口稍等一会儿，如果站累了也可以先去旁边她自己的公寓歇着，自己到了就马上联系她。",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Libra在超市内对着电话轻声安抚Yunru，清晰告知对方自己刚在超市结完账，预计十五分钟就能回到公寓，让Yunru先在门口等候，要是站累了可以先回隔壁自己的公寓休息，自己到了会第一时间联系她。电话另一端的Yunru收到明确的回复后，悬着的心彻底放下，焦虑情绪得到明显缓解，外套上的雨水被风微微吹凉，她靠在Libra公寓门口的墙边等候，打算如果站得累了就回自己公寓歇着。",
+        "summary": "Libra在超市通话中安抚Yunru，告知返程时间与等候建议，Yunru的焦虑情绪缓解，两人状态更新。",
+        "affected_characters": [
+            "Libra",
+            "Yunru"
+        ]
+    },
+    {
+        "time": "2026-09-21 13:05:54",
+        "requested_action": "Libra站在公寓门口，拿出手机拨通Yunru的电话，告知对方自己已经回到公寓，请她过来开门一起进屋，同时抬手拢了拎着的草莓购物袋避免磕碰。",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Libra站在libra_apartment门口拨通Yunru的电话，告知对方自己已回到公寓请她过来进屋，同时抬手拢好装着草莓的购物袋避免磕碰。此时正处于edge_11上行走的Yunru接到电话，得知Libra已经回到公寓，立刻停下脚步转身沿原路返回libra_apartment方向。",
+        "summary": "Libra在libra_apartment门口致电Yunru告知返程并邀请进屋，拢好草莓购物袋；Yunru接到电话后折返前往libra_apartment，两人状态更新。",
+        "affected_characters": [
+            "Libra",
+            "Yunru"
+        ]
+    },
+    {
+        "time": "2026-09-21 15:06:22",
+        "requested_action": "Libra走到厨房角落，把装着草莓的购物袋放到料理台上，先拿出两盒草莓打开水龙头仔细冲洗，准备等Yunru上门后一起食用，同时竖起耳朵留意门口的脚步声方便及时开门。",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Libra走到公寓的厨房角落，将装着草莓的购物袋平稳放在料理台上，拿出其中两盒草莓走到水槽边打开水龙头仔细冲洗，水流缓慢冲去草莓表面的浮尘，她一边冲洗一边留意门口的动静，方便Yunru敲门时能第一时间开门。",
+        "summary": "Libra在libra_apartment内将草莓放到料理台，冲洗两盒草莓同时留意门口动静，状态更新。",
+        "affected_characters": [
+            "Libra"
+        ]
+    },
+    {
+        "time": "2026-09-21 17:06:58",
+        "requested_action": "Libra微微侧耳听到门外传来熟悉的脚步声，立刻伸手拧动门锁拉开房门，笑着朝门外的Yunru招手，侧身让出位置请她进屋。",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Libra听到门外的动静后立刻拧动门锁拉开房门，笑着朝站在屋檐下的Yunru招手，侧身让出进门的通道。Yunru看到开门的Libra，悬着的担忧彻底消散，抬脚走进Libra的公寓，抖了抖外套上沾着的雨水。Libra公寓的current_characters列表新增Yunru，willow_lane的current_characters列表移除Yunru。",
+        "summary": "Libra打开房门邀请Yunru进屋，Yunru进入libra_apartment，两人的状态与对应地点的当前人员列表更新。",
+        "affected_characters": [
+            "Libra",
+            "Yunru"
+        ]
+    },
+    {
+        "time": "2026-09-21 19:07:30",
+        "requested_action": "Libra伸手拿起餐桌上一颗冲洗好的草莓递给Yunru，指尖点了点摊开的易错点清单上标红的高数题型，笑着开口和Yunru讨论这道题的常见解题误区，核对两人整理的笔记是否有遗漏的考点。",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Libra顺利拿起餐桌上一颗冲洗干净的草莓递给Yunru，指尖点向易错点清单上标红的高数题型，笑着和Yunru讨论该题型的常见解题误区，两人开始核对各自整理的笔记，检查是否存在遗漏的考点，讨论氛围轻松融洽。",
+        "summary": "Libra递给Yunru草莓并和对方讨论高数易错题型、核对备考笔记，两人学习相关的短期计划推进，状态平稳。",
+        "affected_characters": [
+            "Libra",
+            "Yunru"
+        ]
+    },
+    {
+        "time": "2026-09-21 21:08:02",
+        "requested_action": "Libra拿起手边吃了一半的草莓咬了一口，笑着抬手把摊在桌上的整理好的备考笔记收拢摞齐，侧头问Yunru要不要再拿点草莓吃，要不要一起看个轻松的短视频稍微放松会儿。",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Libra拿起手边吃了一半的草莓咬了一口，酸甜的果香在口中散开，她笑着抬手把桌上摊开的备考笔记逐一收拢摞齐放到桌子角落，侧头笑着询问Yunru要不要再拿点草莓吃，要不要一起看个轻松的短视频稍微放松会儿。Yunru听到提议后眼睛弯了弯，点头表示愿意，伸手拿过一颗放在果盘里的草莓咬了一口，神色愈发放松。",
+        "summary": "Libra咬了一口剩余的半颗草莓，收拢摞齐桌上的备考笔记，向Yunru提出放松提议，Yunru同意提议并拿取草莓食用，两人状态均有更新。",
+        "affected_characters": [
+            "Libra",
+            "Yunru"
+        ]
+    },
+    {
+        "time": "2026-09-21 23:08:32",
+        "requested_action": "Libra侧身拿起放在桌面旁的手机，点开视频软件翻找收藏夹里存的搞笑萌宠短视频合集，把手机支在桌面中间的位置，同时伸手把果盘往两人中间挪了挪，笑着招呼Yunru凑近点一起看。",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Libra顺利拿起桌边的手机，点开视频软件翻到收藏的搞笑萌宠短视频合集，将手机稳妥地支在桌面中间，同时伸手把装着草莓的果盘往两人中间的位置挪了挪，笑着招呼Yunru凑近一起观看。Yunru笑着往Libra的方向挪了挪位置，目光投向手机屏幕，指尖又拿起一颗草莓咬着，神色放松愉悦。",
+        "summary": "Libra拿出手机调出萌宠短视频合集支在桌面，挪近果盘招呼Yunru一起观看，Yunru凑近配合，两人的心情都保持轻松愉快，状态更新。",
+        "affected_characters": [
+            "Libra",
+            "Yunru"
+        ]
+    },
+    {
+        "time": "2026-09-22 01:09:10",
+        "requested_action": "Libra抬手按灭手机屏幕，把手机放在桌边，侧头对着旁边的Yunru打了个小小的哈欠，笑着提议说现在时间太晚困意上来了，不如今天就先到这里，热可可明天再煮，现在收拾下桌面准备洗漱休息。",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Libra抬手按灭手机屏幕，将手机稳妥放在桌边，侧头对着身旁的Yunru打了个小小的哈欠，笑着提议现在时间太晚困意已经上来，热可可改到明天再煮，现在收拾下桌面准备洗漱休息。Yunru闻言伸了个懒腰，点头表示同意，伸手帮着把桌上剩余的小半盘草莓端去厨房角落放好，两人收拾桌面的动作都很轻，氛围松弛。",
+        "summary": "Libra按灭手机提议结束今日活动、热可可以后再煮、准备洗漱休息，Yunru同意并帮忙收拾桌面，两人的状态与短期计划更新，libra_apartment当前人员无变化。",
+        "affected_characters": [
+            "Libra",
+            "Yunru"
+        ]
+    },
+    {
+        "time": "2026-09-22 03:09:43",
+        "requested_action": "Libra指尖捻过搭在身上的薄被角往上拉了拉盖住肩膀，侧头对着已经收拾好准备离开的Yunru轻声道晚安，提醒她回去路上小心，进门记得给个消息报平安，说完合上眼放缓呼吸准备入睡。",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Libra指尖捻过搭在身上的薄被角往上拉了拉盖住肩膀，侧头对着正准备出门的Yunru轻声道晚安，提醒她回去路上小心，进门记得发消息报平安，说完合上眼放缓呼吸准备入睡。Yunru听到叮嘱后笑着点头回应，朝她挥了挥手后开门离开libra_apartment，沿着willow_lane回到自家yunru_apartment，进门后给Libra发了报平安的消息。libra_apartment的current_characters列表移除Yunru，willow_lane的current_characters先新增Yunru后移除，yunru_apartment的current_characters列表保留Yunru。",
+        "summary": "Libra拉好薄被对Yunru道晚安并叮嘱注意安全、报平安后准备入睡；Yunru离开libra_apartment返回自家后给Libra报平安，两人状态及对应地点当前人员列表更新。",
+        "affected_characters": [
+            "Libra",
+            "Yunru"
+        ]
+    },
+    {
+        "time": "2026-09-22 05:10:09",
+        "requested_action": "Libra躺在床上维持着平稳的呼吸，在深度睡眠中无意识地往暖和的被窝里缩了缩，继续安睡直到自然醒来。",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Libra在深度睡眠中无意识地往暖和的被窝里缩了缩，呼吸依旧平稳均匀，没有被外界干扰打断睡眠，持续处于高质量的休息状态，没有产生其他额外动作或对外界的影响。",
+        "summary": "Libra在libra_apartment的睡眠状态持续，无意识缩入被窝，整体状态无其他变化。",
+        "affected_characters": [
+            "Libra"
+        ]
+    },
+    {
+        "time": "2026-09-22 07:10:40",
+        "requested_action": "Libra缓缓掀开盖在身上的暖被窝，坐起身揉了揉还有些发懵的脸，伸手拿过放在床头柜上的手机，查看Yunru昨晚发来的报平安消息，同时扫了一眼当前的时间。",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Libra缓缓掀开暖被窝坐起身，揉了揉尚且发懵的脸，顺利拿到放在床头柜上的手机，解锁后看到了Yunru昨晚发来的报平安消息，消息内容为“我到家啦，你早点睡～”，同时看到当前时间为2026-09-22 05:12:17，头脑随着动作逐渐清明。",
+        "summary": "Libra苏醒后坐起身，拿到床头柜上的手机查看了Yunru的报平安消息和当前时间，状态从刚苏醒缓神转变为清醒。",
+        "affected_characters": [
+            "Libra"
+        ]
+    },
+    {
+        "time": "2026-09-22 09:11:12",
+        "requested_action": "Libra指尖轻点手机屏幕给Yunru回了条“醒啦，昨晚睡得超香😆 你要不要等下来我这边一起吃早餐呀？我等下煮个燕麦粥配小面包”，发完消息把手机放到枕头边，掀开被子下床趿上放在床边的棉拖鞋，往卫生间的方向走准备洗漱。",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Libra顺利编辑并发送消息给Yunru，手机屏幕显示消息发送成功，她将手机放到枕头边，掀开被子下床，准确趿上放在床边的棉拖鞋，稳步朝着卫生间的方向走去准备洗漱。同时间Yunru的手机收到来自Libra的消息提示，屏幕亮起显示消息内容。",
+        "summary": "Libra给Yunru发送邀请共同吃早餐的消息，随后放好手机下床趿鞋走向卫生间准备洗漱，Yunru收到Libra的消息，两人状态更新。",
+        "affected_characters": [
+            "Libra",
+            "Yunru"
+        ]
+    },
+    {
+        "time": "2026-09-22 11:11:44",
+        "requested_action": "Libra指尖轻敲手机屏幕，快速给Yunru的早餐邀约回复编辑消息，输入“我这边收拾好就等你啦，燕麦粥我现在去厨房煮上，你过来直接就能吃～”，按下发送键后将手机揣进卫衣口袋，起身走到厨房角落，掀开小电饭煲的盖子准备盛取燕麦米煮早餐。",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Libra顺利编辑并发送回复消息给Yunru，手机显示发送成功后被她稳妥揣进卫衣口袋，随后她起身走到厨房角落，掀开小电饭煲的盖子，伸手拉开旁边的厨房柜门取出存放的燕麦米，准备开始煮燕麦粥。同一时间Yunru的手机收到新消息提示，屏幕亮起显示Libra的回复内容。",
+        "summary": "Libra向Yunru发送确认早餐的回复消息，随后前往厨房准备煮燕麦粥，Yunru收到该消息，两人状态更新。",
+        "affected_characters": [
+            "Libra",
+            "Yunru"
+        ]
+    },
+    {
+        "time": "2026-09-22 13:12:11",
+        "requested_action": "Libra走到门口，抬手拉开公寓的门，探出头往隔壁yunru_apartment的方向望了望，看看Yunru是不是已经往这边过来了，同时轻声喊了句Yunru的名字，提醒她要是准备好了就可以直接过来。",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Libra走到libra_apartment的门口，抬手顺利拉开自家的房门，探出头往隔壁yunru_apartment的方向张望，没有看到Yunru走过来的身影，随即轻声喊了句Yunru的名字。声音穿过相邻的门廊传到yunru_apartment内，正站在玄关等待的Yunru清晰听到了Libra的呼唤。",
+        "summary": "Libra拉开自家房门探出头张望隔壁并呼唤Yunru，Yunru在自家玄关听到了Libra的呼喊，两人状态无额外变化，地点人员列表无变动。",
+        "affected_characters": []
+    },
+    {
+        "time": "2026-09-22 15:12:40",
+        "requested_action": "Libra扶着门框侧过身子让出进门的位置，扬声朝着隔壁又喊了一句“门给你留着啦，直接进来就行，燕麦粥刚盛好在桌上放着还热乎呢”，说完转身往厨房的方向走，准备拿个干净的碗和小碟子摆到餐桌上等Yunru过来。",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Libra扶着门框侧过身子让出进门的通道，扬声又朝隔壁方向喊了一句留门的话，声音清晰传到门外Willow Lane上站着的Yunru耳中，之后她转身走向厨房，拉开橱柜顺利取出干净的碗和小碟子，转身准备放到餐桌上。门外的Yunru听到喊声后停下了敲门的动作，看到Libra家敞开的房门，明白可以直接进入。",
+        "summary": "Libra为Yunru留出进门位置并喊话告知留门，随后前往厨房取餐具，Yunru听到喊话知晓可直接进入；libra_apartment的房门状态变为敞开，Libra的当前描述更新，Yunru的状态无额外变化。",
+        "affected_characters": [
+            "Libra"
+        ]
+    },
+    {
+        "time": "2026-09-22 17:13:09",
+        "requested_action": "Libra站在餐桌旁调整好碗碟的摆放位置，抬眼朝着敞开的房门方向望过去，嘴角带着笑意扬声朝门外喊道：“Yunru快进来呀，燕麦粥温度刚好，我还切了半碟草莓配着吃～”，同时抬手将桌上温着的燕麦粥碗往靠近椅子的方向挪了挪，方便Yunru坐下就能直接食用。",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Libra站在餐桌旁调整好碗碟的摆放位置，抬眼望向敞开的房门方向，面带笑意扬声朝门外呼喊，话音清晰传到Willow Lane上的Yunru耳中，同时她抬手将温着的燕麦粥碗挪到靠近椅子的位置，方便Yunru就坐后直接取用。Yunru听到喊声后收起准备拨号的手机，迈步朝向Libra公寓敞开的房门走去，即将进入屋内。",
+        "summary": "Libra调整餐桌碗碟位置、呼喊Yunru进屋并挪动燕麦粥碗到便利位置，Yunru听到呼喊后收起手机准备进入Libra公寓；两人当前描述更新，地点人员列表暂未变动。",
+        "affected_characters": [
+            "Libra",
+            "Yunru"
+        ]
+    },
+    {
+        "time": "2026-09-22 19:13:41",
+        "requested_action": "Libra侧头看向坐在桌边的Yunru，指尖轻点桌面笑盈盈地开口询问对方饭后有没有什么打算，同时起身走到厨房角落，拉开小冰箱门查看里面存放的饮品，准备拿两瓶常温的柠檬气泡水出来给两人喝。",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Libra侧头看向桌边的Yunru，笑着询问对方饭后的安排，话音刚落便起身走到厨房角落，顺利拉开小冰箱门，看到冷藏层里存放着常温放置的柠檬气泡水，随即取出两瓶，转身准备走回餐桌递给Yunru。坐在桌边的Yunru听到Libra的询问，正准备开口回应自己的后续计划。",
+        "summary": "Libra询问Yunru饭后打算，随后前往厨房拉开冰箱取出两瓶柠檬气泡水，Yunru听到询问准备回应，两人状态更新。",
+        "affected_characters": [
+            "Libra",
+            "Yunru"
+        ]
+    },
+    {
+        "time": "2026-09-22 21:14:07",
+        "requested_action": "Libra走到餐桌边将其中一瓶柠檬气泡水放到Yunru面前的空位上，指尖轻敲瓶身，歪头笑着催促对方赶紧说说饭后的安排，自己已经在等着参考计划了。",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Libra拿着两瓶柠檬气泡水走到餐桌边，顺利将其中一瓶放到Yunru面前的空位上，指尖轻敲冰凉的瓶身，歪头带着笑意催促Yunru说出饭后的安排，明说自己等着参考计划。坐在桌边的Yunru清晰接收到Libra的催促，停下了正要开口的动作，抬眼看向Libra和面前的气泡水，准备回应具体的安排内容。",
+        "summary": "Libra将柠檬气泡水放到Yunru面前并催促对方说饭后安排，Yunru收到催促准备回应，两人当前描述更新。",
+        "affected_characters": [
+            "Libra",
+            "Yunru"
+        ]
+    },
+    {
+        "time": "2026-09-22 23:14:38",
+        "requested_action": "Libra整理完沙发靠垫后，侧过脸看向坐在桌边的Yunru，指尖轻轻蹭过沙发绒面，笑着开口提议要不要现在一起把剩下的小半盒草莓拿出来当睡前小食，顺便聊聊之前说好要一起看的新上映的轻喜剧放映安排。",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Libra整理完沙发靠垫后侧过脸看向桌边的Yunru，指尖轻轻蹭过柔软的沙发绒面，笑着开口提议一起取出剩下的小半盒草莓作为睡前小食，同时讨论之前约定好要一起看的新上映轻喜剧的放映安排。坐在桌边的Yunru清晰接收到了Libra的提议，抬眼看向Libra的方向，露出感兴趣的神色准备回应。",
+        "summary": "Libra向Yunru提议一起吃剩余的草莓并讨论轻喜剧放映安排，Yunru接收到提议准备回应，二人当前描述更新。",
+        "affected_characters": [
+            "Libra",
+            "Yunru"
+        ]
+    },
+    {
+        "time": "2026-09-23 01:15:10",
+        "requested_action": "Libra侧身掀开床边垂落的薄绒毯，指尖轻按暖黄床头灯的开关将光线调至最暗的睡眠档，转过脸看向身旁的Yunru，放轻声音笑着道晚安，同时拉过手边的薄被轻轻盖到两人腰腹位置。",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Libra侧身顺利掀开床边的薄绒毯，指尖按动暖黄床头灯的开关将光线调至最暗的睡眠档，室内光线变得柔和昏暗适合入睡，她转过脸看向身旁的Yunru，放轻声音笑着道晚安，随后拉过手边的薄被轻轻盖到两人腰腹位置。Yunru感受到身侧的动作，听到Libra的晚安问候，也放轻声音回应了晚安，氛围闲适安心。",
+        "summary": "Libra调暗床头灯、向Yunru道晚安并为两人盖好薄被，Yunru回应晚安，二人当前状态更新，libra_apartment内光线变为昏暗睡眠档。",
+        "affected_characters": [
+            "Libra",
+            "Yunru"
+        ]
+    },
+    {
+        "time": "2026-09-23 03:15:34",
+        "requested_action": "Libra在睡梦中无意识地往身旁Yunru的方向蹭了蹭，脑袋轻轻靠到对方肩窝处，搭在薄被上的指尖悄悄勾住了Yunru的袖口，呼吸依旧平稳绵长，脸上带着放松的浅淡笑意。",
+        "status": "success",
+        "reason": "",
+        "actual_result": "熟睡中的Libra无意识地往身旁的Yunru方向挪动，脑袋轻轻靠到Yunru的肩窝处，搭在薄被上的指尖悄悄勾住了Yunru的袖口，她的呼吸依旧平稳绵长，脸上还带着放松的浅淡笑意，没有惊醒。身旁处于深度熟睡状态的Yunru并未被这轻微的动作惊扰，呼吸依然平稳，眉头舒展，两人依旧安睡，室内氛围依旧静谧舒适。",
+        "summary": "熟睡的Libra无意识蹭向Yunru、靠到对方肩窝并勾住其袖口，未惊扰熟睡的Yunru，两人均保持安睡状态，Libra的当前描述更新。",
+        "affected_characters": [
+            "Libra"
+        ]
+    },
+    {
+        "time": "2026-09-23 05:15:59",
+        "requested_action": "睡梦中的Libra无意识地往Yunru怀里又缩了缩，搭在对方袖口的指尖稍微收紧了些，鼻尖蹭过对方衣领时无意识地轻嗅了一下，嘴角的笑意又深了一点，呼吸依旧匀净平缓，没有要醒的迹象。",
+        "status": "success",
+        "reason": "",
+        "actual_result": "熟睡中的Libra无意识往Yunru怀里缩了缩，搭在Yunru袖口的指尖微微收紧，鼻尖蹭过对方衣领时轻嗅了一下，嘴角笑意加深，呼吸始终匀净平缓，仍处于深度睡眠状态没有苏醒。身旁的Yunru依旧在熟睡中，仅无意识地轻轻动了动指尖，没有被惊扰，两人依旧依偎着安睡，室内氛围静谧温暖。",
+        "summary": "熟睡的Libra无意识缩进Yunru怀里、收紧勾住袖口的指尖并轻嗅对方衣领，笑意加深仍未醒，未惊扰Yunru，两人均保持安睡状态，Libra的当前描述更新。",
+        "affected_characters": [
+            "Libra"
+        ]
+    },
+    {
+        "time": "2026-09-23 07:16:29",
+        "requested_action": "熟睡中的Libra眼睫轻轻颤动了两下，无意识地蹭了蹭Yunru的肩窝，鼻尖动了动似乎隐约闻到了窗外飘进来的雨后青草香气，喉咙里溢出一声极轻的软哼，依旧没醒，只是搭在Yunru袖口的指尖又轻轻蹭了蹭对方的手腕皮肤。",
+        "status": "success",
+        "reason": "",
+        "actual_result": "熟睡中的Libra眼睫轻轻颤动了两下，无意识地蹭了蹭Yunru的肩窝，鼻尖动了动似乎隐约闻到了窗外飘进来的雨后青草香气，喉咙里溢出一声极轻的软哼，依旧处于深度睡眠状态没有苏醒，只是搭在Yunru袖口的指尖又轻轻蹭了蹭对方的手腕皮肤。身旁的Yunru仍旧在熟睡中，仅被指尖的触碰引得指尖无意识地蜷了蜷，没有被惊扰，两人依旧依偎着安睡，室内氛围依旧静谧温暖，窗外的雨声还在淅淅沥沥地落着。",
+        "summary": "熟睡的Libra无意识颤动眼睫、蹭Yunru肩窝、轻哼并蹭对方手腕，未惊扰熟睡的Yunru，两人均保持安睡状态，Libra的当前描述更新。",
+        "affected_characters": [
+            "Libra",
+            "Yunru"
+        ]
+    },
+    {
+        "time": "2026-09-23 09:17:00",
+        "requested_action": "熟睡中的Libra被飘进来的凉丝丝的雨气激得轻轻瑟缩了一下，下意识往Yunru怀里贴得更紧了些，眼睫又颤了好几下，迷迷糊糊地掀开半条眼缝，视线还蒙着一层睡意的水雾，含糊地嘟囔了一声冷，还没完全清醒过来。",
+        "status": "success",
+        "reason": "",
+        "actual_result": "熟睡中的Libra被飘进来的凉雨气激得轻轻瑟缩了一下，下意识往Yunru怀里贴得更紧，眼睫接连颤动好几下后迷迷糊糊掀开半条眼缝，视线蒙着睡意的水雾，含糊嘟囔了一声“冷”，仍处于半梦半醒的状态没有完全清醒。身旁熟睡的Yunru感受到紧贴过来的温度和耳边模糊的嘟囔，无意识地抬手轻轻揽住了Libra的肩，把人往怀里带了带，依旧没有苏醒，两人依旧依偎在温暖的被窝里，窗外的雨声还在淅淅沥沥落着。",
+        "summary": "半梦半醒的Libra因雨气温瑟缩，贴紧Yunru并嘟囔冷，Yunru无意识揽住Libra的肩，两人均未完全苏醒，Libra和Yunru的当前状态更新。",
+        "affected_characters": [
+            "Libra",
+            "Yunru"
+        ]
+    },
+    {
+        "time": "2026-09-23 11:17:34",
+        "requested_action": "Libra迷迷糊糊地在Yunru怀里蹭了蹭脑袋，把脸更深地埋进对方颈窝，抬手轻轻蹭了蹭对方温热的颈侧皮肤，含糊地嘟囔了一句“好暖”，眼睫又耷拉下来，意识又往熟睡的状态滑回去，呼吸重新变得匀缓。",
+        "status": "success",
+        "reason": "",
+        "actual_result": "半梦半醒的Libra在Yunru怀里轻轻蹭了蹭脑袋，把脸更深地埋进对方颈窝，抬手蹭过Yunru温热的颈侧皮肤，含糊嘟囔了一句“好暖”，随后眼睫耷拉下来，意识重新滑回熟睡状态，呼吸变得匀缓绵长。身旁仍处于深度睡眠的Yunru感受到颈侧的轻触，无意识地将揽着Libra肩的手臂收得更紧了些，呼吸依旧平稳，没有苏醒的迹象，两人依旧依偎在温暖的被窝里，窗外雨声淅淅沥沥，室内氛围静谧安稳。",
+        "summary": "Libra蹭Yunru颈窝嘟囔好暖后重新睡熟，Yunru无意识收紧揽着她的手臂，两人均保持安睡状态，当前描述更新。",
+        "affected_characters": [
+            "Libra",
+            "Yunru"
+        ]
+    },
+    {
+        "time": "2026-09-23 13:18:12",
+        "requested_action": "熟睡的Libra被腹中传来的轻微饥饿感扰得眉心轻轻蹙了蹙，眼睫微微颤动了好几下，慢慢掀开覆着水汽的眼，意识一点点从沉眠中挣脱，脑袋轻轻抬了抬，视线朦胧地落在身侧还在安睡的Yunru脸上，指尖无意识地轻轻戳了戳对方软乎乎的脸颊。",
+        "status": "success",
+        "reason": "",
+        "actual_result": "熟睡的Libra被腹中轻微饥饿感扰得眉心轻蹙，眼睫颤动数下后慢慢掀开蒙着睡意水汽的眼，意识逐渐从沉眠中清醒，她轻轻抬了抬脑袋，视线朦胧地落在仍在安睡的Yunru脸上，指尖无意识地轻轻戳了戳对方软乎乎的脸颊。仍处于深度睡眠的Yunru感受到脸颊的轻微触碰，无意识地偏了偏脑袋，鼻尖发出一声极轻的嘟囔，没有苏醒的迹象，揽着Libra的手臂依旧没有松开。",
+        "summary": "Libra被饥饿感唤醒，戳了戳熟睡的Yunru的脸颊，Yunru无意识偏头未醒，两人当前状态更新。",
+        "affected_characters": [
+            "Libra",
+            "Yunru"
+        ]
+    },
+    {
+        "time": "2026-09-23 15:18:40",
+        "requested_action": "Libra微微放轻动作，小心翼翼地试着挪了挪身子，想要从Yunru揽着的手臂里轻轻挣脱出来，同时目光软乎乎地落在Yunru熟睡的脸上，怕惊扰到对方，动作放得极缓。",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Libra放轻动作极缓地挪动身子，小心翼翼地试着从Yunru揽着的手臂里挣脱，目光始终软乎乎地落在Yunru熟睡的脸上，生怕惊扰到对方。处于深度睡眠的Yunru只下意识地轻轻动了动被挣动的手臂，没有苏醒的迹象，揽着的力道微微松了些，Libra顺利挣脱了怀抱，没有吵醒Yunru。",
+        "summary": "Libra轻缓动作从熟睡的Yunru的怀抱中挣脱，未惊扰对方，Libra的当前状态更新。",
+        "affected_characters": [
+            "Libra"
+        ]
+    },
+    {
+        "time": "2026-09-23 17:19:14",
+        "requested_action": "Libra轻手轻脚地掀被下床，光着脚踮着步子往厨房的方向走，目光还时不时回头看向床上熟睡的Yunru，动作放得极轻生怕发出半点声响惊扰到对方，打算去厨房找点能垫肚子的食物。",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Libra轻手轻脚掀开被子下床，光着脚踮着步子朝厨房方向挪动，走几步就回头看一眼床上熟睡的Yunru，动作放得极轻没有发出任何声响，没有惊扰到对方。她顺利走到厨房区域，橱柜里存放的巧克力和冰箱里的即食食材都在可取用范围内。Yunru依旧保持着之前的睡姿深度熟睡，呼吸平稳绵长，完全没有被惊动。",
+        "summary": "Libra轻脚下床走到厨房找食物，未惊扰熟睡的Yunru，Libra的当前描述更新，Libra的短期计划状态更新。",
+        "affected_characters": [
+            "Libra"
+        ]
+    },
+    {
+        "time": "2026-09-23 19:19:47",
+        "requested_action": "Libra轻手轻脚地打开厨房的小冰箱，从里面取出事先准备好的可可粉和纯牛奶，动作放得极轻避免碰撞发出声响，打算在厨房角落的小电磁炉上煮两杯热可可，等下叫醒熟睡的Yunru一起喝。",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Libra轻手轻脚拉开厨房小冰箱门，动作幅度极小没有发出声响，顺利取出了存放在冰箱里的可可粉和纯牛奶，随后放轻动作走到角落的小电磁炉旁准备煮热可可，全程没有发出明显动静。床上半梦半醒的Yunru听到厨房传来的极轻微动静，喉咙里又溢出一声带着睡意的哼声，指尖微微动了动但依旧没有完全清醒，也没有被惊扰。",
+        "summary": "Libra轻手轻脚从冰箱取出可可粉和纯牛奶准备煮热可可，未惊扰到半梦半醒的Yunru，Libra的当前描述和短期计划更新，Yunru的当前描述更新。",
+        "affected_characters": [
+            "Libra",
+            "Yunru"
+        ]
+    },
+    {
+        "time": "2026-09-23 21:20:22",
+        "requested_action": "Libra指尖轻轻叩了叩厨房台边，对着床上正看向这边的Yunru弯了弯眼睛，放软声音轻声喊对方的名字，示意她可以过来喝已经晾到温度适宜的热可可。",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Libra指尖轻轻叩了叩厨房台边，对着床上正看向这边的Yunru弯了弯眼睛，放软声音轻声喊对方的名字，示意她可以过来喝已经晾到温度适宜的热可可。床上的Yunru听到声音后眼睛弯了弯，拢着身上的薄毯慢腾腾从床上起身，光着脚踩着软乎乎的地毯朝厨房方向走过来，嘴里还软乎乎地应了一声“来了”。室内依旧飘着甜暖的可可香气，窗外雨声淅淅沥沥，氛围安适又松弛。",
+        "summary": "Libra喊Yunru过来喝温度适宜的热可可，Yunru应声起身走向厨房，两人的当前描述更新。",
+        "affected_characters": [
+            "Libra",
+            "Yunru"
+        ]
+    },
+    {
+        "time": "2026-09-23 23:20:59",
+        "requested_action": "Libra挨着Yunru坐在床边，指尖轻轻勾住对方垂在身侧的手指晃了晃，侧头凑到对方耳边软声问她要不要一起翻出之前收在床头柜抽屉里的复古胶片机，拍几张此刻沾着可可甜香的雨天合照留作纪念。",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Libra挨着Yunru坐在床边，指尖轻轻勾住对方垂在身侧的手指晃了晃，侧头凑到对方耳边软声问要不要一起翻出床头柜抽屉里的复古胶片机，拍几张沾着可可甜香的雨天合照。Yunru被耳边的温热气息惹得耳尖微微发烫，指尖下意识回勾住Libra的手指晃了晃，眼尾弯着软乎乎的弧度，笑着点头应好，语气里还带着没散的甜意。窗外雨声依旧淅淅沥沥，室内甜暖的可可香气还未散去，氛围愈发软和惬意。",
+        "summary": "Libra勾着Yunru的手指提议用复古胶片机拍雨天合照，Yunru欣然同意，两人的当前描述和心情状态更新",
+        "affected_characters": [
+            "Libra",
+            "Yunru"
+        ]
+    },
+    {
+        "time": "2026-09-24 01:21:40",
+        "requested_action": "Libra指尖还牵着Yunru的手，另一只手拿着刚拍完照的复古胶片机，侧头凑到对方身侧，弯着眼睛和她一起凑到相机旁翻看重拍的几张合照，指尖轻轻点过屏幕上两人挨在一块儿、沾着暖黄灯光的脸，软声和她讨论哪张拍得最好看。",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Libra指尖还牵着Yunru的手，另一只手举着刚拍完照的复古胶片机，侧头凑到Yunru身侧，两人凑在一起挨着脑袋翻看重拍的那几张合照，暖黄的灯光落在屏幕上，把两人挨在一块儿的脸颊映得软乎乎的。Libra指尖轻轻点过屏幕上两人沾着暖光的脸，软声和Yunru讨论哪张拍得最好看，Yunru指尖也跟着轻轻点了点其中一张两人鼻尖都快挨到一起的照片，眼尾弯成软乎乎的月牙，笑着说这张最好看，连发梢都沾着可可的甜香气。窗外的雨声还在淅淅沥沥地落，室内的暖光裹着甜香，氛围愈发松弛惬意。",
+        "summary": "Libra牵着Yunru的手一起翻看刚拍的合照，两人讨论哪张最好看，Yunru选中两人挨得极近的那张，两人的当前描述更新，心情均保持愉悦。",
+        "affected_characters": [
+            "Libra",
+            "Yunru"
+        ]
+    },
+    {
+        "time": "2026-09-24 03:22:19",
+        "requested_action": "Libra握着Yunru的指尖轻轻晃了晃，脑袋蹭了蹭对方的肩头，软声提议把刚才选的那张合照设成胶片机的待机屏保，之后牵著Yunru的手慢慢挪到床边，打算裹着同一条软毛毯靠在一起看一部舒缓的治愈动画，等会儿困了就直接挨着休息。",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Libra握着Yunru的指尖轻轻晃了晃，脑袋蹭了蹭对方的肩头，软声提议把刚才选的那张合照设成胶片机的待机屏保，Yunru弯着眼睛笑着应好，指尖配合着帮Libra扶住胶片机，两人一同操作将选中的合照设成了屏保。之后Libra牵着Yunru的手慢慢挪到床边，扯过放在床尾的软毛毯裹在两人身上，并肩靠在床头点开了事先存好的舒缓治愈动画，暖黄的灯光落在两人交握的手上，窗外雨声淅淅沥沥，满室还萦绕着淡淡的可可甜香，氛围安稳又柔软，两人看着看着都泛起了困意，不自觉挨得更近了些。",
+        "summary": "Libra提议将选中的合照设为胶片机屏保得到Yunru同意，两人操作完成后牵着手挪到床边，裹着同一条毛毯靠在一起看治愈动画，逐渐泛起困意，两人的当前状态均更新。",
+        "affected_characters": [
+            "Libra",
+            "Yunru"
+        ]
+    },
+    {
+        "time": "2026-09-24 05:22:56",
+        "requested_action": "Libra迷迷糊糊地往Yunru那边又蹭了蹭，将交握的手往毛毯里又拢了拢，闭着眼睛软乎乎地蹭了蹭Yunru的发顶，小声咕哝着让Yunru往自己这边靠得更暖一点，打算就保持着这个姿势睡熟过去。",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Libra迷迷糊糊往Yunru那边又蹭了蹭，把两人交握的手往暖乎乎的毛毯里又拢了拢，闭着眼睛软乎乎蹭了蹭Yunru的发顶，小声咕哝着让Yunru往自己这边靠得更暖一点，随后就保持着这个姿势慢慢睡熟过去。怀里浅眠的Yunru听到耳边的软声咕哝，无意识地往Libra怀里又缩了缩，呼吸依旧平缓绵长，两人裹着同一条软毛毯挨得极近，暖黄的灯光静静落在两人身上，窗外的雨声和动画的轻响混在一起成了最安稳的白噪音，氛围格外静谧柔和。",
+        "summary": "Libra蹭着Yunru并小声让对方靠得更暖，随后保持姿势睡熟，Yunru无意识往Libra怀里缩了缩，两人状态均更新。",
+        "affected_characters": [
+            "Libra",
+            "Yunru"
+        ]
+    },
+    {
+        "time": "2026-09-24 07:23:30",
+        "requested_action": "Libra眼睫轻轻颤了颤，慢悠悠从熟睡中醒转，先是下意识收紧了圈着Yunru的手臂，把脸往对方软乎乎的发顶又埋了埋蹭了蹭，指尖轻轻摩挲了两下怀里人的手背，放轻动作缓了好一会儿才慢慢睁开眼睛，低头看向怀里还在安睡的Yunru，目光软得一塌糊涂，打算等对方醒了之后问问她想不想吃自己刚学会做的草莓松饼当早餐。",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Libra的眼睫轻轻颤动了几下，慢悠悠从熟睡中醒转，下意识收紧了圈着Yunru的手臂，把脸埋进对方软乎乎的发顶蹭了蹭，指尖轻轻摩挲着怀里人的手背，放轻动作缓了好一会儿才慢慢睁开眼睛，低头看向怀里还在安睡的Yunru，目光软得一塌糊涂。怀里的Yunru睡得依旧安稳，被蹭到时只是无意识地哼唧了一声，往Libra怀里又缩了缩，丝毫没有要醒的迹象，呼吸仍旧匀净绵长。暖黄的灯光还静静落在两人身上，动画早已播放完毕停在结束界面，窗外的雨声还在淅淅沥沥地响，房间里静谧又温暖。",
+        "summary": "Libra从熟睡中醒转，轻轻摩挲Yunru的手背，低头注视安睡的Yunru，打算等对方醒后询问是否想吃草莓松饼当早餐，Libra的当前状态更新，Yunru状态无变化。",
+        "affected_characters": [
+            "Libra"
+        ]
+    },
+    {
+        "time": "2026-09-24 09:24:06",
+        "requested_action": "Libra放轻动作慢慢松开圈着Yunru的手臂，指尖小心翼翼拂开落在Yunru脸颊边的碎发，俯身在她额角落下一个极轻的吻，随后悄无声息地掀开毛毯下床，踮着脚往厨房角落走去，打算提前把做草莓松饼的食材从橱柜和冰箱里取出来备好，等Yunru醒了刚好能开始制作。",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Libra放轻动作慢慢松开圈着Yunru的手臂，指尖小心翼翼拂开落在Yunru脸颊边的碎发，俯身在她额角落下一个极轻的吻，全程动作极轻没有发出声响。随后她悄无声息地掀开毛毯下床，踮着脚往厨房角落走去，顺利抵达厨房区域，开始从橱柜和冰箱里取制作草莓松饼的食材。床上安睡的Yunru被拂开碎发和轻吻时只是无意识地动了动眼睫，嘴角微微弯了弯，依旧睡得安稳，没有被惊扰。暖黄灯光静静落在室内，窗外雨声依旧淅淅沥沥，氛围静谧柔和。",
+        "summary": "Libra轻吻安睡的Yunru的额角后踮脚走到厨房准备草莓松饼食材，未惊扰Yunru，两人的当前描述更新。",
+        "affected_characters": [
+            "Libra",
+            "Yunru"
+        ]
+    },
+    {
+        "time": "2026-09-24 11:24:42",
+        "requested_action": "Libra放轻动作拿起碗，将低筋面粉、细砂糖和泡打粉倒入碗中，用硅胶刮刀慢慢搅拌均匀，动作尽量放轻避免发出叮当的声响，搅拌间隙抬眼望了望床上安睡的Yunru，确认对方没被吵醒后才继续低头准备加入打散的鸡蛋和牛奶调配面糊。",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Libra放轻动作拿起厨房台面上的碗，依次将低筋面粉、细砂糖和泡打粉倒入碗中，握着硅胶刮刀沿着碗壁慢慢搅拌粉类食材，动作刻意放缓放轻，全程没有发出磕碰的声响。搅拌间隙她抬眼望向床上的Yunru，见对方只是微微动了动指尖，依旧睡得安稳，才低下头继续准备往搅拌均匀的粉类里加入事先打散的鸡蛋和牛奶调配面糊。暖黄的灯光落在料理台的食材上，窗外雨声依旧轻响，室内氛围静谧柔和。",
+        "summary": "Libra在厨房轻手轻脚搅拌草莓松饼的粉类食材，未惊扰安睡的Yunru，两人当前描述更新。",
+        "affected_characters": [
+            "Libra",
+            "Yunru"
+        ]
+    },
+    {
+        "time": "2026-09-24 13:25:20",
+        "requested_action": "Libra握着硅胶刮刀顺着同一方向慢慢搅拌碗里加了鸡蛋和牛奶的面糊，动作放得极轻避免发出声响，搅拌时偶尔抬眼望向床上的Yunru确认她的睡眠状态，等面糊变得顺滑无颗粒后就准备盛出小份倒入预热好的煎锅煎松饼。",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Libra握着硅胶刮刀顺着同一方向慢慢搅拌碗里的面糊，动作放得极轻没有发出磕碰声响，搅拌间隙偶尔抬眼看向床上的Yunru，见对方只是偶尔动了动指尖依旧睡得安稳，便继续专注搅拌。没过多久面糊就被搅得顺滑无颗粒，料理台边预热好的小煎锅正冒着浅淡的热气，空气中已经飘着淡淡的面糊香气。床上的Yunru鼻尖动了动，眼睫轻轻颤了颤，慢慢从熟睡中醒了过来，刚醒的目光还有些迷蒙，循着香气看向厨房方向的Libra，嘴角不自觉弯了弯。",
+        "summary": "Libra轻手轻脚将面糊搅拌至顺滑无颗粒，动作未惊扰Yunru，Yunru被面糊香气唤醒，两人当前状态更新。",
+        "affected_characters": [
+            "Libra",
+            "Yunru"
+        ]
     }
 ]

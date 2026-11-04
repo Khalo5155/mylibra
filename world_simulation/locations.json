@@ -98,7 +98,7 @@
         },
         "university": {
             "description": "A comprehensive urban university campus with teaching buildings, libraries, sports grounds, landscaped walkways, and a busy main gate opening directly onto the surrounding town's commercial streets.",
-            "weather": "cloudy",
+            "weather": "rainy",
             "temperature": 27,
             "altitude": 40,
             "latitude": 31.245,
@@ -116,18 +116,19 @@
         },
         "libra_apartment": {
             "description": "Libra's private compact one-room apartment on the street-facing side of the dormitory block. It contains one main living room, a real exterior window, a bed, a compact kitchen corner with cabinets and a small refrigerator, and a private front door that opens directly onto Willow Lane. Chocolate is stored in the kitchen cabinet as normal household food. The apartment is fully separate from Yunru's home.",
-            "weather": "stormy",
+            "weather": "foggy",
             "temperature": 26,
             "altitude": 35,
             "latitude": 31.23052,
             "longitude": 121.47352,
             "current_characters": [
-                "Libra"
+                "Libra",
+                "Yunru"
             ]
         },
         "yunru_apartment": {
             "description": "Yunru's private compact one-room apartment immediately next door to Libra's, with its own exterior window, bed, compact kitchen corner, storage, and a separate front door opening directly onto Willow Lane. The two apartments are neighboring units only; there is no shared interior passage or default access between them.",
-            "weather": "cloudy",
+            "weather": "sunny",
             "temperature": 26,
             "altitude": 35,
             "latitude": 31.2305,
@@ -141,9 +142,7 @@
             "altitude": 35,
             "latitude": 31.23045,
             "longitude": 121.47338,
-            "current_characters": [
-                "Yunru"
-            ]
+            "current_characters": []
         },
         "convenience_store": {
             "description": "A small neighborhood convenience store within a few minutes' walk of the apartments, selling snacks, chocolate, drinks, simple meals, household supplies, and other daily necessities.",
@@ -156,7 +155,7 @@
         },
         "bus_stop": {
             "description": "A sheltered neighborhood bus stop with route information, seating, and regular service toward the university, supermarket, and town center.",
-            "weather": "snowy",
+            "weather": "sunny",
             "temperature": 28,
             "altitude": 35,
             "latitude": 31.23102,
@@ -165,7 +164,7 @@
         },
         "neighborhood_park": {
             "description": "A small public park with shade trees, benches, a short walking loop, open grass, and a quiet seating area used by nearby residents.",
-            "weather": "foggy",
+            "weather": "rainy",
             "temperature": 27,
             "altitude": 36,
             "latitude": 31.22865,
@@ -174,7 +173,7 @@
         },
         "neighborhood_clinic": {
             "description": "A small neighborhood clinic with a general consultation room, basic first-aid services, and an attached pharmacy for routine health needs.",
-            "weather": "rainy",
+            "weather": "cloudy",
             "temperature": 26,
             "altitude": 34,
             "latitude": 31.22895,

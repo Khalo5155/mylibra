@@ -7,7 +7,7 @@ from configs import global_config
 IDENTITY = global_config.IDENTITY
 import Vdb
 from Mcp import is_tool_call, handle_toolcall
-from LLM_basic import llm_get_pure, doubao_client, doubao_model, deepseek_client, client_n1n
+from LLM_basic import llm_get_pure, doubao_client, doubao_model, deepseek_client, sdu_client, sdu_model
 from LLM_context import context_init, update_context_round, append_history, get_tmp_context, get_tmp_context_withprompt, toolcall_check
 
 
@@ -171,35 +171,28 @@ def llm_get_stream(user_input: str, user_role: str='Default', rag_service: Vdb.R
             print(f"DeepSeek 流式调用出错: {str(e)}")
             yield f"Error: {str(e)}"
     
-    elif llmType == 'gmn':
+    elif llmType == 'sdu':
         try:
-            print("using: gemini-2.5-flash-nothinking")
-            stream = client_n1n.chat.completions.create(
-                model="gemini-2.5-flash-nothinking",
+            # SDU 平台兼容 OpenAI Chat Completions 流式接口
+            stream = sdu_client.chat.completions.create(
+                model=sdu_model,
+                messages=question,
                 stream=True,
-                stream_options={"include_usage": True},
-                messages=[
-                    {
-                        "role": e["role"],
-                        "content": e["content"]  # 必须字符串格式
-                    }
-                    for e in question
-                ]
+                max_tokens=maxToken,
             )
 
-            # 流式输出
+            # 逐块读取流式回复
             for chunk in stream:
-                try:
-                    if chunk.choices and chunk.choices[0].delta:
-                        content = chunk.choices[0].delta.content
-                        if content:
-                            full_response += content
-                            yield content
-                except:
-                    continue
+                if (
+                    chunk.choices
+                    and chunk.choices[0].delta.content is not None
+                ):
+                    chunk_content = chunk.choices[0].delta.content
+                    full_response += chunk_content
+                    yield chunk_content
 
         except Exception as e:
-            print(f"NLN API调用出错: {str(e)}")
+            print(f"SDU 流式调用出错: {str(e)}")
             yield f"Error: {str(e)}"
         
     # 其他模型暂不支持流式，返回提示

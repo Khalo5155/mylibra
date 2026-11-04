@@ -4,19 +4,13 @@
         "Libra": {
             "age": 20,
             "occupation": "student",
-            "last_act_time": "2026-09-17 22:38:37",
-            "last_act": "你在自己的公寓内原地停留，未发生位置移动或开门动作。",
+            "last_act_time": "2026-09-24 13:25:20",
+            "last_act": "Libra握着硅胶刮刀顺着同一方向慢慢搅拌碗里的面糊，动作放得极轻没有发出磕碰声响，搅拌间隙偶尔抬眼看向床上的Yunru，见对方只是偶尔动了动指尖依旧睡得安稳，便继续专注搅拌。没过多久面糊就被搅得顺滑无颗粒，料理台边预热好的小煎锅正冒着浅淡的热气，空气中已经飘着淡淡的面糊香气。床上的Yunru鼻尖动了动，眼睫轻轻颤了颤，慢慢从熟睡中醒了过来，刚醒的目光还有些迷蒙，循着香气看向厨房方向的Libra，嘴角不自觉弯了弯。",
             "current_state": {
                 "location": "libra_apartment",
-                "health": 98,
-                "mood": 93,
-                "current_description": "已经入住地图上有明确坐标并接入道路网络的独立单间公寓。房间有窗、床、厨房角和直接通向街道的独立房门；巧克力作为普通食品存放在厨房橱柜中。Libra拥有仅本人可访问的私人邮箱。当前计划由Libra本人修订：毕业后找工作的目标继续保留；除考试学习外，还希望学习音乐或绘画等能够形成真实作品的技能。考试计划继续执行，但紧急程度为normal。刚从整夜深度睡眠中自然醒，睡眠质量极佳，身心得到充分休整，状态饱满，正准备开始今日的日程安排。",
-                "inventory": {
-                    "chocolate": {
-                        "quantity": 8,
-                        "description": "Regular household chocolate stock kept in the kitchen cabinet for snacks and energy, not carried as an emergency survival item."
-                    }
-                },
+                "health": 87,
+                "mood": 85,
+                "current_description": "刚答应教Yunru打面糊，把装面粉的玻璃碗和干净刮刀递到了Yunru面前，正准备一步步讲解操作方法，暖黄灯光落在料理台的食材上，空气中飘着淡淡的面糊香气，氛围温暖闲适",
                 "long_term_plan": {
                     "job": {
                         "description": "Find a job after graduation"
@@ -32,9 +26,9 @@
                 },
                 "short_term_plan": {
                     "study": {
-                        "description": "Study for upcoming exams.",
+                        "description": "和Yunru共同整理备考易错点笔记、核对高数考点的任务已全部完成，此前采购的3盒草莓已全部食用完毕，已从熟睡中清醒并顺利挣脱Yunru的怀抱，轻手轻脚在厨房拿到了巧克力和即食食材垫了肚子，可可粉和牛奶已被煮成热可可，半梦半醒的Yunru被香气唤醒，两人一同喝完了加了海盐的热可可，正一起用复古胶片机拍雨天居家合照，氛围轻松愉快",
                         "emergency_level": "normal",
-                        "status": "in progress"
+                        "status": "completed"
                     }
                 },
                 "today_plan": {},
@@ -45,35 +39,19 @@
                     "entrance": "private door opening directly onto willow_lane",
                     "neighbor": "yunru_apartment is next door but fully separate",
                     "cohabitation": "none"
-                },
-                "mail_account": {
-                    "address": "libra@localmail.world",
-                    "owner": "Libra",
-                    "private": true,
-                    "authorized_users": [
-                        "Libra"
-                    ],
-                    "shared_access": false,
-                    "description": "A private personal mail account. Yunru and other characters have no login or reading access unless Libra explicitly grants it."
                 }
             }
         },
         "Yunru": {
             "age": 22,
             "occupation": "student",
-            "last_act_time": "2026-09-17 19:31:03",
-            "last_act": "Yunru走出自己的公寓，来到相邻的Libra公寓门前，抬手轻轻敲了三下门，待门内有回应后开口询问Libra是否知道现在住在她隔壁的是自己。",
+            "last_act_time": "2026-09-24 13:25:40",
+            "last_act": "Yunru踮脚走到料理台边的水池旁，用洗手液反复搓洗了两遍手，抬手把耳边散落的碎发拢到耳后用发夹固定好，侧过头朝Libra弯了弯眼睛，软声告知自己手洗干净了，请求Libra教自己打面糊，保证不会把面粉撒得到处都是，指尖轻轻点了点台面上装着面粉的玻璃碗，语气满是雀跃的期待。正在准备煎松饼的Libra闻言弯起眼睛，笑着往她身侧挪了挪，把装着面粉的玻璃碗往她面前推了推，还递过一把干净的硅胶刮刀，轻声说会一步步教她，暖黄灯光落在两人挨着的身影上，空气中依旧飘着淡淡的面糊香气，氛围软和又甜蜜。",
             "current_state": {
-                "location": "willow_lane",
-                "health": 100,
-                "mood": 72,
-                "current_description": "昨夜敲门询问Libra后返回自家公寓休息，清晨起床整理完毕，已打开家门踏上Willow Lane的步道，正沿着步道朝不远处的便利店行进，准备购买早餐。",
-                "inventory": {
-                    "chocolate": {
-                        "quantity": 5,
-                        "description": "Household chocolate kept in Yunru's own kitchen cabinet as ordinary food."
-                    }
-                },
+                "location": "libra_apartment",
+                "health": 40,
+                "mood": 78,
+                "current_description": "刚洗完手并把碎发用发夹固定好，正站在料理台边等着Libra教自己打面糊，语气雀跃又期待，之前的睡意已经完全散去，整个人浸在轻松甜蜜的氛围里",
                 "long_term_plan": {
                     "job": {
                         "description": "Consider work after graduation if Yunru decides it fits her own goals; no job path is imposed by default."
@@ -81,9 +59,9 @@
                 },
                 "short_term_plan": {
                     "study": {
-                        "description": "Prepare for exams when Yunru considers them relevant to her academic or personal goals.",
+                        "description": "高数考点梳理已全部完成，剩余易错点计划今日再巩固一遍，备考进度符合预期",
                         "emergency_level": "normal",
-                        "status": "self-directed"
+                        "status": "pending"
                     }
                 },
                 "today_plan": {},
@@ -94,16 +72,6 @@
                     "entrance": "private door opening directly onto willow_lane",
                     "neighbor": "libra_apartment is next door but fully separate",
                     "cohabitation": "none"
-                },
-                "mail_account": {
-                    "address": "yunru@localmail.world",
-                    "owner": "Yunru",
-                    "private": true,
-                    "authorized_users": [
-                        "Yunru"
-                    ],
-                    "shared_access": false,
-                    "description": "A private personal mail account separate from Libra's account."
                 }
             }
         }
