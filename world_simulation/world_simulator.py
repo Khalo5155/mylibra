@@ -34,7 +34,13 @@ class WorldError(Exception):
 
 
 class World:
-    def __init__(self, data_dir: Path = WORLD_DIR):
+    def __init__(self, data_dir: Path = WORLD_DIR, special_action_probability: Optional[float] = 0.1):
+        if special_action_probability is None:
+            special_action_probability = float(os.getenv("WORLD_SIMULATOR_SPECIAL_ACTION_PROBABILITY", "0.1"))
+        if not 0 <= special_action_probability <= 1:
+            raise WorldError("随机事件概率必须在 0 到 1 之间")
+        self.special_action_probability = special_action_probability
+        self.special_actions: dict[str, Any] = {}
         self.data_dir = data_dir
         self.locations: dict[str, Any] = {}
         self.world_state: dict[str, Any] = {}
@@ -45,6 +51,12 @@ class World:
 
     def initialize(self) -> None:
         """加载唯一的权威状态；加载失败时拒绝启动。"""
+        special_path = self.data_dir / "special_actions.json"
+        self.special_actions = self._read_json_path(special_path) if special_path.exists() else {}
+        if not isinstance(self.special_actions, dict) or any(
+            not isinstance(events, dict) for events in self.special_actions.values()
+        ):
+            raise WorldError("special_actions.json 必须按角色分组，每组为事件对象")
         self.locations = self._read_json("locations.json")
         self.world_state = self._read_json("world_state.json")
         self.chara_profiles = self._read_json("chara_profiles.json")
@@ -183,13 +195,31 @@ class World:
         }
         return json.dumps(prompt_data, ensure_ascii=False, indent=2)
 
-    def build_action_prompt(self, chara_name: str, action: str) -> str:
+    def _special_action_prompt(self, chara_name: str) -> str:
+        candidates = [
+            {"name": name, "details": details}
+            for scope, events in self.special_actions.items()
+            if scope.lower() == "general" or scope == chara_name
+            for name, details in events.items()
+        ]
+        if not candidates or random.random() >= self.special_action_probability:
+            return ""
+        event = random.choice(candidates)
+        return (
+            f"请在本次推演中，推演角色{chara_name}在以下状态中的后续行为："
+            + json.dumps(event, ensure_ascii=False)
+        )
+
+    def build_action_prompt(
+        self, chara_name: str, action: str, *, special_action_prompt: str = "", emotion: str = "Normal"
+    ) -> str:
         self._get_profile(chara_name)
         recent_actions = copy.deepcopy(self.chara_history.get(chara_name, [])[-7:])
         return f"""
 你是世界模拟器的行动裁决模块。请根据既有世界信息裁决角色提出的行动，不得无条件迎合角色。
+在此基础上，你拥有情绪，请你以{emotion}的倾向性进行推演。
 返回且仅返回严格 JSON：
-{{"status":"success 或 refused","reason":"拒绝理由，成功时为空","actual_result":"实际发生的结果","summary":"所有状态变化的简述","state_updates":{{"受影响的角色名":{{仅包含该角色需要更新的 current_state 字段}}}}}}
+{{"status":"success 或 refused","reason":"拒绝理由，成功时为空","actual_result":"实际发生的结果","summary":"所有状态变化的简述","participants":["发起者及所有实际参与或受到影响的角色名"],"state_updates":{{"受影响的角色名":{{仅包含该角色需要更新的 current_state 字段}}}}}}
 规则：
 1. 可行则 success；受物理条件、地点、持有物、角色状态或世界规则限制则 refused。
 2. 即使拒绝，尝试也可能产生合理后果；写入 actual_result 和 state_updates。无状态后果则 state_updates 返回空对象。
@@ -197,6 +227,10 @@ class World:
 4. state_updates 中每个值都是对该角色 current_state 的更新补丁，只返回发生变化的已有字段；未返回的字段自动保持原值。
 5. 不得虚构角色名，不得新增原状态不存在的字段，也不得修改 current_state 之外的角色档案字段。
 6. health、mood 若返回，必须为 0 到 100 的数字。
+7. participants 必须列出发起者和所有实际参与、受到影响的角色，即使其状态字段没有变化。actual_result 必须明确谁对谁做了什么以及共同结果，不得使用指代不明的“你”。
+8. 交互是同一件事，必须一次性给出所有参与者一致的状态补丁；例如甲打乙，结果须同时记载甲的行为与乙的遭遇，乙的受伤状态也须更新。物品转移须同步处理双方，禁止重复持有或凭空丢失。不得将已发生的共同经历再次推演为新事件。
+
+{special_action_prompt}
 
 世界规则：{self.rules}
 世界状态：{json.dumps(self.world_state, ensure_ascii=False)}
@@ -240,7 +274,7 @@ class World:
         merged_states: dict[str, dict[str, Any]] = {}
         for affected_name, state_patch in state_updates.items():
             if affected_name not in self.chara_profiles.get("profiles", {}):
-                continue
+                raise WorldError(f"推演结果包含未知角色: {affected_name}")
             if not isinstance(state_patch, dict):
                 raise WorldError(f"state_updates.{affected_name} 必须是对象")
             old_state = self._get_profile(affected_name).get("current_state")
@@ -263,6 +297,13 @@ class World:
         if status == "refused" and not str(result.get("reason", "")).strip():
             raise WorldError("拒绝行动时必须提供 reason")
 
+        participants = result.get("participants", [])
+        if not isinstance(participants, list) or any(
+            not isinstance(name, str) or name not in self.chara_profiles["profiles"]
+            for name in participants
+        ):
+            raise WorldError("participants 必须为已存在的角色名列表")
+        affected_names = list(dict.fromkeys([chara_name, *participants, *merged_states]))
         now = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
         profile = self._get_profile(chara_name)
         for affected_name, merged_state in merged_states.items():
@@ -271,16 +312,20 @@ class World:
         profile["last_act"] = result["actual_result"]
         self.sync_location_characters()
         history_item = {
+            "event_id": uuid.uuid4().hex,
+            "initiator": chara_name,
             "time": now,
             "requested_action": action,
             "status": status,
             "reason": str(result.get("reason", "")),
             "actual_result": result["actual_result"],
             "summary": result["summary"],
-            "affected_characters": list(merged_states),
+            "affected_characters": affected_names,
         }
-        self.chara_history[chara_name].append(history_item)
-        self.persist_character(chara_name)
+        for affected_name in affected_names:
+            self.chara_history.setdefault(affected_name, []).append(copy.deepcopy(history_item))
+        for affected_name in affected_names:
+            self.persist_character(affected_name)
         return history_item
 
     @classmethod
@@ -337,7 +382,7 @@ class WorldSimulatorService:
         except WorldError as exc:
             return web.json_response({"status": "error", "error": str(exc)}, status=400)
 
-    async def chara_action(self, request: web.Request) -> web.Response:
+    async def chara_action(self, request: web.Request, emotion: str = "Normal") -> web.Response:
         request_id = uuid.uuid4().hex[:12]
         chara_name: Any = None
         action: Any = None
@@ -358,7 +403,7 @@ class WorldSimulatorService:
                 action=action.strip(),
             )
             async with self.action_lock:
-                prompt = self.world.build_action_prompt(chara_name, action.strip())
+                prompt = self.world.build_action_prompt(chara_name, action.strip(), emotion=emotion)
                 raw_result = await asyncio.to_thread(
                     llm_get_pure, [{"role": "system", "content": prompt}], "doubao"
                 )
@@ -411,8 +456,8 @@ class WorldSimulatorService:
 
     async def _scheduler_context(self, _app: web.Application):
         tasks = [
-            # asyncio.create_task(short_term_scheduler(self), name="world-short-term-scheduler"),
-            asyncio.create_task(daily_scheduler(self), name="world-daily-scheduler"),
+            asyncio.create_task(short_term_scheduler(self, emotion='Depressed'), name="world-short-term-scheduler"),
+            asyncio.create_task(daily_scheduler(self, emotion='Depressed'), name="world-daily-scheduler"),
         ]
         try:
             yield
@@ -422,10 +467,10 @@ class WorldSimulatorService:
             await asyncio.gather(*tasks, return_exceptions=True)
 
 
-async def short_term_scheduler(service: WorldSimulatorService) -> None:
+async def short_term_scheduler(service: WorldSimulatorService, emotion: str="Normal") -> None:
     """每隔两小时小幅扰动角色状态，并推演上次行动以来的状态变化。"""
     while True:
-        await asyncio.sleep(2 * 60 * 60)
+        await asyncio.sleep(8 * 60 * 60)
         try:
             async with service.action_lock:
                 profiles = service.world.chara_profiles.get("profiles", {})
@@ -444,6 +489,7 @@ async def short_term_scheduler(service: WorldSimulatorService) -> None:
                         now = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
                         prompt = f"""
 你是世界模拟器的定时状态推演模块。请推演角色从上一次行动至今，各项已有状态字段产生的自然变化。
+在此基础上，你拥有情绪，请你以{emotion}的倾向性进行推演。
 返回且仅返回严格 JSON，格式为：{{"new_state":{{仅包含需要更新的已有状态字段}}}}。
 new_state 是补丁：没变化的字段不要返回，不得新增原状态中不存在的字段。
 
@@ -490,7 +536,8 @@ new_state 是补丁：没变化的字段不要返回，不得新增原状态中�
                             source="short_term_scheduler",
                         )
                         action_judgement_prompt = service.world.build_action_prompt(
-                            chara_name, autonomous_action
+                            chara_name, autonomous_action,
+                            special_action_prompt=service.world._special_action_prompt(chara_name),
                         )
                         raw_judgement = await asyncio.to_thread(
                             llm_get_pure,
@@ -528,7 +575,7 @@ new_state 是补丁：没变化的字段不要返回，不得新增原状态中�
             print(f"short-term scheduler error: {exc}")
 
 
-async def daily_scheduler(service: WorldSimulatorService) -> None:
+async def daily_scheduler(service: WorldSimulatorService, emotion: str = "Normal") -> None:
     """每天零点重置日计划、较大幅扰动角色状态并更新全部地点天气。"""
     weather_list = ["sunny", "rainy", "cloudy", "stormy", "snowy", "foggy"]
     weather_weights = [0.3, 0.2, 0.2, 0.1, 0.1, 0.1]
@@ -566,6 +613,36 @@ async def daily_scheduler(service: WorldSimulatorService) -> None:
                     service.world.data_dir / "locations.json",
                     service.world.locations,
                 )
+                for chara_name in service.world.chara_profiles.get("profiles", {}):
+                    request_id = f"daily-{uuid.uuid4().hex[:12]}"
+                    try:
+                        special_prompt = service.world._special_action_prompt(chara_name)
+                        if not special_prompt:
+                            continue
+                        action = "根据当前处境推演以下行动。"
+                        prompt = service.world.build_action_prompt(
+                            chara_name, action, special_action_prompt=special_prompt, emotion=emotion
+                        )
+                        service.world.log_action_event(
+                            "action_received", request_id, chara_name=chara_name,
+                            action=action, source="daily_scheduler",
+                        )
+                        raw_result = await asyncio.to_thread(
+                            llm_get_pure, [{"role": "system", "content": prompt}], "doubao"
+                        )
+                        result = extract_json(raw_result)
+                        if not isinstance(result, dict):
+                            raise WorldError("行动推演模型未返回有效 JSON")
+                        response = service.world.apply_action_result(chara_name, action, result)
+                        service.world.log_action_event(
+                            "action_applied", request_id, chara_name=chara_name,
+                            source="daily_scheduler", **response,
+                        )
+                    except Exception as exc:
+                        service.world.log_action_event(
+                            "action_failed", request_id, chara_name=chara_name,
+                            source="daily_scheduler", error=str(exc),
+                        )
         except asyncio.CancelledError:
             raise
         except Exception as exc:

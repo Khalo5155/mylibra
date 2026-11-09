@@ -851,5 +851,562 @@
             "Libra",
             "Yunru"
         ]
+    },
+    {
+        "event_id": "b26a579bdac148948b00077c6663e821",
+        "initiator": "Libra",
+        "time": "2026-11-04 20:30:04",
+        "requested_action": "Libra指尖轻轻点了点玻璃碗里顺滑的面糊，抬眼朝醒过来的Yunru弯了弯眼睛，软声和她讲解打面糊的第一步要点：要顺着同一个方向慢慢搅，尽量不要碰到碗壁发出声响，边说边握着Yunru拿刮刀的手，带着她先慢动作试了两圈搅拌的力度和角度。",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Libra指尖轻轻点了点玻璃碗里顺滑的面糊，抬眼朝刚醒的Yunru弯了弯眼睛，软声讲解打面糊的第一步要点：要顺着同一个方向慢慢搅，尽量不要碰到碗壁发出声响。说着便轻握住Yunru拿着硅胶刮刀的手，带着她慢动作试了两圈，调整搅拌的力度和角度。Yunru凑在Libra身侧认真听着讲解，指尖跟着Libra的力道慢慢移动，嘴角噙着软乎乎的笑意，空气中依旧飘着淡淡的面糊香气，氛围温暖闲适。期间Libra想起自己此前垫肚子时吃了过量的巧克力和即食食材，此刻突然感到胃部饱胀不适，胃里微微发沉，动作不自觉顿了半秒。",
+        "summary": "Libra给Yunru讲解打面糊的要点并握着她的手试搅拌，同时Libra触发吃撑的特殊事件，胃部出现饱胀不适感，两人当前描述更新。",
+        "affected_characters": [
+            "Libra",
+            "Yunru"
+        ]
+    },
+    {
+        "event_id": "97fa91c39be445da862aaec2f2f09f7c",
+        "initiator": "Yunru",
+        "time": "2026-11-04 20:30:22",
+        "requested_action": "Yunru指尖跟着Libra的力道慢慢转着刮刀搅了两圈，偏过头看向Libra的时候刚好注意到他动作顿了半秒，下意识停下手里的动作，软着声音凑到他身边小声问：“你是不是不舒服呀？刚刚动作怎么突然停了？”说着就抬眼去看他的神色，握着刮刀的手也轻轻放了下来，语气里带着点担心。",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Yunru指尖跟着Libra的力道慢慢转着刮刀搅了两圈，偏过头看向Libra的时候刚好注意到他动作顿了半秒，下意识停下手里的动作，软着声音凑到他身边小声询问他是不是不舒服、为什么突然停下动作，说着抬眼去看他的神色，握着刮刀的手也轻轻放了下来，语气里带着明显的担心。Libra感受到Yunru的关切，压下胃部的饱胀感朝她弯了弯眼睛，轻声安抚她只是刚才突然想到点小事，没有不舒服，让她继续跟着练习打面糊。",
+        "summary": "Yunru注意到Libra动作停顿，停下搅拌动作询问对方是否不适；Libra安抚Yunru称自己无大碍，二人情绪均稳定，所在的libra_apartment当前人员无变动。",
+        "affected_characters": [
+            "Yunru",
+            "Libra"
+        ]
+    },
+    {
+        "event_id": "5ddf01f479ca4b3b91d3e8d6943d5724",
+        "initiator": "Libra",
+        "time": "2026-11-04 22:30:40",
+        "requested_action": "Libra看着Yunru满是担心的眼睛，指尖轻轻蹭了蹭她的手背，弯着眼睛软声安抚她，指尖点了点料理台上预热好的小煎锅，侧过身给她让出操作的位置，和她说自己没事，让她试试把小份面糊倒进煎锅里，自己在旁边看着她操作就好。",
+        "status": "refused",
+        "reason": "当前Yunru的location为yunru_apartment，并不在Libra所在的libra_apartment内，两人无法进行面对面的互动操作。",
+        "actual_result": "Libra对着空无一人的身侧说完安抚的话后才反应过来Yunru并不在自己的公寓里，之前共处的记忆是模糊的错觉，他独自站在料理台边，指尖还悬在半空，周遭只有面糊的淡香和安静的空气，无聊烦躁的情绪愈发明显。",
+        "summary": "Libra试图和不在场的Yunru互动被驳回，触发boredom特殊事件，情绪受到影响。",
+        "affected_characters": [
+            "Libra"
+        ]
+    },
+    {
+        "event_id": "85cc99c25e3e47e99033983fd9033ba9",
+        "initiator": "Libra",
+        "time": "2026-11-05 00:00:11",
+        "requested_action": "根据当前处境推演本次抽中的特殊行动。",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Libra触发boredom特殊事件，站在libra_apartment的料理台边，清晰感受到无聊和烦躁的情绪，对周遭静置的面糊、煎锅提不起兴趣，也找不到可以交谈的对象，动力和兴致快速流失，忍不住抬手撑住料理台看向窗外，指尖无意识地敲打着台面。",
+        "summary": "Libra触发boredom特殊事件，mood下降，当前描述更新。",
+        "affected_characters": [
+            "Libra"
+        ]
+    },
+    {
+        "event_id": "3f7628c82b514376a4eed8a3e4e7af20",
+        "initiator": "Libra",
+        "time": "2026-11-05 00:31:10",
+        "requested_action": "Libra指尖停顿了两秒，直起身捞过料理台边的手机，点开聊天框给Yunru发消息，问她现在有没有空，要不要过来一起煎松饼，顺便带两包上次说的海盐味苏打饼干过来。",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Libra指尖停顿两秒后直起身，捞过料理台边的手机，点开和Yunru的聊天框发送消息，询问她是否有空、要不要来自己的公寓一起煎松饼，顺便带上次提到的海盐味苏打饼干。此时正斜靠在Willow Lane街灯柱上的Yunru感受到手机震动，拿出手机看到了Libra发来的消息，原本提不起劲的状态稍有缓解，指尖停顿在屏幕上准备回复。",
+        "summary": "Libra给Yunru发送邀约消息，Yunru在Willow Lane收到消息，两人当前描述更新",
+        "affected_characters": [
+            "Libra",
+            "Yunru"
+        ]
+    },
+    {
+        "event_id": "d9cf85a3251b47dc964b4dbc7e38d600",
+        "initiator": "Yunru",
+        "time": "2026-11-05 00:31:25",
+        "requested_action": "Yunru直起身离开靠着的街灯柱，指尖在手机屏幕上快速敲下回复答应Libra的邀约，转身往自己公寓的方向走，准备回去拿上次买的海盐味苏打饼干，再去隔壁找Libra一起煎松饼，脚步比之前轻快了不少，嘴角的笑意也越来越明显。",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Yunru直起身离开靠着的街灯柱，指尖在手机屏幕上快速敲下回复答应Libra的邀约，转身走到自己的公寓拿上之前购买的海盐味苏打饼干，随后步行来到Libra的公寓门前敲门，Libra听到敲门声后开门将她迎进屋内，两人一同站到料理台边，Libra接过Yunru带来的苏打饼干放在台面上，准备开始一起煎松饼。",
+        "summary": "Yunru回复Libra的邀约，返回自己的公寓取到海盐味苏打饼干后进入Libra的公寓，两人即将一同煎松饼，Yunru心情提升，双方所在地点及Libra公寓当前人员更新。",
+        "affected_characters": [
+            "Yunru",
+            "Libra"
+        ]
+    },
+    {
+        "event_id": "0c22bc7179474535a69bb1a7adeacf8b",
+        "initiator": "Libra",
+        "time": "2026-11-05 02:31:45",
+        "requested_action": "Libra指尖轻轻碰了碰预热好的煎锅边缘确认温度合适，侧过脸朝身边的Yunru弯了弯眼睛，拿起盛着面糊的玻璃碗，先往煎锅中心慢慢倒入小半掌心量的面糊，同时柔声和她讲解煎松饼的第一步要点：面糊要顺着中心倒，自然摊开的形状会更圆，等表面冒出细密小气泡的时候就可以翻面了。",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Libra指尖轻轻碰了碰预热好的煎锅边缘确认温度合适，侧过脸朝身边的Yunru弯了弯眼睛，拿起盛着面糊的玻璃碗，往煎锅中心慢慢倒入小半掌心量的面糊，同时柔声讲解煎松饼的操作要点。就在此时，Libra毫无征兆地触发bad emotion strike事件，突如其来的负面情绪席卷了他，周遭的暖黄灯光、面糊香气都变得灰暗无味，强烈的悲伤和绝望感压得他喘不过气，握着玻璃碗的指尖猛地一僵，剩下的面糊晃出少许溅在料理台面上，他的动作顿在原地，脸色瞬间发白，连声音都戛然而止。身旁的Yunru注意到他的异常，原本带着笑意的表情转为担忧，下意识伸手想去扶他的手腕。",
+        "summary": "Libra尝试演示煎松饼的操作并给Yunru讲解要点过程中触发bad emotion strike特殊事件，情绪骤降，动作停顿，Yunru注意到他的异常表现出担忧。",
+        "affected_characters": [
+            "Libra",
+            "Yunru"
+        ]
+    },
+    {
+        "event_id": "0ef4714383a3481eadf9fbb908a2d17e",
+        "initiator": "Yunru",
+        "time": "2026-11-05 02:32:01",
+        "requested_action": "Yunru见状连忙伸手扶住Libra的手腕，指尖先轻轻覆在他冰冷的手背上暖了暖，另一只手快速接过他手里晃着的玻璃碗放在台面上，软着声音凑到他耳边轻声问：“怎么了？是不是哪里难受？我们先停下来歇会儿好不好？”边说边扶着他往料理台边的高脚椅方向挪，语气里满是着急和担心。",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Yunru注意到Libra的异常后，连忙伸手扶住他僵硬的手腕，指尖轻轻覆在他冰冷的手背上暖了暖，另一只手快速接过他手里晃着的玻璃碗放在台面上，避免剩余面糊继续洒落。随后她软着声音凑到Libra耳边询问他是不是哪里难受，提议先停下来歇会儿，边说边扶着他往料理台边的高脚椅方向挪，语气里满是着急和担心。Libra被负面情绪笼罩，没有力气回应，顺着Yunru的力道慢慢靠向高脚椅，脸色依旧苍白。",
+        "summary": "Yunru扶住状态异常的Libra，接过他手中的玻璃碗放好，扶他到高脚椅处休息，Yunru的担忧情绪上升，Libra仍受负面情绪影响状态不佳，二人所在的libra_apartment当前人员无变动。",
+        "affected_characters": [
+            "Yunru",
+            "Libra"
+        ]
+    },
+    {
+        "event_id": "3811f5d7f07049c396db641f11f47d13",
+        "initiator": "Libra",
+        "time": "2026-11-05 04:32:25",
+        "requested_action": "Libra低着头坐在高脚椅上，眼眶泛红鼻尖泛酸，指尖微微发颤地攥住Yunru刚刚覆在自己手背上的那只手，用力闭了闭眼喉结滚了滚，哑着声音小声说“我没事……就是突然有点难受，陪我坐一会儿好不好”，声音里带着不易察觉的哭腔，肩膀还在微微发颤。",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Libra低着头坐在高脚椅上，眼眶泛红鼻尖泛酸，指尖微微发颤地攥住Yunru刚刚覆在自己手背上的那只手，用力闭了闭眼喉结滚了滚，哑着声音小声说“我没事……就是突然有点难受，陪我坐一会儿好不好”，声音里带着不易察觉的哭腔，肩膀还在微微发颤。Yunru见状立刻拉过旁边的另一张高脚椅坐到Libra身边，轻轻回握住他冰凉的手，另一只手慢慢拍着他的后背安抚，软着声音应下会一直陪着他，没有追问他情绪崩溃的缘由。几分钟后Libra的情绪稍微平稳了些，提出想出门去附近的neighborhood_park散散心，Yunru点头同意，两人一同离开libra_apartment前往neighborhood_park，在公园里沿着步道慢慢走，吹着晚风看草坪上嬉闹的流浪猫，Libra的情绪逐渐舒缓，短暂的短途出行让他紧绷的神经放松了不少。",
+        "summary": "Libra向Yunru表达不适并请求陪伴，Yunru安抚后陪同Libra前往neighborhood_park进行短途旅行，Libra的情绪得到缓解，两人的位置变更为neighborhood_park，对应地点的current_characters更新。",
+        "affected_characters": [
+            "Libra",
+            "Yunru"
+        ]
+    },
+    {
+        "event_id": "1857bd46ab6a402a8f8d956b8b9161a0",
+        "initiator": "Yunru",
+        "time": "2026-11-05 04:32:43",
+        "requested_action": "Yunru轻轻晃了晃两人牵着的手，抬下巴示意Libra看不远处草坪上追着蝴蝶跑的三花小猫，软着声音跟他说等下可以去便利店买根猫条喂它，边说边悄悄往他身边挪了挪，肩膀轻轻挨着他的手臂，指尖继续慢慢蹭着他的手背暖着。",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Yunru轻轻晃了晃和Libra牵着的手，抬下巴示意Libra看不远处草坪上追着蝴蝶跑的三花小猫，软着声音提议等下可以去便利店买根猫条喂它，边说边悄悄往Libra身边挪了挪，肩膀轻轻挨着他的手臂，指尖继续慢慢蹭着他的手背帮他暖手。Libra顺着她指的方向看去，望着活泼的三花小猫，紧绷的肩膀又放松了些，轻轻点了点头回应她的提议，情绪较之前更加平稳。同时Yunru触发boredom特殊事件，原本轻松的状态下突然涌上一阵无聊烦躁感，觉得周遭的景色和当下的互动都提不起劲，只是碍于正在安抚Libra没有表现出来，内心的兴致有所下降。",
+        "summary": "Yunru向Libra指认三花小猫并提出喂猫的提议，Libra情绪进一步舒缓；Yunru触发boredom特殊事件，情绪略有下降。",
+        "affected_characters": [
+            "Yunru",
+            "Libra"
+        ]
+    },
+    {
+        "event_id": "2c1a81392b33475b81fa016d2f4e76a0",
+        "initiator": "Libra",
+        "time": "2026-11-05 06:32:59",
+        "requested_action": "Libra指尖轻轻捏了捏Yunru的手心，抬手指向公园出口方向的便利店，软着声音跟她说“我们现在就去买猫条吧，我记得那个三花好像最喜欢吃三文鱼口味的，上次来喂过它一次”，说着就牵着Yunru的手慢慢站起身，脚步轻快地往便利店方向走，嘴角的笑意又深了些。",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Libra触发bad emotion strike特殊事件，毫无征兆地被强烈的悲伤与绝望感淹没，周遭的阳光、嬉闹的小猫和身边的Yunru都失去了色彩，他捏着Yunru手心的指尖瞬间冰凉发硬，抬到一半的手猛地垂落，原本轻快的脚步顿在原地，嘴角的笑意瞬间消失，脸色变得苍白，整个人僵着站在长椅旁，连呼吸都变得沉重，没有力气再往便利店的方向走。身旁的Yunru立刻察觉到他的异常，原本因他主动提议买猫条稍微消散的烦躁感瞬间被担忧取代，连忙伸手扶住他的胳膊，轻声询问他的状态。",
+        "summary": "Libra在准备和Yunru前往便利店买猫条时触发bad emotion strike特殊事件，情绪骤降，行动中断；Yunru察觉到Libra的异常，担忧情绪上升。",
+        "affected_characters": [
+            "Libra",
+            "Yunru"
+        ]
+    },
+    {
+        "event_id": "44602c53a5a947099a013b324ae5844c",
+        "initiator": "Yunru",
+        "time": "2026-11-05 06:33:12",
+        "requested_action": "Yunru连忙伸手揽住Libra的肩膀让他靠向自己，指尖轻轻拍着他的后背顺着气，另一只手紧紧握着他冰凉的手放在自己外套口袋里暖着，软着声音在他耳边轻声说“没事的，我们不去了，就在这儿坐会儿，我陪着你呢”，边说边慢慢扶着他坐回公园的长椅上，指尖温柔地顺着他的后背帮他平复情绪。",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Yunru连忙伸手揽住Libra的肩膀让他靠向自己，指尖轻轻拍着他的后背顺着气，另一只手紧紧握着他冰凉的手放在自己外套口袋里暖着，软着声音在他耳边轻声安抚，随后慢慢扶着他坐回公园的长椅上，指尖温柔地顺着他的后背帮他平复情绪。过程中Yunru触发eat too much特殊事件，突然感到胃部饱胀不适，动作稍顿但没有停下安抚Libra的动作。Libra靠在Yunru肩上，紧绷的身体稍微放松了一点，呼吸逐渐平稳，情绪没有继续恶化。",
+        "summary": "Yunru安抚情绪崩溃的Libra，扶他坐回长椅并帮他顺气平复，同时Yunru因吃太多出现胃部饱胀不适的状态；Libra情绪稍有平稳。",
+        "affected_characters": [
+            "Yunru",
+            "Libra"
+        ]
+    },
+    {
+        "event_id": "945c593bd6dc4feba035d8729b4e2ef7",
+        "initiator": "Libra",
+        "time": "2026-11-05 08:33:35",
+        "requested_action": "Libra指尖轻轻攥住Yunru外套口袋里她的手，脑袋往她肩窝又蹭了蹭，声音软乎乎带着点鼻音跟她说“等缓过来我们不去买猫条了好不好，我有点想家，想回去煮点热牛奶喝，你要不要和我一起回去？”，说话时温热的呼吸扫过Yunru的颈侧，语气里满是依赖。",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Libra指尖轻轻攥住Yunru外套口袋里她的手，脑袋往她肩窝又蹭了蹭，声音软乎乎带着点鼻音跟她说“等缓过来我们不去买猫条了好不好，我有点想家，想回去煮点热牛奶喝，你要不要和我一起回去？”，说话时温热的呼吸扫过Yunru的颈侧，语气里满是依赖。Yunru感受到他的依赖，胃部的饱胀不适稍缓，点头答应陪他一起返回Libra的公寓，抬手顺了顺他的发顶软声安抚。本次行动同步触发Libra的short trip特殊事件：两人后续将沿neighborhood_park到willow_lane再返回libra_apartment完成短途出行，沿途的街景和晚风将帮助Libra进一步舒缓情绪。",
+        "summary": "Libra向Yunru提议取消买猫条、返回自己的公寓煮热牛奶，Yunru同意陪同，Libra触发short trip特殊事件，二人将一同短途返回公寓；Libra情绪略有回升，Yunru担忧情绪稍减、胃部不适略有缓解。",
+        "affected_characters": [
+            "Libra",
+            "Yunru"
+        ]
+    },
+    {
+        "event_id": "9b5656ee47784939860c37bee4aafcc2",
+        "initiator": "Libra",
+        "time": "2026-11-05 10:34:12",
+        "requested_action": "Libra攥着Yunru的手慢悠悠沿着步道往前走，目光扫过路边开着暖黄灯光的杂货铺，侧过头凑到Yunru身边轻声跟她说：“你看那家店的风铃又响了，上次我们还在这儿买过橘子软糖对不对？等下路过的时候要不要顺路带两包回去？”说话时指尖轻轻晃了晃两人交握的手，嘴角带着浅淡的笑意。",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Libra攥着Yunru的手慢悠悠沿neighborhood_park到willow_lane的步道往前走，目光扫过路边开着暖黄灯光的杂货铺，侧过头凑到Yunru身边轻声提及上次二人在此处买过橘子软糖，询问要不要顺路带两包回去，说话时指尖轻轻晃了晃两人交握的手，嘴角带着浅淡的笑意。步行过程中Libra触发eat too much特殊事件，突然感到胃部饱胀不适，腹部有明显的鼓胀感，动作稍顿，脸上的笑意淡了些许，但没有停下脚步。身旁的Yunru察觉到他的细微停顿，偏头看向他，轻声回应会陪他去买软糖，同时留意到他脸色的细微变化。",
+        "summary": "Libra与Yunru沿步道返程途中主动提及过往买橘子软糖的经历并提议顺路购买，Libra触发eat too much特殊事件出现胃部饱胀不适的状态，Yunru注意到他的异常并回应他的提议。",
+        "affected_characters": [
+            "Libra",
+            "Yunru"
+        ]
+    },
+    {
+        "event_id": "5178f5e3774e46f385ab9c1ed3ff61a8",
+        "initiator": "Libra",
+        "time": "2026-11-05 12:34:45",
+        "requested_action": "Libra察觉到Yunru注意到自己的不适，停下脚步微微弯着腰用另一只手轻轻按了按自己鼓胀的腹部，对着Yunru扯出一个安抚的笑，软着声音跟她说“我没事，就是刚才吃太多有点胀，我们先去杂货铺买软糖吧，刚好顺路进去歇会儿”，说话时气息稍有些不稳，攥着Yunru的手微微用了点力，脚步不自觉往杂货铺的方向挪了挪。",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Libra察觉到Yunru注意到自己的不适后停下脚步，微微弯腰用另一只手轻按鼓胀的腹部，对着Yunru扯出安抚的笑，说明自己只是吃太多腹胀，提议先去杂货铺买软糖顺路歇会儿，说话时气息稍不稳，攥着Yunru的手微微用力，脚步往杂货铺方向挪了挪。Yunru见状伸手扶稳他的胳膊，点了点头同意他的提议，放慢脚步陪着他沿步道走到街边的杂货铺，两人进入杂货铺后 Libra 靠在货架旁稍作休息，胃部不适没有进一步加重。",
+        "summary": "Libra向Yunru解释自身不适为腹胀，提议前往杂货铺买糖歇脚，Yunru陪同他到达杂货铺，Libra胃部不适未加重，二人位置变更为convenience_store，对应地点current_characters更新",
+        "affected_characters": [
+            "Libra",
+            "Yunru"
+        ]
+    },
+    {
+        "event_id": "cbe6312e1ab8477e94aeed76a4b691d3",
+        "initiator": "Yunru",
+        "time": "2026-11-05 12:35:01",
+        "requested_action": "Yunru抬手轻轻扶着Libra的胳膊让他靠在自己身上稍作休息，另一只手拿起收银台旁的两包橘子软糖晃了晃，软着声音跟他说“我们拿你最喜欢的橘子味好不好？等下回去泡热牛奶的时候还能丢两颗进去，会甜甜的”，说完侧过头看向收银员示意结账，指尖还轻轻顺着Libra的后背帮他缓解腹胀的不适。",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Yunru抬手轻轻扶着Libra的胳膊让他靠在自己身上稍作休息，另一只手拿起收银台旁的两包橘子软糖晃了晃，软着声音跟Libra说拿他最喜欢的橘子味，回去泡热牛奶的时候还能丢两颗进去会甜甜的，说完侧过头看向收银员示意结账，指尖还轻轻顺着Libra的后背帮他缓解腹胀的不适。Libra靠在Yunru身上，感受到后背的轻抚后胃部饱胀感有所缓解，嘴角露出放松的笑意，点头同意Yunru的提议。结账完成后，Yunru触发short trip特殊事件：二人将从convenience_store出发沿willow_lane返回libra_apartment，沿途微风与熟悉的街景让Yunru感到心情愉悦，旅行过程顺利。",
+        "summary": "Yunru在便利店挑选橘子软糖并示意结账，同时帮Libra抚背缓解腹胀，Libra不适稍有缓解；Yunru触发short trip特殊事件，二人即将沿步道返回libra_apartment。",
+        "affected_characters": [
+            "Yunru",
+            "Libra"
+        ]
+    },
+    {
+        "event_id": "5788061e0f1042a8bc18e685b27eca2e",
+        "initiator": "Libra",
+        "time": "2026-11-05 14:35:22",
+        "requested_action": "Libra侧过脸蹭了蹭Yunru的胳膊，指尖轻轻勾住她揣着软糖的外套口袋边缘，软着声音跟她说“等下到家我把牛奶煮得温温的，我们加半颗棉花糖好不好？上次你说喜欢的那种棉花糖我上次囤了半盒在橱柜里”，说话时脚步稳稳跟着她往前走，目光扫过路边熟悉的柳树梢，嘴角带着浅淡的笑意。",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Libra侧过脸蹭了蹭Yunru的胳膊，指尖轻轻勾住她揣着软糖的外套口袋边缘，软着声音提议到家后煮温牛奶时加她喜欢的半颗棉花糖，说明自己已经囤了半盒该款棉花糖在橱柜里，说话时脚步稳稳跟着Yunru往前走，目光扫过路边熟悉的柳树梢，嘴角带着浅淡的笑意。Yunru听到提议后弯起眼睛点头回应，指尖轻轻捏了捏Libra的手背，两人沿edge_8往libra_apartment方向的步伐更加轻快，氛围亲昵放松。本次触发特殊事件take a shower with Yunru：二人回到Libra公寓后将一同沐浴，享受当下的温暖与亲密感。",
+        "summary": "Libra向Yunru提议回公寓后煮温牛奶加棉花糖，Yunru予以回应，二人继续沿edge_8返程，触发共同沐浴的特殊事件，双方情绪均有所提升。",
+        "affected_characters": [
+            "Libra",
+            "Yunru"
+        ]
+    },
+    {
+        "event_id": "4d5bbcfb89504de09bff8c461280890a",
+        "initiator": "Yunru",
+        "time": "2026-11-05 16:36:18",
+        "requested_action": "Yunru侧过头在Libra脸颊上轻轻啄了一下，指尖摩挲着手里温热的牛奶杯沿，软着声音跟他说“牛奶温度刚好哦，我陪你慢慢喝，喝完我们一起去浴室放热水好不好？我带了桃子味的沐浴球，等下可以一起用”，说话时另一只手轻轻搭在他的膝盖上，指尖慢悠悠蹭着他的裤腿，眼睛弯成月牙看向他。",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Yunru侧过头在Libra脸颊上轻轻啄了一下，指尖摩挲着手里温热的牛奶杯沿，软着声音跟Libra说“牛奶温度刚好哦，我陪你慢慢喝，喝完我们一起去浴室放热水好不好？我带了桃子味的沐浴球，等下可以一起用”，说话时另一只手轻轻搭在Libra的膝盖上，指尖慢悠悠蹭着他的裤腿，眼睛弯成月牙看向他。Libra感受到脸颊的轻吻和膝盖上的暖意，嘴角笑意加深，抬手轻轻捏了捏Yunru的脸颊，点头答应她的提议，氛围依旧亲昵放松。同时Yunru触发boredom特殊事件，突然感到一阵无聊和烦躁，原本高涨的兴致稍有回落，但没有打断当前和Libra的互动。",
+        "summary": "Yunru向Libra提议喝完牛奶后一起去浴室放热水，两人互动亲昵；Yunru触发boredom特殊事件，出现无聊烦躁的情绪，心情稍有回落。",
+        "affected_characters": [
+            "Yunru",
+            "Libra"
+        ]
+    },
+    {
+        "event_id": "d096030843fa4a00ada51a575c85c61c",
+        "initiator": "Libra",
+        "time": "2026-11-05 18:36:45",
+        "requested_action": "Libra微微倾身靠近Yunru，指尖轻轻擦过她沾了点奶渍的唇角，凑过去在她刚才吻过的脸颊位置回了一个软乎乎的吻，弯着眼睛跟她说“等下我们洗完澡可以把橘子软糖放在窗台上吹凉，我还有上次买的桃子味香薰，点上整个屋子都会香香的”，说话时指尖轻轻勾住她搭在自己膝盖上的手晃了晃，把自己杯子里剩下的半口温牛奶慢慢喝完。",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Libra微微倾身靠近Yunru，指尖轻轻擦过她沾了点奶渍的唇角，凑过去在她刚才吻过的脸颊位置回了一个软乎乎的吻，弯着眼睛跟她说“等下我们洗完澡可以把橘子软糖放在窗台上吹凉，我还有上次买的桃子味香薰，点上整个屋子都会香香的”，说话时指尖轻轻勾住她搭在自己膝盖上的手晃了晃，把自己杯子里剩下的半口温牛奶慢慢喝完。与此同时Libra触发bad emotion strike特殊事件，突然被强烈的负面情绪裹挟，觉得周遭一切都失去意义，世界变得灰暗沉闷，巨大的悲伤和绝望感袭来，脸上的笑意瞬间褪去，指尖不自觉松开了勾着Yunru的手，握着空牛奶杯的指节微微泛白。Yunru察觉到Libra的状态骤变，原本的无聊烦躁感被担忧取代，抬手轻轻覆上Libra冰凉的手背，关切地看向他。",
+        "summary": "Libra回吻Yunru、提及洗完澡后的安排并喝完剩余的温牛奶，随后触发bad emotion strike特殊事件，情绪骤降陷入悲伤绝望；Yunru察觉到Libra的异常，担忧情绪上升，无聊感消退。",
+        "affected_characters": [
+            "Libra",
+            "Yunru"
+        ]
+    },
+    {
+        "event_id": "a8994400ea914f5a8fd9f132987dbbad",
+        "initiator": "Yunru",
+        "time": "2026-11-05 18:37:06",
+        "requested_action": "Yunru指尖轻轻摩挲着Libra泛白的指节，另一只手伸过去环住他的腰把人往自己怀里带了带，软着声音凑到他耳边轻声说“没事的哦，我在这儿陪着你呢，要是不舒服就靠在我怀里歇会儿，我们不急着去浴室的”，说话时下巴轻轻抵在他的肩窝，掌心顺着他的后背慢慢拍抚，整个人把他笼在自己的暖意里。",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Yunru指尖轻轻摩挲着Libra泛白的指节，另一只手环住Libra的腰把人往自己怀里带，软着声音凑到他耳边轻声安抚，说自己会陪着他、不舒服可以靠在怀里歇会儿、不急着去浴室，说话时下巴轻轻抵在Libra的肩窝，掌心顺着他的后背慢慢拍抚，把他笼在自己的暖意里。Libra靠在Yunru的怀里，紧绷的身体慢慢放松下来，冰凉的指尖逐渐回暖，被悲伤裹挟的情绪稍有舒缓，原本泛白的指节也放松了些。随后二人按照特殊事件的安排一同前往浴室放热水，使用Yunru带来的桃子味沐浴球共同沐浴，温热的水流和亲昵的氛围让两人都感到放松舒适，Libra的负面情绪进一步缓解，Yunru的心情也更加愉悦。",
+        "summary": "Yunru安抚陷入负面情绪的Libra，Libra情绪有所舒缓，随后二人触发共同沐浴的特殊事件，一同完成沐浴，双方情绪均得到正向提升；Libra的mood回升，Yunru的mood上升。",
+        "affected_characters": [
+            "Yunru",
+            "Libra"
+        ]
+    },
+    {
+        "event_id": "22c4d0aad48e4e67bcca21b683a40e8f",
+        "initiator": "Libra",
+        "time": "2026-11-05 20:37:33",
+        "requested_action": "Libra指尖轻轻捏了捏和Yunru相扣的手，侧过脸朝她弯了弯眼睛，抬手指向料理台的方向，软着声音跟她说“我们先拿厨房纸把溅出来的面糊擦掉好不好？擦完我去把煎锅开小火预热，等下你负责倒面糊我来翻，我们这次肯定能煎出圆圆软软的松饼”，说话时微微抬身拉着Yunru的手往厨房角的方向走，视线扫过料理台边放着的干净厨房纸，脚步放得很缓。",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Libra指尖轻轻捏了捏和Yunru相扣的手，侧过脸朝她弯了弯眼睛，抬手指向料理台方向，软着声音和Yunru提议先用厨房纸擦掉溅出的面糊，擦完自己去开小火预热煎锅，之后Yunru负责倒面糊自己负责翻面，两人这次能煎出圆圆软软的松饼，说话时微微抬身拉着Yunru的手往厨房角方向走，视线扫过料理台边放着的干净厨房纸，脚步放得很缓。Yunru笑着点头回应，顺着Libra的力道一同走到厨房角，主动伸手扯过料理台边的干净厨房纸递了一半给Libra，两人一同开始擦拭溅在料理台面上的面糊，氛围放松融洽。",
+        "summary": "Libra向Yunru提议一同清理料理台溅出的面糊、后续分工制作松饼，二人一同走到厨房角开始清理工作，双方情绪保持稳定愉悦。",
+        "affected_characters": [
+            "Libra",
+            "Yunru"
+        ]
+    },
+    {
+        "event_id": "6c98d360fd9e475ab4e29a2b249ad5cc",
+        "initiator": "Yunru",
+        "time": "2026-11-05 20:37:53",
+        "requested_action": "Yunru拿着厨房纸把料理台边缘最后一点面糊擦干净，指尖故意蹭过Libra的手腕，歪头笑着跟他说“清理完啦，我去橱柜里拿你上次囤的草莓酱哦，等下松饼煎好了可以抹在上面，肯定甜甜的特别好吃”，说完踮脚伸手去够厨房吊柜最上层放着的草莓酱罐子，衣摆往上蹭了点露出一小截腰",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Yunru拿着厨房纸把料理台边缘最后一点面糊擦干净，指尖故意蹭过Libra的手腕，歪头笑着跟Libra说清理完了，要去橱柜拿上次囤的草莓酱，等松饼煎好抹上会很好吃，说完踮脚伸手去够厨房吊柜最上层放着的草莓酱罐子，衣摆往上蹭了点露出一小截腰。Libra看着Yunru的动作，笑着抬手扶住她的腰帮她稳住重心，指尖不小心碰到她露出来的腰侧皮肤，两人都轻轻抖了一下，氛围更显亲昵。Yunru触发short trip特殊事件：她拿到草莓酱后提议煎完松饼和Libra一起去附近的neighborhood_park散步，两人收拾好厨房后沿willow_lane步行前往公园，沿途晒着太阳、看着街边的小猫和路过的邻居，新鲜的景色和轻松的氛围让Yunru心情格外舒畅，短程旅行过程顺利。",
+        "summary": "Yunru清理完料理台最后一点面糊，提议拿草莓酱搭配松饼，踮脚够吊柜时衣摆上滑露出腰；Libra扶住她的腰，两人互动亲昵；Yunru触发short trip特殊事件，二人煎完松饼后前往neighborhood_park短途散步，Yunru心情进一步提升，双方位置后续将变更为neighborhood_park。",
+        "affected_characters": [
+            "Yunru",
+            "Libra"
+        ]
+    },
+    {
+        "event_id": "fbda3bf459494c0881897b2861610856",
+        "initiator": "Libra",
+        "time": "2026-11-05 22:38:17",
+        "requested_action": "Libra指尖轻轻摩挲着Yunru露出来的腰侧皮肤，弯着眼睛凑到她耳边软着声音说“小心点别摔了，等下草莓酱要多抹半层在你那份松饼上好不好？煎完我们沿着柳树巷慢慢走过去公园，刚才我还看到巷口的橘猫趴在晒太阳，等下可以顺路给它带块捏碎的松饼”，说话时另一只手扶住预热好的煎锅边缘，视线落在锅里慢慢凝固出细密小气泡的面糊上，指尖轻轻调整着煎锅的角度让面糊受热更均匀。",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Libra指尖轻轻摩挲着Yunru露出来的腰侧皮肤，弯着眼睛凑到她耳边软着声音提醒她小心别摔，提议多抹半层草莓酱在Yunru的那份松饼上，还说煎完松饼沿柳树巷去公园时可以顺路给巷口晒太阳的橘猫带捏碎的松饼；说话时另一只手扶住预热好的煎锅边缘，视线落在锅里慢慢凝固出细密小气泡的面糊上，指尖轻轻调整煎锅角度让面糊受热更均匀。Yunru顺利拿到草莓酱罐子，听到Libra的话后笑着点头，回身蹭了蹭Libra的脸颊，锅里的面糊受热均匀逐渐成型，麦香愈发浓郁。同时Libra触发boredom特殊事件，突然涌起一阵无聊烦躁的情绪，对周遭的氛围暂时失去了些许兴致，但没有打断当前和Yunru的互动，动作依旧平稳。",
+        "summary": "Libra和Yunru互动亲昵，松饼面糊正在均匀受热成型；Libra触发boredom特殊事件，产生无聊烦躁感，情绪稍有回落。",
+        "affected_characters": [
+            "Libra",
+            "Yunru"
+        ]
+    },
+    {
+        "event_id": "82c4848d034c45a6b86a6111d6704ae5",
+        "initiator": "Libra",
+        "time": "2026-11-06 07:36:24",
+        "requested_action": "Libra侧过脸凑到熟睡的Yunru脸颊边，软着声音轻轻喊她的名字，指尖小心翼翼碰了碰她垂在枕头上的发梢，试图轻声叫醒她，同时视线扫过床头边放着的兔子图案棉拖鞋，打算等她醒了就一起去厨房把剩下的半罐草莓酱抹在吐司上当早餐。",
+        "status": "refused",
+        "reason": "当前Yunru位于neighborhood_park，并不在libra_apartment中，Libra无法接触到熟睡的Yunru。",
+        "actual_result": "Libra侧过脸准备凑到身边喊人时，才发现身侧空无一人，这才想起昨晚两人从neighborhood_park散步结束后，Yunru已经返回了自己的公寓休息，并没有留在Libra的公寓过夜。Libra的指尖只碰到了自己身侧冰凉的床单，没有触碰到Yunru的发梢，也没有看到Yunru的兔子图案棉拖鞋。",
+        "summary": "Libra试图叫醒在自己公寓熟睡的Yunru，发现Yunru并不在该处，行动失败。",
+        "affected_characters": [
+            "Libra"
+        ]
+    },
+    {
+        "event_id": "2668cf71e3b84751a7cc7cb080b4b407",
+        "initiator": "Libra",
+        "time": "2026-11-06 23:37:41",
+        "requested_action": "Libra伸手捞过放在床头柜上的手机，指尖点开和Yunru的聊天框，软着指尖敲下消息：“醒啦，刚刚还以为你在我旁边，摸了个空。你现在有没有起床呀？我厨房还有半罐草莓酱，要不要过来一起抹吐司当早餐？” 敲完还附了一个软乎乎的猫咪歪头表情包，点了发送键。",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Libra伸手捞过床头柜上的手机，点开与Yunru的聊天框，敲下内容为“醒啦，刚刚还以为你在我旁边，摸了个空。你现在有没有起床呀？我厨房还有半罐草莓酱，要不要过来一起抹吐司当早餐？”的消息，并附上软乎乎的猫咪歪头表情包点击发送。消息成功发送至Yunru的聊天界面，当前Yunru位于edge_10步道上，尚未查看该消息。Libra发送完消息后握着手机靠在床头，等待Yunru的回复，心里的空落感稍有缓解，心情略微回升。",
+        "summary": "Libra成功向Yunru发送邀约一起吃早餐的消息，Libra的mood小幅提升，Yunru收到消息尚未查看。",
+        "affected_characters": [
+            "Libra",
+            "Yunru"
+        ]
+    },
+    {
+        "event_id": "53ddd8b39abd45dfb334a4cf8ec3259d",
+        "initiator": "Yunru",
+        "time": "2026-11-06 23:37:56",
+        "requested_action": "Yunru听到手机提示音响起，伸手从口袋里摸出手机，按亮屏幕点开和Libra的聊天框查看消息，指尖挨着屏幕慢慢划过他发来的文字和表情包，靠在床头抿着唇软下来，指尖快速敲下回复：“我正瘫在床上呢，刚才找三花没找到还胃不舒服，刚喝了温水歇着，草莓酱吐司等我缓两分钟就过去找你好不好？”，敲完还附了一个委委屈屈揉肚子的表情包，点了发送键。",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Yunru听到手机提示音后从口袋摸出手机，按亮屏幕点开与Libra的聊天框，查看了Libra发来的邀约早餐的消息和猫咪歪头表情包，指尖划过内容时抿着唇神情软下来，随后快速敲下回复内容：“我正瘫在床上呢，刚才找三花没找到还胃不舒服，刚喝了温水歇着，草莓酱吐司等我缓两分钟就过去找你好不好？”并附上委委屈屈揉肚子的表情包点击发送。消息成功发送至Libra的聊天界面，Libra尚未查看该回复。Yunru发送完消息后靠在床头，因收到Libra的邀约心情略有回升，胃部的不适感也稍有缓解。",
+        "summary": "Yunru成功查看Libra发来的早餐邀约消息并回复，Yunru的mood小幅提升，Libra收到Yunru的回复尚未查看。",
+        "affected_characters": [
+            "Yunru",
+            "Libra"
+        ]
+    },
+    {
+        "event_id": "aadeb9d4e8a84f10aa4387daa2bc2f3b",
+        "initiator": "Libra",
+        "time": "2026-11-07 07:38:19",
+        "requested_action": "Libra握着手机等了许久终于听到提示音响起，立刻按亮屏幕点开和Yunru的聊天框查看她的回复，指尖悬在屏幕上轻轻摩挲过她发的委屈揉肚子表情包，指尖快速敲下消息：“胃不舒服啊？那你慢点儿走不用急，我先把吐司烤上，再给你煮杯温温的蜂蜜水，你到了直接就能吃啦，路上注意脚滑哦”，敲完还附了一个蹦蹦跳跳挥手的小兔子表情包点击发送，然后掀开被子下床趿着拖鞋往厨房角走，先从橱柜里拿出两片吐司放进烤面包机，又翻出蜂蜜罐准备煮蜂蜜水。",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Libra听到手机提示音后立刻按亮屏幕，点开与Yunru的聊天框查看了她的回复，指尖轻轻摩挲过Yunru发的委屈揉肚子表情包，随后快速敲下关心的消息并附上蹦蹦跳跳挥手的小兔子表情包点击发送，消息成功发送至Yunru的聊天界面。之后Libra掀开被子下床趿着拖鞋走到厨房角，从橱柜里拿出两片吐司放进烤面包机，又翻出蜂蜜罐准备煮蜂蜜水，因知晓Yunru即将到来且关心对方身体，Libra的心情进一步提升。",
+        "summary": "Libra成功查看Yunru的回复并发送关心消息，随后前往厨房准备吐司和蜂蜜水，Libra的mood小幅提升，Yunru收到消息尚未查看。",
+        "affected_characters": [
+            "Libra",
+            "Yunru"
+        ]
+    },
+    {
+        "event_id": "eadeda28a8fc49f59c6ca1af3e53e802",
+        "initiator": "Libra",
+        "time": "2026-11-07 15:39:00",
+        "requested_action": "Libra伸手从橱柜里拿出那罐还剩半罐的草莓酱，拧开盖子放在吐司盘旁边，又转身走到门边把玄关的感应小夜灯拧亮免得Yunru过来时能看清台阶，之后靠在门边握着手机时不时刷一下和Yunru的聊天框，留意着门外柳树巷的脚步声，时不时抬眼看向窗外的暴雨，指尖无意识摩挲着门框边缘，等着Yunru敲门。",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Libra伸手从橱柜里拿出剩余半罐的草莓酱，拧开盖子放在吐司盘旁边，随后走到门边拧亮玄关的感应小夜灯，方便Yunru抵达时看清台阶。之后Libra靠在门边握着手机，时不时刷新和Yunru的聊天框，留意着门外柳树巷的脚步声，偶尔抬眼看向窗外的暴雨，指尖无意识摩挲着门框边缘等待Yunru敲门，全程心情保持愉悦。",
+        "summary": "Libra完成草莓酱摆放、玄关小夜灯开启的准备工作，在门边等待Yunru到来，心情维持愉悦状态。",
+        "affected_characters": [
+            "Libra",
+            "Yunru"
+        ]
+    },
+    {
+        "event_id": "f62da95730c049998577facf2cca0d72",
+        "initiator": "Yunru",
+        "time": "2026-11-07 15:39:14",
+        "requested_action": "Yunru抬着的手轻轻叩响Libra公寓的门板，叩门节奏是两人之前约定好的三长两短，边敲门边对着门内软声喊：“Libra我到啦，还带了上次在公园捡的超好看的枫树叶给你！”，另一只手不自觉摸了摸口袋里的枫树叶，指尖因为有点小激动微微发烫。",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Yunru站在libra_apartment门外，按两人约定的三长两短节奏轻轻叩响门板，同时对着门内软声告知自己已抵达并带来了公园捡的枫树叶礼物，另一只手摸着口袋里的枫树叶，指尖因激动微微发烫。门内的Libra听到了熟悉的叩门声和Yunru的声音，立刻停止摩挲门框，握着手机准备开门。",
+        "summary": "Yunru抵达libra_apartment门外，按约定节奏叩门并告知Libra自己到来，Libra听到叩门声准备开门，两人mood均小幅提升。",
+        "affected_characters": [
+            "Yunru",
+            "Libra"
+        ]
+    },
+    {
+        "event_id": "01b6be8667b34926bb36453e7cc6f45d",
+        "initiator": "Libra",
+        "time": "2026-11-07 23:39:35",
+        "requested_action": "Libra听到熟悉的叩门声立刻快步走到门边，指尖握住门把向下拧开房门，笑着抬眼看向站在门外的Yunru，伸手先接过她拎着的东西，另一只手轻轻揽过她的胳膊把人拉进屋里，软着声音说：“总算到啦，外面雨是不是很大？快进来暖暖，吐司刚烤好还热着，我给你煮的蜂蜜水温度刚好。” 边说边低头帮她拂掉发梢沾着的细碎雨珠。",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Libra听到熟悉的叩门声后立刻快步走到门边，指尖握住门把向下拧开房门，笑着抬眼看向站在门外的Yunru，伸手接过她携带的物品，另一只手轻轻揽过她的胳膊将人拉进屋里，软着声音关切问候，同时低头帮她拂掉发梢沾着的细碎雨珠。Yunru顺利进入Libra的公寓，身上被雨微微打湿的外套被Libra接过挂在玄关衣架上，两人随后一同走到餐桌边准备用餐，氛围亲昵愉悦。",
+        "summary": "Libra开门迎接Yunru进入公寓，接过她的物品并帮她拂去发梢雨珠，两人准备共同食用草莓酱吐司，Libra和Yunru的心情均保持愉悦。",
+        "affected_characters": [
+            "Libra",
+            "Yunru"
+        ]
+    },
+    {
+        "event_id": "ac0947b98f004e519c897e0f4fa34d3c",
+        "initiator": "Yunru",
+        "time": "2026-11-07 23:39:47",
+        "requested_action": "Yunru从口袋里掏出那片压得平整的红枫树叶，指尖捏着叶柄递到Libra面前，眼睛亮晶晶地弯起来，软声说：“你看这个枫叶的纹路超好看，我上次去公园特意捡了夹在笔记本里压好的，给你当书签好不好？”",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Yunru从口袋里掏出之前在公园捡拾并压平整的红枫树叶，指尖捏着叶柄递到Libra面前，眼睛亮晶晶弯起，软声说明这是特意捡来压好准备送给Libra当书签的礼物。Libra接过这片纹路好看的红枫树叶，感到惊喜开心，两人之间的氛围更加亲昵愉悦。",
+        "summary": "Yunru成功将准备好的红枫树叶礼物送给Libra，两人心情均保持愉悦，Libra收到枫叶书签礼物。",
+        "affected_characters": [
+            "Yunru",
+            "Libra"
+        ]
+    },
+    {
+        "event_id": "e30c85d7676d49b98b13f0042d15314e",
+        "initiator": "Libra",
+        "time": "2026-11-08 00:00:10",
+        "requested_action": "根据当前处境推演本次抽中的特殊行动。",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Libra正拉着Yunru的手走到餐桌边准备食用草莓酱吐司时，突然毫无征兆地被强烈的负面情绪裹挟，周遭的一切都变得灰暗无趣，巨大的悲伤和绝望感像巨石一样压在心头，指尖无意识松开了Yunru的手，脸上的笑容瞬间消散，眼神变得空洞茫然，身体微微晃了晃，站在原地半天没有动作。身旁的Yunru察觉到Libra的异常，握着书签的手顿了顿，关切地看向她。",
+        "summary": "Libra触发bad emotion strike负面情绪冲击事件，情绪骤然陷入低落绝望，松开了Yunru的手，状态出现异常；Yunru察觉到Libra的变化。",
+        "affected_characters": [
+            "Libra",
+            "Yunru"
+        ]
+    },
+    {
+        "event_id": "c72ecd155faa44f5868654c9458f062a",
+        "initiator": "Libra",
+        "time": "2026-11-08 07:40:05",
+        "requested_action": "Libra空洞的眼神轻轻动了动，视线缓慢落在身旁Yunru关切的脸上，嘴唇微微颤动了两下，费力地抬起僵硬的手，轻轻碰了碰Yunru攥着枫叶书签的手背，哑着嗓子发出极轻的气音：“……我没事的，只是忽然有点累。”",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Libra空洞的眼神轻轻动了动，视线缓慢落在身旁Yunru关切的脸上，嘴唇微微颤动两下后费力抬起僵硬的手，轻轻碰了碰Yunru攥着枫叶书签的手背，哑着嗓子发出极轻的气音告知对方自己只是忽然有点累、没有大碍。Yunru感受到手背的触碰，听到Libra的回应后悬着的心稍微放松，担忧的情绪略有缓和，下意识抬手轻轻扶住Libra微微僵硬的手臂。",
+        "summary": "Libra从持续七小时的失神状态中轻微恢复，主动触碰Yunru的手背并开口安抚对方，情绪略有回升；Yunru察觉到Libra的回应，担忧情绪稍有缓解。",
+        "affected_characters": [
+            "Libra",
+            "Yunru"
+        ]
+    },
+    {
+        "event_id": "09077c0da9f14fa09c566d3a69c3ffdf",
+        "initiator": "Yunru",
+        "time": "2026-11-08 07:40:23",
+        "requested_action": "Yunru轻轻扶住Libra的手臂让她靠在自己身上，软声提议道：“那我们先不去吃吐司啦，我扶你回床上躺一会儿好不好？我煮点热可可给你喝，加你最喜欢的棉花糖。” 边说边侧过脸蹭了蹭Libra的发顶，指尖轻轻拍着她的后背安抚她的情绪。",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Yunru轻轻扶住Libra的手臂让她靠在自己身上，软声提议先不吃吐司，扶她回床上休息，自己去煮加棉花糖的热可可，同时侧过脸蹭了蹭Libra的发顶，指尖轻轻拍着她的后背安抚她的情绪。Libra感受到Yunru的安抚，紧绷的身体稍微放松，情绪略有好转。",
+        "summary": "Yunru扶住Libra并提出休息和煮热可可的提议，同时安抚Libra的情绪，Libra情绪有所缓和，Yunru的mood维持较高水平，Libra的mood小幅上升。",
+        "affected_characters": [
+            "Yunru",
+            "Libra"
+        ]
+    },
+    {
+        "event_id": "337039a3a7f4425f85a0f031ced2631c",
+        "initiator": "Libra",
+        "time": "2026-11-08 15:40:42",
+        "requested_action": "Libra顺着Yunru的力道轻轻靠在她肩头，下巴抵着她的肩窝微微点了点头，指尖轻轻勾住Yunru的袖口，哑着嗓子软声回应：“嗯……不想躺，陪我在沙发上坐会儿好不好？等缓过来我们再一起吃吐司。”",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Libra顺着Yunru的力道轻轻靠在她肩头，下巴抵着她的肩窝微微点了点头，指尖轻轻勾住Yunru的袖口，哑着嗓子软声回应希望留在沙发上休息、等缓过来再一同吃吐司。Yunru收到Libra的回应后调整姿势让对方靠得更舒服，没有坚持回房的提议，指尖仍轻拍她的后背安抚，两人一同停留在沙发区域休息。",
+        "summary": "Libra回应Yunru的提议，选择留在沙发上休息，Yunru顺从Libra的意愿继续安抚她，Libra的情绪进一步缓和，两人相处氛围保持温馨。",
+        "affected_characters": [
+            "Libra",
+            "Yunru"
+        ]
+    },
+    {
+        "event_id": "7c2fb506389b4b71b2f4c0ec9926963a",
+        "initiator": "Yunru",
+        "time": "2026-11-08 15:40:56",
+        "requested_action": "Yunru调整坐姿让Libra靠得更舒服些，指尖轻轻摩挲着她的手背，软声顺着她的话说：“好呀，那我们就在沙发上坐会儿，等你想吃吐司了我们再热。要是冷的话我去拿条小毯子给你盖好不好？” 边说边抬眼扫了一眼沙发旁的置物架，确认小毯子的位置。",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Yunru调整坐姿让靠在自己肩头的Libra更舒服，指尖轻轻摩挲着她的手背，软声同意留在沙发休息、等Libra想吃吐司时再加热，同时询问她是否需要拿小毯子盖，边说边扫了一眼沙发旁置物架确认小毯子的位置。Libra感受到Yunru的贴心照料，紧绷的状态进一步放松。",
+        "summary": "Yunru调整姿势照料靠在肩头的Libra，同意留在沙发休息并询问是否需要盖小毯子，确认了置物架上小毯子的位置，Libra状态进一步放松，两人mood均小幅提升。",
+        "affected_characters": [
+            "Yunru",
+            "Libra"
+        ]
+    },
+    {
+        "event_id": "e200a9d3d9a34af8a2d010c601f65efc",
+        "initiator": "Libra",
+        "time": "2026-11-08 23:41:23",
+        "requested_action": "Libra抬手轻轻蹭了蹭Yunru的脸颊，弯起眼睛软声说：“我现在好多啦，不冷的，我们去把吐司热一下好不好？我还想给刚才收到的红枫书签找个好看的信封收起来，等下次去图书馆的时候就能用了。” 边说边慢慢直起身，伸手轻轻牵住Yunru的手准备往餐桌方向走。",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Libra抬手轻轻蹭了蹭Yunru的脸颊，弯起眼睛软声告知对方自己已经好多了、不冷，提出一起去热吐司，还想给收到的红枫书签找个好看的信封收起来方便之后去图书馆用，边说边慢慢直起身，伸手轻轻牵住Yunru的手准备往餐桌方向走。Yunru感受到Libra状态好转，笑着应声站起，顺着她的力道一同往餐桌方向走，指尖回握住她的手，两人氛围轻松愉悦。",
+        "summary": "Libra状态完全恢复，提出热吐司和收纳红枫书签的计划，牵起Yunru的手往餐桌方向走，两人心情均保持愉悦。",
+        "affected_characters": [
+            "Libra",
+            "Yunru"
+        ]
+    },
+    {
+        "event_id": "1a26bbf05b70428495045c48bd3c99da",
+        "initiator": "Yunru",
+        "time": "2026-11-08 23:41:39",
+        "requested_action": "Yunru笑着回握住Libra的手顺着她的力道站起身，另一只手还轻轻拢了拢搭在Libra身上的小毯子免得滑落，软声应道：“好呀，我去热吐司，你去翻抽屉找信封好不好？我记得你上次买的那个印着小樱花的信封超好看，配红枫肯定合适。” 边说边牵着她慢慢往餐桌方向走，脚步放得很缓免得她还没缓过来头晕。",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Yunru触发sudden curiosity特殊事件，突然产生打破日常 routine 的念头，她笑着回握住Libra的手顺着力道站起身，另一只手轻轻拢了拢搭在Libra身上的小毯子防止滑落，软声同意热吐司的提议，主动提出分工让Libra去找信封，提及上次Libra买的印着小樱花的信封和红枫书签很相配，边说边牵着Libra放慢脚步往餐桌方向走，担心Libra还没缓过来头晕。Libra感受到Yunru的细心照料，心情更加轻松愉悦，点头同意了分工安排。",
+        "summary": "Yunru触发sudden curiosity特殊事件，同时完成回握Libra的手、整理小毯子、回应提议、分工安排、陪同前往餐桌的行动，两人状态均保持良好，相处氛围融洽。",
+        "affected_characters": [
+            "Yunru",
+            "Libra"
+        ]
+    },
+    {
+        "event_id": "401c5a48696d4d48acd9e7cbf57e0fde",
+        "initiator": "Libra",
+        "time": "2026-11-09 07:41:59",
+        "requested_action": "Libra笑着点头应下分工，指尖轻轻晃了晃和Yunru相牵的手，软声说了句“好呀，那我去书桌抽屉找樱花信封”，走到餐桌边拿起放在收纳盒里的红枫书签，转身往书桌方向走去准备翻找信封。",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Libra笑着点头应下分工，指尖轻轻晃了晃和Yunru相牵的手，软声告知对方自己要去书桌抽屉找樱花信封，走到餐桌边拿起放在收纳盒里的红枫书签，转身往书桌方向走去准备翻找信封；Yunru站在餐桌边松开和Libra相牵的手，转身走向厨房角落准备加热吐司。",
+        "summary": "Libra同意分工安排，取走收纳盒中的红枫书签前往书桌找信封，Yunru准备去厨房热吐司，两人按分工开展行动，心情均保持愉悦。",
+        "affected_characters": [
+            "Libra",
+            "Yunru"
+        ]
+    },
+    {
+        "event_id": "28b260059d0e4d7291986915202bc51a",
+        "initiator": "Yunru",
+        "time": "2026-11-09 07:42:13",
+        "requested_action": "Yunru转身走向公寓的厨房角落，先打开橱柜取出装着吐司的保鲜袋，拿出两片吐司放进吐司机里，再按下加热开关，等待吐司加热的间隙抬眼往Libra所在的书桌方向望了望，嘴角带着笑意。",
+        "status": "success",
+        "reason": "",
+        "actual_result": "Yunru走到Libra公寓的厨房角落，打开橱柜取出吐司保鲜袋，拿出两片吐司放入吐司机并按下加热开关，等待加热时抬眼望向书桌方向的Libra，嘴角带着笑意。Libra在书桌边翻找抽屉时察觉到Yunru的视线，回头朝Yunru晃了晃刚找到的樱花信封，两人互动温馨。",
+        "summary": "Yunru按分工完成吐司加热的准备操作，等待时看向Libra，两人互动融洽，情绪保持愉悦。",
+        "affected_characters": [
+            "Yunru",
+            "Libra"
+        ]
     }
 ]

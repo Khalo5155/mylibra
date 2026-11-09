@@ -98,7 +98,7 @@
         },
         "university": {
             "description": "A comprehensive urban university campus with teaching buildings, libraries, sports grounds, landscaped walkways, and a busy main gate opening directly onto the surrounding town's commercial streets.",
-            "weather": "rainy",
+            "weather": "foggy",
             "temperature": 27,
             "altitude": 40,
             "latitude": 31.245,
@@ -116,7 +116,7 @@
         },
         "libra_apartment": {
             "description": "Libra's private compact one-room apartment on the street-facing side of the dormitory block. It contains one main living room, a real exterior window, a bed, a compact kitchen corner with cabinets and a small refrigerator, and a private front door that opens directly onto Willow Lane. Chocolate is stored in the kitchen cabinet as normal household food. The apartment is fully separate from Yunru's home.",
-            "weather": "foggy",
+            "weather": "stormy",
             "temperature": 26,
             "altitude": 35,
             "latitude": 31.23052,
@@ -128,7 +128,7 @@
         },
         "yunru_apartment": {
             "description": "Yunru's private compact one-room apartment immediately next door to Libra's, with its own exterior window, bed, compact kitchen corner, storage, and a separate front door opening directly onto Willow Lane. The two apartments are neighboring units only; there is no shared interior passage or default access between them.",
-            "weather": "sunny",
+            "weather": "foggy",
             "temperature": 26,
             "altitude": 35,
             "latitude": 31.2305,
@@ -137,7 +137,7 @@
         },
         "willow_lane": {
             "description": "A short residential street running along the front of the dormitory block, with sidewalks, streetlights, bicycle parking, a few small storefronts, and direct entrances to Libra's and Yunru's apartments. It connects the homes to the wider neighborhood road network.",
-            "weather": "cloudy",
+            "weather": "sunny",
             "temperature": 28,
             "altitude": 35,
             "latitude": 31.23045,
@@ -146,7 +146,7 @@
         },
         "convenience_store": {
             "description": "A small neighborhood convenience store within a few minutes' walk of the apartments, selling snacks, chocolate, drinks, simple meals, household supplies, and other daily necessities.",
-            "weather": "sunny",
+            "weather": "rainy",
             "temperature": 27,
             "altitude": 34,
             "latitude": 31.22975,
@@ -164,7 +164,7 @@
         },
         "neighborhood_park": {
             "description": "A small public park with shade trees, benches, a short walking loop, open grass, and a quiet seating area used by nearby residents.",
-            "weather": "rainy",
+            "weather": "sunny",
             "temperature": 27,
             "altitude": 36,
             "latitude": 31.22865,
@@ -173,7 +173,7 @@
         },
         "neighborhood_clinic": {
             "description": "A small neighborhood clinic with a general consultation room, basic first-aid services, and an attached pharmacy for routine health needs.",
-            "weather": "cloudy",
+            "weather": "snowy",
             "temperature": 26,
             "altitude": 34,
             "latitude": 31.22895,

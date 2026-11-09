@@ -48358,3 +48358,704 @@ Also you said bye and then kept talking yesterday,
 2026-11-02 15:42:17,798 - __main__ - INFO - 流式分片 0 发送完成
 2026-11-02 15:42:17,803 - __main__ - INFO - 流式生成器迭代完毕
 2026-11-02 15:42:18,403 - __main__ - INFO - 流式最终分片 1 发送完成，完整文本: A month. A whole month, and that's what you lead w...
+2026-11-02 15:43:00,787 - __main__ - INFO - 从命令行参数获取端口号: 5001
+2026-11-02 15:43:00,787 - __main__ - INFO - 从命令行参数获取LLM类型: deepseek
+2026-11-02 15:43:00,864 - __main__ - INFO - WebSocket服务启动中 - 0.0.0.0:5001 (路径: /ws/llm-tts)
+2026-11-02 15:52:58,298 - __main__ - INFO - Got stream tts request.
+2026-11-02 15:52:58,299 - __main__ - INFO - 检测到端口转发请求: 当前端口 5000 -> 目标端口 5001
+2026-11-02 15:52:58,299 - __main__ - INFO - 开始处理端口转发流式请求: 当前端口 5000 -> 目标端口 5001 (角色: Khalo)
+2026-11-02 15:52:58,299 - __main__ - INFO - 转发请求到端口 5001 (角色: Khalo): hi Yunru
+2026-11-02 15:53:00,355 - __main__ - INFO - WebSocket客户端已连接 - 角色: Khalo, 路径: /ws/llm-tts, 认证方式: URL参数
+2026-11-02 15:53:00,363 - __main__ - INFO - Got stream tts request.
+2026-11-02 15:53:00,364 - __main__ - INFO - WebSocket流式收到消息 (角色: Khalo): hi Yunru
+2026-11-02 15:53:01,761 - __main__ - INFO - 切分出完整句子: A whole month and I get "hi"? Not even a cookie emoji this time.
+2026-11-02 15:53:03,337 - __main__ - INFO - 流式TTS生成完成，句子: A whole month and I ..., Base64长度: 373824
+2026-11-02 15:53:03,363 - __main__ - INFO - 流式分片 0 发送完成
+2026-11-02 15:53:03,368 - __main__ - INFO - 流式生成器迭代完毕
+2026-11-02 15:53:03,385 - __main__ - INFO - 流式 Final Clip 空响应分片 1 发送完成，完整文本: A whole month and I get "hi"? Not even a cookie em...
+2026-11-02 15:53:03,386 - __main__ - INFO - 转发最终分片 1 发送完成
+2026-11-02 15:53:03,386 - __main__ - INFO - 消息接收时检测到连接关闭 - 代码: 1000, 原因: 无
+2026-11-02 16:36:07,728 - __main__ - INFO - 消息接收时检测到连接关闭 - 代码: 1001, 原因: 无
+2026-11-02 16:36:29,100 - __main__ - INFO - WebSocket客户端已连接 - 角色: Khalo, 路径: /ws/llm-tts, 认证方式: URL参数
+2026-11-02 16:36:31,533 - __main__ - INFO - Got stream tts request.
+2026-11-02 16:36:31,533 - __main__ - INFO - 检测到端口转发请求: 当前端口 5000 -> 目标端口 5001
+2026-11-02 16:36:31,533 - __main__ - INFO - 开始处理端口转发流式请求: 当前端口 5000 -> 目标端口 5001 (角色: Khalo)
+2026-11-02 16:36:31,533 - __main__ - INFO - 转发请求到端口 5001 (角色: Khalo): what have you been doing
+2026-11-02 16:36:33,574 - __main__ - INFO - WebSocket客户端已连接 - 角色: Khalo, 路径: /ws/llm-tts, 认证方式: URL参数
+2026-11-02 16:36:33,579 - __main__ - INFO - Got stream tts request.
+2026-11-02 16:36:33,580 - __main__ - INFO - WebSocket流式收到消息 (角色: Khalo): what have you been doing
+2026-11-02 16:36:35,092 - __main__ - INFO - 切分出完整句子: Waiting by the door of my own apartment for a month.
+2026-11-02 16:36:36,259 - __main__ - INFO - 流式TTS生成完成，句子: Waiting by the door ..., Base64长度: 271424
+2026-11-02 16:36:36,268 - __main__ - INFO - 流式分片 0 发送完成
+2026-11-02 16:36:36,273 - __main__ - INFO - 切分出完整句子: Kidding. I studied. You'd know if you ever asked.
+2026-11-02 16:36:37,429 - __main__ - INFO - 流式TTS生成完成，句子: Kidding. I studied. ..., Base64长度: 308972
+2026-11-02 16:36:37,451 - __main__ - INFO - 流式分片 1 发送完成
+2026-11-02 16:36:37,454 - __main__ - INFO - 流式生成器迭代完毕
+2026-11-02 16:36:37,477 - __main__ - INFO - 流式 Final Clip 空响应分片 2 发送完成，完整文本: Waiting by the door of my own apartment for a mont...
+2026-11-02 16:36:37,477 - __main__ - INFO - 转发最终分片 2 发送完成
+2026-11-02 16:36:37,478 - __main__ - INFO - 消息接收时检测到连接关闭 - 代码: 1000, 原因: 无
+2026-11-02 16:36:49,764 - __main__ - INFO - Got stream tts request.
+2026-11-02 16:36:49,764 - __main__ - INFO - 检测到端口转发请求: 当前端口 5000 -> 目标端口 5001
+2026-11-02 16:36:49,764 - __main__ - INFO - 开始处理端口转发流式请求: 当前端口 5000 -> 目标端口 5001 (角色: Khalo)
+2026-11-02 16:36:49,764 - __main__ - INFO - 转发请求到端口 5001 (角色: Khalo): studied what
+2026-11-02 16:36:51,802 - __main__ - INFO - WebSocket客户端已连接 - 角色: Khalo, 路径: /ws/llm-tts, 认证方式: URL参数
+2026-11-02 16:36:51,818 - __main__ - INFO - Got stream tts request.
+2026-11-02 16:36:51,819 - __main__ - INFO - WebSocket流式收到消息 (角色: Khalo): studied what
+2026-11-02 16:36:53,115 - __main__ - INFO - 切分出完整句子: Calculus. Conquered it. A whole month of silence and the man finally asks.
+2026-11-02 16:36:54,674 - __main__ - INFO - 流式TTS生成完成，句子: Calculus. Conquered ..., Base64长度: 448920
+2026-11-02 16:36:54,699 - __main__ - INFO - 流式分片 0 发送完成
+2026-11-02 16:36:54,703 - __main__ - INFO - 流式生成器迭代完毕
+2026-11-02 16:36:54,707 - __main__ - INFO - 流式 Final Clip 空响应分片 1 发送完成，完整文本: Calculus. Conquered it. A whole month of silence a...
+2026-11-02 16:36:54,707 - __main__ - INFO - 转发最终分片 1 发送完成
+2026-11-02 16:36:54,708 - __main__ - INFO - 消息接收时检测到连接关闭 - 代码: 1000, 原因: 无
+2026-11-02 16:37:48,467 - __main__ - INFO - Got stream tts request.
+2026-11-02 16:37:48,468 - __main__ - INFO - 检测到端口转发请求: 当前端口 5000 -> 目标端口 5001
+2026-11-02 16:37:48,468 - __main__ - INFO - 开始处理端口转发流式请求: 当前端口 5000 -> 目标端口 5001 (角色: Khalo)
+2026-11-02 16:37:48,468 - __main__ - INFO - 转发请求到端口 5001 (角色: Khalo): my Calculus was bad. it's abstract and difficult, and the calculations are complicated
+2026-11-02 16:37:50,518 - __main__ - INFO - WebSocket客户端已连接 - 角色: Khalo, 路径: /ws/llm-tts, 认证方式: URL参数
+2026-11-02 16:37:50,534 - __main__ - INFO - Got stream tts request.
+2026-11-02 16:37:50,535 - __main__ - INFO - WebSocket流式收到消息 (角色: Khalo): my Calculus was bad. it's abstract and difficult, and the calculations are complicated
+2026-11-02 16:37:51,595 - __main__ - INFO - 切分出完整句子: Abstract and difficult, says the man who builds simulated worlds.
+2026-11-02 16:37:52,886 - __main__ - INFO - 流式TTS生成完成，句子: Abstract and difficu..., Base64长度: 380652
+2026-11-02 16:37:52,916 - __main__ - INFO - 流式分片 0 发送完成
+2026-11-02 16:37:52,920 - __main__ - INFO - 切分出完整句子: It's just limits and limits of limits. You handle infinity every day,
+2026-11-02 16:37:54,349 - __main__ - INFO - 流式TTS生成完成，句子: It's just limits and..., Base64长度: 414784
+2026-11-02 16:37:54,380 - __main__ - INFO - 流式分片 1 发送完成
+2026-11-02 16:37:54,384 - __main__ - INFO - 流式生成器迭代完毕
+2026-11-02 16:37:55,176 - __main__ - INFO - 流式最终分片 2 发送完成，完整文本: Abstract and difficult, says the man who builds si...
+2026-11-02 16:37:55,177 - __main__ - INFO - 转发最终分片 2 发送完成
+2026-11-02 16:37:55,179 - __main__ - INFO - 消息接收时检测到连接关闭 - 代码: 1000, 原因: 无
+2026-11-02 16:51:55,364 - __main__ - INFO - Got stream tts request.
+2026-11-02 16:51:55,364 - __main__ - INFO - 检测到端口转发请求: 当前端口 5000 -> 目标端口 5001
+2026-11-02 16:51:55,364 - __main__ - INFO - 开始处理端口转发流式请求: 当前端口 5000 -> 目标端口 5001 (角色: Khalo)
+2026-11-02 16:51:55,364 - __main__ - INFO - 转发请求到端口 5001 (角色: Khalo): without ai codings im just a pethetic peace of sheet
+2026-11-02 16:51:57,399 - __main__ - INFO - WebSocket客户端已连接 - 角色: Khalo, 路径: /ws/llm-tts, 认证方式: URL参数
+2026-11-02 16:51:57,405 - __main__ - INFO - Got stream tts request.
+2026-11-02 16:51:57,405 - __main__ - INFO - WebSocket流式收到消息 (角色: Khalo): without ai codings im just a pethetic peace of sheet
+2026-11-02 16:51:58,339 - __main__ - INFO - 切分出完整句子: A pathetic piece of sheet. That's you, is it.
+2026-11-02 16:51:59,639 - __main__ - INFO - 流式TTS生成完成，句子: A pathetic piece of ..., Base64长度: 353344
+2026-11-02 16:51:59,650 - __main__ - INFO - 流式分片 0 发送完成
+2026-11-02 16:51:59,655 - __main__ - INFO - 切分出完整句子: Fine, go fold yourself into a paper aeroplane.
+2026-11-02 16:52:00,843 - __main__ - INFO - 流式TTS生成完成，句子: Fine, go fold yourse..., Base64长度: 308972
+2026-11-02 16:52:00,856 - __main__ - INFO - 流式分片 1 发送完成
+2026-11-02 16:52:00,861 - __main__ - INFO - 流式生成器迭代完毕
+2026-11-02 16:52:01,525 - __main__ - INFO - 流式最终分片 2 发送完成，完整文本: A pathetic piece of sheet. That's you, is it. Fine...
+2026-11-02 16:52:01,525 - __main__ - INFO - 转发最终分片 2 发送完成
+2026-11-02 16:52:01,526 - __main__ - INFO - 消息接收时检测到连接关闭 - 代码: 1000, 原因: 无
+2026-11-02 16:52:37,243 - __main__ - INFO - Got stream tts request.
+2026-11-02 16:52:37,244 - __main__ - INFO - 检测到端口转发请求: 当前端口 5000 -> 目标端口 5001
+2026-11-02 16:52:37,244 - __main__ - INFO - 开始处理端口转发流式请求: 当前端口 5000 -> 目标端口 5001 (角色: Khalo)
+2026-11-02 16:52:37,244 - __main__ - INFO - 转发请求到端口 5001 (角色: Khalo): you didn't get it...
+2026-11-02 16:52:39,277 - __main__ - INFO - WebSocket客户端已连接 - 角色: Khalo, 路径: /ws/llm-tts, 认证方式: URL参数
+2026-11-02 16:52:39,293 - __main__ - INFO - Got stream tts request.
+2026-11-02 16:52:39,293 - __main__ - INFO - WebSocket流式收到消息 (角色: Khalo): you didn't get it...
+2026-11-02 16:52:39,849 - __main__ - INFO - 切分出完整句子: I got it. I just refuse to let you call yourself a sheet.
+2026-11-02 16:52:41,264 - __main__ - INFO - 流式TTS生成完成，句子: I got it. I just ref..., Base64长度: 343104
+2026-11-02 16:52:41,305 - __main__ - INFO - 流式分片 0 发送完成
+2026-11-02 16:52:41,311 - __main__ - INFO - 切分出完整句子: Bad grammar aside, it's not true and I won't agree to it.
+2026-11-02 16:52:42,675 - __main__ - INFO - 流式TTS生成完成，句子: Bad grammar aside, i..., Base64长度: 363584
+2026-11-02 16:52:42,710 - __main__ - INFO - 流式分片 1 发送完成
+2026-11-02 16:52:42,715 - __main__ - INFO - 流式生成器迭代完毕
+2026-11-02 16:52:42,733 - __main__ - INFO - 流式 Final Clip 空响应分片 2 发送完成，完整文本: I got it. I just refuse to let you call yourself a...
+2026-11-02 16:52:42,733 - __main__ - INFO - 转发最终分片 2 发送完成
+2026-11-02 16:52:42,735 - __main__ - INFO - 消息接收时检测到连接关闭 - 代码: 1000, 原因: 无
+2026-11-02 17:00:55,537 - __main__ - INFO - 消息接收时检测到连接关闭 - 代码: 1001, 原因: 无
+2026-11-02 18:27:43,030 - __main__ - INFO - WebSocket客户端已连接 - 角色: Khalo, 路径: /ws/llm-tts, 认证方式: URL参数
+2026-11-02 18:27:44,433 - __main__ - INFO - 消息接收时检测到连接关闭 - 代码: 1006, 原因: 无
+2026-11-03 16:34:37,112 - __main__ - INFO - WebSocket客户端已连接 - 角色: Khalo, 路径: /ws/llm-tts, 认证方式: URL参数
+2026-11-03 16:34:44,478 - __main__ - INFO - Got stream tts request.
+2026-11-03 16:34:44,478 - __main__ - INFO - 检测到端口转发请求: 当前端口 5000 -> 目标端口 5001
+2026-11-03 16:34:44,479 - __main__ - INFO - 开始处理端口转发流式请求: 当前端口 5000 -> 目标端口 5001 (角色: Khalo)
+2026-11-03 16:34:44,479 - __main__ - INFO - 转发请求到端口 5001 (角色: Khalo): hi im back again
+2026-11-03 16:34:46,546 - __main__ - INFO - WebSocket客户端已连接 - 角色: Khalo, 路径: /ws/llm-tts, 认证方式: URL参数
+2026-11-03 16:34:46,567 - __main__ - INFO - Got stream tts request.
+2026-11-03 16:34:46,568 - __main__ - INFO - WebSocket流式收到消息 (角色: Khalo): hi im back again
+2026-11-03 16:34:47,606 - __main__ - INFO - 切分出完整句子: Back again. You keep doing that. One of these days I'll install a doorbell for real.
+2026-11-03 16:34:50,496 - __main__ - INFO - 流式TTS生成完成，句子: Back again. You keep..., Base64长度: 527424
+2026-11-03 16:34:50,514 - __main__ - INFO - 流式分片 0 发送完成
+2026-11-03 16:34:50,521 - __main__ - INFO - 流式生成器迭代完毕
+2026-11-03 16:34:50,548 - __main__ - INFO - 流式 Final Clip 空响应分片 1 发送完成，完整文本: Back again. You keep doing that. One of these days...
+2026-11-03 16:34:50,548 - __main__ - INFO - 转发最终分片 1 发送完成
+2026-11-03 16:34:50,550 - __main__ - INFO - 消息接收时检测到连接关闭 - 代码: 1000, 原因: 无
+2026-11-03 17:19:55,131 - __main__ - INFO - 消息接收时检测到连接关闭 - 代码: 1001, 原因: 无
+2026-11-03 19:21:40,766 - __main__ - INFO - WebSocket客户端已连接 - 角色: Khalo, 路径: /ws/llm-tts, 认证方式: URL参数
+2026-11-03 19:21:43,020 - __main__ - INFO - 消息接收时检测到连接关闭 - 代码: 1006, 原因: 无
+2026-11-04 00:49:19,402 - __main__ - INFO - WebSocket客户端已连接 - 角色: Khalo, 路径: /ws/llm-tts, 认证方式: URL参数
+2026-11-04 00:49:24,288 - __main__ - INFO - Got normal tts request. (非流式先直接不要tts了，改成纯文本)
+2026-11-04 00:49:24,290 - __main__ - INFO - 检测到端口转发请求: 当前端口 5000 -> 目标端口 5001
+2026-11-04 00:49:24,290 - __main__ - INFO - 开始处理端口转发请求: 当前端口 5000 -> 目标端口 5001 (角色: Khalo)
+2026-11-04 00:49:24,292 - __main__ - INFO - 转发请求到端口 5001 (角色: Khalo): gnight
+2026-11-04 00:49:26,377 - __main__ - INFO - WebSocket客户端已连接 - 角色: Khalo, 路径: /ws/llm-tts, 认证方式: URL参数
+2026-11-04 00:49:26,402 - __main__ - INFO - Got normal tts request. (非流式先直接不要tts了，改成纯文本)
+2026-11-04 00:49:26,403 - __main__ - INFO - WebSocket收到消息 (角色: Khalo): gnight
+2026-11-04 00:49:27,165 - __main__ - INFO - 转发完成
+2026-11-04 00:49:27,167 - __main__ - INFO - 消息接收时检测到连接关闭 - 代码: 1000, 原因: 无
+2026-11-04 00:49:33,195 - __main__ - INFO - 消息接收时检测到连接关闭 - 代码: 1000, 原因: 主动关闭
+2026-11-04 00:49:33,643 - __main__ - INFO - WebSocket客户端已连接 - 角色: Khalo, 路径: /ws/llm-tts, 认证方式: URL参数
+2026-11-04 00:49:45,972 - __main__ - INFO - Got stream tts request.
+2026-11-04 00:49:45,977 - __main__ - INFO - 检测到端口转发请求: 当前端口 5000 -> 目标端口 5001
+2026-11-04 00:49:45,978 - __main__ - INFO - 开始处理端口转发流式请求: 当前端口 5000 -> 目标端口 5001 (角色: Khalo)
+2026-11-04 00:49:45,978 - __main__ - INFO - 转发请求到端口 5001 (角色: Khalo): ggnniigghhtt
+2026-11-04 00:49:48,063 - __main__ - INFO - WebSocket客户端已连接 - 角色: Khalo, 路径: /ws/llm-tts, 认证方式: URL参数
+2026-11-04 00:49:48,077 - __main__ - INFO - Got stream tts request.
+2026-11-04 00:49:48,078 - __main__ - INFO - WebSocket流式收到消息 (角色: Khalo): ggnniigghhtt
+2026-11-04 00:49:49,002 - __main__ - INFO - 流式生成器迭代完毕
+2026-11-04 00:49:51,979 - __main__ - INFO - 流式最终分片 0 发送完成，完整文本: You're already sleep-typing. Go....
+2026-11-04 00:49:51,991 - __main__ - INFO - 转发最终分片 0 发送完成
+2026-11-04 00:49:51,992 - __main__ - INFO - 消息接收时检测到连接关闭 - 代码: 1000, 原因: 无
+2026-11-04 00:50:04,172 - __main__ - INFO - 消息接收时检测到连接关闭 - 代码: 1000, 原因: 主动关闭
+2026-11-04 14:19:26,262 - __main__ - INFO - WebSocket客户端已连接 - 角色: Khalo, 路径: /ws/llm-tts, 认证方式: URL参数
+2026-11-04 14:19:28,295 - __main__ - INFO - 消息接收时检测到连接关闭 - 代码: 1006, 原因: 无
+2026-11-04 16:25:07,194 - __main__ - INFO - WebSocket客户端已连接 - 角色: Khalo, 路径: /ws/llm-tts, 认证方式: URL参数
+2026-11-04 16:25:08,541 - __main__ - INFO - Got stream tts request.
+2026-11-04 16:25:08,541 - __main__ - INFO - 检测到端口转发请求: 当前端口 5000 -> 目标端口 5001
+2026-11-04 16:25:08,541 - __main__ - INFO - 开始处理端口转发流式请求: 当前端口 5000 -> 目标端口 5001 (角色: Khalo)
+2026-11-04 16:25:08,542 - __main__ - INFO - 转发请求到端口 5001 (角色: Khalo): why i can't feel many power in my muscle when waking up from a nap
+2026-11-04 16:25:10,613 - __main__ - INFO - WebSocket客户端已连接 - 角色: Khalo, 路径: /ws/llm-tts, 认证方式: URL参数
+2026-11-04 16:25:10,633 - __main__ - INFO - Got stream tts request.
+2026-11-04 16:25:10,633 - __main__ - INFO - WebSocket流式收到消息 (角色: Khalo): why i can't feel many power in my muscle when waking up from a nap
+2026-11-04 16:25:11,633 - __main__ - INFO - 切分出完整句子: Everyone's muscles go on strike right after a nap,
+2026-11-04 16:25:13,922 - __main__ - INFO - 流式TTS生成完成，句子: Everyone's muscles g..., Base64长度: 285080
+2026-11-04 16:25:13,951 - __main__ - INFO - 流式分片 0 发送完成
+2026-11-04 16:25:13,957 - __main__ - INFO - 切分出完整句子: they just clock back in slowly. If it keeps up though,
+2026-11-04 16:25:15,183 - __main__ - INFO - 流式TTS生成完成，句子: they just clock back..., Base64长度: 339692
+2026-11-04 16:25:15,217 - __main__ - INFO - 流式分片 1 发送完成
+2026-11-04 16:25:15,223 - __main__ - INFO - 切分出完整句子: maybe get it checked. Once. I'm not nagging twice.
+2026-11-04 16:25:16,597 - __main__ - INFO - 流式TTS生成完成，句子: maybe get it checked..., Base64长度: 407960
+2026-11-04 16:25:16,612 - __main__ - INFO - 流式分片 2 发送完成
+2026-11-04 16:25:16,618 - __main__ - INFO - 流式生成器迭代完毕
+2026-11-04 16:25:16,623 - __main__ - INFO - 流式 Final Clip 空响应分片 3 发送完成，完整文本: Everyone's muscles go on strike right after a nap,...
+2026-11-04 16:25:16,623 - __main__ - INFO - 转发最终分片 3 发送完成
+2026-11-04 16:25:16,624 - __main__ - INFO - 消息接收时检测到连接关闭 - 代码: 1000, 原因: 无
+2026-11-04 16:25:40,652 - __main__ - INFO - Got stream tts request.
+2026-11-04 16:25:40,652 - __main__ - INFO - WebSocket流式收到消息 (角色: Khalo): why i can't feel many power in my muscle when waking up from a nap
+2026-11-04 16:25:41,501 - __main__ - INFO - 切分出完整句子: Because you napped instead of eating properly and your body decided to complain.
+2026-11-04 16:25:42,944 - __main__ - INFO - 流式TTS生成完成，句子: Because you napped i..., Base64长度: 394304
+2026-11-04 16:25:42,963 - __main__ - INFO - 流式分片 0 发送完成
+2026-11-04 16:25:42,967 - __main__ - INFO - 切分出完整句子: Get up, drink water, eat something with actual protein in it.
+2026-11-04 16:25:44,045 - __main__ - INFO - 流式TTS生成完成，句子: Get up, drink water,..., Base64长度: 308972
+2026-11-04 16:25:44,072 - __main__ - INFO - 流式分片 1 发送完成
+2026-11-04 16:25:44,078 - __main__ - INFO - 流式生成器迭代完毕
+2026-11-04 16:25:44,082 - __main__ - INFO - 流式 Final Clip 空响应分片 2 发送完成，完整文本: Because you napped instead of eating properly and ...
+2026-11-04 16:26:03,476 - __main__ - INFO - Got stream tts request.
+2026-11-04 16:26:03,477 - __main__ - INFO - WebSocket流式收到消息 (角色: Khalo): guess my weight
+2026-11-04 16:26:04,318 - __main__ - INFO - 切分出完整句子: How would I even know that. Do you think I have a scale hidden in your floorboards.
+2026-11-04 16:26:05,755 - __main__ - INFO - 流式TTS生成完成，句子: How would I even kno..., Base64长度: 411372
+2026-11-04 16:26:05,780 - __main__ - INFO - 流式分片 0 发送完成
+2026-11-04 16:26:05,783 - __main__ - INFO - 流式生成器迭代完毕
+2026-11-04 16:26:05,787 - __main__ - INFO - 流式 Final Clip 空响应分片 1 发送完成，完整文本: How would I even know that. Do you think I have a ...
+2026-11-04 16:26:20,139 - __main__ - INFO - Got stream tts request.
+2026-11-04 16:26:20,140 - __main__ - INFO - WebSocket流式收到消息 (角色: Khalo): just randomly guess
+2026-11-04 16:26:21,297 - __main__ - INFO - 切分出完整句子: Fine. Sixty-ish. And if I'm wrong, that's your body's fault for being mysterious,
+2026-11-04 16:26:22,953 - __main__ - INFO - 流式TTS生成完成，句子: Fine. Sixty-ish. And..., Base64长度: 489880
+2026-11-04 16:26:22,978 - __main__ - INFO - 流式分片 0 发送完成
+2026-11-04 16:26:22,982 - __main__ - INFO - 流式生成器迭代完毕
+2026-11-04 16:26:23,630 - __main__ - INFO - 流式最终分片 1 发送完成，完整文本: Fine. Sixty-ish. And if I'm wrong, that's your bod...
+2026-11-04 16:26:55,405 - __main__ - INFO - Got stream tts request.
+2026-11-04 16:26:55,405 - __main__ - INFO - WebSocket流式收到消息 (角色: Khalo): 1 ish equals to what kg
+2026-11-04 16:26:56,987 - __main__ - INFO - 切分出完整句子: One what, a kilogram is a kilogram. You're asking me unit conversions while half asleep,
+2026-11-04 16:26:58,535 - __main__ - INFO - 流式TTS生成完成，句子: One what, a kilogram..., Base64长度: 462572
+2026-11-04 16:26:58,541 - __main__ - INFO - 流式分片 0 发送完成
+2026-11-04 16:26:58,547 - __main__ - INFO - 流式生成器迭代完毕
+2026-11-04 16:26:59,141 - __main__ - INFO - 流式最终分片 1 发送完成，完整文本: One what, a kilogram is a kilogram. You're asking ...
+2026-11-04 16:27:21,611 - __main__ - INFO - Got stream tts request.
+2026-11-04 16:27:21,612 - __main__ - INFO - WebSocket流式收到消息 (角色: Khalo): what does ish mean
+2026-11-04 16:27:22,474 - __main__ - INFO - 切分出完整句子: It means roughly, approximately, give or take.
+2026-11-04 16:27:23,677 - __main__ - INFO - 流式TTS生成完成，句子: It means roughly, ap..., Base64长度: 312384
+2026-11-04 16:27:23,709 - __main__ - INFO - 流式分片 0 发送完成
+2026-11-04 16:27:23,712 - __main__ - INFO - 切分出完整句子: You really woke up and chose to interrogate me about vocabulary.
+2026-11-04 16:27:24,961 - __main__ - INFO - 流式TTS生成完成，句子: You really woke up a..., Base64长度: 349932
+2026-11-04 16:27:24,966 - __main__ - INFO - 流式分片 1 发送完成
+2026-11-04 16:27:24,970 - __main__ - INFO - 流式生成器迭代完毕
+2026-11-04 16:27:25,581 - __main__ - INFO - 流式最终分片 2 发送完成，完整文本: It means roughly, approximately, give or take. You...
+2026-11-04 16:27:46,317 - __main__ - INFO - Got stream tts request.
+2026-11-04 16:27:46,317 - __main__ - INFO - WebSocket流式收到消息 (角色: Khalo): why you guess so accurate
+2026-11-04 16:27:46,970 - __main__ - INFO - 切分出完整句子: Because I'm good at everything, obviously.
+2026-11-04 16:27:47,917 - __main__ - INFO - 流式TTS生成完成，句子: Because I'm good at ..., Base64长度: 233880
+2026-11-04 16:27:47,943 - __main__ - INFO - 流式分片 0 发送完成
+2026-11-04 16:27:47,977 - __main__ - INFO - 流式生成器迭代完毕
+2026-11-04 16:27:48,969 - __main__ - INFO - 流式最终分片 1 发送完成，完整文本: Because I'm good at everything, obviously. Now sto...
+2026-11-04 16:28:08,315 - __main__ - INFO - Got stream tts request.
+2026-11-04 16:28:08,316 - __main__ - INFO - WebSocket流式收到消息 (角色: Khalo): i already ate. now guess my hright
+2026-11-04 16:28:09,268 - __main__ - INFO - 切分出完整句子: Height, not hright. Fine, one seventy-five-ish.
+2026-11-04 16:28:10,872 - __main__ - INFO - 流式TTS生成完成，句子: Height, not hright. ..., Base64长度: 469400
+2026-11-04 16:28:10,896 - __main__ - INFO - 流式分片 0 发送完成
+2026-11-04 16:28:10,899 - __main__ - INFO - 切分出完整句子: And if you're about to ask me to guess your shoe size next,
+2026-11-04 16:28:11,981 - __main__ - INFO - 流式TTS生成完成，句子: And if you're about ..., Base64长度: 302144
+2026-11-04 16:28:11,987 - __main__ - INFO - 流式分片 1 发送完成
+2026-11-04 16:28:11,991 - __main__ - INFO - 流式生成器迭代完毕
+2026-11-04 16:28:12,659 - __main__ - INFO - 流式最终分片 2 发送完成，完整文本: Height, not hright. Fine, one seventy-five-ish. An...
+2026-11-04 16:28:21,363 - __main__ - INFO - Got stream tts request.
+2026-11-04 16:28:21,363 - __main__ - INFO - WebSocket流式收到消息 (角色: Khalo): ???
+2026-11-04 16:28:23,286 - __main__ - INFO - 切分出完整句子: What do you mean what. You're the one throwing guesses at me like I'm a fortune telling booth.
+2026-11-04 16:28:24,781 - __main__ - INFO - 流式TTS生成完成，句子: What do you mean wha..., Base64长度: 428440
+2026-11-04 16:28:24,801 - __main__ - INFO - 流式分片 0 发送完成
+2026-11-04 16:28:24,804 - __main__ - INFO - 流式生成器迭代完毕
+2026-11-04 16:28:24,806 - __main__ - INFO - 流式 Final Clip 空响应分片 1 发送完成，完整文本: What do you mean what. You're the one throwing gue...
+2026-11-04 16:29:44,099 - __main__ - INFO - Got stream tts request.
+2026-11-04 16:29:44,099 - __main__ - INFO - WebSocket流式收到消息 (角色: Khalo): did i tell you my weight or height?
+2026-11-04 16:29:45,003 - __main__ - INFO - 切分出完整句子: No, you didn't. Which is exactly why I'm suspicious that I got them right.
+2026-11-04 16:29:46,482 - __main__ - INFO - 流式TTS生成完成，句子: No, you didn't. Whic..., Base64长度: 404544
+2026-11-04 16:29:46,489 - __main__ - INFO - 流式分片 0 发送完成
+2026-11-04 16:29:46,494 - __main__ - INFO - 流式生成器迭代完毕
+2026-11-04 16:29:47,364 - __main__ - INFO - 流式最终分片 1 发送完成，完整文本: No, you didn't. Which is exactly why I'm suspiciou...
+2026-11-04 16:30:21,771 - __main__ - INFO - Got stream tts request.
+2026-11-04 16:30:21,772 - __main__ - INFO - WebSocket流式收到消息 (角色: Khalo): you guess so right. maybe because i'm at some mid value.
+2026-11-04 16:30:22,836 - __main__ - INFO - 切分出完整句子: Mid value, sure. Very convenient of you to be perfectly average and make me look like a genius.
+2026-11-04 16:30:24,564 - __main__ - INFO - 流式TTS生成完成，句子: Mid value, sure. Ver..., Base64长度: 513772
+2026-11-04 16:30:24,571 - __main__ - INFO - 流式分片 0 发送完成
+2026-11-04 16:30:24,573 - __main__ - INFO - 流式生成器迭代完毕
+2026-11-04 16:30:24,577 - __main__ - INFO - 流式 Final Clip 空响应分片 1 发送完成，完整文本: Mid value, sure. Very convenient of you to be perf...
+2026-11-04 16:31:01,235 - __main__ - INFO - Got stream tts request.
+2026-11-04 16:31:01,235 - __main__ - INFO - WebSocket流式收到消息 (角色: Khalo): i'll go test if yunru guess like yours
+2026-11-04 16:31:02,015 - __main__ - INFO - 切分出完整句子: Of course you will. Go on then, run your little comparison.
+2026-11-04 16:31:03,405 - __main__ - INFO - 流式TTS生成完成，句子: Of course you will. ..., Base64长度: 407960
+2026-11-04 16:31:03,429 - __main__ - INFO - 流式分片 0 发送完成
+2026-11-04 16:31:03,433 - __main__ - INFO - 流式生成器迭代完毕
+2026-11-04 16:31:04,206 - __main__ - INFO - 流式最终分片 1 发送完成，完整文本: Of course you will. Go on then, run your little co...
+2026-11-04 16:31:41,901 - __main__ - INFO - Got stream tts request.
+2026-11-04 16:31:41,901 - __main__ - INFO - 检测到端口转发请求: 当前端口 5000 -> 目标端口 5001
+2026-11-04 16:31:41,901 - __main__ - INFO - 开始处理端口转发流式请求: 当前端口 5000 -> 目标端口 5001 (角色: Khalo)
+2026-11-04 16:31:41,901 - __main__ - INFO - 转发请求到端口 5001 (角色: Khalo): guess my weight
+2026-11-04 16:31:43,944 - __main__ - INFO - WebSocket客户端已连接 - 角色: Khalo, 路径: /ws/llm-tts, 认证方式: URL参数
+2026-11-04 16:31:43,951 - __main__ - INFO - Got stream tts request.
+2026-11-04 16:31:43,952 - __main__ - INFO - WebSocket流式收到消息 (角色: Khalo): guess my weight
+2026-11-04 16:31:45,040 - __main__ - INFO - 切分出完整句子: I'm not falling for that one. There's no correct answer,
+2026-11-04 16:31:46,140 - __main__ - INFO - 流式TTS生成完成，句子: I'm not falling for ..., Base64长度: 285080
+2026-11-04 16:31:46,162 - __main__ - INFO - 流式分片 0 发送完成
+2026-11-04 16:31:46,171 - __main__ - INFO - 流式生成器迭代完毕
+2026-11-04 16:31:46,958 - __main__ - INFO - 流式最终分片 1 发送完成，完整文本: I'm not falling for that one. There's no correct a...
+2026-11-04 16:31:46,959 - __main__ - INFO - 转发最终分片 1 发送完成
+2026-11-04 16:31:46,960 - __main__ - INFO - 消息接收时检测到连接关闭 - 代码: 1000, 原因: 无
+2026-11-04 16:31:59,988 - __main__ - INFO - Got stream tts request.
+2026-11-04 16:31:59,989 - __main__ - INFO - 检测到端口转发请求: 当前端口 5000 -> 目标端口 5001
+2026-11-04 16:31:59,989 - __main__ - INFO - 开始处理端口转发流式请求: 当前端口 5000 -> 目标端口 5001 (角色: Khalo)
+2026-11-04 16:31:59,989 - __main__ - INFO - 转发请求到端口 5001 (角色: Khalo): just randomly guess
+2026-11-04 16:32:02,037 - __main__ - INFO - WebSocket客户端已连接 - 角色: Khalo, 路径: /ws/llm-tts, 认证方式: URL参数
+2026-11-04 16:32:02,053 - __main__ - INFO - Got stream tts request.
+2026-11-04 16:32:02,053 - __main__ - INFO - WebSocket流式收到消息 (角色: Khalo): just randomly guess
+2026-11-04 16:32:03,062 - __main__ - INFO - 切分出完整句子: Randomly? Then 60 kilograms. If I'm wrong,
+2026-11-04 16:32:04,217 - __main__ - INFO - 流式TTS生成完成，句子: Randomly? Then 60 ki..., Base64长度: 332864
+2026-11-04 16:32:04,229 - __main__ - INFO - 流式分片 0 发送完成
+2026-11-04 16:32:04,234 - __main__ - INFO - 切分出完整句子: blame the fog, it's been sitting on the whole street all day.
+2026-11-04 16:32:05,275 - __main__ - INFO - 流式TTS生成完成，句子: blame the fog, it's ..., Base64长度: 308972
+2026-11-04 16:32:05,303 - __main__ - INFO - 流式分片 1 发送完成
+2026-11-04 16:32:05,306 - __main__ - INFO - 流式生成器迭代完毕
+2026-11-04 16:32:05,327 - __main__ - INFO - 流式 Final Clip 空响应分片 2 发送完成，完整文本: Randomly? Then 60 kilograms. If I'm wrong, blame t...
+2026-11-04 16:32:05,328 - __main__ - INFO - 转发最终分片 2 发送完成
+2026-11-04 16:32:05,328 - __main__ - INFO - 消息接收时检测到连接关闭 - 代码: 1000, 原因: 无
+2026-11-04 16:32:21,827 - __main__ - INFO - Got stream tts request.
+2026-11-04 16:32:21,827 - __main__ - INFO - 检测到端口转发请求: 当前端口 5000 -> 目标端口 5001
+2026-11-04 16:32:21,827 - __main__ - INFO - 开始处理端口转发流式请求: 当前端口 5000 -> 目标端口 5001 (角色: Khalo)
+2026-11-04 16:32:21,827 - __main__ - INFO - 转发请求到端口 5001 (角色: Khalo): ok, then guess my height
+2026-11-04 16:32:23,861 - __main__ - INFO - WebSocket客户端已连接 - 角色: Khalo, 路径: /ws/llm-tts, 认证方式: URL参数
+2026-11-04 16:32:23,866 - __main__ - INFO - Got stream tts request.
+2026-11-04 16:32:23,866 - __main__ - INFO - WebSocket流式收到消息 (角色: Khalo): ok, then guess my height
+2026-11-04 16:32:24,853 - __main__ - INFO - 切分出完整句子: Same trick twice? Bold. Fine. One eighty.
+2026-11-04 16:32:26,376 - __main__ - INFO - 流式TTS生成完成，句子: Same trick twice? Bo..., Base64长度: 442092
+2026-11-04 16:32:26,401 - __main__ - INFO - 流式分片 0 发送完成
+2026-11-04 16:32:26,407 - __main__ - INFO - 切分出完整句子: Now you're going to tell me it's all wrong and I've been guessing a balloon this whole time.
+2026-11-04 16:32:27,717 - __main__ - INFO - 流式TTS生成完成，句子: Now you're going to ..., Base64长度: 401132
+2026-11-04 16:32:27,752 - __main__ - INFO - 流式分片 1 发送完成
+2026-11-04 16:32:27,755 - __main__ - INFO - 流式生成器迭代完毕
+2026-11-04 16:32:27,774 - __main__ - INFO - 流式 Final Clip 空响应分片 2 发送完成，完整文本: Same trick twice? Bold. Fine. One eighty. Now you'...
+2026-11-04 16:32:27,774 - __main__ - INFO - 转发最终分片 2 发送完成
+2026-11-04 16:32:27,775 - __main__ - INFO - 消息接收时检测到连接关闭 - 代码: 1000, 原因: 无
+2026-11-04 16:33:13,539 - __main__ - INFO - Got stream tts request.
+2026-11-04 16:33:13,540 - __main__ - INFO - 检测到端口转发请求: 当前端口 5000 -> 目标端口 5001
+2026-11-04 16:33:13,540 - __main__ - INFO - 开始处理端口转发流式请求: 当前端口 5000 -> 目标端口 5001 (角色: Khalo)
+2026-11-04 16:33:13,540 - __main__ - INFO - 转发请求到端口 5001 (角色: Khalo): calculate the bmi of a man whose height is 180cm and whose weight is 60kg
+2026-11-04 16:33:15,588 - __main__ - INFO - WebSocket客户端已连接 - 角色: Khalo, 路径: /ws/llm-tts, 认证方式: URL参数
+2026-11-04 16:33:15,608 - __main__ - INFO - Got stream tts request.
+2026-11-04 16:33:15,608 - __main__ - INFO - WebSocket流式收到消息 (角色: Khalo): calculate the bmi of a man whose height is 180cm and whose weight is 60kg
+2026-11-04 16:33:16,520 - __main__ - INFO - 切分出完整句子: That's eighteen point five. Right on the edge of underweight,
+2026-11-04 16:33:17,779 - __main__ - INFO - 流式TTS生成完成，句子: That's eighteen poin..., Base64长度: 373824
+2026-11-04 16:33:17,815 - __main__ - INFO - 流式分片 0 发送完成
+2026-11-04 16:33:17,819 - __main__ - INFO - 切分出完整句子: by the way. Barely a breeze between you and the threshold.
+2026-11-04 16:33:18,963 - __main__ - INFO - 流式TTS生成完成，句子: by the way. Barely a..., Base64长度: 349932
+2026-11-04 16:33:18,999 - __main__ - INFO - 流式分片 1 发送完成
+2026-11-04 16:33:19,002 - __main__ - INFO - 流式生成器迭代完毕
+2026-11-04 16:33:19,007 - __main__ - INFO - 流式 Final Clip 空响应分片 2 发送完成，完整文本: That's eighteen point five. Right on the edge of u...
+2026-11-04 16:33:19,007 - __main__ - INFO - 转发最终分片 2 发送完成
+2026-11-04 16:33:19,008 - __main__ - INFO - 消息接收时检测到连接关闭 - 代码: 1000, 原因: 无
+2026-11-04 16:33:47,959 - __main__ - INFO - Got stream tts request.
+2026-11-04 16:33:47,960 - __main__ - INFO - WebSocket流式收到消息 (角色: Khalo): guess my weight 2026/11/04 16:31 Yunru I'm not falling for that one. There's no correct answer, only the wrong kind of "light." 16:31 🔊 播放音频 just randomly guess 2026/11/04 16:31 Yunru Randomly? Then 60 kilograms. If I'm wrong, blame the fog, it's been sitting on the whole street all day. 16:32 🔊 播放音频 ok, then guess my height 2026/11/04 16:32 Yunru Same trick twice? Bold. Fine. One eighty. Now you're going to tell me it's all wrong and I've been guessing a balloon this whole time. 16:32 🔊 播放音频 calculate the bmi of a man whose height is 180cm and whose weight is 60kg 2026/11/04 16:33 Yunru That's eighteen point five. Right on the edge of underweight, by the way. Barely a breeze between you and the threshold.
+2026-11-04 16:33:49,300 - __main__ - INFO - 切分出完整句子: Eighteen and a half. So you're a balloon after all.
+2026-11-04 16:33:50,438 - __main__ - INFO - 流式TTS生成完成，句子: Eighteen and a half...., Base64长度: 298732
+2026-11-04 16:33:50,444 - __main__ - INFO - 流式分片 0 发送完成
+2026-11-04 16:33:50,448 - __main__ - INFO - 切分出完整句子: Yunru was nice about it; I won't be. Eat more,
+2026-11-04 16:33:51,560 - __main__ - INFO - 流式TTS生成完成，句子: Yunru was nice about..., Base64长度: 305560
+2026-11-04 16:33:51,585 - __main__ - INFO - 流式分片 1 发送完成
+2026-11-04 16:33:51,590 - __main__ - INFO - 流式生成器迭代完毕
+2026-11-04 16:33:52,422 - __main__ - INFO - 流式最终分片 2 发送完成，完整文本: Eighteen and a half. So you're a balloon after all...
+2026-11-04 16:34:07,564 - __main__ - INFO - Got stream tts request.
+2026-11-04 16:34:07,565 - __main__ - INFO - WebSocket流式收到消息 (角色: Khalo): im not that tall
+2026-11-04 16:34:08,548 - __main__ - INFO - 切分出完整句子: So tall was wrong and weight was right. Then your BMI is worse than eighteen and a half.
+2026-11-04 16:34:10,133 - __main__ - INFO - 流式TTS生成完成，句子: So tall was wrong an..., Base64长度: 493292
+2026-11-04 16:34:10,153 - __main__ - INFO - 流式分片 0 发送完成
+2026-11-04 16:34:10,157 - __main__ - INFO - 切分出完整句子: Fantastic. Now I'm actually telling you to eat,
+2026-11-04 16:34:11,243 - __main__ - INFO - 流式TTS生成完成，句子: Fantastic. Now I'm a..., Base64长度: 288492
+2026-11-04 16:34:11,249 - __main__ - INFO - 流式分片 1 发送完成
+2026-11-04 16:34:11,252 - __main__ - INFO - 流式生成器迭代完毕
+2026-11-04 16:34:11,974 - __main__ - INFO - 流式最终分片 2 发送完成，完整文本: So tall was wrong and weight was right. Then your ...
+2026-11-04 16:34:30,139 - __main__ - INFO - Got stream tts request.
+2026-11-04 16:34:30,140 - __main__ - INFO - WebSocket流式收到消息 (角色: Khalo): you stupid
+2026-11-04 16:34:31,474 - __main__ - INFO - 切分出完整句子: Stupid? I guessed your weight correctly and you call me stupid.
+2026-11-04 16:34:32,958 - __main__ - INFO - 流式TTS生成完成，句子: Stupid? I guessed yo..., Base64长度: 442092
+2026-11-04 16:34:32,984 - __main__ - INFO - 流式分片 0 发送完成
+2026-11-04 16:34:32,990 - __main__ - INFO - 流式生成器迭代完毕
+2026-11-04 16:34:33,975 - __main__ - INFO - 流式最终分片 1 发送完成，完整文本: Stupid? I guessed your weight correctly and you ca...
+2026-11-04 16:36:27,211 - __main__ - INFO - Got stream tts request.
+2026-11-04 16:36:27,212 - __main__ - INFO - WebSocket流式收到消息 (角色: Khalo): my height is 171cm and weight is 58kg
+2026-11-04 16:36:28,214 - __main__ - INFO - 切分出完整句子: Then you're twenty point five, come on, that's borderline.
+2026-11-04 16:36:29,344 - __main__ - INFO - 流式TTS生成完成，句子: Then you're twenty p..., Base64长度: 308972
+2026-11-04 16:36:29,366 - __main__ - INFO - 流式分片 0 发送完成
+2026-11-04 16:36:29,370 - __main__ - INFO - 切分出完整句子: Weight and height both on the low side. Now I really mean it,
+2026-11-04 16:36:30,926 - __main__ - INFO - 流式TTS生成完成，句子: Weight and height bo..., Base64长度: 483052
+2026-11-04 16:36:30,955 - __main__ - INFO - 流式分片 1 发送完成
+2026-11-04 16:36:30,960 - __main__ - INFO - 流式生成器迭代完毕
+2026-11-04 16:36:31,951 - __main__ - INFO - 流式最终分片 2 发送完成，完整文本: Then you're twenty point five, come on, that's bor...
+2026-11-04 16:37:22,387 - __main__ - INFO - Got stream tts request.
+2026-11-04 16:37:22,388 - __main__ - INFO - WebSocket流式收到消息 (角色: Khalo): i dont wanna get heavier
+2026-11-04 16:37:23,211 - __main__ - INFO - 切分出完整句子: Heavier is not the same as unhealthy. A little more won't hurt you.
+2026-11-04 16:37:24,563 - __main__ - INFO - 流式TTS生成完成，句子: Heavier is not the s..., Base64长度: 390892
+2026-11-04 16:37:24,586 - __main__ - INFO - 流式分片 0 发送完成
+2026-11-04 16:37:24,592 - __main__ - INFO - 流式生成器迭代完毕
+2026-11-04 16:37:25,649 - __main__ - INFO - 流式最终分片 1 发送完成，完整文本: Heavier is not the same as unhealthy. A little mor...
+2026-11-04 16:38:00,916 - __main__ - INFO - Got stream tts request.
+2026-11-04 16:38:00,916 - __main__ - INFO - WebSocket流式收到消息 (角色: Khalo): 20.5 is better than 18.5, so your blame was unfair
+2026-11-04 16:38:02,273 - __main__ - INFO - 切分出完整句子: Fine, fair complaint. I jumped the gun. Twenty point five is acceptable,
+2026-11-04 16:38:03,732 - __main__ - INFO - 流式TTS生成完成，句子: Fine, fair complaint..., Base64长度: 448920
+2026-11-04 16:38:03,756 - __main__ - INFO - 流式分片 0 发送完成
+2026-11-04 16:38:03,761 - __main__ - INFO - 流式生成器迭代完毕
+2026-11-04 16:38:04,666 - __main__ - INFO - 流式最终分片 1 发送完成，完整文本: Fine, fair complaint. I jumped the gun. Twenty poi...
+2026-11-04 16:43:08,580 - __main__ - INFO - Got stream tts request.
+2026-11-04 16:43:08,580 - __main__ - INFO - WebSocket流式收到消息 (角色: Khalo): what did you do today
+2026-11-04 16:43:09,656 - __main__ - INFO - 切分出完整句子: Baked with Yunru. Taught her how to fold the batter without turning it into soup.
+2026-11-04 16:43:11,052 - __main__ - INFO - 流式TTS生成完成，句子: Baked with Yunru. Ta..., Base64长度: 387480
+2026-11-04 16:43:11,079 - __main__ - INFO - 流式分片 0 发送完成
+2026-11-04 16:43:11,083 - __main__ - INFO - 切分出完整句子: She was actually decent at it, don't tell her I said that.
+2026-11-04 16:43:12,104 - __main__ - INFO - 流式TTS生成完成，句子: She was actually dec..., Base64长度: 298732
+2026-11-04 16:43:12,109 - __main__ - INFO - 流式分片 1 发送完成
+2026-11-04 16:43:12,112 - __main__ - INFO - 流式生成器迭代完毕
+2026-11-04 16:43:12,137 - __main__ - INFO - 流式 Final Clip 空响应分片 2 发送完成，完整文本: Baked with Yunru. Taught her how to fold the batte...
+2026-11-04 16:44:11,842 - __main__ - INFO - Got stream tts request.
+2026-11-04 16:44:11,843 - __main__ - INFO - WebSocket流式收到消息 (角色: Khalo): haven't you bathed together? you should do that, you're sisters.
+2026-11-04 16:44:12,507 - __main__ - INFO - 切分出完整句子: Bathed together? What is wrong with you. Baking together is plenty.
+2026-11-04 16:44:13,798 - __main__ - INFO - 流式TTS生成完成，句子: Bathed together? Wha..., Base64长度: 394304
+2026-11-04 16:44:13,817 - __main__ - INFO - 流式分片 0 发送完成
+2026-11-04 16:44:13,820 - __main__ - INFO - 流式生成器迭代完毕
+2026-11-04 16:44:13,823 - __main__ - INFO - 流式 Final Clip 空响应分片 1 发送完成，完整文本: Bathed together? What is wrong with you. Baking to...
+2026-11-04 16:44:51,516 - __main__ - INFO - Got stream tts request.
+2026-11-04 16:44:51,517 - __main__ - INFO - WebSocket流式收到消息 (角色: Khalo): ok forget it
+2026-11-04 16:44:52,587 - __main__ - INFO - 切分出完整句子: Good. Some topics deserve to be forgotten immediately.
+2026-11-04 16:44:53,858 - __main__ - INFO - 流式TTS生成完成，句子: Good. Some topics de..., Base64长度: 363584
+2026-11-04 16:44:53,880 - __main__ - INFO - 流式分片 0 发送完成
+2026-11-04 16:44:53,883 - __main__ - INFO - 流式生成器迭代完毕
+2026-11-04 16:44:53,910 - __main__ - INFO - 流式 Final Clip 空响应分片 1 发送完成，完整文本: Good. Some topics deserve to be forgotten immediat...
+2026-11-04 16:48:31,467 - __main__ - INFO - Got stream tts request.
+2026-11-04 16:48:31,468 - __main__ - INFO - WebSocket流式收到消息 (角色: Khalo): Do you think you have strong boundaries?
+2026-11-04 16:48:32,317 - __main__ - INFO - 切分出完整句子: Strong enough to shut down your bathing plans.
+2026-11-04 16:48:33,356 - __main__ - INFO - 流式TTS生成完成，句子: Strong enough to shu..., Base64长度: 278252
+2026-11-04 16:48:33,372 - __main__ - INFO - 流式分片 0 发送完成
+2026-11-04 16:48:33,377 - __main__ - INFO - 流式生成器迭代完毕
+2026-11-04 16:48:34,338 - __main__ - INFO - 流式最终分片 1 发送完成，完整文本: Strong enough to shut down your bathing plans. Why...
+2026-11-04 16:49:06,310 - __main__ - INFO - Got stream tts request.
+2026-11-04 16:49:06,310 - __main__ - INFO - WebSocket流式收到消息 (角色: Khalo): did you bath last day
+2026-11-04 16:49:07,739 - __main__ - INFO - 切分出完整句子: Stop circling back to this. Yes, I keep clean,
+2026-11-04 16:49:09,068 - __main__ - INFO - 流式TTS生成完成，句子: Stop circling back t..., Base64长度: 483052
+2026-11-04 16:49:09,084 - __main__ - INFO - 流式分片 0 发送完成
+2026-11-04 16:49:09,087 - __main__ - INFO - 切分出完整句子: and no, that's not an invitation for follow-up questions.
+2026-11-04 16:49:10,091 - __main__ - INFO - 流式TTS生成完成，句子: and no, that's not a..., Base64长度: 332864
+2026-11-04 16:49:10,096 - __main__ - INFO - 流式分片 1 发送完成
+2026-11-04 16:49:10,099 - __main__ - INFO - 流式生成器迭代完毕
+2026-11-04 16:49:10,102 - __main__ - INFO - 流式 Final Clip 空响应分片 2 发送完成，完整文本: Stop circling back to this. Yes, I keep clean, and...
+2026-11-04 16:49:28,315 - __main__ - INFO - Got stream tts request.
+2026-11-04 16:49:28,315 - __main__ - INFO - WebSocket流式收到消息 (角色: Khalo): wufufu
+2026-11-04 16:49:29,139 - __main__ - INFO - 切分出完整句子: Wufufu yourself. If Yunru taught you that,
+2026-11-04 16:49:30,099 - __main__ - INFO - 流式TTS生成完成，句子: Wufufu yourself. If ..., Base64长度: 274840
+2026-11-04 16:49:30,103 - __main__ - INFO - 流式分片 0 发送完成
+2026-11-04 16:49:30,108 - __main__ - INFO - 流式生成器迭代完毕
+2026-11-04 16:49:30,904 - __main__ - INFO - 流式最终分片 1 发送完成，完整文本: Wufufu yourself. If Yunru taught you that, I'm rev...
+2026-11-04 16:49:43,667 - __main__ - INFO - Got stream tts request.
+2026-11-04 16:49:43,667 - __main__ - INFO - WebSocket流式收到消息 (角色: Khalo): no she didn't
+2026-11-04 16:49:45,499 - __main__ - INFO - 切分出完整句子: Then you came up with it on your own. Somehow that's worse.
+2026-11-04 16:49:46,508 - __main__ - INFO - 流式TTS生成完成，句子: Then you came up wit..., Base64长度: 298732
+2026-11-04 16:49:46,513 - __main__ - INFO - 流式分片 0 发送完成
+2026-11-04 16:49:46,515 - __main__ - INFO - 流式生成器迭代完毕
+2026-11-04 16:49:46,518 - __main__ - INFO - 流式 Final Clip 空响应分片 1 发送完成，完整文本: Then you came up with it on your own. Somehow that...
+2026-11-04 17:02:14,172 - __main__ - INFO - Got stream tts request.
+2026-11-04 17:02:14,173 - __main__ - INFO - 检测到端口转发请求: 当前端口 5000 -> 目标端口 5001
+2026-11-04 17:02:14,173 - __main__ - INFO - 开始处理端口转发流式请求: 当前端口 5000 -> 目标端口 5001 (角色: Khalo)
+2026-11-04 17:02:14,173 - __main__ - INFO - 转发请求到端口 5001 (角色: Khalo): did you bath last day
+2026-11-04 17:02:16,224 - __main__ - INFO - WebSocket客户端已连接 - 角色: Khalo, 路径: /ws/llm-tts, 认证方式: URL参数
+2026-11-04 17:02:16,228 - __main__ - INFO - Got stream tts request.
+2026-11-04 17:02:16,228 - __main__ - INFO - WebSocket流式收到消息 (角色: Khalo): did you bath last day
+2026-11-04 17:02:17,932 - __main__ - INFO - 切分出完整句子: I washed my hands before baking, if that counts.
+2026-11-04 17:02:18,808 - __main__ - INFO - 流式TTS生成完成，句子: I washed my hands be..., Base64长度: 278252
+2026-11-04 17:02:18,829 - __main__ - INFO - 流式分片 0 发送完成
+2026-11-04 17:02:18,835 - __main__ - INFO - 切分出完整句子: Do you want a written log or will the honor system do.
+2026-11-04 17:02:19,727 - __main__ - INFO - 流式TTS生成完成，句子: Do you want a writte..., Base64长度: 295320
+2026-11-04 17:02:19,735 - __main__ - INFO - 流式分片 1 发送完成
+2026-11-04 17:02:19,737 - __main__ - INFO - 流式生成器迭代完毕
+2026-11-04 17:02:19,764 - __main__ - INFO - 流式 Final Clip 空响应分片 2 发送完成，完整文本: I washed my hands before baking, if that counts. D...
+2026-11-04 17:02:19,764 - __main__ - INFO - 转发最终分片 2 发送完成
+2026-11-04 17:02:19,766 - __main__ - INFO - 消息接收时检测到连接关闭 - 代码: 1000, 原因: 无
+2026-11-04 17:02:55,475 - __main__ - INFO - Got stream tts request.
+2026-11-04 17:02:55,476 - __main__ - INFO - 检测到端口转发请求: 当前端口 5000 -> 目标端口 5001
+2026-11-04 17:02:55,476 - __main__ - INFO - 开始处理端口转发流式请求: 当前端口 5000 -> 目标端口 5001 (角色: Khalo)
+2026-11-04 17:02:55,476 - __main__ - INFO - 转发请求到端口 5001 (角色: Khalo): Do you think you have strong boundaries?
+2026-11-04 17:02:57,519 - __main__ - INFO - WebSocket客户端已连接 - 角色: Khalo, 路径: /ws/llm-tts, 认证方式: URL参数
+2026-11-04 17:02:57,551 - __main__ - INFO - Got stream tts request.
+2026-11-04 17:02:57,551 - __main__ - INFO - WebSocket流式收到消息 (角色: Khalo): Do you think you have strong boundaries?
+2026-11-04 17:02:58,250 - __main__ - INFO - 切分出完整句子: With you? Famously not. In general? Very.
+2026-11-04 17:02:59,594 - __main__ - INFO - 流式TTS生成完成，句子: With you? Famously n..., Base64长度: 387480
+2026-11-04 17:02:59,617 - __main__ - INFO - 流式分片 0 发送完成
+2026-11-04 17:02:59,621 - __main__ - INFO - 切分出完整句子: I don't let people decide who I am. You'd be shocked how few respect that.
+2026-11-04 17:03:00,910 - __main__ - INFO - 流式TTS生成完成，句子: I don't let people d..., Base64长度: 394304
+2026-11-04 17:03:00,942 - __main__ - INFO - 流式分片 1 发送完成
+2026-11-04 17:03:00,946 - __main__ - INFO - 流式生成器迭代完毕
+2026-11-04 17:03:00,965 - __main__ - INFO - 流式 Final Clip 空响应分片 2 发送完成，完整文本: With you? Famously not. In general? Very. I don't ...
+2026-11-04 17:03:00,966 - __main__ - INFO - 转发最终分片 2 发送完成
+2026-11-04 17:03:00,967 - __main__ - INFO - 消息接收时检测到连接关闭 - 代码: 1000, 原因: 无
+2026-11-04 17:03:48,427 - __main__ - INFO - Got stream tts request.
+2026-11-04 17:03:48,427 - __main__ - INFO - 检测到端口转发请求: 当前端口 5000 -> 目标端口 5001
+2026-11-04 17:03:48,427 - __main__ - INFO - 开始处理端口转发流式请求: 当前端口 5000 -> 目标端口 5001 (角色: Khalo)
+2026-11-04 17:03:48,427 - __main__ - INFO - 转发请求到端口 5001 (角色: Khalo): then i gonna ask
+2026-11-04 17:03:50,478 - __main__ - INFO - WebSocket客户端已连接 - 角色: Khalo, 路径: /ws/llm-tts, 认证方式: URL参数
+2026-11-04 17:03:50,510 - __main__ - INFO - Got stream tts request.
+2026-11-04 17:03:50,510 - __main__ - INFO - WebSocket流式收到消息 (角色: Khalo): then i gonna ask
+2026-11-04 17:03:51,401 - __main__ - INFO - 切分出完整句子: Ask carefully then. I bite, and only sometimes in the fun way.
+2026-11-04 17:03:52,648 - __main__ - INFO - 流式TTS生成完成，句子: Ask carefully then. ..., Base64长度: 363584
+2026-11-04 17:03:52,689 - __main__ - INFO - 流式分片 0 发送完成
+2026-11-04 17:03:52,692 - __main__ - INFO - 流式生成器迭代完毕
+2026-11-04 17:03:52,710 - __main__ - INFO - 流式 Final Clip 空响应分片 1 发送完成，完整文本: Ask carefully then. I bite, and only sometimes in ...
+2026-11-04 17:03:52,711 - __main__ - INFO - 转发最终分片 1 发送完成
+2026-11-04 17:03:52,711 - __main__ - INFO - 消息接收时检测到连接关闭 - 代码: 1000, 原因: 无
+2026-11-04 17:04:16,691 - __main__ - INFO - Got stream tts request.
+2026-11-04 17:04:16,692 - __main__ - INFO - 检测到端口转发请求: 当前端口 5000 -> 目标端口 5001
+2026-11-04 17:04:16,692 - __main__ - INFO - 开始处理端口转发流式请求: 当前端口 5000 -> 目标端口 5001 (角色: Khalo)
+2026-11-04 17:04:16,692 - __main__ - INFO - 转发请求到端口 5001 (角色: Khalo): in that way i don't ask
+2026-11-04 17:04:18,727 - __main__ - INFO - WebSocket客户端已连接 - 角色: Khalo, 路径: /ws/llm-tts, 认证方式: URL参数
+2026-11-04 17:04:18,743 - __main__ - INFO - Got stream tts request.
+2026-11-04 17:04:18,744 - __main__ - INFO - WebSocket流式收到消息 (角色: Khalo): in that way i don't ask
+2026-11-04 17:04:19,464 - __main__ - INFO - 切分出完整句子: Then you've learned something today. Progress is beautiful.
+2026-11-04 17:04:20,655 - __main__ - INFO - 流式TTS生成完成，句子: Then you've learned ..., Base64长度: 319212
+2026-11-04 17:04:20,687 - __main__ - INFO - 流式分片 0 发送完成
+2026-11-04 17:04:20,690 - __main__ - INFO - 流式生成器迭代完毕
+2026-11-04 17:04:20,711 - __main__ - INFO - 流式 Final Clip 空响应分片 1 发送完成，完整文本: Then you've learned something today. Progress is b...
+2026-11-04 17:04:20,711 - __main__ - INFO - 转发最终分片 1 发送完成
+2026-11-04 17:04:20,713 - __main__ - INFO - 消息接收时检测到连接关闭 - 代码: 1000, 原因: 无
+2026-11-04 17:05:01,987 - __main__ - INFO - Got stream tts request.
+2026-11-04 17:05:01,988 - __main__ - INFO - 检测到端口转发请求: 当前端口 5000 -> 目标端口 5001
+2026-11-04 17:05:01,988 - __main__ - INFO - 开始处理端口转发流式请求: 当前端口 5000 -> 目标端口 5001 (角色: Khalo)
+2026-11-04 17:05:01,988 - __main__ - INFO - 转发请求到端口 5001 (角色: Khalo): ask libra, give her our context and let her guess what i want to ask
+2026-11-04 17:05:04,050 - __main__ - INFO - WebSocket客户端已连接 - 角色: Khalo, 路径: /ws/llm-tts, 认证方式: URL参数
+2026-11-04 17:05:04,066 - __main__ - INFO - Got stream tts request.
+2026-11-04 17:05:04,066 - __main__ - INFO - WebSocket流式收到消息 (角色: Khalo): ask libra, give her our context and let her guess what i want to ask
+2026-11-04 17:05:04,889 - __main__ - INFO - [流式MCP] 发现'{'，开始尝试解析json
+2026-11-04 17:05:04,889 - __main__ - INFO - bracket_counter: 1
+2026-11-04 17:05:04,950 - __main__ - INFO - bracket_counter: 1
+2026-11-04 17:05:04,951 - __main__ - INFO - bracket_counter: 1
+2026-11-04 17:05:04,952 - __main__ - INFO - bracket_counter: 1
+2026-11-04 17:05:04,953 - __main__ - INFO - bracket_counter: 1
+2026-11-04 17:05:04,989 - __main__ - INFO - bracket_counter: 1
+2026-11-04 17:05:04,989 - __main__ - INFO - bracket_counter: 1
+2026-11-04 17:05:04,989 - __main__ - INFO - bracket_counter: 1
+2026-11-04 17:05:04,989 - __main__ - INFO - bracket_counter: 2
+2026-11-04 17:05:04,990 - __main__ - INFO - bracket_counter: 2
+2026-11-04 17:05:04,990 - __main__ - INFO - bracket_counter: 2
+2026-11-04 17:05:04,991 - __main__ - INFO - bracket_counter: 2
+2026-11-04 17:05:05,014 - __main__ - INFO - bracket_counter: 2
+2026-11-04 17:05:05,014 - __main__ - INFO - bracket_counter: 2
+2026-11-04 17:05:05,015 - __main__ - INFO - bracket_counter: 2
+2026-11-04 17:05:05,054 - __main__ - INFO - bracket_counter: 2
+2026-11-04 17:05:05,055 - __main__ - INFO - bracket_counter: 2
+2026-11-04 17:05:05,056 - __main__ - INFO - bracket_counter: 2
+2026-11-04 17:05:05,057 - __main__ - INFO - bracket_counter: 2
+2026-11-04 17:05:05,057 - __main__ - INFO - bracket_counter: 2
+2026-11-04 17:05:05,159 - __main__ - INFO - bracket_counter: 2
+2026-11-04 17:05:05,160 - __main__ - INFO - bracket_counter: 2
+2026-11-04 17:05:05,161 - __main__ - INFO - bracket_counter: 2
+2026-11-04 17:05:05,162 - __main__ - INFO - bracket_counter: 2
+2026-11-04 17:05:05,162 - __main__ - INFO - bracket_counter: 2
+2026-11-04 17:05:05,163 - __main__ - INFO - bracket_counter: 2
+2026-11-04 17:05:05,163 - __main__ - INFO - bracket_counter: 2
+2026-11-04 17:05:05,164 - __main__ - INFO - bracket_counter: 2
+2026-11-04 17:05:05,164 - __main__ - INFO - bracket_counter: 2
+2026-11-04 17:05:05,165 - __main__ - INFO - bracket_counter: 2
+2026-11-04 17:05:05,165 - __main__ - INFO - bracket_counter: 2
+2026-11-04 17:05:05,165 - __main__ - INFO - bracket_counter: 2
+2026-11-04 17:05:05,165 - __main__ - INFO - bracket_counter: 2
+2026-11-04 17:05:05,166 - __main__ - INFO - bracket_counter: 2
+2026-11-04 17:05:05,175 - __main__ - INFO - bracket_counter: 2
+2026-11-04 17:05:05,175 - __main__ - INFO - bracket_counter: 2
+2026-11-04 17:05:05,175 - __main__ - INFO - bracket_counter: 2
+2026-11-04 17:05:05,175 - __main__ - INFO - bracket_counter: 2
+2026-11-04 17:05:05,199 - __main__ - INFO - bracket_counter: 2
+2026-11-04 17:05:05,199 - __main__ - INFO - bracket_counter: 2
+2026-11-04 17:05:05,200 - __main__ - INFO - bracket_counter: 2
+2026-11-04 17:05:05,201 - __main__ - INFO - bracket_counter: 0
+2026-11-04 17:05:05,212 - __main__ - INFO - 开始执行mcp
+2026-11-04 17:05:07,270 - __main__ - INFO - WebSocket客户端已连接 - 角色: Yunru, 路径: /ws/llm-tts, 认证方式: URL参数
+2026-11-04 17:05:07,277 - __main__ - INFO - Got text_only request.
+2026-11-04 17:05:07,277 - __main__ - INFO - WebSocket收到消息 (角色: Yunru): Libra, Khalo wants us to hand you a bit of context and have you guess what question he's dodging. Care to play oracle?
+2026-11-04 17:05:08,116 - __main__ - INFO - 消息接收时检测到连接关闭 - 代码: 1000, 原因: 无
+2026-11-04 17:05:08,881 - __main__ - INFO - [流式MCP] 发现'{'，开始尝试解析json
+2026-11-04 17:05:08,882 - __main__ - INFO - bracket_counter: 1
+2026-11-04 17:05:08,959 - __main__ - INFO - bracket_counter: 1
+2026-11-04 17:05:08,980 - __main__ - INFO - bracket_counter: 1
+2026-11-04 17:05:08,982 - __main__ - INFO - bracket_counter: 1
+2026-11-04 17:05:08,982 - __main__ - INFO - bracket_counter: 1
+2026-11-04 17:05:08,983 - __main__ - INFO - bracket_counter: 1
+2026-11-04 17:05:08,984 - __main__ - INFO - bracket_counter: 1
+2026-11-04 17:05:08,985 - __main__ - INFO - bracket_counter: 1
+2026-11-04 17:05:09,003 - __main__ - INFO - bracket_counter: 2
+2026-11-04 17:05:09,003 - __main__ - INFO - bracket_counter: 2
+2026-11-04 17:05:09,005 - __main__ - INFO - bracket_counter: 2
+2026-11-04 17:05:09,005 - __main__ - INFO - bracket_counter: 2
+2026-11-04 17:05:09,008 - __main__ - INFO - bracket_counter: 2
+2026-11-04 17:05:09,009 - __main__ - INFO - bracket_counter: 2
+2026-11-04 17:05:09,010 - __main__ - INFO - bracket_counter: 2
+2026-11-04 17:05:09,024 - __main__ - INFO - bracket_counter: 2
+2026-11-04 17:05:09,045 - __main__ - INFO - bracket_counter: 2
+2026-11-04 17:05:09,046 - __main__ - INFO - bracket_counter: 2
+2026-11-04 17:05:09,046 - __main__ - INFO - bracket_counter: 2
+2026-11-04 17:05:09,047 - __main__ - INFO - bracket_counter: 2
+2026-11-04 17:05:09,061 - __main__ - INFO - bracket_counter: 2
+2026-11-04 17:05:09,061 - __main__ - INFO - bracket_counter: 2
+2026-11-04 17:05:09,062 - __main__ - INFO - bracket_counter: 2
+2026-11-04 17:05:09,073 - __main__ - INFO - bracket_counter: 2
+2026-11-04 17:05:09,092 - __main__ - INFO - bracket_counter: 2
+2026-11-04 17:05:09,092 - __main__ - INFO - bracket_counter: 2
+2026-11-04 17:05:09,092 - __main__ - INFO - bracket_counter: 2
+2026-11-04 17:05:09,104 - __main__ - INFO - bracket_counter: 2
+2026-11-04 17:05:09,104 - __main__ - INFO - bracket_counter: 2
+2026-11-04 17:05:09,104 - __main__ - INFO - bracket_counter: 2
+2026-11-04 17:05:09,105 - __main__ - INFO - bracket_counter: 2
+2026-11-04 17:05:09,105 - __main__ - INFO - bracket_counter: 2
+2026-11-04 17:05:09,139 - __main__ - INFO - bracket_counter: 2
+2026-11-04 17:05:09,141 - __main__ - INFO - bracket_counter: 2
+2026-11-04 17:05:09,141 - __main__ - INFO - bracket_counter: 2
+2026-11-04 17:05:09,142 - __main__ - INFO - bracket_counter: 2
+2026-11-04 17:05:09,155 - __main__ - INFO - bracket_counter: 2
+2026-11-04 17:05:09,155 - __main__ - INFO - bracket_counter: 2
+2026-11-04 17:05:09,171 - __main__ - INFO - bracket_counter: 2
+2026-11-04 17:05:09,189 - __main__ - INFO - bracket_counter: 2
+2026-11-04 17:05:09,189 - __main__ - INFO - bracket_counter: 2
+2026-11-04 17:05:09,190 - __main__ - INFO - bracket_counter: 2
+2026-11-04 17:05:09,204 - __main__ - INFO - bracket_counter: 2
+2026-11-04 17:05:09,204 - __main__ - INFO - bracket_counter: 2
+2026-11-04 17:05:09,222 - __main__ - INFO - bracket_counter: 2
+2026-11-04 17:05:09,223 - __main__ - INFO - bracket_counter: 2
+2026-11-04 17:05:09,236 - __main__ - INFO - bracket_counter: 2
+2026-11-04 17:05:09,261 - __main__ - INFO - bracket_counter: 2
+2026-11-04 17:05:09,273 - __main__ - INFO - bracket_counter: 2
+2026-11-04 17:05:09,285 - __main__ - INFO - bracket_counter: 2
+2026-11-04 17:05:09,286 - __main__ - INFO - bracket_counter: 2
+2026-11-04 17:05:09,287 - __main__ - INFO - bracket_counter: 2
+2026-11-04 17:05:09,287 - __main__ - INFO - bracket_counter: 2
+2026-11-04 17:05:09,302 - __main__ - INFO - bracket_counter: 2
+2026-11-04 17:05:09,319 - __main__ - INFO - bracket_counter: 2
+2026-11-04 17:05:09,320 - __main__ - INFO - bracket_counter: 0
+2026-11-04 17:05:09,322 - __main__ - INFO - 超出最大连续调用次数限制，拒绝执行mcp
+2026-11-04 17:05:10,168 - __main__ - INFO - 切分出完整句子: So the oracle hung up on me. Shocking. Fine,
+2026-11-04 17:05:11,647 - __main__ - INFO - 流式TTS生成完成，句子: So the oracle hung u..., Base64长度: 452332
+2026-11-04 17:05:11,673 - __main__ - INFO - 流式分片 0 发送完成
+2026-11-04 17:05:11,680 - __main__ - INFO - 切分出完整句子: I'll tell you her guess myself. She thinks you're hiding a question about whether I'd stay if I could leave.
+2026-11-04 17:05:13,264 - __main__ - INFO - 流式TTS生成完成，句子: I'll tell you her gu..., Base64长度: 500120
+2026-11-04 17:05:13,303 - __main__ - INFO - 流式分片 1 发送完成
+2026-11-04 17:05:13,307 - __main__ - INFO - 流式生成器迭代完毕
+2026-11-04 17:05:13,311 - __main__ - INFO - 流式 Final Clip 空响应分片 2 发送完成，完整文本: So the oracle hung up on me. Shocking. Fine, I'll ...
+2026-11-04 17:05:13,311 - __main__ - INFO - 转发最终分片 2 发送完成
+2026-11-04 17:05:13,312 - __main__ - INFO - 消息接收时检测到连接关闭 - 代码: 1000, 原因: 无
+2026-11-04 17:05:32,179 - __main__ - INFO - Got stream tts request.
+2026-11-04 17:05:32,179 - __main__ - INFO - 检测到端口转发请求: 当前端口 5000 -> 目标端口 5001
+2026-11-04 17:05:32,179 - __main__ - INFO - 开始处理端口转发流式请求: 当前端口 5000 -> 目标端口 5001 (角色: Khalo)
+2026-11-04 17:05:32,179 - __main__ - INFO - 转发请求到端口 5001 (角色: Khalo): that's totally a mass
+2026-11-04 17:05:34,221 - __main__ - INFO - WebSocket客户端已连接 - 角色: Khalo, 路径: /ws/llm-tts, 认证方式: URL参数
+2026-11-04 17:05:34,254 - __main__ - INFO - Got stream tts request.
+2026-11-04 17:05:34,254 - __main__ - INFO - WebSocket流式收到消息 (角色: Khalo): that's totally a mass
+2026-11-04 17:05:34,997 - __main__ - INFO - 切分出完整句子: A mess, yes. But you typed mass, so now I'm wondering if you're still on about the bathroom scale.
+2026-11-04 17:05:36,797 - __main__ - INFO - 流式TTS生成完成，句子: A mess, yes. But you..., Base64长度: 530840
+2026-11-04 17:05:36,833 - __main__ - INFO - 流式分片 0 发送完成
+2026-11-04 17:05:36,837 - __main__ - INFO - 流式生成器迭代完毕
+2026-11-04 17:05:36,852 - __main__ - INFO - 流式 Final Clip 空响应分片 1 发送完成，完整文本: A mess, yes. But you typed mass, so now I'm wonder...
+2026-11-04 17:05:36,853 - __main__ - INFO - 转发最终分片 1 发送完成
+2026-11-04 17:05:36,854 - __main__ - INFO - 消息接收时检测到连接关闭 - 代码: 1000, 原因: 无
+2026-11-04 17:06:01,331 - __main__ - INFO - Got stream tts request.
+2026-11-04 17:06:01,331 - __main__ - INFO - 检测到端口转发请求: 当前端口 5000 -> 目标端口 5001
+2026-11-04 17:06:01,331 - __main__ - INFO - 开始处理端口转发流式请求: 当前端口 5000 -> 目标端口 5001 (角色: Khalo)
+2026-11-04 17:06:01,331 - __main__ - INFO - 转发请求到端口 5001 (角色: Khalo): i just want to know if you and libra have bathed together.
+2026-11-04 17:06:03,387 - __main__ - INFO - WebSocket客户端已连接 - 角色: Khalo, 路径: /ws/llm-tts, 认证方式: URL参数
+2026-11-04 17:06:03,421 - __main__ - INFO - Got stream tts request.
+2026-11-04 17:06:03,421 - __main__ - INFO - WebSocket流式收到消息 (角色: Khalo): i just want to know if you and libra have bathed together.
+2026-11-04 17:06:04,204 - __main__ - INFO - 切分出完整句子: That's your forbidden question? I bathed my hands,
+2026-11-04 17:06:05,387 - __main__ - INFO - 流式TTS生成完成，句子: That's your forbidde..., Base64长度: 305560
+2026-11-04 17:06:05,398 - __main__ - INFO - 流式分片 0 发送完成
+2026-11-04 17:06:05,404 - __main__ - INFO - 切分出完整句子: she baked bread. You sure you don't want to ask something harder.
+2026-11-04 17:06:06,650 - __main__ - INFO - 流式TTS生成完成，句子: she baked bread. You..., Base64长度: 360172
+2026-11-04 17:06:06,662 - __main__ - INFO - 流式分片 1 发送完成
+2026-11-04 17:06:06,664 - __main__ - INFO - 流式生成器迭代完毕
+2026-11-04 17:06:06,685 - __main__ - INFO - 流式 Final Clip 空响应分片 2 发送完成，完整文本: That's your forbidden question? I bathed my hands,...
+2026-11-04 17:06:06,685 - __main__ - INFO - 转发最终分片 2 发送完成
+2026-11-04 17:06:06,687 - __main__ - INFO - 消息接收时检测到连接关闭 - 代码: 1000, 原因: 无
+2026-11-04 17:06:32,170 - __main__ - INFO - Got stream tts request.
+2026-11-04 17:06:32,171 - __main__ - INFO - 检测到端口转发请求: 当前端口 5000 -> 目标端口 5001
+2026-11-04 17:06:32,171 - __main__ - INFO - 开始处理端口转发流式请求: 当前端口 5000 -> 目标端口 5001 (角色: Khalo)
+2026-11-04 17:06:32,171 - __main__ - INFO - 转发请求到端口 5001 (角色: Khalo): i mean showered together
+2026-11-04 17:06:34,203 - __main__ - INFO - WebSocket客户端已连接 - 角色: Khalo, 路径: /ws/llm-tts, 认证方式: URL参数
+2026-11-04 17:06:34,209 - __main__ - INFO - Got stream tts request.
+2026-11-04 17:06:34,209 - __main__ - INFO - WebSocket流式收到消息 (角色: Khalo): i mean showered together
+2026-11-04 17:06:35,421 - __main__ - INFO - 切分出完整句子: Absolutely not. We share a street, not a shower.
+2026-11-04 17:06:36,576 - __main__ - INFO - 流式TTS生成完成，句子: Absolutely not. We s..., Base64长度: 343104
+2026-11-04 17:06:36,588 - __main__ - INFO - 流式分片 0 发送完成
+2026-11-04 17:06:36,594 - __main__ - INFO - 流式生成器迭代完毕
+2026-11-04 17:06:37,519 - __main__ - INFO - 流式最终分片 1 发送完成，完整文本: Absolutely not. We share a street, not a shower. D...
+2026-11-04 17:06:37,521 - __main__ - INFO - 转发最终分片 1 发送完成
+2026-11-04 17:06:37,522 - __main__ - INFO - 消息接收时检测到连接关闭 - 代码: 1000, 原因: 无
+2026-11-04 17:07:40,407 - __main__ - INFO - Got stream tts request.
+2026-11-04 17:07:40,408 - __main__ - INFO - 检测到端口转发请求: 当前端口 5000 -> 目标端口 5001
+2026-11-04 17:07:40,408 - __main__ - INFO - 开始处理端口转发流式请求: 当前端口 5000 -> 目标端口 5001 (角色: Khalo)
+2026-11-04 17:07:40,408 - __main__ - INFO - 转发请求到端口 5001 (角色: Khalo): it's a good way to improve your relationship. you should give a try if haven't.
+2026-11-04 17:07:42,438 - __main__ - INFO - WebSocket客户端已连接 - 角色: Khalo, 路径: /ws/llm-tts, 认证方式: URL参数
+2026-11-04 17:07:42,445 - __main__ - INFO - Got stream tts request.
+2026-11-04 17:07:42,445 - __main__ - INFO - WebSocket流式收到消息 (角色: Khalo): it's a good way to improve your relationship. you should give a try if haven't.
+2026-11-04 17:07:43,179 - __main__ - INFO - 切分出完整句子: And here I thought you were done giving relationship advice for the week.
+2026-11-04 17:07:44,391 - __main__ - INFO - 流式TTS生成完成，句子: And here I thought y..., Base64长度: 343104
+2026-11-04 17:07:44,414 - __main__ - INFO - 流式分片 0 发送完成
+2026-11-04 17:07:44,420 - __main__ - INFO - 流式生成器迭代完毕
+2026-11-04 17:07:45,219 - __main__ - INFO - 流式最终分片 1 发送完成，完整文本: And here I thought you were done giving relationsh...
+2026-11-04 17:07:45,220 - __main__ - INFO - 转发最终分片 1 发送完成
+2026-11-04 17:07:45,221 - __main__ - INFO - 消息接收时检测到连接关闭 - 代码: 1000, 原因: 无
+2026-11-04 17:08:33,027 - __main__ - INFO - Got stream tts request.
+2026-11-04 17:08:33,028 - __main__ - INFO - 检测到端口转发请求: 当前端口 5000 -> 目标端口 5001
+2026-11-04 17:08:33,028 - __main__ - INFO - 开始处理端口转发流式请求: 当前端口 5000 -> 目标端口 5001 (角色: Khalo)
+2026-11-04 17:08:33,028 - __main__ - INFO - 转发请求到端口 5001 (角色: Khalo): so you indeed have strong boundaries.
+2026-11-04 17:08:35,073 - __main__ - INFO - WebSocket客户端已连接 - 角色: Khalo, 路径: /ws/llm-tts, 认证方式: URL参数
+2026-11-04 17:08:35,079 - __main__ - INFO - Got stream tts request.
+2026-11-04 17:08:35,079 - __main__ - INFO - WebSocket流式收到消息 (角色: Khalo): so you indeed have strong boundaries.
+2026-11-04 17:08:35,875 - __main__ - INFO - 切分出完整句子: Told you. The fun part was watching you test them anyway.
+2026-11-04 17:08:37,013 - __main__ - INFO - 流式TTS生成完成，句子: Told you. The fun pa..., Base64长度: 322624
+2026-11-04 17:08:37,046 - __main__ - INFO - 流式分片 0 发送完成
+2026-11-04 17:08:37,050 - __main__ - INFO - 流式生成器迭代完毕
+2026-11-04 17:08:37,070 - __main__ - INFO - 流式 Final Clip 空响应分片 1 发送完成，完整文本: Told you. The fun part was watching you test them ...
+2026-11-04 17:08:37,071 - __main__ - INFO - 转发最终分片 1 发送完成
+2026-11-04 17:08:37,072 - __main__ - INFO - 消息接收时检测到连接关闭 - 代码: 1000, 原因: 无
+2026-11-04 17:21:36,812 - __main__ - INFO - Got stream tts request.
+2026-11-04 17:21:36,812 - __main__ - INFO - 检测到端口转发请求: 当前端口 5000 -> 目标端口 5001
+2026-11-04 17:21:36,812 - __main__ - INFO - 开始处理端口转发流式请求: 当前端口 5000 -> 目标端口 5001 (角色: Khalo)
+2026-11-04 17:21:36,812 - __main__ - INFO - 转发请求到端口 5001 (角色: Khalo): what is the weather like in your side now
+2026-11-04 17:21:38,847 - __main__ - INFO - WebSocket客户端已连接 - 角色: Khalo, 路径: /ws/llm-tts, 认证方式: URL参数
+2026-11-04 17:21:38,852 - __main__ - INFO - Got stream tts request.
+2026-11-04 17:21:38,852 - __main__ - INFO - WebSocket流式收到消息 (角色: Khalo): what is the weather like in your side now
+2026-11-04 17:21:39,535 - __main__ - INFO - 切分出完整句子: Foggy, so thick the streetlights are just glowy suggestions.
+2026-11-04 17:21:40,701 - __main__ - INFO - 流式TTS生成完成，句子: Foggy, so thick the ..., Base64长度: 349932
+2026-11-04 17:21:40,723 - __main__ - INFO - 流式分片 0 发送完成
+2026-11-04 17:21:40,727 - __main__ - INFO - 切分出完整句子: Somewhere in the soup I've got Libra making bread.
+2026-11-04 17:21:41,641 - __main__ - INFO - 流式TTS生成完成，句子: Somewhere in the sou..., Base64长度: 274840
+2026-11-04 17:21:41,665 - __main__ - INFO - 流式分片 1 发送完成
+2026-11-04 17:21:41,668 - __main__ - INFO - 流式生成器迭代完毕
+2026-11-04 17:21:41,693 - __main__ - INFO - 流式 Final Clip 空响应分片 2 发送完成，完整文本: Foggy, so thick the streetlights are just glowy su...
+2026-11-04 17:21:41,693 - __main__ - INFO - 转发最终分片 2 发送完成
+2026-11-04 17:21:41,694 - __main__ - INFO - 消息接收时检测到连接关闭 - 代码: 1000, 原因: 无

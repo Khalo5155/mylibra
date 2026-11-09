@@ -1,0 +1,35 @@
+{
+    "General":{
+        "eat too much":{
+            "description": "You have eaten too much and feel uncomfortably full. Your stomach is bloated and you may feel sluggish or nauseous."
+        },
+        "short trip":{
+            "description": "You go on a short trip to a nearby location, enjoying the change of scenery and the opportunity to explore new surroundings."
+        },
+        "boredom":{
+            "description": "You feel a sense of boredom and restlessness, as if you have nothing to do or no one to talk to. You may feel a lack of motivation or interest in your surroundings."
+        }
+    },
+    "Libra":{
+        "take a shower with Yunru":{
+            "description": "Take a shower together with Yunru, enjoying the warmth and intimacy of the moment."
+        },
+        "fishing with Yunru":{
+            "description": "Go fishing together with Yunru, enjoying the peacefulness of the water and the thrill of catching fish."
+        },
+        "bad emotion strike":{
+            "description": "You experiences a sudden surge of negative emotions. everything feels meaningless. world turns gray and dull. You feel a deep sense of sadness and despair, as if the weight of the world is pressing down on you. It's a moment of emotional turmoil that leaves you feeling lost and overwhelmed."
+        }
+    },
+    "Yunru":{
+        "take a shower with Libra":{
+            "description": "Take a shower together with Libra, enjoying the warmth and intimacy of the moment."
+        },
+        "fishing with Libra":{
+            "description": "Go fishing together with Libra, enjoying the peacefulness of the water and the thrill of catching fish."
+        },
+        "sudden curiosity":{
+            "description": "Yunru experiences a sudden surge of curiosity. hate how things works in their normal boring way, wanna do something different to break the circling routine."
+        }
+    }
+}
